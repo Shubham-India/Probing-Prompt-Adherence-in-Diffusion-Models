@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 1008 images 5 categories se bani hain: 28 prompts × 3 CFG × 2 steps × 6 seeds. Har prompt ki 36 images bani hain (3 × 2 × 6), isliye category ka total = prompts × 36
 # Where Does the Prompt Go? Probing Prompt Adherence in Diffusion Models
 
@@ -164,3 +165,7 @@ The benchmark is useful for a controlled pilot, but it is still small. Each cate
 The experiments cover one diffusion model, scheduler, and resolution, with a relatively coarse CFG grid. The attention analysis is correlational, so it cannot show that an attention pattern caused a prompt to succeed or fail. The intervention was tested at one CFG setting, one step count, and one token-selection rule. The object-presence improvement was exploratory and has not been checked on a separate confirmation set.
 
 The next useful steps are to complete the end-to-end run, obtain an independent review of the validation labels, expand the prompt set, and test the exploratory object-presence finding on new prompts and seeds. For now, the main conclusion should remain **inconclusive** rather than a claim that higher CFG or attention re-weighting solves compositional prompt adherence.
+=======
+# Probing-Prompt-Adherence-in-Diffusion-Models
+Researchathon Project conducted by CSAI ~ IIT ISM DHANBAD
+>>>>>>> fe78d3f25b6a08208b6109a63a0e64fbe147fae3
