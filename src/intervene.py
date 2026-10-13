@@ -4,6 +4,8 @@ For every text cross-attention layer the pre-softmax scores of the content token
 conditional branch get +log(s), which multiplies their attention weight by s before the softmax re-normalises.
 s = 1 goes through the same code path and serves as the control.
 Usage: python src/intervene.py --out outputs/intervention --scales 1 2 4
+Probe arms (M7, RB 13): python src/intervene.py --mode {targeted,random_pair,shuffled_mask,always_on,knockout,off} --onsets 0 14 28 --length 12 ...
+(edit_probe.py; every image logs bias mass, fired steps and skip reasons). The default --mode global is the unchanged pilot path.
 """
 import argparse
 import json
@@ -55,12 +57,69 @@ def build_bias(tokenizer, prompt, constraints, scale, device="cuda"):
     return bias, indices
 
 
+def run_probe_arms(args):
+    """Window/onset arms of the targeted edit probe. Not validated on a GPU in this repository snapshot (see docs/SESSION_STATE.md)."""
+    import edit_probe as EP
+    config = json.loads(Path(args.config).read_text())
+    prompts = json.loads(Path(args.prompts).read_text())
+    if args.limit_prompts:
+        prompts = [p for p in prompts if p["id"] in set(args.limit_prompts.split(","))]
+    seeds = config["seeds"][: args.seeds] if args.seeds else config["seeds"]
+    out = Path(args.out)
+    (out / "images").mkdir(parents=True, exist_ok=True)
+    meta_path = out / "samples.jsonl"
+    finished = done_names(meta_path)
+    tag = lambda p, seed, onset: f"{p['id']}__cfg{CFG:g}__st{STEPS}__seed{seed}__{args.mode}_on{onset}_L{args.length}"
+    jobs = [(p, seed, onset) for onset in args.onsets for p in prompts for seed in seeds if tag(p, seed, onset) not in finished]
+    print(f"{len(jobs)} images to generate ({len(finished)} already done)", flush=True)
+    if not jobs:
+        return
+    pipe = load_pipeline(config["model_id"], config.get("revision"))
+    state = EP.EditState(mode="off")
+    EP.install_edit(pipe.unet, state)
+    for i, (p, seed, onset) in enumerate(jobs, 1):
+        name = tag(p, seed, onset)
+        word_idx = word_token_indices(pipe.tokenizer, p["prompt"])
+        try:
+            cols = EP.plan_columns(word_idx, p["constraints"])
+            plan_error = None
+        except KeyError as e:
+            cols, plan_error = {"I_a": [], "I_n": [], "I_o": []}, f"alignment_failed:{e}"
+        state.__init__(mode=args.mode, onset=onset, length=args.length, beta=math.log(args.beta_scale), q=args.q, max_edits=STEPS,
+                       cols=cols, sides=(16,), knock_group=args.knock_group, rand_seed=seed)
+
+        def cb(_pipe, step, _t, kw):
+            state.end_step()
+            return kw
+        t0 = time.time()
+        image = generate_image(pipe, p["prompt"], CFG, STEPS, seed, config["image_size"], callback_on_step_end=cb)
+        image.save(out / "images" / f"{name}.png")
+        with open(meta_path, "a") as meta:
+            meta.write(json.dumps({"name": name, "prompt_id": p["id"], "category": p["category"], "prompt": p["prompt"], "cfg": CFG,
+                                   "steps": STEPS, "seed": seed, "size": config["image_size"], "arm": args.mode, "onset": onset,
+                                   "window_length": args.length, "edit": state.log(), "plan_error": plan_error, "scheduler": "DDIM(eta=0)",
+                                   "negative_prompt": "", "model_id": config["model_id"], "seconds": round(time.time() - t0, 2)}) + "\n")
+        if i % 20 == 0 or i == len(jobs):
+            print(f"[{i}/{len(jobs)}] {name}", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser()
+    ap.add_argument("--mode", default="global", choices=["global", "off", "targeted", "random_pair", "shuffled_mask", "always_on", "knockout"])
+    ap.add_argument("--config", default=str(ROOT / "configs" / "experiment.json"))
+    ap.add_argument("--prompts", default=str(ROOT / "data" / "prompts.json"))
+    ap.add_argument("--seeds", type=int, default=None)
+    ap.add_argument("--onsets", type=int, nargs="+", default=[0])
+    ap.add_argument("--length", type=int, default=12)
+    ap.add_argument("--beta-scale", type=float, default=2.0, help="beta = log(this); RB: <= 2")
+    ap.add_argument("--q", type=float, default=0.25)
+    ap.add_argument("--knock-group", default="up", choices=["down", "mid", "up"])
     ap.add_argument("--out", required=True)
     ap.add_argument("--scales", type=float, nargs="+", default=[1, 2, 4])
     ap.add_argument("--limit-prompts", default=None)
     args = ap.parse_args()
+    if args.mode != "global":
+        return run_probe_arms(args)
 
     config = json.loads((ROOT / "configs" / "experiment.json").read_text())
     prompts = json.loads((ROOT / "data" / "prompts.json").read_text())

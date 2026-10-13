@@ -1,0 +1,3 @@
+# M7/M8 acceptance (2026-10-13)
+15 passed in 12.72s
+CPU-only: toy attention layer (M7) and TINY RANDOM diffusers pipeline (M8 loop/resume/D=0 identity). Real SD 1.5 fp16 identity NOT run: tests/gpu_identity.py needs a GPU (owner RTX 3050 or Kaggle).

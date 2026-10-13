@@ -82,3 +82,55 @@ def restart(x_t, ratio, noise):
     if ratio == 1.0:
         return x_t
     return ratio**0.5 * x_t + (1.0 - ratio) ** 0.5 * noise
+
+
+# ----- denoising loop (torch / diffusers) -------------------------------------------------------------------------------
+# Same code path as StableDiffusionPipeline.__call__ for the DDIM, eta = 0, classifier-free-guidance case (D-07):
+#   scale_model_input -> unet on [uncond, cond] -> guidance -> scheduler.step -> vae decode -> image_processor.postprocess.
+# Validated here only against a tiny random UNet/VAE on CPU (tests/test_branch_loop.py); identity with the real SD 1.5 fp16 pipeline
+# on a GPU is checked by tests/gpu_identity.py and is NOT established by this repository snapshot.
+def encode_prompt_pair(pipe, prompt, device, negative_prompt=""):
+    """(negative_embeds, positive_embeds) exactly as the pipeline computes them."""
+    pos, neg = pipe.encode_prompt(prompt, device, 1, True, negative_prompt=negative_prompt)
+    return neg, pos
+
+
+def denoise_from(pipe, embeds, latents, start, steps=40, cfg=7.5, decode=True):
+    """Continue denoising `latents` (the model input of step index `start`) through the last step. start=0 with the initial noise
+    reproduces the pipeline. `embeds` = (negative, positive). Returns a PIL image (decode=True) or the final latents."""
+    import torch
+    neg, pos = embeds
+    device = latents.device
+    pipe.scheduler.set_timesteps(steps, device=device)
+    ts = pipe.scheduler.timesteps
+    prompt_embeds = torch.cat([neg, pos])
+    with torch.no_grad():
+        for i in range(start, steps):
+            inp = pipe.scheduler.scale_model_input(torch.cat([latents] * 2), ts[i])
+            noise_pred = pipe.unet(inp, ts[i], encoder_hidden_states=prompt_embeds, return_dict=False)[0]
+            n_u, n_c = noise_pred.chunk(2)
+            noise_pred = n_u + cfg * (n_c - n_u)
+            latents = pipe.scheduler.step(noise_pred, ts[i], latents, eta=0.0, return_dict=False)[0]
+        if not decode:
+            return latents
+        image = pipe.vae.decode(latents / pipe.vae.config.scaling_factor, return_dict=False)[0]
+        return pipe.image_processor.postprocess(image, output_type="pil", do_denormalize=[True] * image.shape[0])[0]
+
+
+def branch_noise(shape, seed, dtype, device):
+    """Branch noise N(0, I): drawn in float32 on the CPU from a seeded generator, then cast (D-08)."""
+    import torch
+    g = torch.Generator("cpu").manual_seed(seed)
+    return torch.randn(shape, generator=g, dtype=torch.float32).to(device=device, dtype=dtype)
+
+
+def branch_generate(pipe, embeds, x_saved, t_completed, plan, noise_seed, steps=40, cfg=7.5, decode=True):
+    """Restart branch: re-noise the saved latent (after `t_completed` steps) by `plan` (branch.restart_plan / equal_ratio_plan),
+    then denoise from step index plan['target_idx']. plan['ratio'] == 1 (D=0) returns the unmodified latent (identity)."""
+    assert plan["t"] == t_completed, "plan does not belong to this latent"
+    if plan["ratio"] == 1.0:
+        x = x_saved
+    else:
+        eps = branch_noise(x_saved.shape, noise_seed, x_saved.dtype, x_saved.device)
+        x = restart(x_saved.float(), plan["ratio"], eps.float()).to(x_saved.dtype)
+    return denoise_from(pipe, embeds, x, plan["target_idx"], steps, cfg, decode)
