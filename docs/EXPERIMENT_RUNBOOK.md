@@ -15,13 +15,25 @@ Verified facts about the environment are in `docs/REPOSITORY_AUDIT.md` section 2
 ### Path A (default, manual and reliable)
 1. Claude commits the code and states the **commit SHA** and the **notebook/script**.
 2. Owner pushes the branch to GitHub (`git push origin <branch>`; Claude cannot).
-3. Owner opens the Kaggle notebook, sets **Accelerator = GPU** (T4 x2 or whatever is offered; record the choice) and **Internet = On** (needed to clone the repository and to download model weights).
+3. Owner opens the Kaggle notebook, sets **Accelerator = GPU** (T4 x2 or whatever is offered; record the choice) and **Internet = On** (assumed necessary to clone the repository and download model weights; UNVERIFIED until R0).
 4. Owner runs the setup cell, then the experiment cell exactly as given in the experiment's "RUN CARD" (section 8).
 5. Owner downloads `/kaggle/working/<run_id>.zip` (or the Kaggle "Output" tab) to `D:\prompt_Project\kaggle_returns\<run_id>\` and tells Claude the run ID.
 6. Claude validates (section 5) and analyses.
 
 ### Path B (optional automation) - NOT AVAILABLE NOW
-Preconditions to evaluate before building it: `kaggle` CLI installed and authenticated (not present); a GitHub token usable for push (not verified); Kaggle notebook push/run via API (not tested). Test with a 1-minute dummy notebook that writes a manifest and returns it. Until that test passes end-to-end, Path A is the only path. Secrets must live in Kaggle Add-ons -> Secrets or the local credential store and are never written to logs or Git.
+Preconditions to evaluate before building it: `kaggle` CLI installed and authenticated (not present); a GitHub token usable for push (not verified); Kaggle notebook push/run via API (not tested). Test with a 1-minute dummy notebook that writes a manifest and returns it. Until that test passes end-to-end, Path A is the only path. Secrets are expected to live in Kaggle Add-ons -> Secrets (UNVERIFIED mechanism, from secondary sources) or the local credential store and are never written to logs or Git.
+
+## 2b. Capability status table
+| Capability | Status |
+|---|---|
+| Local git read/commit | VERIFIED |
+| GitHub read with owner's cached credentials | VERIFIED (`ls-remote`) |
+| Anonymous GitHub read | VERIFIED **not possible** (private) |
+| GitHub push from this environment | UNVERIFIED (not attempted) |
+| `gh` CLI, `kaggle` CLI, Kaggle credentials here | VERIFIED **absent** |
+| Kaggle GPU type/VRAM/quota/session length/internet/secrets behaviour | UNVERIFIED (planned R0 measures them) |
+| Kaggle notebook can clone the repo and install pins | UNVERIFIED |
+| Automatic return of outputs to GitHub | UNVERIFIED and not planned |
 
 ## 3. Standard Kaggle setup cell (to be committed as `kaggle/setup.py` in M9; shown as the plan)
 
@@ -35,7 +47,7 @@ subprocess.run(["pip","install","-q","-r","repo/requirements-kaggle.txt"],check=
 subprocess.run(["python","repo/kaggle/env_probe.py","--out","/kaggle/working/env.json"],check=True)  # PLANNED
 ```
 `env_probe.py` records: `nvidia-smi`, device names, VRAM per device, CUDA/torch/diffusers/transformers versions, free disk, python version, commit SHA, timestamp. **No tokens are printed.**
-Note: the repository appeared readable without credentials (`git ls-remote` worked); if it is made private, cloning requires a token stored as a Kaggle Secret.
+Note: the repository is **not** anonymously readable (verified: `git -c credential.helper= ls-remote origin` fails). Cloning on Kaggle therefore needs a GitHub token with read access, kept as a Kaggle Secret and never printed; alternatively upload the commit as a private Kaggle dataset or make the repository public (owner's decision, DECISION_REGISTER D-11). Whether a Kaggle Secret can be read inside the notebook as assumed here is UNVERIFIED.
 
 ## 4. Run identity, outputs and integrity
 

@@ -53,15 +53,25 @@ Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/
 
 | ID | Observation (blueprint locations) | Problem | Proposed reconciliation |
 |---|---|---|---|
-| C-1 | 9.0: TEST binding 60 + multi 50 = 110, DEV 30 + 25 = 55; text says "about 140" / "about 70" binding-bearing (8.1, 8.6.1, 11.9, 15.4, 16.5) | 110 < 140 and 55 < 70 unless count/spatial/presence scenes also carry colour attributes. Power numbers (half-width 0.08, MDE 0.07) were computed for 140. | Decide the definition of "binding-bearing" (any scene with at least one colour-object constraint). Then either change the quotas to guarantee 140/70 or recompute the power with the real number. **Open; blocks the Addendum.** |
+| C-1 | 9.0: TEST binding 60 + multi 50 = 110, DEV 30 + 25 = 55; text says "about 140" / "about 70" binding-bearing (8.1, 8.6.1, 11.9, 15.4, 16.5) | 110 < 140 and 55 < 70 unless count/spatial/presence scenes also carry colour attributes. Power numbers (half-width 0.08, MDE 0.07) were computed for 140. Also affected: E12 DEV tuning count `70*8*2 = 1,120` (LIMITED 41) and every E05/E12/E28 count that uses 140. | Decide the definition of "binding-bearing" (any scene with at least one colour-object constraint). Then either change the quotas to guarantee 140/70 or recompute the power with the real number. **Open; blocks the Addendum.** |
 | C-2 | E23: about 100 TEST canonical scenes, binding about 70 | 70 is 0.7 of 100, consistent with 140/200 but not with C-1 (110/200 = 0.55 gives about 55). After the presence filter (about 45% eligible per image) the effective binding sample is smaller still (a rough estimate: 25-30 scenes with usable pairs). | Recompute after C-1; enlarge the commitment subset if the DEV gate requires. |
 | C-3 | 16.5b: E24 is P2 but is included in the "P0-P2-lite" total (19,520 / 8,182); P1 total 18,120 / 7,702 | A reader may take 19,520 as the P1 cost. | Present both totals; budget decisions use the P1 total first. |
 | C-4 | E23 image-equivalents use 0.667 (six grid steps) but 0.74 for LIMITED (five steps) | Formula assumes the remaining fraction; an unclipped `t=6` branch actually has a longer path | Replace by measured `t_branch` after M9. |
 | C-5 | E23b is P2 yet is needed to qualify HA | If it is dropped, HA is unqualified (D-02) | Promote the equal-ratio sensitivity to P1 (it reuses E23 code; DEV-scale cost). |
 | C-6 | Pilot k=6 seeds vs V2 k=4 vs branch bases k=2 | Three seed counts in one design | Fix: V2 core k=4; branches use the first 2 of the 4; DEV tuning k=2. Write it into `configs/experiment_v2.json`. |
+| C-8 | RB 11.4 requires nouns to pass the synthetic detector probe (E22) and calibration (E03) before the lexicon is final, but the plan builds the benchmark (M3) before E22 (M5) and E03 (M9) | Dependency inversion | M3 delivers schema, grammar, validators and a *draft* lexicon; the lexicon is frozen only after M5 and M9, before DEV generation in M10 (MASTER 16). |
 | C-7 | Edit arms: E12 uses 6 arms FULL (3,360 images) vs 4 arms LIMITED | LIMITED drops mid and global arms; HC is still defined by early/late | Accept; record that LIMITED cannot report dose-response. |
 
 Approval: **yes** for C-1 (changes the sample-size basis).
+
+## D-12 Undefined cases of DEV-derived quantities (found in review)
+| Quantity (RB) | Undefined when | Proposed rule |
+|---|---|---|
+| `tau_pre` = last grid step <= 0.5 * `t50_DEV` (8.2) | `t50_DEV` < 12 (no grid step >= 6 qualifies) or `t50_DEV` = "> 36" | If undefined, HB `ΔAUC_pre` uses `tau = 6` and is labelled EXPLORATORY; record the rule in the Addendum |
+| `tau_post` = first grid step >= `t50_DEV` + 8 | `t50_DEV` > 28 | HB cannot test readout-after-commitment; mark `post` not estimable |
+| HC mid onset = `t50_DEV`, late onset = `ceil(t50_DEV) + 4` capped at 28, window L = 12 (8.3) | `t50_DEV` > 28 or "> 36": a mid window would end after step 40 | Cap every onset so that onset + 12 <= 40; if `t50_DEV` > 28 the early/late contrast loses its meaning, so HC reduces to `D_early` and `G` is not estimated |
+| `t50` interpolation | `C` never reaches 0.5 or is non-monotone | Report ">36"; use the first crossing; flag non-monotone curves (D-03) |
+Approval: yes (Addendum B text).
 
 ## D-06 DEV/TEST separation and leakage (task B6)
 
@@ -105,10 +115,10 @@ J1 (OWL-ViT + CLIP) is the only judge that exists. Pilot validation accuracies (
 |---|---|
 | README conflict markers (F-1) | Fix in M0 (no scientific content change) |
 | Kaggle artefact storage | Proposed: Kaggle output / private Kaggle dataset for bulk; Git for manifests and compact results only (RUNBOOK 6) |
-| Pushing the branch | Not done; needs the owner's GitHub authentication |
+| Pushing the branch | Not done; needs the owner's GitHub authentication. The repository is private (anonymous read fails), so Kaggle needs a read token, a private dataset upload, or a public repo: owner decision |
 | AI-assistance disclosure | Check the event's policy; record provenance of labels and code (blueprint risk register) |
 | Novelty | The commitment-curve gap is **not established**; do not use "first" or "novel" in any document before the full-text checks listed in blueprint section 22 |
 
 ## Summary of items blocking implementation
 
-Blocking: D-02, D-03, D-04, D-05 (C-1), D-06 (approval). Non-blocking for the CPU modules in M1: D-01, D-07, D-08.
+Blocking: D-02, D-03, D-04, D-05 (C-1), D-06, D-12 (approval). Non-blocking for the CPU modules in M1: D-01, D-07, D-08.

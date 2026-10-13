@@ -10,9 +10,9 @@ Companion files: `REPOSITORY_AUDIT.md` (facts), `DECISION_REGISTER.md` (open dec
 | Pilot (SD 1.5, 28 prompts, 1008 + 504 images, CPU tests 6 passed) | Implemented, results saved, frozen |
 | Revision 2 programme (HA, HB, HC, Benchmark V2, branching, conditional evaluation, shard tooling, Kaggle workflow) | **Not implemented.** Design only |
 | Git | Repo present with remote; README has committed merge-conflict markers (F-1) |
-| Kaggle | No automation available; hardware unmeasured |
+| Kaggle / GitHub | No Kaggle CLI or credentials; GitHub repo is private (anonymous read fails), so a Kaggle clone needs a token; push unverified; hardware unmeasured |
 | Blocking decisions | D-02 (restart magnitude), D-03 (terminology), D-04 (conditional outcome), D-05 C-1 (binding-bearing counts), D-06 (freeze procedure) |
-| Single best next action | M0 hygiene, then M1 CPU modules in parallel with owner decisions on D-02..D-05 |
+| Single best next action | Owner approvals (D-05 C-1, D-04 first); in parallel Claude does M0 hygiene and M1 (CPU only) |
 
 ## 2. Research goals and hypothesis map
 
@@ -131,11 +131,11 @@ Start each session by reading `docs/SESSION_STATE.md` only (not the whole RB). R
 |---|---|---|---|---|
 | M0 | Hygiene: remove README conflict markers; verify e2e log and correct README row; `.gitignore` for `kaggle_returns/`; rebuild stale generated docs; pin model revision | - | `git grep "^<<<<<<<"` empty; `build_report.py` assertions pass; CPU tests green | local |
 | M1 | `config_schema.py`, `experiment_v2.json`, `branch.py` math, tests for D-01 | D-01 | moment test, index map, `D=0` identity (CPU) | local CPU |
-| M2 | Pilot re-analysis: conditional rates, eligibility, noise-only baseline, variance components (E21 extended) | D-04 (definition) | outputs reproducible; pilot numbers unchanged; **G0'** | CPU |
-| M3 | `benchmark_v2.py`, splits, datasheet, QA, synthetic probe design | D-05 C-1 | validators pass; reviewer rejects under 20% of variants | CPU + human review |
+| M2 | Pilot re-analysis: conditional rates, eligibility, noise-only baseline, variance components (E21 extended). Conditional outcomes are computed by a **standalone function in the analysis script** from saved `detections.jsonl`; `evaluate.py` is not touched before M5 | D-04 (definition) | outputs reproducible; pilot numbers unchanged; **G0'** | CPU |
+| M3 | `benchmark_v2.py`, splits, datasheet, QA; **draft lexicon only** (frozen after M5 and M9, before M10; D-05 C-8) | D-05 C-1 | validators pass; reviewer rejects under 20% of variants | CPU + human review |
 | M4 | `generate.py` upgrade, verify/merge | - | seeded duplicate/corruption detected; default flags reproduce pilot bytes locally on 3 items | CPU + local GPU |
 | M5 | Conditional `evaluate.py`, audit tools, J2 interface | D-04, D-10 | old columns unchanged (regression); audit export blinded | CPU |
-| M6 | `commitment.py`, features, predict, stats | D-02, D-03, D-09 | synthetic recovery tests; **G1'** (all CPU tests green) | CPU |
+| M6 | `commitment.py`, features, predict, stats | D-02, D-03, D-09, D-12 | synthetic recovery tests; **G1'** (all CPU tests green) | CPU |
 | M7 | `intervene.py` modes | - | control identity; bias-mass equality; knockout locality | CPU + local GPU |
 | M8 | Local GPU identity: custom loop equals pipeline, saved-latent reload equals recompute, `D=0` image identical | D-07, D-08 | all identities pass on the 3050 | local GPU |
 | M9 | Kaggle probe and throughput (E03) | - | `hardware.json`, `throughput.json`, FULL/LIMITED decision; **G2'** | Kaggle |
@@ -144,6 +144,27 @@ Start each session by reading `docs/SESSION_STATE.md` only (not the whole RB). R
 | M12 | HA -> HB -> HC analysis | frozen Addendum | each analysed once; tables from files; **G5'** | CPU |
 | M13 | Exploratory P2/P3 (E24, E26-E28, E16) | | labelled EXPLORATORY | Kaggle |
 | M14 | Report, figures, README rebuild, reproduction check | | every number traces to a saved file | CPU |
+
+## 16b. Executable acceptance checks
+A milestone is complete only when every listed command has been run and its output saved under `outputs/acceptance/<MS>.txt`. Test file names are planned (none exists yet unless marked). "Pass" means exit code 0 **and** the stated criterion.
+
+| MS | Command | Pass criterion |
+|---|---|---|
+| M0 | `git grep -n "^<<<<<<<" -- README.md`; `python report/build_report.py`; `python -m pytest tests/test_logic.py -q` | no match; build assertions pass; 6 passed (the pytest part exists today) |
+| M1 | `python -m pytest tests/test_config.py tests/test_branch_math.py -q` | schema accepts pilot + V2 configs, rejects unknown/missing keys; `restart` with `D=0` returns the input; ratios equal `docs/evidence/sched_check_output.txt` (0.2099, 0.1843, 0.2795, 0.3994, 0.5381, 0.6834) within 1e-3; moment-test variance within 3% of `1 - abar` on 200,000 samples |
+| M2 | `python src/analyze_pilot_conditional.py --check` | old-field tables reproduce byte-for-byte; prints P(pres), P(bind given pres), joint, eligibility by CFG |
+| M3 | `python -m pytest tests/test_benchmark_v2.py -q`; `python src/benchmark_v2.py --validate` | every counterfactual differs in exactly one declared field; zero scenes/object pairs across splits; seeded duplicates detected; counts equal the quotas in the config (after D-05 C-1) |
+| M4 | `python -m pytest tests/test_shards.py -q`; local `python src/generate.py ... --limit 3` twice | disjoint complete shards; seeded duplicate and corrupt PNG detected; second run generates 0; default-flag images byte-identical to the pilot images of the same names on the local GPU (otherwise the difference is recorded) |
+| M5 | `python -m pytest tests/test_evaluate_conditional.py tests/test_audit.py -q`; `python src/validate_metrics.py` | old columns identical on `outputs/main/eval.jsonl`; metrics equal `outputs/validation_metrics.txt`; blinded export has no arm names |
+| M6 | `python -m pytest tests/test_commitment.py tests/test_predict.py -q` | synthetic known commitment recovered within 6 steps; independent outcomes give `abs(C) < 0.1`; identical give `C = 1`; stable-wrong scene has weight 0; permuted labels give `abs(ΔAUC) < 0.03` |
+| M7 | `python -m pytest tests/test_intervene_modes.py -q`; local `python tests/gpu_identity.py --mode control` | control equals baseline; bias mass equal across onsets within 5%; knockout bias only in the chosen layer group |
+| M8 | `python tests/gpu_identity.py --loop --reload --d0` | custom loop image equals pipeline image; reloaded latent equals recomputed; `D=0` branch image equals base (pixel difference 0) |
+| M9 | Kaggle R0 and R1 (RUNBOOK 8) | `env.json`, `hardware.json`, `throughput.json` exist and parse; hook-on equals hook-off on 10 items; FULL/LIMITED decision written |
+| M10 | Kaggle R2, R3; `python src/verify_outputs.py --run <id>`; DEV gate script; `python src/verify_freeze.py` (planned) | zero duplicates/corrupt files; `D=0` identity; full-resample control `C <= 0.15`; DEV half-width of `Δt50` reported; Addendum B hashes verified |
+| M11 | Kaggle R4 + `verify_outputs.py` | counts equal manifest; zero duplicates |
+| M12 | `python src/analyze_commitment.py --frozen`, then HB and HC scripts | each run once; tables carry the Addendum hash; no TEST path read before the freeze check |
+| M13 | exploratory scripts | outputs labelled EXPLORATORY |
+| M14 | `python report/build_report.py`; clean-clone reproduction of one figure | assertions pass; numbers equal saved files |
 
 ## 17. Limitations, cost risks, fallback
 Kaggle quota/limits unknown; E23 cost is a design estimate (RB 16.5b: P1 about 18,120 image-equivalents FULL, 7,702 LIMITED, reference only); HA power unknown; conditional sample about half of binding images; judge accuracy on branch images unknown; novelty gap unverified; single base model. Fallbacks: LIMITED design; drop E24, E26-E28 first; measurement paper (RB 21.6).

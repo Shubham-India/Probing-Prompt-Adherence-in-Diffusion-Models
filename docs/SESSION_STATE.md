@@ -2,7 +2,7 @@
 
 | Field | Value |
 |---|---|
-| Date of last update | 2026-10-14 |
+| Date of last update | 2026-10-14 (after independent review of the plan) |
 | Active phase | Planning / audit finished; implementation not started |
 | Git branch | `docs/master-implementation-plan` (from `main` at `9633d87`) |
 | Last verified commit | base `9633d87` (CPU tests: 6 passed on this commit's code; GPU test not re-run). The docs commit is the branch tip: `git log -1 docs/master-implementation-plan` |
@@ -23,11 +23,13 @@
 
 ## Open blockers
 1. README.md contains merge-conflict markers (lines 1, 168, 171) - fix in M0
-2. D-02 restart magnitude/clipping (approval)
-3. D-03 "commitment" terminology (approval)
-4. D-04 primary conditional outcome (approval)
-5. D-05 C-1: binding-bearing scene counts (110 vs 140 TEST; 55 vs 70 DEV) (approval)
-6. D-06 freeze/sealing procedure (approval)
+2. D-12 undefined windows/onsets when `t50_DEV` is extreme (new, from review)
+3. D-02 restart magnitude/clipping (approval)
+4. D-03 "commitment" terminology (approval)
+5. D-04 primary conditional outcome (approval)
+6. D-05 C-1: binding-bearing scene counts (110 vs 140 TEST; 55 vs 70 DEV) (approval)
+7. D-06 freeze/sealing procedure (approval)
+8. Repository is private: Kaggle needs a read token, a private dataset or a public repo (owner decision)
 
 ## Test outcomes on record
 - `pytest tests/test_logic.py`: 6 passed (2026-10-14, this session)

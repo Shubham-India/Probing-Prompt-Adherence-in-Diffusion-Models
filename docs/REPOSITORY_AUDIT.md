@@ -18,7 +18,7 @@ Status vocabulary: **VERIFIED** (executed or read and confirmed in this audit), 
 
 | Item | Finding |
 |---|---|
-| Git | Repository present, branch `main`, 3 commits, remote `origin` = `https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models.git`. `git ls-remote origin` succeeded without credentials (read access is verified; **push access is unverified**, it was not attempted). |
+| Git | Repository present, branch `main`, 3 commits, remote `origin` = `https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models.git`. `git ls-remote origin` succeeds with the owner's cached credentials, but **fails anonymously** (`git -c credential.helper= ls-remote`: "could not read Username", re-checked in the review), so the repository must be treated as **private**: a Kaggle clone needs a token. Push access is unverified (not attempted). |
 | Tracked content | 734 objects counted by git; about 623 files under `outputs/` (including 504 attention `.npz` files and `results/*.csv`), the 40 validation images, 31 reference PDFs/zips under `Researcha-thon Project/`. Images under `outputs/*/images/` and `models/` are ignored by `.gitignore`. |
 | Working machine | Windows 11, NVIDIA RTX 3050 Laptop GPU, 6144 MiB. `.venv` with torch 2.6.0+cu124 (CUDA available), diffusers 0.41.0, transformers 5.19.0 (matches `requirements.txt`). |
 | GitHub CLI | `gh` not installed. |
@@ -61,8 +61,8 @@ Dependencies common to all `src/` files: `torch`, `diffusers`, `transformers`, `
 | Fact | Source | Status |
 |---|---|---|
 | 28 prompts x 3 CFG x 2 steps x 6 seeds = 1008 images | `outputs/main/samples.jsonl` (1008 lines) | VERIFIED |
-| Intervention arm: 504 images; global re-weighting effect +0.02 [-0.04, +0.09] | `outputs/intervention/results/intervention_numbers.json` (quoted in blueprint) | Quoted from the blueprint; **not re-read in this audit** |
-| Hook is image-neutral in the pilot (168/168 identical) | blueprint and earlier session | Quoted; not re-run |
+| Intervention arm: 504 images; global re-weighting effect +0.02 [-0.04, +0.09], p 0.378 | key `intc_primary_all_rw2_vs_rw1` in `outputs/intervention/results/intervention_numbers.json` | VERIFIED (read in review) |
+| Hook is image-neutral in the pilot (168/168 control images pixel-identical) | stated in `outputs/intervention/intervention.md` lines 83, 91 (owner-written); no raw comparison log found | Documented claim; **not re-run**; re-check in M8 |
 | Spatial rule uses box-centre x only; unmatched object counts as failure | `src/evaluate.py` `score()` | VERIFIED (read) |
 
 ## 5. Findings that change the plan
@@ -70,14 +70,14 @@ Dependencies common to all `src/` files: `torch`, `diffusers`, `transformers`, `
 | ID | Finding | Evidence | Consequence |
 |---|---|---|---|
 | F-1 | **`README.md` contains committed merge-conflict markers** (`<<<<<<< HEAD` on line 1, `=======` line 168, `>>>>>>>` line 171). | `git grep -n "^<<<<<<<"`; commit `9633d87` | Resolve in M0 before any other doc work. |
-| F-2 | README still states the end-to-end run is "Not completed", while the blueprint audit records `outputs/e2e.log` as completed. | `README.md` line 158 vs the log | Re-verify the log, then correct the row (M0). |
+| F-2 | README line 158 says the end-to-end run is "Not completed", but `outputs/e2e.log` ends with `E2E-DONE` and contains 0 `Traceback` lines (checked in review). | `grep -c Traceback outputs/e2e.log` = 0; `tail` shows `E2E-DONE` | README row is wrong; correct it in M0. |
 | F-3 | `score()` is **not conditional**: binding returns 0 when the object is missing; spatial returns 0 when either object is missing. No `objects_present` flag is stored. | `src/evaluate.py` lines 103-114 | Conditional outcomes need new fields; existing columns must stay unchanged. |
 | F-4 | Generated documents are stale: `report/report.md`, `defense.md`, `speaker_notes.md`, `presentation.pptx` (2026-10-11) and `validation.md` (2026-10-10) predate `data/validation_labels.json` (2026-10-12). | `ls -l` timestamps | Rebuild with `build_report.py` / `make_slides.py` (M0). |
 | F-5 | DDIM scheduler is created with `DDIMScheduler.from_config` of a PNDM config (`steps_offset=1`, default `timestep_spacing="leading"`, `set_alpha_to_one=False`). 40 steps give timesteps 976, 951, ..., 1. | executed in this audit (`docs/evidence/sched_check.py`, output in `docs/evidence/sched_check_output.txt`) | Restart indexing and clipping depend on this; see DECISION_REGISTER D-01, D-02. |
-| F-6 | Diffusers' DDIM `step` derives the previous timestep from `num_inference_steps`; passing a truncated `timesteps=` list to the pipeline would change the stride. | diffusers 0.41 behaviour, to be confirmed by a unit test (not executed) | Branch re-denoising needs a custom loop that calls `scheduler.step` on a slice of the 40-step schedule. UNVERIFIED until tested (D-07). |
+| F-6 | Diffusers' DDIM `step` computes `prev_timestep = timestep - num_train_timesteps // self.num_inference_steps` (`scheduling_ddim.py` line 445, read in review), so the stride depends on `num_inference_steps`, which a truncated custom `timesteps` list would change. | source read; behavioural test still to be run | Branch re-denoising needs a custom loop that calls `scheduler.step` on a slice of the 40-step schedule (D-07). |
 | F-7 | Model revision is `null` in the config; the cached snapshot is `451f4fe16113bff5a5d2269ed5ad43b0592e9a14`. | `models/.../snapshots/` | Pin the revision in V2 configs. |
 | F-8 | Blueprint counts are not mutually consistent (binding-bearing scenes vs category quotas, P-level of E24, rehearsal cost). | blueprint sections 9.0, 16.5b | See DECISION_REGISTER D-05. |
-| F-9 | Large artefacts already tracked (504 `.npz`, PDFs, zips, `outputs/` tables); working-tree total about 91 MB by `du`; git reports 630 MiB of loose objects. | `git ls-files`, `git count-objects -vH` | Policy for Kaggle artefacts in RUNBOOK section 6; do not add bulk outputs to Git. |
+| F-9 | Large artefacts already tracked (504 `.npz`, PDFs, zips, `outputs/` tables); 741 tracked files existing on disk total **696 MB** (summed file sizes, review); git reports 630 MiB of loose objects. (An earlier figure of 91 MB in this file was wrong: it came from a truncated `du` batch.) | `git ls-files`, `git count-objects -vH` | Policy for Kaggle artefacts in RUNBOOK section 6; do not add bulk outputs to Git. |
 | F-10 | Kaggle automation is not available (no CLI, no credentials). | section 2 | Path A is the baseline; Path B stays optional (RUNBOOK section 2). |
 
 ## 6. What can be re-analysed without generating images
@@ -97,7 +97,10 @@ Pilot re-analysis from `outputs/main` and `outputs/intervention`: conditional-la
 
 Push permission; Kaggle quota/GPU type; whether SDXL or a VLM judge fits 16 GB; GPU test re-run; independence of validation labels; literature full texts (papers listed as missing in blueprint section 22); correctness of every pilot number quoted in the blueprint.
 
-## 9. Evidence commands (all read-only)
+## 9. Review corrections (2026-10-14, independent review)
+Corrected: anonymous remote read (section 2), tracked size (F-9), e2e status (F-2), F-6 source evidence, intervention number and the origin of the 168/168 claim. All paths marked existing in section 3 were re-checked by script; paths marked PLANNED/MISSING indeed do not exist.
+
+## 10. Evidence commands (all read-only)
 
 ```
 git status; git branch -a; git log --oneline; git remote -v; git ls-remote origin
