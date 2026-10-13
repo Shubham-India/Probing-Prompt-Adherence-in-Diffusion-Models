@@ -2,7 +2,7 @@
 
 * Reproduces the legacy per-constraint results by re-scoring outputs/main/detections.jsonl with the unchanged
   evaluate.score() and comparing with outputs/main/eval.jsonl (--check fails otherwise).
-* Computes the D-04 outcomes as a standalone function (evaluate.py is not modified):
+* Computes the D-04 outcomes as a standalone function :
     pres_all          every required object (all objects named by any constraint) has a distinct detection >= presence threshold
     bind_given_pres   all binding constraints satisfied, among images with pres_all (eligible = has binding constraints & pres_all)
     joint_bind        pres_all AND all binding constraints satisfied (omission counts as failure)
@@ -23,33 +23,25 @@ import pandas as pd
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
+import evaluate as E  # noqa: E402
 from evaluate import score  # noqa: E402  (unchanged legacy scorer)
+from evaluate import required_objects  # noqa: E402,F401
 
 RUN = ROOT / "outputs" / "main"
 OUT = ROOT / "outputs" / "m2_pilot_reanalysis"
 
 
-def required_objects(constraints):
-    return sorted({c["object"] for c in constraints if "object" in c} | {c[k] for c in constraints for k in ("left", "right") if k in c})
-
-
 def conditional_outcomes(constraints, dets):
-    """Standalone D-04 outcomes for one image. Reuses the unchanged legacy scorer for every individual decision."""
-    objs = required_objects(constraints)
-    pres = score([{"type": "presence", "object": o} for o in objs], dets)
-    pres_all = int(all(pres))
+    """Thin wrapper over evaluate.conditional_outcomes keeping this script's column names (pres_all, *_legacy, *_eligible)."""
+    o = E.conditional_outcomes(constraints, dets)
     res = score(constraints, dets)
-    by = {t: [r for c, r in zip(constraints, res) if c["type"] == t] for t in ("binding", "spatial", "count", "presence")}
-    out = {"n_required_objects": len(objs), "pres_all": pres_all, "pres_frac": sum(pres) / len(pres)}
+    out = {"n_required_objects": o["n_required_objects"], "pres_all": o["objects_present"]}
     for t, key in (("binding", "bind"), ("spatial", "spatial")):
-        if by[t]:
-            ok = int(all(by[t]))
-            out[f"{key}_legacy"] = ok
-            out[f"{key}_eligible"] = pres_all
-            out[f"{key}_given_pres"] = ok if pres_all else np.nan
-            out[f"joint_{key}"] = int(pres_all and ok)
-        else:
-            out.update({f"{key}_legacy": np.nan, f"{key}_eligible": np.nan, f"{key}_given_pres": np.nan, f"joint_{key}": np.nan})
+        fam = [r for c, r in zip(constraints, res) if c["type"] == t]
+        out[f"{key}_legacy"] = int(all(fam)) if fam else np.nan
+        out[f"{key}_eligible"] = o["objects_present"] if fam else np.nan
+        out[f"{key}_given_pres"] = np.nan if o[f"{key}_given_pres"] is None else o[f"{key}_given_pres"]
+        out[f"joint_{key}"] = np.nan if o[f"joint_{key}"] is None else o[f"joint_{key}"]
     return out
 
 

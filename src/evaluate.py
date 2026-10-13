@@ -137,26 +137,62 @@ def run_detection(run, prompts, device):
                 print(f"[{i}/{len(todo)}]", flush=True)
 
 
-def run_scoring(run, prompts):
+def required_objects(constraints):
+    return sorted({c["object"] for c in constraints if "object" in c} | {c[k] for c in constraints for k in ("left", "right") if k in c})
+
+
+UNCERTAIN_BAND = 0.03   # a required object's best detection within +/- band of the presence threshold is flagged (does not change any outcome)
+
+
+def conditional_outcomes(constraints, dets):
+    """D-04 outcomes next to (never instead of) the legacy per-constraint results. Every decision reuses score().
+    pres_all: every required object has a distinct detection; <key>_given_pres is null when not eligible;
+    joint_<key>: pres_all AND the constraint family satisfied; uncertain: some required object's best score is near the threshold."""
+    objs = required_objects(constraints)
+    pres = score([{"type": "presence", "object": o} for o in objs], dets)
+    pres_all = int(all(pres))
+    res = score(constraints, dets)
+    out = {"n_required_objects": len(objs), "objects_present": pres_all}
+    for t, key in (("binding", "bind"), ("spatial", "spatial")):
+        fam = [r for c, r in zip(constraints, res) if c["type"] == t]
+        if fam:
+            ok = int(all(fam))
+            out[f"{key}_given_pres"] = ok if pres_all else None
+            out[f"joint_{key}"] = int(pres_all and ok)
+        else:
+            out[f"{key}_given_pres"] = None
+            out[f"joint_{key}"] = None
+    best = [max((d["score"] for d in dets.get(o, [])), default=0.0) for o in objs]
+    out["uncertain"] = int(any(abs(b - THRESHOLDS["presence"]) <= UNCERTAIN_BAND for b in best))
+    return out
+
+
+def run_scoring(run, prompts, conditional=False, out_name="eval.jsonl"):
+    """Default call is identical to the pilot behaviour. conditional=True appends the D-04 fields AFTER all legacy columns."""
     samples = {json.loads(l)["name"]: json.loads(l) for l in (run / "samples.jsonl").read_text().splitlines()}
-    with open(run / "eval.jsonl", "w") as f:
+    with open(run / out_name, "w") as f:
         for line in (run / "detections.jsonl").read_text().splitlines():
             d = json.loads(line)
             s = samples[d["name"]]
             cons = prompts[s["prompt_id"]]["constraints"]
             res = score(cons, d["detections"])
-            f.write(json.dumps({**s, "constraint_results": res, "all_satisfied": int(all(res)),
-                                "clip_score": d["clip_score"]}) + "\n")
+            row = {**s, "constraint_results": res, "all_satisfied": int(all(res)), "clip_score": d["clip_score"]}
+            if conditional:
+                row.update(conditional_outcomes(cons, d["detections"]))
+            f.write(json.dumps(row) + "\n")
 
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--run", required=True)
     ap.add_argument("--rescore", action="store_true")
+    ap.add_argument("--prompts", default=str(ROOT / "data" / "prompts.json"))
+    ap.add_argument("--conditional", action="store_true", help="append D-04 conditional/joint fields (legacy columns unchanged)")
+    ap.add_argument("--out-name", default="eval.jsonl")
     args = ap.parse_args()
     run = Path(args.run)
-    prompts = {p["id"]: p for p in json.loads((ROOT / "data" / "prompts.json").read_text())}
+    prompts = {p["id"]: p for p in json.loads(Path(args.prompts).read_text())}
     if not args.rescore:
         run_detection(run, prompts, "cuda" if torch.cuda.is_available() else "cpu")
-    run_scoring(run, prompts)
-    print("wrote", run / "eval.jsonl")
+    run_scoring(run, prompts, args.conditional, args.out_name)
+    print("wrote", run / args.out_name)

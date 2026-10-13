@@ -1,0 +1,4 @@
+# M5 acceptance (2026-10-13), CPU
+10 passed in 6.75s
+validate_metrics.py output identical to outputs/validation_metrics.txt
+NOT DONE: J2 backend (VLM) not chosen/loaded; synthetic probe not yet run through OWL-ViT/CLIP (needs model weights, blocked by proxy here; run on owner machine/Kaggle).
