@@ -87,6 +87,7 @@ def main():
     ap.add_argument("--prompts", default=str(ROOT / "data" / "prompts.json"))
     ap.add_argument("--limit-prompts", default=None, help="comma-separated prompt ids")
     ap.add_argument("--split", default=None, choices=["DEV", "TEST"], help="keep only prompts of this split (V2 prompt files)")
+    ap.add_argument("--variants", default=None, help="comma-separated variant types to keep (V2 prompt files), e.g. CAN or CAN,PAR")
     ap.add_argument("--seeds", type=int, default=None, help="use only the first N seeds")
     ap.add_argument("--shard", default=None, help="i/n: this process handles jobs k with k %% n == i")
     ap.add_argument("--save-latents-at", default=None, help="comma-separated completed-step counts, e.g. 6,12,18,24,30,36")
@@ -101,6 +102,8 @@ def main():
         prompts = [p for p in prompts if p["id"] in keep]
     if args.split:
         prompts = [p for p in prompts if p.get("split") == args.split]
+    if args.variants:
+        prompts = [p for p in prompts if p.get("variant") in set(args.variants.split(","))]
     J.guard_test_access(prompts, cfg_all)
     seeds = cfg_all["seeds"][: args.seeds] if args.seeds else cfg_all["seeds"]
     shard = J.parse_shard(args.shard) if args.shard else None

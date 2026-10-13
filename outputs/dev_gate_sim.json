@@ -1,0 +1,115 @@
+{
+ "assumptions": "synthetic hard persistence (tau_presence=12), scene p~U(0.3,0.7), k=4 seeds, 2 base seeds, M=2, independent eligibility; NOT data",
+ "reps": 12,
+ "n_boot": 200,
+ "rows": [
+  {
+   "binding_scenes": 28,
+   "eligibility": 0.45,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 2.6499956678487,
+   "share_ci_excludes_0": 0.0,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 28,
+   "eligibility": 0.45,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 7.830639531925499,
+   "share_ci_excludes_0": 0.25,
+   "share_reliable": 0.8333333333333334,
+   "passes_gate_halfwidth_le_4": false
+  },
+  {
+   "binding_scenes": 28,
+   "eligibility": 0.6,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 1.5904751578554073,
+   "share_ci_excludes_0": 0.16666666666666666,
+   "share_reliable": 0.9166666666666666,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 28,
+   "eligibility": 0.6,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 5.060949315185744,
+   "share_ci_excludes_0": 0.5833333333333334,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": false
+  },
+  {
+   "binding_scenes": 55,
+   "eligibility": 0.45,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 1.5530407965333701,
+   "share_ci_excludes_0": 0.08333333333333333,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 55,
+   "eligibility": 0.45,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 4.350737960599363,
+   "share_ci_excludes_0": 0.6666666666666666,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": false
+  },
+  {
+   "binding_scenes": 55,
+   "eligibility": 0.6,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 1.2756655271839952,
+   "share_ci_excludes_0": 0.08333333333333333,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 55,
+   "eligibility": 0.6,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 1.977300227973262,
+   "share_ci_excludes_0": 1.0,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 110,
+   "eligibility": 0.45,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 1.1740355952877992,
+   "share_ci_excludes_0": 0.0,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 110,
+   "eligibility": 0.45,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 2.508383405849106,
+   "share_ci_excludes_0": 0.8333333333333334,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 110,
+   "eligibility": 0.6,
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 0.8512944675066016,
+   "share_ci_excludes_0": 0.25,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  },
+  {
+   "binding_scenes": 110,
+   "eligibility": 0.6,
+   "true_delta_steps": 12.0,
+   "mean_halfwidth": 0.8531160757364882,
+   "share_ci_excludes_0": 1.0,
+   "share_reliable": 1.0,
+   "passes_gate_halfwidth_le_4": true
+  }
+ ]
+}

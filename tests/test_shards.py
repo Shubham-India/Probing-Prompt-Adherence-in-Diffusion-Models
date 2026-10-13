@@ -124,5 +124,22 @@ def test_split_filter_and_draft_revision_marker(monkeypatch, tmp_path, fake):
     monkeypatch.setattr(sys, "argv", base + ["--split", "DEV", "--limit", "2"])
     G.main()
     assert len(fake) == 2 and "rev" in seen and seen["rev"] is None
+    monkeypatch.setattr(sys, "argv", base + ["--split", "DEV", "--variants", "CAN", "--out", str(tmp_path / "run_can"), "--limit", "50"])
+    G.main()
+    recs = [json.loads(l) for l in (tmp_path / "run_can" / "samples.jsonl").read_text().splitlines()]
+    assert recs and all(r["variant"] == "CAN" and r["split"] == "DEV" for r in recs) and len(recs) == 50
     rec = json.loads((tmp_path / "run" / "samples.jsonl").read_text().splitlines()[0])
     assert rec["prompt_id"].startswith("sg_") and int(rec["prompt_id"][3:7]) <= 100
+
+
+def test_verify_cli_accepts_split_and_variant_filters(monkeypatch, tmp_path, fake):
+    import subprocess
+    v2 = json.loads((ROOT / "configs/experiment_v2.json").read_text()); v2.update(image_size=64, seeds=[0], seeds_core=[0], seeds_branch_bases=[0])
+    (tmp_path / "cfg.json").write_text(json.dumps(v2))
+    pv2 = json.loads((ROOT / "data/benchmark_v2/prompts_v2.json").read_text())
+    (tmp_path / "p.json").write_text(json.dumps(pv2[:6]))                                  # first scene: DEV, a few variants
+    monkeypatch.setattr(sys, "argv", ["generate.py", "--config", str(tmp_path / "cfg.json"), "--prompts", str(tmp_path / "p.json"), "--out", str(tmp_path / "run"), "--split", "DEV", "--variants", "CAN"])
+    G.main()
+    cmd = [sys.executable, str(ROOT / "src/verify_outputs.py"), "--run", str(tmp_path / "run"), "--config", str(tmp_path / "cfg.json"), "--prompts", str(tmp_path / "p.json"), "--split", "DEV", "--variants", "CAN"]
+    assert subprocess.run(cmd, capture_output=True, text=True).returncode == 0
+    assert subprocess.run(cmd[:-2], capture_output=True, text=True).returncode == 1       # without the variant filter, the other variants are 'missing'

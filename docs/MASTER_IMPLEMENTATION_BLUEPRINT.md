@@ -8,7 +8,7 @@ Companion files: `REPOSITORY_AUDIT.md` (facts), `DECISION_REGISTER.md` (open dec
 | Item | Status |
 |---|---|
 | Pilot (SD 1.5, 28 prompts, 1008 + 504 images, CPU tests 6 passed) | Implemented, results saved, frozen |
-| Revision 2 programme (HA, HB, HC, Benchmark V2, branching, conditional evaluation, shard tooling, Kaggle workflow) | **Not implemented.** Design only |
+| Revision 2 programme (HA, HB, HC, Benchmark V2, branching, conditional evaluation, shard tooling, Kaggle workflow) | **CPU-side implemented 2026-10-13 (M0-M8 code, M9/M10 prep, HC/HA analysis drivers); no GPU, Kaggle or TEST step has been run.** See `docs/SESSION_STATE.md` for exact status |
 | Git | Repo present with remote; README has committed merge-conflict markers (F-1) |
 | Kaggle / GitHub | No Kaggle CLI or credentials; GitHub repo is private (anonymous read fails), so a Kaggle clone needs a token; push unverified; hardware unmeasured |
 | Blocking decisions | D-02 (restart magnitude), D-03 (terminology), D-04 (conditional outcome), D-05 C-1 (binding-bearing counts), D-06 (freeze procedure) |

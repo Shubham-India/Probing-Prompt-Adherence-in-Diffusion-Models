@@ -4,6 +4,20 @@ Status values: **OPEN** (needs a decision), **PROPOSED** (resolution recommended
 "Approval" = human approval required before implementation. Research blueprint = `GRAND_RESEARCH_BLUEPRINT.md` (Revision 2); section numbers refer to it.
 Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/sched_check_output.txt` (executed on CPU during the audit) or on files read in the repository.
 
+## Status update 2026-10-13 (owner instruction: conservative working defaults, applied transparently)
+| ID | Working default now implemented | Where | Still needed from the owner |
+|---|---|---|---|
+| D-01 | Scheduler-indexed restart implemented and CPU-tested (timesteps and alpha-bar equal diffusers; ratios equal the audit evidence; D=0 identity; synthetic moment test) | `src/branch.py`, `tests/test_branch_math.py` | none; real-latent validation pending a GPU run |
+| D-02 | D=8 kept; effective jump, ratio, timesteps, clipped flag logged per branch; t=6 reported as clipped; ER30 and D in {4,12} implemented; HA support requires ER30 sign agreement | `branch.py`, `run_branches.py`, `analyze_commitment.py` | confirm in Addendum B |
+| D-03 | "restart persistence" wording in code and docs | `commitment.py`, `docs/ADDENDUM_B.md` | confirm |
+| D-04 | five outcomes implemented additively (`evaluate.py --conditional`); eligibility and missing-object rates reported; HA/HC need conditional + joint agreement | `evaluate.py`, `analyze_pilot_conditional.py`, `analyze_commitment.py`, `analyze_hc.py` | confirm |
+| D-05 | literal definition primary, competitive subset sensitivity; counts derived (TEST 140/110, DEV 70/55); precision recomputed | `benchmark_v2.py`, `design_recompute.py` | choose primary population |
+| D-06 | freeze manifest + verify tooling; TEST refused by `generate.py`, `run_branches.py`, `analyze_commitment.py`, `analyze_hc.py` without a verified frozen config | `freeze.py`, `config_schema.py`, `jobs.py` | none until freeze |
+| D-07 | custom denoise loop identical to the pipeline on a tiny random CPU pipeline; real SD 1.5 fp16 identity UNVERIFIED | `branch.py`, `tests/test_branch_loop.py`, `tests/gpu_identity.py` | run R0 |
+| D-08 | fp16 latent per image, 6 steps, hash in the record; branch noise float32 CPU then cast | `generate.py`, `branch.py` | run R0 (reload equals recompute) |
+| D-12 | rules implemented in `commitment.windows_from_t50_dev` | `commitment.py` | confirm |
+Nothing is RESOLVED by approval yet; these are working defaults. No TEST scene has been generated or inspected.
+
 ## D-01 Restart indexing and direction (task B1)
 
 | Aspect | Content |

@@ -1,7 +1,7 @@
 """Integrity check of a generation run before any analysis. Exit code 0 only if every check passes.
 Checks: expected job list (from config + prompts + shards) fully covered, no duplicate names, every recorded image exists,
 decodes as PNG, has the recorded SHA-256 and size, no orphan images, latents present/valid when requested.
-Usage: python src/verify_outputs.py --run outputs/x --config configs/experiment.json [--prompts FILE] [--shards n] [--latents]"""
+Usage: python src/verify_outputs.py --run outputs/x --config configs/experiment.json [--prompts FILE] [--split DEV] [--variants CAN] [--latents]"""
 import argparse
 import hashlib
 import json
@@ -69,6 +69,8 @@ if __name__ == "__main__":
     ap.add_argument("--config", required=True)
     ap.add_argument("--prompts", default=str(Path(__file__).resolve().parent.parent / "data" / "prompts.json"))
     ap.add_argument("--limit-prompts", default=None)
+    ap.add_argument("--split", default=None, choices=["DEV", "TEST"])
+    ap.add_argument("--variants", default=None, help="same filters as generate.py")
     ap.add_argument("--shards", type=int, default=None)
     ap.add_argument("--latents", action="store_true")
     ap.add_argument("--seeds", type=int, default=None)
@@ -77,6 +79,10 @@ if __name__ == "__main__":
     prompts = J.load_prompts(a.prompts)
     if a.limit_prompts:
         prompts = [p for p in prompts if p["id"] in set(a.limit_prompts.split(","))]
+    if a.split:
+        prompts = [p for p in prompts if p.get("split") == a.split]
+    if a.variants:
+        prompts = [p for p in prompts if p.get("variant") in set(a.variants.split(","))]
     errs, stats = verify(a.run, cfg, prompts, a.shards, a.latents, cfg["seeds"][: a.seeds] if a.seeds else None)
     print(json.dumps(stats), f"errors={len(errs)}")
     for e in errs[:50]:
