@@ -1,0 +1,11 @@
+first/last timesteps [976, 951, 926, 901] [51, 26, 1] n 40
+set_alpha_to_one False final_alpha_cumprod 0.9991499781608582 ac[0] 0.9991499781608582 ac[ts0] 0.006124003790318966
+t= 6 level_ts=826 abar_t=0.02918 target_idx=0 (requested -2) ts=976 abar_j=0.00612 ratio=0.2099 eff_jump=6
+t=12 level_ts=676 abar_t=0.09803 target_idx=4 (requested 4) ts=876 abar_j=0.01807 ratio=0.1843 eff_jump=8
+t=18 level_ts=526 abar_t=0.24277 target_idx=10 (requested 10) ts=726 abar_j=0.06786 ratio=0.2795 eff_jump=8
+t=24 level_ts=376 abar_t=0.46343 target_idx=16 (requested 16) ts=576 abar_j=0.18511 ratio=0.3994 eff_jump=8
+t=30 level_ts=226 abar_t=0.71272 target_idx=22 (requested 22) ts=426 abar_j=0.38350 ratio=0.5381 eff_jump=8
+t=36 level_ts=76 abar_t=0.92294 target_idx=28 (requested 28) ts=276 abar_j=0.63074 ratio=0.6834 eff_jump=8
+t=40 level_ts=None abar_t=0.99915 target_idx=32 (requested 32) ts=176 abar_j=0.79012 ratio=0.7908 eff_jump=8
+12 residual var 0.9800276756286621 expected 0.9819312337785959 mean -0.0008439470548182726
+30 residual var 0.61887127161026 expected 0.6165031790733337 mean -0.001195338787510991
