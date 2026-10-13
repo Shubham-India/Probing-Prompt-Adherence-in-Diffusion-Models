@@ -1,0 +1,13 @@
+conflict-marker grep exit=1 (1 = none)
+=========================== short test summary info ============================
+FAILED tests/test_logic.py::test_word_token_alignment - httpx.ProxyError: 403...
+1 failed, 5 passed in 8.74s
+=========================== short test summary info ============================
+FAILED tests/test_logic.py::test_word_token_alignment - httpx.ProxyError: 403...
+1 failed, 18 passed, 1 skipped in 8.74s
+
+NOTES (honest status, 2026-10-13 cloud container, CPU only, no GPU):
+- tests/test_logic.py::test_word_token_alignment FAILS HERE ONLY because it downloads the CLIP tokenizer from huggingface.co and the proxy returns 403. Not a code failure; passes on the owner's machine per outputs/test_results.txt (earlier run). Remaining 5 test_logic tests pass.
+- tests/test_attention_gpu.py skipped (no CUDA). GPU test NOT re-run.
+- report/build_report.py run: assertions passed; report.md, defense.md, validation.md regenerated from saved results (validation numbers now equal outputs/validation_metrics.txt). build_report also overwrites README.md from README_template.md; that overwrite was reverted on purpose (hand-written README kept, conflict markers removed, e2e row corrected). Do not run build_report without re-checking README.
+- build_report.py now reads pilot library versions from samples.jsonl/requirements.txt instead of the installed packages (otherwise it stamped this container's torch into the pilot record).

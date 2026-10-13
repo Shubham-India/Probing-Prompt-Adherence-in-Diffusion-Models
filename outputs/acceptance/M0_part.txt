@@ -1,0 +1,5 @@
+grep exit=1 (1 = no match)
+=========================== short test summary info ============================
+ERROR tests/test_logic.py
+!!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.15s

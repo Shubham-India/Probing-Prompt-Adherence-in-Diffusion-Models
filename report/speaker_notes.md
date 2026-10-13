@@ -14,7 +14,7 @@ Prompts come from templates with structured constraints, so evaluation never par
 
 ## Slide 4: Benchmark and metrics
 
-Binding is scored by classifying the colour of the box of each object, so detecting something red and something blue is not enough: the colour must sit on the right object. The validation labels were written by me with Claude's help from the images, then re-checked in a second pass; two ambiguous constraints were set aside. Please spot-check them. Yellow-green apples are read as green by CLIP, so counting prompts are judged on the count alone. Spatial accuracy rests on very few positive examples.
+Binding is scored by classifying the colour of the box of each object, so detecting something red and something blue is not enough: the colour must sit on the right object. The validation labels were drafted by Claude from the images, adjusted in a second pass, and then revised by me; ambiguous constraints are set aside. Yellow-green apples are read as green by CLIP, so counting prompts are judged on the count alone. Spatial accuracy rests on very few positive examples.
 
 ## Slide 5: Adherence vs CFG and denoising steps
 

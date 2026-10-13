@@ -1,6 +1,6 @@
-<<<<<<< HEAD
-1008 images 5 categories se bani hain: 28 prompts × 3 CFG × 2 steps × 6 seeds. Har prompt ki 36 images bani hain (3 × 2 × 6), isliye category ka total = prompts × 36
 # Where Does the Prompt Go? Probing Prompt Adherence in Diffusion Models
+
+> Note (carried over from the pre-merge README, kept verbatim): 1008 images 5 categories se bani hain: 28 prompts × 3 CFG × 2 steps × 6 seeds. Har prompt ki 36 images bani hain (3 × 2 × 6), isliye category ka total = prompts × 36
 
 This project looks at a simple question: **when a text prompt contains several requirements, how reliably does Stable Diffusion 1.5 follow them?** I tested how classifier-free guidance (CFG) scale and the number of denoising steps affect prompt adherence, including object presence, attribute binding, counting, spatial relationships, and prompts with multiple constraints. I also examined cross-attention maps and tested whether re-weighting attention for object and colour tokens could improve the results.
 
@@ -155,7 +155,7 @@ The table below summarises the checks recorded in the project files. “Verified
 | Overall adherence improved by attention re-weighting | Not demonstrated | Primary contrast: +0.02, 95% CI −0.04 to +0.09; object-presence result is exploratory |
 | References checked | Checked | Report section 17 records a citation check dated 2026-10-10 |
 | Report, slides, speaker notes, and defence material prepared | Verified in project files | `report/report.md`, `report/presentation.pptx`, `report/defense.md` |
-| Final end-to-end run after the last changes | Not completed | `outputs/e2e.log` records an incomplete run |
+| End-to-end smoke run (generate, attention, evaluate, analyse, intervene; 60 + 30 images) | Completed per log | `outputs/e2e.log` ends with `E2E-DONE`; not re-run after the latest code changes; not confirmatory evidence |
 | Independent review of manual validation labels | Not started | A second reviewer still needs to check the labels |
 
 ## Limitations and next steps
@@ -164,8 +164,4 @@ The benchmark is useful for a controlled pilot, but it is still small. Each cate
 
 The experiments cover one diffusion model, scheduler, and resolution, with a relatively coarse CFG grid. The attention analysis is correlational, so it cannot show that an attention pattern caused a prompt to succeed or fail. The intervention was tested at one CFG setting, one step count, and one token-selection rule. The object-presence improvement was exploratory and has not been checked on a separate confirmation set.
 
-The next useful steps are to complete the end-to-end run, obtain an independent review of the validation labels, expand the prompt set, and test the exploratory object-presence finding on new prompts and seeds. For now, the main conclusion should remain **inconclusive** rather than a claim that higher CFG or attention re-weighting solves compositional prompt adherence.
-=======
-# Probing-Prompt-Adherence-in-Diffusion-Models
-Researchathon Project conducted by CSAI ~ IIT ISM DHANBAD
->>>>>>> fe78d3f25b6a08208b6109a63a0e64fbe147fae3
+The next useful steps are to obtain an independent review of the validation labels, expand the prompt set, and test the exploratory object-presence finding on new prompts and seeds. For now, the main conclusion should remain **inconclusive** rather than a claim that higher CFG or attention re-weighting solves compositional prompt adherence.

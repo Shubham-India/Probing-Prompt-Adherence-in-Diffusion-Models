@@ -29,7 +29,7 @@ Rows = CFG (same prompt, same seed); columns = a word; bright = high probability
 ```powershell
 .\.venv\Scripts\python -m pytest -q tests
 ```
-Expected: `7 passed, 1 warning in 28.78s` (about 30 s; the GPU test needs about 3.5 GB of free VRAM).
+Expected: `7 passed, 1 warning in 22.87s` (about 30 s; the GPU test needs about 3.5 GB of free VRAM).
 ```powershell
 .\.venv\Scripts\python src\generate.py --out outputs\demo --limit-prompts binding_cube_sphere_v1 --seeds 1
 ```
@@ -55,9 +55,9 @@ Troubleshooting: if CUDA runs out of memory close other GPU apps (SD 1.5 fp16 ne
 7. **Does CFG change cross-attention?** In the conditional branch the attention is computed from latents that evolve differently under different guidance. Localisation rose +0.0139 (CFG 7.5 vs 2, middle stage, CI [+0.0081, +0.0196]); I did not intervene on attention to test causality in the main study, so this is correlation.
 8. **Does stronger attention mean better adherence?** No evidence: raw attention strength has within-prompt AUC 0.48 and falls slightly with CFG. Localisation and colour-object overlap carry more signal, but an attention-only classifier (AUC 0.71) is no better than category + CFG (0.74).
 9. **Why not a bigger benchmark or more seeds?** 4-6 prompts per category limit power more than seeds do; extra seeds would shrink only within-prompt noise. Scaling prompts is the first next step.
-10. **How was the evaluator validated, and by whom?** 40 images sampled at random, labelled by Claude (a single, non-independent annotator) before seeing scores, then re-inspected in a second pass (two ambiguous constraints set aside; the second pass was not blind). Thresholds were fixed a priori and a sweep showed insensitivity. The owner should spot-check the labels.
+10. **How was the evaluator validated, and by whom?** 40 images sampled at random. The labels were drafted by Claude before any score was seen, adjusted in a non-blind second pass by Claude (images 2, 9, 29, 35), and revised by me (images 26, 32, 38). They are not independent of the evaluator study, and spatial has very few positives. Thresholds were fixed a priori and a sweep showed insensitivity.
 11. **Did the intervention work?** Not on the pre-registered primary outcome: s = 2 changed overall success by +0.02 [-0.04, +0.09] against a +0.05 threshold. Only an exploratory presence outcome rose (+0.09 [+0.01, +0.17]); it is one of six outcomes examined without correction.
 12. **How do you know the intervention code path is fair?** The control (s = 1) uses the same code with a zero bias and its images were pixel-identical to the plain pipeline in 168/168 cases, so the comparison is intervention versus control on identical noise.
 13. **Why those tokens and that strength?** Prompt-to-Prompt shows re-weighting changes how strongly a word appears and Attend-and-Excite targets neglected subjects; I chose a symmetric rule (all objects and colours) because the data did not support a "later object is dropped" rule. s = 2 was the pre-registered primary, s = 4 a dose-response check; other rules (colour-only, per-object adaptive, gradient-based) were not tested.
-14. **Is spatial accuracy reliable?** Weakly validated (10 labelled constraints, 2 positives) and box centres are a crude left/right rule. Treat spatial numbers as indicative only.
+14. **Is spatial accuracy reliable?** Weakly validated (9 labelled constraints, 2 positives) and box centres are a crude left/right rule. Treat spatial numbers as indicative only.
 15. **Could the detector bias the CFG or intervention effects?** Yes: CFG and re-weighting change saturation and contrast and may change detectability; validation images mixed CFG values but no per-condition validation was done. CLIP and attention results do not rely on the detector.

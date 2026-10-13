@@ -74,9 +74,17 @@ def split_sections(text):
     return {parts[i]: parts[i + 1].strip() for i in range(1, len(parts), 2)}
 
 
+def pilot_versions():
+    """Library versions that PRODUCED the pilot (not the versions installed where the report happens to be rebuilt):
+    torch from the first samples.jsonl record, the others from the pinned requirements.txt."""
+    pins = dict(l.strip().split("==", 1) for l in (ROOT / "requirements.txt").read_text().splitlines() if "==" in l)
+    first = json.loads((RUN / "samples.jsonl").read_text(encoding="utf-8").splitlines()[0])
+    return dict(diffusers_version=pins["diffusers"], torch_version=first["torch"], transformers_version=pins["transformers"])
+
+
 def main():
     V = numbers(RUN)
-    V.update(diffusers_version=version("diffusers"), torch_version=version("torch"), transformers_version=version("transformers"))
+    V.update(**pilot_versions())
     check_claims(V)
     check_intervention_claims()
     tables = (RUN / "results" / "tables.md").read_text().split("## ")
