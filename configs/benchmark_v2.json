@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "status": "DRAFT lexicon and quotas; not frozen",
+  "seed": 20261013,
+  "quotas": {
+    "DEV":  {"binding": 30, "multi": 25, "counting": 15, "spatial": 15, "presence": 15},
+    "TEST": {"binding": 60, "multi": 50, "counting": 30, "spatial": 30, "presence": 30}
+  },
+  "max_cf_per_scene": 2,
+  "counting_range": [2, 4],
+  "counting_nouns_per_split": {"DEV": 5, "TEST": 10},
+  "backgrounds": [null, "on a wooden table", "on a concrete floor"],
+  "multi_templates": {"bind_spatial": 0.5, "bind_count": 0.5, "count_spatial_nocolour": 0.0},
+  "notes": "multi_templates weights are a design parameter. Binding-bearing counts are DERIVED from the generated scene graphs (D-05), never read from this file."
+}

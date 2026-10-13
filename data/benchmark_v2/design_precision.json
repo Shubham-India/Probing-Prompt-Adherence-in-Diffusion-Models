@@ -1,0 +1,49 @@
+{
+ "assumptions": {
+  "ICC": 0.52,
+  "k": 4,
+  "AUC": 0.75,
+  "prevalence": 0.236,
+  "source": "ICC quoted from RB 9.0; prevalence from M2 pilot re-analysis; AUC assumed"
+ },
+ "anchor_check": {
+  "scenes": 140,
+  "hanley_mcnea_halfwidth": 0.083,
+  "rb_stated": "~0.08"
+ },
+ "rows": {
+  "TEST binding-bearing (literal D-05)": {
+   "scenes": 140,
+   "effective_n": 218.8,
+   "auc_halfwidth_95": 0.083,
+   "e12_images": 3360
+  },
+  "TEST binding-competitive (>=2 coloured objects)": {
+   "scenes": 110,
+   "effective_n": 171.9,
+   "auc_halfwidth_95": 0.094,
+   "e12_images": 2640
+  },
+  "DEV binding-bearing (literal D-05)": {
+   "scenes": 70,
+   "effective_n": 109.4,
+   "auc_halfwidth_95": 0.118,
+   "e12_images": 1120
+  },
+  "DEV binding-competitive (>=2 coloured objects)": {
+   "scenes": 55,
+   "effective_n": 85.9,
+   "auc_halfwidth_95": 0.133,
+   "e12_images": 880
+  }
+ },
+ "formulas": {
+  "e12_TEST": "scenes x 6 arms x k=4 (RB: 140 -> 3,360)",
+  "e12_DEV_tuning": "scenes x 8 x 2 (RB: 70 -> 1,120)",
+  "spatial_bearing": {
+   "DEV": 28,
+   "TEST": 54
+  },
+  "rb_spatial_bearing_assumed": "~70 TEST (RB 9.0)"
+ }
+}

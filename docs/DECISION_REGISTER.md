@@ -64,6 +64,14 @@ Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/
 
 Approval: **yes** for C-1 (changes the sample-size basis).
 
+
+### D-05 working resolution (2026-10-13, applied under the owner's conservative-default instruction; still requires owner confirmation for the Addendum)
+- Definition applied: binding-bearing = canonical constraint list contains >= 1 `binding` item; the count is **derived** by `src/benchmark_v2.py` (`design_counts.json`) and independently recounted in `tests/test_benchmark_v2.py`. A stricter *competitive* subset (>= 2 coloured objects) is also reported.
+- Result for the generated draft (quotas unchanged: DEV 100, TEST 200): binding-bearing **140 / 70** (TEST / DEV) because every multi template includes colours and counting scenes carry a colour; competitive **110 / 55**. The C-1 figures 110/55 therefore correspond to the competitive subset, 140/70 to the literal definition. Quotas were **not** changed to reach these numbers; the multi-template mix is a config parameter (`multi_templates`) and the counts move if it changes.
+- Spatial-bearing scenes: 54 (TEST), 28 (DEV), not the blueprint's ~70, because only about half of multi scenes carry a relation.
+- Precision (`data/benchmark_v2/design_precision.json`, Hanley-McNeil on effective n, ICC 0.52 and k=4 quoted from RB, AUC 0.75 assumed): TEST single-AUC half-width 0.083 (literal, anchor check vs RB ~0.08) and 0.094 (competitive); DEV 0.118 / 0.133. E12 image counts: TEST 3,360 (literal) / 2,640 (competitive); DEV tuning 1,120 / 880.
+- Owner decision still needed: which definition is the PRIMARY population for HB/HC (literal 140 vs competitive 110). Default until answered: literal definition primary, competitive reported as a sensitivity analysis. Nothing is frozen.
+
 ## D-12 Undefined cases of DEV-derived quantities (found in review)
 | Quantity (RB) | Undefined when | Proposed rule |
 |---|---|---|

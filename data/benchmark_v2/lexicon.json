@@ -1,0 +1,126 @@
+{
+ "status": "DRAFT",
+ "nouns": {
+  "dog": "dogs",
+  "cat": "cats",
+  "horse": "horses",
+  "bird": "birds",
+  "cow": "cows",
+  "sheep": "sheep",
+  "bicycle": "bicycles",
+  "car": "cars",
+  "bus": "buses",
+  "boat": "boats",
+  "chair": "chairs",
+  "bench": "benches",
+  "vase": "vases",
+  "cup": "cups",
+  "book": "books",
+  "clock": "clocks",
+  "umbrella": "umbrellas",
+  "bottle": "bottles",
+  "bowl": "bowls",
+  "backpack": "backpacks",
+  "laptop": "laptops",
+  "suitcase": "suitcases",
+  "kite": "kites",
+  "skateboard": "skateboards",
+  "teapot": "teapots",
+  "lamp": "lamps",
+  "hat": "hats",
+  "shoe": "shoes",
+  "ball": "balls",
+  "apple": "apples",
+  "banana": "bananas",
+  "cube": "cubes",
+  "sphere": "spheres",
+  "pillow": "pillows",
+  "basket": "baskets",
+  "candle": "candles",
+  "mirror": "mirrors",
+  "guitar": "guitars",
+  "fork": "forks",
+  "box": "boxes"
+ },
+ "conflicts": [
+  [
+   "box",
+   "cube"
+  ],
+  [
+   "ball",
+   "sphere"
+  ],
+  [
+   "bus",
+   "car"
+  ],
+  [
+   "bowl",
+   "cup"
+  ],
+  [
+   "backpack",
+   "suitcase"
+  ],
+  [
+   "bench",
+   "chair"
+  ],
+  [
+   "cup",
+   "teapot"
+  ],
+  [
+   "bottle",
+   "vase"
+  ],
+  [
+   "cube",
+   "sphere"
+  ],
+  [
+   "apple",
+   "ball"
+  ],
+  [
+   "cow",
+   "sheep"
+  ],
+  [
+   "cat",
+   "dog"
+  ]
+ ],
+ "colours": [
+  "red",
+  "blue",
+  "yellow",
+  "green",
+  "orange",
+  "purple",
+  "white",
+  "black"
+ ],
+ "colour_synonyms": {
+  "red": "crimson",
+  "blue": "azure",
+  "yellow": "golden",
+  "green": "emerald",
+  "orange": "tangerine",
+  "purple": "violet",
+  "white": "ivory",
+  "black": "ebony"
+ },
+ "noun_synonyms": {
+  "bicycle": "bike"
+ },
+ "relations": {
+  "left_of": "to the left of",
+  "right_of": "to the right of"
+ },
+ "relation_synonyms": {
+  "left_of": "on the left side of",
+  "right_of": "on the right side of"
+ }
+}
