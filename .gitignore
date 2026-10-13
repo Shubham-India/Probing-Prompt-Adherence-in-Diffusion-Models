@@ -7,3 +7,5 @@ kaggle_returns/
 runbook_secrets/
 *.token
 kaggle.json
+kaggle_bundle/
+kaggle_bundle.zip
