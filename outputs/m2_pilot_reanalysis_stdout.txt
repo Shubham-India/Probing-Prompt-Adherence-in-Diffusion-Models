@@ -1,0 +1,108 @@
+reproduction: 1008/1008 images re-score identically to outputs/main/eval.jsonl
+legacy field disagreements vs per_image.csv: binding 0, spatial 0, all_satisfied 0
+category  cfg                         outcome  mean  ci_lo  ci_hi  n_images  n_prompts  missing_object_rate
+ binding  2.0 P(all required objects present) 0.403  0.264  0.542        72          6                0.597
+ binding  2.0            P(binding | present) 0.172  0.029  0.409        29          6                0.597
+ binding  2.0            P(present & binding) 0.069  0.014  0.153        72          6                0.597
+ binding  2.0               legacy binding_ok 0.069  0.014  0.153        72          6                0.597
+ binding  7.5 P(all required objects present) 0.486  0.306  0.639        72          6                0.514
+ binding  7.5            P(binding | present) 0.229  0.083  0.385        35          6                0.514
+ binding  7.5            P(present & binding) 0.111  0.028  0.208        72          6                0.514
+ binding  7.5               legacy binding_ok 0.111  0.028  0.208        72          6                0.514
+ binding 15.0 P(all required objects present) 0.472  0.319  0.625        72          6                0.528
+ binding 15.0            P(binding | present) 0.235  0.111  0.387        34          6                0.528
+ binding 15.0            P(present & binding) 0.111  0.056  0.181        72          6                0.528
+ binding 15.0               legacy binding_ok 0.111  0.056  0.181        72          6                0.528
+counting  2.0 P(all required objects present) 1.000  1.000  1.000        72          6                0.000
+counting  2.0            P(binding | present) 0.722  0.542  0.889        72          6                0.000
+counting  2.0            P(present & binding) 0.722  0.542  0.889        72          6                0.000
+counting  2.0               legacy binding_ok 0.722  0.542  0.889        72          6                0.000
+counting  7.5 P(all required objects present) 1.000  1.000  1.000        72          6                0.000
+counting  7.5            P(binding | present) 0.736  0.542  0.917        72          6                0.000
+counting  7.5            P(present & binding) 0.736  0.542  0.917        72          6                0.000
+counting  7.5               legacy binding_ok 0.736  0.555  0.917        72          6                0.000
+counting 15.0 P(all required objects present) 1.000  1.000  1.000        72          6                0.000
+counting 15.0            P(binding | present) 0.639  0.361  0.889        72          6                0.000
+counting 15.0            P(present & binding) 0.639  0.361  0.889        72          6                0.000
+counting 15.0               legacy binding_ok 0.639  0.361  0.889        72          6                0.000
+   multi  2.0 P(all required objects present) 0.375  0.125  0.597        72          6                0.625
+   multi  2.0            P(binding | present) 0.000  0.000  0.000        27          4                0.625
+   multi  2.0            P(present & binding) 0.000  0.000  0.000        72          6                0.625
+   multi  2.0               legacy binding_ok 0.000  0.000  0.000        72          6                0.625
+   multi  7.5 P(all required objects present) 0.417  0.181  0.639        72          6                0.583
+   multi  7.5            P(binding | present) 0.500  0.182  0.800        30          5                0.583
+   multi  7.5            P(present & binding) 0.208  0.056  0.403        72          6                0.583
+   multi  7.5               legacy binding_ok 0.208  0.042  0.403        72          6                0.583
+   multi 15.0 P(all required objects present) 0.333  0.181  0.486        72          6                0.667
+   multi 15.0            P(binding | present) 0.375  0.188  0.469        24          6                0.667
+   multi 15.0            P(present & binding) 0.125  0.042  0.208        72          6                0.667
+   multi 15.0               legacy binding_ok 0.125  0.042  0.208        72          6                0.667
+presence  2.0 P(all required objects present) 0.583  0.333  0.833        48          4                0.417
+presence  7.5 P(all required objects present) 0.667  0.396  0.917        48          4                0.333
+presence 15.0 P(all required objects present) 0.708  0.458  0.958        48          4                0.292
+ spatial  2.0 P(all required objects present) 0.403  0.236  0.556        72          6                0.597
+ spatial  7.5 P(all required objects present) 0.653  0.403  0.861        72          6                0.347
+ spatial 15.0 P(all required objects present) 0.556  0.292  0.792        72          6                0.444
+           category   cfg  n_binding_images  n_eligible  eligible_fraction  prompts_with_zero_eligible  n_prompts
+            binding   2.0                72          29              0.403                           0          6
+            binding   7.5                72          35              0.486                           0          6
+            binding  15.0                72          34              0.472                           0          6
+           counting   2.0                72          72              1.000                           0          6
+           counting   7.5                72          72              1.000                           0          6
+           counting  15.0                72          72              1.000                           0          6
+              multi   2.0                72          27              0.375                           2          6
+              multi   7.5                72          30              0.417                           1          6
+              multi  15.0                72          24              0.333                           0          6
+ALL binding-bearing   all               648         395              0.610                           0         18
+{
+ "binding_bearing": {
+  "binding_bearing_prompts": 18,
+  "binding_images": 648,
+  "legacy_binding_1_but_not_all_objects_present": 0,
+  "joint_bind_differs_from_legacy_binding": 0,
+  "note": "the legacy binding result already scores 0 when an object is missing, so legacy binding equals the joint (present & binding) outcome here; what is new is the conditional rate and its eligibility denominator"
+ },
+ "seed_effect_permutation": {
+  "statistic": 0.012642904383975815,
+  "p_value": 0.011597680463907219,
+  "n_images": 1008,
+  "per_seed_mean_centred": {
+   "0": -0.09424603174603174,
+   "1": -0.0109126984126984,
+   "2": 0.012896825396825407,
+   "3": 0.030753968253968266,
+   "4": 0.048611111111111126,
+   "5": 0.012896825396825412
+  }
+ },
+ "nested_auc_steps40_grouped_cv_by_prompt": {
+  "n": 504,
+  "n_prompts": 28,
+  "base_rate": 0.2361111111111111,
+  "auc": {
+   "B_design(category+cfg)": 0.718771144821565,
+   "B_noise(+seed id)": 0.7209647495361781,
+   "B_attn(+early/mid/late attention)": 0.7858125068209102,
+   "B_noise+attn": 0.7708392447888246
+  },
+  "delta_auc": {
+   "attn_minus_design": 0.06704136199934518,
+   "noise_minus_design": 0.002193604714613051,
+   "attn_minus_noise": 0.049874495252646533
+  },
+  "delta_auc_prompt_bootstrap_ci95": {
+   "attn_minus_design": [
+    0.027706686999345174,
+    0.12150702289825313
+   ],
+   "noise_minus_design": [
+    -0.02768127591260514,
+    0.026830860510676065
+   ],
+   "attn_minus_noise": [
+    0.016651315967497478,
+    0.09652509878514345
+   ]
+  }
+ }
+}

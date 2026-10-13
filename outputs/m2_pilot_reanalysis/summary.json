@@ -1,0 +1,62 @@
+{
+ "status": "EXPLORATORY pilot re-analysis (pilot prompts are DEV-only); not confirmatory",
+ "reproduction": {
+  "images": 1008,
+  "rescore_mismatches": 0,
+  "legacy_field_disagreements": {
+   "binding": 0,
+   "spatial": 0,
+   "all_satisfied": 0
+  }
+ },
+ "binding_bearing": {
+  "binding_bearing_prompts": 18,
+  "binding_images": 648,
+  "legacy_binding_1_but_not_all_objects_present": 0,
+  "joint_bind_differs_from_legacy_binding": 0,
+  "note": "the legacy binding result already scores 0 when an object is missing, so legacy binding equals the joint (present & binding) outcome here; what is new is the conditional rate and its eligibility denominator"
+ },
+ "seed_effect_permutation": {
+  "statistic": 0.012642904383975815,
+  "p_value": 0.011597680463907219,
+  "n_images": 1008,
+  "per_seed_mean_centred": {
+   "0": -0.09424603174603174,
+   "1": -0.0109126984126984,
+   "2": 0.012896825396825407,
+   "3": 0.030753968253968266,
+   "4": 0.048611111111111126,
+   "5": 0.012896825396825412
+  }
+ },
+ "nested_auc_steps40_grouped_cv_by_prompt": {
+  "n": 504,
+  "n_prompts": 28,
+  "base_rate": 0.2361111111111111,
+  "auc": {
+   "B_design(category+cfg)": 0.718771144821565,
+   "B_noise(+seed id)": 0.7209647495361781,
+   "B_attn(+early/mid/late attention)": 0.7858125068209102,
+   "B_noise+attn": 0.7708392447888246
+  },
+  "delta_auc": {
+   "attn_minus_design": 0.06704136199934518,
+   "noise_minus_design": 0.002193604714613051,
+   "attn_minus_noise": 0.049874495252646533
+  },
+  "delta_auc_prompt_bootstrap_ci95": {
+   "attn_minus_design": [
+    0.027706686999345174,
+    0.12150702289825313
+   ],
+   "noise_minus_design": [
+    -0.02768127591260514,
+    0.026830860510676065
+   ],
+   "attn_minus_noise": [
+    0.016651315967497478,
+    0.09652509878514345
+   ]
+  }
+ }
+}
