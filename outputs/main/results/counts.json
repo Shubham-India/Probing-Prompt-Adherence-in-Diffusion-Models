@@ -1,0 +1,25 @@
+{
+ "images_evaluated": 1008,
+ "prompts": 28,
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "cfg": [
+  2.0,
+  7.5,
+  15.0
+ ],
+ "steps": [
+  20.0,
+  40.0
+ ],
+ "excluded": 0,
+ "images_per_cell_expected": 168,
+ "successes_primary": 275,
+ "failures_primary": 733
+}

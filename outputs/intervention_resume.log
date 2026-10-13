@@ -1,0 +1,9 @@
+22 images to generate (482 already done)
+D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  17%|#6        | 1/6 [00:00<00:00,  9.57it/s]Loading pipeline components...:  67%|######6   | 4/6 [00:00<00:00, 18.24it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:   8%|7         | 15/196 [00:00<00:01, 140.76it/s][ALoading weights: 100%|##########| 196/196 [00:00<00:00, 1245.43it/s]
+Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00,  6.17it/s]Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00,  7.18it/s]
+[20/22] multi_count_ball_3__cfg7.5__st40__seed3__rw4
+[22/22] multi_count_ball_3__cfg7.5__st40__seed5__rw4

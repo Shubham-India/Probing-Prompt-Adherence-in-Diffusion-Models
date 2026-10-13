@@ -1,0 +1,24 @@
+D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+336 images to generate (0 already done)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:  88%|########8 | 173/196 [00:00<00:00, 1729.68it/s][ALoading weights: 100%|##########| 196/196 [00:00<00:00, 1943.70it/s]
+Loading pipeline components...:  17%|#6        | 1/6 [00:00<00:01,  3.94it/s]Loading pipeline components...:  67%|######6   | 4/6 [00:00<00:00, 12.30it/s]Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00, 14.06it/s]
+[20/336] presence_cat_umbrella__cfg7.5__st40__seed1 9.15s
+[40/336] presence_bird_clock__cfg2__st40__seed1 9.16s
+[60/336] binding_cube_sphere_v1__cfg15__st40__seed1 9.2s
+[80/336] binding_cup_book_v1__cfg7.5__st40__seed1 9.15s
+[100/336] binding_chair_vase_v1__cfg2__st40__seed1 9.11s
+[120/336] binding_chair_vase_v2__cfg15__st40__seed1 9.15s
+[140/336] count_apple_3__cfg7.5__st40__seed1 9.27s
+[160/336] count_ball_2__cfg2__st40__seed1 9.16s
+[180/336] count_ball_3__cfg15__st40__seed1 9.13s
+[200/336] spatial_cat_dog_lr__cfg7.5__st40__seed1 9.14s
+[220/336] spatial_cup_book_lr__cfg2__st40__seed1 9.16s
+[240/336] spatial_cup_book_rl__cfg15__st40__seed1 9.13s
+[260/336] spatial_car_bicycle_rl__cfg7.5__st40__seed1 9.13s
+[280/336] multi_cup_book_v2__cfg2__st40__seed1 9.13s
+[300/336] multi_chair_vase_v1__cfg15__st40__seed1 9.11s
+[320/336] multi_count_ball_2__cfg7.5__st40__seed1 9.16s
+[336/336] multi_count_ball_3__cfg15__st40__seed1 9.11s

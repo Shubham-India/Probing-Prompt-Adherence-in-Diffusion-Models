@@ -1,0 +1,31 @@
+498 attention extractions
+D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:   6%|5         | 11/196 [00:00<00:01, 107.60it/s][ALoading weights: 100%|##########| 196/196 [00:00<00:00, 1619.35it/s]
+Loading pipeline components...:  17%|#6        | 1/6 [00:00<00:01,  3.07it/s]Loading pipeline components...:  33%|###3      | 2/6 [00:00<00:01,  3.88it/s]Loading pipeline components...:  83%|########3 | 5/6 [00:00<00:00, 10.20it/s]Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00,  8.02it/s]
+check presence_cat_umbrella__cfg2__st40__seed0: max pixel diff 0, mean 0.0000
+check presence_cat_umbrella__cfg2__st40__seed1: max pixel diff 0, mean 0.0000
+check presence_cat_umbrella__cfg7.5__st40__seed0: max pixel diff 0, mean 0.0000
+check presence_cat_umbrella__cfg7.5__st40__seed1: max pixel diff 0, mean 0.0000
+check presence_cat_umbrella__cfg15__st40__seed0: max pixel diff 0, mean 0.0000
+[25/498]
+[50/498]
+[75/498]
+[100/498]
+[125/498]
+[150/498]
+[175/498]
+[200/498]
+[225/498]
+[250/498]
+[275/498]
+[300/498]
+[325/498]
+[350/498]
+[375/498]
+[400/498]
+[425/498]
+[450/498]
+[475/498]

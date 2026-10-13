@@ -1,0 +1,29 @@
+504 images to generate (0 already done)
+D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  33%|###3      | 2/6 [00:00<00:00, 13.67it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:   7%|7         | 14/196 [00:00<00:01, 134.44it/s][ALoading weights: 100%|##########| 196/196 [00:00<00:00, 1755.26it/s]
+Loading pipeline components...:  67%|######6   | 4/6 [00:00<00:00,  7.84it/s]Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00, 11.17it/s]
+[20/504] presence_bird_clock__cfg7.5__st40__seed1__rw1
+[40/504] binding_cup_book_v1__cfg7.5__st40__seed3__rw1
+[60/504] binding_chair_vase_v2__cfg7.5__st40__seed5__rw1
+[80/504] count_ball_2__cfg7.5__st40__seed1__rw1
+[100/504] spatial_cat_dog_lr__cfg7.5__st40__seed3__rw1
+[120/504] spatial_cup_book_rl__cfg7.5__st40__seed5__rw1
+[140/504] multi_cup_book_v2__cfg7.5__st40__seed1__rw1
+[160/504] multi_count_ball_2__cfg7.5__st40__seed3__rw1
+[180/504] presence_cat_umbrella__cfg7.5__st40__seed5__rw2
+[200/504] binding_cube_sphere_v2__cfg7.5__st40__seed1__rw2
+[220/504] binding_chair_vase_v1__cfg7.5__st40__seed3__rw2
+[240/504] count_apple_3__cfg7.5__st40__seed5__rw2
+[260/504] count_ball_4__cfg7.5__st40__seed1__rw2
+[280/504] spatial_cup_book_lr__cfg7.5__st40__seed3__rw2
+[300/504] spatial_car_bicycle_rl__cfg7.5__st40__seed5__rw2
+[320/504] multi_chair_vase_v2__cfg7.5__st40__seed1__rw2
+[340/504] presence_dog_bicycle__cfg7.5__st40__seed3__rw4
+[360/504] presence_bird_clock__cfg7.5__st40__seed5__rw4
+[380/504] binding_cup_book_v2__cfg7.5__st40__seed1__rw4
+[400/504] count_apple_2__cfg7.5__st40__seed3__rw4
+[420/504] count_ball_2__cfg7.5__st40__seed5__rw4
+[440/504] spatial_cat_dog_rl__cfg7.5__st40__seed1__rw4

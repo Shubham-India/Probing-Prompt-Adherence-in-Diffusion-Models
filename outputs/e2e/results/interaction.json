@@ -1,0 +1,35 @@
+{
+ "wald_terms": [
+  {
+   "index": "Intercept",
+   "statistic": 2179.3445684041567,
+   "pvalue": 0.0,
+   "df_constraint": 1
+  },
+  {
+   "index": "C(category)",
+   "statistic": 5321.474935050415,
+   "pvalue": 0.0,
+   "df_constraint": 4
+  },
+  {
+   "index": "C(cfg)",
+   "statistic": 2096.210718930534,
+   "pvalue": 0.0,
+   "df_constraint": 2
+  },
+  {
+   "index": "C(steps)",
+   "statistic": 0.0007802262732457718,
+   "pvalue": 0.9777159627855121,
+   "df_constraint": 1
+  },
+  {
+   "index": "C(cfg):C(steps)",
+   "statistic": 1081.3585217453426,
+   "pvalue": 1.5345481623453294e-235,
+   "df_constraint": 2
+  }
+ ],
+ "n": 60
+}

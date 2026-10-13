@@ -1,0 +1,698 @@
+[
+ {
+  "id": "presence_dog_bicycle",
+  "category": "presence",
+  "prompt": "a dog and a bicycle",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "dog"
+   },
+   {
+    "type": "presence",
+    "object": "bicycle"
+   }
+  ],
+  "pair_group": "presence_dog_bicycle",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "presence_cat_umbrella",
+  "category": "presence",
+  "prompt": "a cat and a umbrella",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cat"
+   },
+   {
+    "type": "presence",
+    "object": "umbrella"
+   }
+  ],
+  "pair_group": "presence_cat_umbrella",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "presence_horse_bench",
+  "category": "presence",
+  "prompt": "a horse and a bench",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "horse"
+   },
+   {
+    "type": "presence",
+    "object": "bench"
+   }
+  ],
+  "pair_group": "presence_horse_bench",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "presence_bird_clock",
+  "category": "presence",
+  "prompt": "a bird and a clock",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bird"
+   },
+   {
+    "type": "presence",
+    "object": "clock"
+   }
+  ],
+  "pair_group": "presence_bird_clock",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "binding_cube_sphere_v1",
+  "category": "binding",
+  "prompt": "a red cube and a blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "binding_cube_sphere",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "binding_cube_sphere_v2",
+  "category": "binding",
+  "prompt": "a blue cube and a red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   }
+  ],
+  "pair_group": "binding_cube_sphere",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "binding_cup_book_v1",
+  "category": "binding",
+  "prompt": "a red cup and a blue book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "binding_cup_book",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "binding_cup_book_v2",
+  "category": "binding",
+  "prompt": "a blue cup and a red book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "red"
+   }
+  ],
+  "pair_group": "binding_cup_book",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "binding_chair_vase_v1",
+  "category": "binding",
+  "prompt": "a red chair and a blue vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "chair"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "chair",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "binding_chair_vase",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "binding_chair_vase_v2",
+  "category": "binding",
+  "prompt": "a blue chair and a red vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "chair"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "chair",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "red"
+   }
+  ],
+  "pair_group": "binding_chair_vase",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "count_apple_2",
+  "category": "counting",
+  "prompt": "two yellow apples on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "apple",
+    "n": 2
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "count_apple",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 2
+ },
+ {
+  "id": "count_apple_3",
+  "category": "counting",
+  "prompt": "three yellow apples on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "apple",
+    "n": 3
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "count_apple",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 3
+ },
+ {
+  "id": "count_apple_4",
+  "category": "counting",
+  "prompt": "four yellow apples on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "apple",
+    "n": 4
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "count_apple",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 4
+ },
+ {
+  "id": "count_ball_2",
+  "category": "counting",
+  "prompt": "two red balls on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "ball",
+    "n": 2
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   }
+  ],
+  "pair_group": "count_ball",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 2
+ },
+ {
+  "id": "count_ball_3",
+  "category": "counting",
+  "prompt": "three red balls on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "ball",
+    "n": 3
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   }
+  ],
+  "pair_group": "count_ball",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 3
+ },
+ {
+  "id": "count_ball_4",
+  "category": "counting",
+  "prompt": "four red balls on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "ball",
+    "n": 4
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   }
+  ],
+  "pair_group": "count_ball",
+  "n_objects": 1,
+  "n_constraints": 2,
+  "count": 4
+ },
+ {
+  "id": "spatial_cat_dog_lr",
+  "category": "spatial",
+  "prompt": "a cat to the left of a dog",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cat"
+   },
+   {
+    "type": "presence",
+    "object": "dog"
+   },
+   {
+    "type": "spatial",
+    "left": "cat",
+    "right": "dog"
+   }
+  ],
+  "pair_group": "spatial_cat_dog",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "spatial_cat_dog_rl",
+  "category": "spatial",
+  "prompt": "a dog to the left of a cat",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cat"
+   },
+   {
+    "type": "presence",
+    "object": "dog"
+   },
+   {
+    "type": "spatial",
+    "left": "dog",
+    "right": "cat"
+   }
+  ],
+  "pair_group": "spatial_cat_dog",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "spatial_cup_book_lr",
+  "category": "spatial",
+  "prompt": "a cup to the left of a book",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "book"
+   }
+  ],
+  "pair_group": "spatial_cup_book",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "spatial_cup_book_rl",
+  "category": "spatial",
+  "prompt": "a book to the left of a cup",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "spatial_cup_book",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "spatial_car_bicycle_lr",
+  "category": "spatial",
+  "prompt": "a car to the left of a bicycle",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "car"
+   },
+   {
+    "type": "presence",
+    "object": "bicycle"
+   },
+   {
+    "type": "spatial",
+    "left": "car",
+    "right": "bicycle"
+   }
+  ],
+  "pair_group": "spatial_car_bicycle",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "spatial_car_bicycle_rl",
+  "category": "spatial",
+  "prompt": "a bicycle to the left of a car",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "car"
+   },
+   {
+    "type": "presence",
+    "object": "bicycle"
+   },
+   {
+    "type": "spatial",
+    "left": "bicycle",
+    "right": "car"
+   }
+  ],
+  "pair_group": "spatial_car_bicycle",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "multi_cup_book_v1",
+  "category": "multi",
+  "prompt": "a red cup to the left of a blue book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "book"
+   }
+  ],
+  "pair_group": "multi_cup_book",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "multi_cup_book_v2",
+  "category": "multi",
+  "prompt": "a red book to the left of a blue cup on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "multi_cup_book",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "multi_chair_vase_v1",
+  "category": "multi",
+  "prompt": "a red chair to the left of a blue vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "chair"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "chair",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "chair",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "multi_chair_vase",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "multi_chair_vase_v2",
+  "category": "multi",
+  "prompt": "a red vase to the left of a blue chair on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "chair"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "chair",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "chair"
+   }
+  ],
+  "pair_group": "multi_chair_vase",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "multi_count_ball_2",
+  "category": "multi",
+  "prompt": "two red balls and a blue cube on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "ball",
+    "n": 2
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "multi_count_ball",
+  "n_objects": 2,
+  "n_constraints": 4,
+  "count": 2
+ },
+ {
+  "id": "multi_count_ball_3",
+  "category": "multi",
+  "prompt": "three red balls and a blue cube on a wooden table",
+  "constraints": [
+   {
+    "type": "count",
+    "object": "ball",
+    "n": 3
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "multi_count_ball",
+  "n_objects": 2,
+  "n_constraints": 4,
+  "count": 3
+ }
+]

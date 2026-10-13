@@ -1,0 +1,6 @@
+{
+ "attention_only": 0.1435406698564593,
+ "category_cfg_only": 0.1172248803827751,
+ "attention_plus_category_cfg": 0.15311004784688997,
+ "n": 30
+}

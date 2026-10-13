@@ -1,0 +1,8 @@
+.......                                                                  [100%]
+============================== warnings summary ===============================
+tests/test_attention_gpu.py::test_attention_is_a_distribution_and_image_is_unchanged
+  D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+    deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+7 passed, 1 warning in 22.87s

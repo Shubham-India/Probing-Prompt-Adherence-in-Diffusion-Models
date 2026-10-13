@@ -1,0 +1,41 @@
+D:\prompt_Project\.venv\Lib\site-packages\diffusers\utils\deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+672 images to generate (336 already done)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  67%|######6   | 4/6 [00:00<00:00, 37.26it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][A
+Loading weights:   7%|6         | 13/196 [00:00<00:01, 129.94it/s][ALoading weights: 100%|##########| 196/196 [00:00<00:00, 1213.15it/s]
+Loading pipeline components...: 100%|##########| 6/6 [00:00<00:00, 10.45it/s]
+[20/672] presence_dog_bicycle__cfg15__st20__seed5 4.79s
+[40/672] presence_cat_umbrella__cfg7.5__st40__seed5 9.2s
+[60/672] presence_horse_bench__cfg7.5__st20__seed5 4.78s
+[80/672] presence_bird_clock__cfg2__st40__seed5 9.15s
+[100/672] binding_cube_sphere_v1__cfg2__st20__seed5 4.76s
+[120/672] binding_cube_sphere_v1__cfg15__st40__seed5 9.14s
+[140/672] binding_cube_sphere_v2__cfg15__st20__seed5 4.74s
+[160/672] binding_cup_book_v1__cfg7.5__st40__seed5 9.14s
+[180/672] binding_cup_book_v2__cfg7.5__st20__seed5 4.75s
+[200/672] binding_chair_vase_v1__cfg2__st40__seed5 13.05s
+[220/672] binding_chair_vase_v2__cfg2__st20__seed5 6.09s
+[240/672] binding_chair_vase_v2__cfg15__st40__seed5 11.74s
+[260/672] count_apple_2__cfg15__st20__seed5 7.32s
+[280/672] count_apple_3__cfg7.5__st40__seed5 13.65s
+[300/672] count_apple_4__cfg7.5__st20__seed5 8.55s
+[320/672] count_ball_2__cfg2__st40__seed5 13.37s
+[340/672] count_ball_3__cfg2__st20__seed5 7.13s
+[360/672] count_ball_3__cfg15__st40__seed5 13.86s
+[380/672] count_ball_4__cfg15__st20__seed5 9.69s
+[400/672] spatial_cat_dog_lr__cfg7.5__st40__seed5 14.94s
+[420/672] spatial_cat_dog_rl__cfg7.5__st20__seed5 4.75s
+[440/672] spatial_cup_book_lr__cfg2__st40__seed5 9.21s
+[460/672] spatial_cup_book_rl__cfg2__st20__seed5 4.79s
+[480/672] spatial_cup_book_rl__cfg15__st40__seed5 9.18s
+[500/672] spatial_car_bicycle_lr__cfg15__st20__seed5 4.75s
+[520/672] spatial_car_bicycle_rl__cfg7.5__st40__seed5 9.17s
+[540/672] multi_cup_book_v1__cfg7.5__st20__seed5 4.74s
+[560/672] multi_cup_book_v2__cfg2__st40__seed5 9.14s
+[580/672] multi_chair_vase_v1__cfg2__st20__seed5 4.75s
+[600/672] multi_chair_vase_v1__cfg15__st40__seed5 9.11s
+[620/672] multi_chair_vase_v2__cfg15__st20__seed5 4.72s
+[640/672] multi_count_ball_2__cfg7.5__st40__seed5 9.09s
+[660/672] multi_count_ball_3__cfg7.5__st20__seed5 4.74s
+[672/672] multi_count_ball_3__cfg15__st40__seed5 9.18s

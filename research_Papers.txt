@@ -1,0 +1,25 @@
+01. DDPM
+02. Improved DDPM
+03. DDIM
+04. Latent Diffusion Models
+05. Classifier-Free Diffusion Guidance
+
+06. Attention Is All You Need
+07. CLIP
+
+08. Prompt-to-Prompt
+09. Attend-and-Excite
+10. DAAM
+11. Divide & Bind
+12. BoxDiff
+13. MultiDiffusion
+
+14. DALL-Eval
+15. GenEval
+16. TIFA
+17. T2I-CompBench
+18. HRS-Bench
+19. GenEval 2 
+
+20. ImageReward / HPS v2
+21. DrawBench / PartiPrompts + recent inference-time papers
