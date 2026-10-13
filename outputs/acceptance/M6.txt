@@ -1,0 +1,18 @@
+# M6 acceptance (2026-10-13), CPU, synthetic data only
+tests/test_commitment.py::test_known_commitment_recovered_within_one_grid_step PASSED [  7%]
+tests/test_commitment.py::test_independent_outcomes_give_C_near_zero PASSED [ 14%]
+tests/test_commitment.py::test_identical_outcomes_give_C_one PASSED      [ 21%]
+tests/test_commitment.py::test_stable_wrong_scene_has_zero_weight PASSED [ 28%]
+tests/test_commitment.py::test_mechanical_persistence_biases_absolute_t50_but_not_the_difference PASSED [ 35%]
+tests/test_commitment.py::test_conditional_pairs_require_both_eligible_and_counts_reported PASSED [ 42%]
+tests/test_commitment.py::test_t50_interpolation_and_flags PASSED        [ 50%]
+tests/test_commitment.py::test_sign_agreement_and_windows PASSED         [ 57%]
+tests/test_commitment.py::test_driver_end_to_end_with_equal_ratio_gate PASSED [ 64%]
+tests/test_commitment.py::test_driver_refuses_test_rows_without_freeze PASSED [ 71%]
+tests/test_predict.py::test_noise_features_match_generator_noise PASSED  [ 78%]
+tests/test_predict.py::test_prompt_features PASSED                       [ 85%]
+tests/test_predict.py::test_real_signal_is_detected_and_label_permutation_gives_zero PASSED [ 92%]
+tests/test_predict.py::test_no_signal_gives_zero_delta_and_groups_are_disjoint_in_cv PASSED [100%]
+============================= 14 passed in 12.06s ==============================
+NOTE: blueprint criterion 'independent outcomes give abs(C)<0.1' is evaluated as: Monte Carlo mean |C|<0.025 (40-rep MC: mean 0.0017, SE 0.005) and per-run max|C|<0.15 (per-step SD ~0.04 at 300 scenes, shared A0 noise). The estimator is unbiased; a single run can exceed 0.1.
+NOT DONE: no real restart data exist; nothing here validates restart on real SD 1.5 latents (needs M8 GPU identity checks).
