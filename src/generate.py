@@ -86,6 +86,7 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--prompts", default=str(ROOT / "data" / "prompts.json"))
     ap.add_argument("--limit-prompts", default=None, help="comma-separated prompt ids")
+    ap.add_argument("--split", default=None, choices=["DEV", "TEST"], help="keep only prompts of this split (V2 prompt files)")
     ap.add_argument("--seeds", type=int, default=None, help="use only the first N seeds")
     ap.add_argument("--shard", default=None, help="i/n: this process handles jobs k with k %% n == i")
     ap.add_argument("--save-latents-at", default=None, help="comma-separated completed-step counts, e.g. 6,12,18,24,30,36")
@@ -98,6 +99,8 @@ def main():
     if args.limit_prompts:
         keep = set(args.limit_prompts.split(","))
         prompts = [p for p in prompts if p["id"] in keep]
+    if args.split:
+        prompts = [p for p in prompts if p.get("split") == args.split]
     J.guard_test_access(prompts, cfg_all)
     seeds = cfg_all["seeds"][: args.seeds] if args.seeds else cfg_all["seeds"]
     shard = J.parse_shard(args.shard) if args.shard else None
@@ -121,7 +124,11 @@ def main():
     if not jobs:
         return
 
-    pipe = load_pipeline(cfg_all["model_id"], cfg_all.get("revision"))
+    revision = cfg_all.get("revision")
+    if revision == "UNPINNED-DRAFT":    # draft config: use the default revision, recorded as unpinned in every sample record
+        print("WARNING: model revision is not pinned (draft config); results are not eligible for the freeze", flush=True)
+        revision = None
+    pipe = load_pipeline(cfg_all["model_id"], revision)
     size = cfg_all["image_size"]
     env = {"torch": torch.__version__, "gpu": torch.cuda.get_device_name(0), "python": platform.python_version()}
     with open(meta_path, "a") as meta:
@@ -141,6 +148,7 @@ def main():
                       "torch": torch.__version__}
             if args.shard or save_at or args.run_id:   # additive provenance fields; absent in default (pilot-style) runs
                 record.update({"image_sha256": file_sha256(img_path), "run_id": args.run_id, "revision": cfg_all.get("revision"), "env": env})
+            record.update({k: p[k] for k in ("scene_id", "variant", "split") if k in p})   # V2 prompt provenance (absent for pilot prompts)
             if shard:
                 record["shard"] = args.shard
             if save_at:

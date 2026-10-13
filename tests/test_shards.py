@@ -107,3 +107,22 @@ def test_default_flags_keep_pilot_record_schema(monkeypatch, tmp_path, fake):
     rec = json.loads((tmp_path / "run" / "samples.jsonl").read_text().splitlines()[0])
     pilot = json.loads((ROOT / "outputs/main/samples.jsonl").read_text().splitlines()[0])
     assert set(rec) == set(pilot)
+
+
+def test_split_filter_and_draft_revision_marker(monkeypatch, tmp_path, fake):
+    """--split DEV lets a draft config run V2 DEV prompts while TEST prompts stay refused; the draft revision is not sent to from_pretrained."""
+    seen = {}
+    monkeypatch.setattr(G, "load_pipeline", lambda model_id, revision=None: seen.setdefault("rev", revision) or object())
+    v2 = json.loads((ROOT / "configs/experiment_v2.json").read_text())
+    v2.update(image_size=64, seeds=[0], seeds_core=[0], seeds_branch_bases=[0])
+    (tmp_path / "cfg.json").write_text(json.dumps(v2))
+    pv2 = json.loads((ROOT / "data/benchmark_v2/prompts_v2.json").read_text())
+    (tmp_path / "p.json").write_text(json.dumps(pv2))
+    base = ["generate.py", "--config", str(tmp_path / "cfg.json"), "--prompts", str(tmp_path / "p.json"), "--out", str(tmp_path / "run")]
+    monkeypatch.setattr(sys, "argv", base + ["--limit", "2"])
+    with pytest.raises(ValueError): G.main()                       # TEST prompts present in the file, draft config => refused
+    monkeypatch.setattr(sys, "argv", base + ["--split", "DEV", "--limit", "2"])
+    G.main()
+    assert len(fake) == 2 and "rev" in seen and seen["rev"] is None
+    rec = json.loads((tmp_path / "run" / "samples.jsonl").read_text().splitlines()[0])
+    assert rec["prompt_id"].startswith("sg_") and int(rec["prompt_id"][3:7]) <= 100

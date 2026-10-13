@@ -1,0 +1,15 @@
+{
+  "status": "DRAFT - not frozen. Constants consumed by the confirmatory analyses; tests assert they equal the code defaults.",
+  "judge_thresholds": {"presence": 0.10, "count": 0.15, "distinct_iou": 0.5, "nms_iou": 0.3, "uncertain_band": 0.03},
+  "primary_judge_min_audit_accuracy": 0.85,
+  "bootstrap_draws": 4000,
+  "multiplicity": {"family": ["HA", "HB", "HC"], "method": "Holm"},
+  "HA": {"practical_effect_steps": 3.0, "bounded_null_halfwidth_steps": 1.5, "grid": [6, 12, 18, 24, 30, 36], "D": 8, "M": 2,
+          "equal_ratio_target": 0.30, "D_sensitivity": [4, 12], "gate_dev_ci_halfwidth_steps": 4.0, "full_resample_control_max_C": 0.15,
+          "primary_outcome": "bind_given_pres vs presence", "companion_outcome": "joint_bind (must agree in sign)", "terminology": "restart persistence"},
+  "HB": {"min_delta_auc": 0.05, "forecast_ci_lower_gt": 0.0, "readout_pre_ci_upper_lt": 0.03, "none_ci_upper_lt": 0.03, "dev_gate_halfwidth_auc": 0.04,
+          "cv": "GroupKFold by scene", "post_offset_steps": 8},
+  "HC": {"window_length": 12, "onset_cap": 28, "late_offset_steps": 4, "D_early_min": 0.08, "G_min": 0.10, "clip_drop_max": 0.5, "duplicate_rate_increase_max": 0.03,
+          "bias_mass_tolerance": 0.05, "beta_max_scale": 2.0, "mask_q": 0.25, "arm_for_confirmation": "always_on"},
+  "population": {"primary_binding_bearing": "literal D-05 (>=1 binding constraint)", "sensitivity": "binding_competitive (>=2 coloured objects)"}
+}

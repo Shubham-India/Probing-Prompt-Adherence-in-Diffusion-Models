@@ -1,0 +1,13 @@
+# Pins for Kaggle notebooks. torch/torchvision are NOT pinned here: use the image's CUDA build and record it with kaggle/env_probe.py.
+# Versions copied from requirements.txt (the pilot environment); whether this exact set installs on the Kaggle image is UNVERIFIED until run R0.
+accelerate==1.15.0
+diffusers==0.41.0
+transformers==5.19.0
+safetensors==0.8.0
+numpy
+pandas
+pillow
+scipy
+scikit-learn==1.9.1
+statsmodels==0.15.0
+pytest
