@@ -206,6 +206,7 @@ def mass_ratio_ok(mass_a, mass_b, tol=0.05):
 def install_edit(unet, state):
     """Replace every text cross-attention (attn2) processor by an EditProcessor; self-attention keeps its processor.
     Side length per layer is inferred from the number of spatial tokens at call time via the layer's block (64/32/16/8 for SD 1.5)."""
+    state.original_processors = dict(unet.attn_processors)   # the exact baseline (e.g. AttnProcessor2_0 for every layer) for restore_processors
     procs = {}
     side_by_block = {"down_blocks.0": 64, "down_blocks.1": 32, "down_blocks.2": 16, "up_blocks.1": 16, "up_blocks.2": 32, "up_blocks.3": 64, "mid_block": 8}
     for name, p in unet.attn_processors.items():
@@ -216,3 +217,14 @@ def install_edit(unet, state):
             procs[name] = p
     unet.set_attn_processor(procs)
     return state
+
+
+def restore_processors(unet, state):
+    """Put back exactly the processors that were installed before install_edit (the pipeline's own baseline, AttnProcessor2_0 on torch 2).
+    unet.set_default_attn_processor() is NOT usable here: diffusers 0.41 raises ValueError while an EditProcessor is installed, and when
+    it does not raise it selects the non-SDPA AttnProcessor, which is a different baseline from the pipeline default."""
+    original = getattr(state, "original_processors", None)
+    if not original:
+        raise RuntimeError("install_edit was not called on this state; nothing to restore")
+    unet.set_attn_processor(dict(original))
+    return unet

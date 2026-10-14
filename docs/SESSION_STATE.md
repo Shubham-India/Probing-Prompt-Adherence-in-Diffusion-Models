@@ -6,6 +6,7 @@
 | Branch | `claude/admiring-cori-pbn9wk` (pushed to origin; fast-forwarded from `main` at `6854b10`; the named `docs/master-implementation-plan` branch does not exist on the remote - the planning commit `6854b10` is on `main`) |
 | Latest commit | see `git log -1` (the commit that contains this file is the resume point) |
 | Authoritative files | `GRAND_RESEARCH_BLUEPRINT.md` (Revision 2), `docs/MASTER_IMPLEMENTATION_BLUEPRINT.md`, `docs/DECISION_REGISTER.md` (status block at top), `docs/EXPERIMENT_RUNBOOK.md` (RUN CARDS), `docs/ADDENDUM_B.md` (DRAFT) |
+| R0 status | Kaggle smoke test on `89ab854` (owner-reported): load 16.7 s, 5.39 s/image, 2.81 GB peak, 3-case identity passed **with a temporary patch**. Permanent fix + revision pin committed afterwards (RUNBOOK 8a). **Not yet validated on Kaggle against the new commit.** |
 | Frozen? | **No.** `python src/freeze.py --verify` correctly fails (no manifest, revision unpinned). No TEST scene was generated, scored or inspected. |
 
 ## Milestones (all evidence in `outputs/acceptance/*.txt`)
@@ -36,12 +37,11 @@
 
 ## Open blockers
 1. Real-GPU validation of every GPU-dependent piece (R0: `gpu_identity.py`, `env_probe.py`) - owner must run.
-2. Model revision pin (Hugging Face unreachable from the cloud session) and `UNPINNED-DRAFT` in the config.
+2. ~~Model revision pin~~ DONE 2026-10-14 (`f03de327dd89b501a01da37fc5240cf4fdba85a1`, both configs); the freeze itself is still not done.
 3. Owner approvals: D-02..D-06/D-12 wording in `docs/ADDENDUM_B.md`; primary population (literal 140 vs competitive 110).
 4. Human review of PAR/ORD/CF variants (M3 gate) and lexicon freeze after E22/E03 (detector probe never run through OWL-ViT/CLIP).
 5. Independent second reviewer of the 40 validation labels (still outstanding from the pilot).
 6. Not implemented: HB attention-window analysis on V2 data (`features.py`/`predict_failure.py` provide the machinery; window features need V2 attention maps), `fragility.py`, `guidance_attr.py` (exploratory P2), per-call RNG seeding in the old `analyze.py` (deferred: it would change the published pilot CIs), V2 figures/report.
 
 ## Next exact task
-Owner: run **R0** (RUNBOOK section 8) on Kaggle or the local RTX 3050: build the bundle (`python kaggle/make_bundle.py --commit <SHA>`), upload as a private Kaggle dataset, run the three R0 commands, and return `env.json`, `gpu_identity.json`, `setup_report.json`. (Local alternative for the identity part only: `python tests/gpu_identity.py --out outputs/acceptance/gpu_identity.json` on the RTX 3050.)
-Claude after the return: validate against RUNBOOK section 5; if identities hold, issue R1 then R2a; otherwise record and decide per D-07.
+Owner: replace the private Kaggle dataset content with the NEW bundle (commit shown in the latest commit message / `COMMIT` file) and rerun **R0** from `docs/EXPERIMENT_RUNBOOK.md` section 8; return `env.json`, `gpu_identity.json`, `setup_report.json`. R0 counts as validated only if `all_required_identities_hold` is true including `restored_baseline_maxdiff`. R1/R2/R3 are not issued.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
-  "revision": "UNPINNED-DRAFT",
+  "revision": "f03de327dd89b501a01da37fc5240cf4fdba85a1",
   "image_size": 512,
   "cfg_scales": [7.5],
   "steps": [40],

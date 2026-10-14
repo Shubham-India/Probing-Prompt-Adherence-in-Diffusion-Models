@@ -15,6 +15,7 @@ Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/
 | D-06 | freeze manifest + verify tooling; TEST refused by `generate.py`, `run_branches.py`, `analyze_commitment.py`, `analyze_hc.py` without a verified frozen config | `freeze.py`, `config_schema.py`, `jobs.py` | none until freeze |
 | D-07 | custom denoise loop identical to the pipeline on a tiny random CPU pipeline; real SD 1.5 fp16 identity UNVERIFIED | `branch.py`, `tests/test_branch_loop.py`, `tests/gpu_identity.py` | run R0 |
 | D-08 | fp16 latent per image, 6 steps, hash in the record; branch noise float32 CPU then cast | `generate.py`, `branch.py` | run R0 (reload equals recompute) |
+| D-11 (revision) | model revision pinned to `f03de327dd89b501a01da37fc5240cf4fdba85a1` in both experiment configs; propagation to `from_pretrained` tested; revision is still not frozen (no freeze manifest) | `configs/*.json`, `tests/test_revision_pin.py` | none |
 | D-12 | rules implemented in `commitment.windows_from_t50_dev` | `commitment.py` | confirm |
 Nothing is RESOLVED by approval yet; these are working defaults. No TEST scene has been generated or inspected.
 

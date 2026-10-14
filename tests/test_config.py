@@ -34,6 +34,9 @@ def test_bad_values_rejected():
 
 
 def test_draft_cannot_be_frozen():
-    with pytest.raises(ValueError): cs.check_frozen(V2)
+    with pytest.raises(ValueError): cs.check_frozen(V2)                      # pinned revision but no split manifest / Addendum hash yet
+    draft = copy.deepcopy(V2); draft["revision"] = cs.UNPINNED
+    cs.validate(draft)
+    with pytest.raises(ValueError): cs.check_frozen(draft)
     ok = copy.deepcopy(V2); ok["revision"] = "a" * 40; ok["split_manifest"] = "x.json"; ok["freeze"]["addendum_hash"] = "b" * 64
     cs.check_frozen(ok)

@@ -114,7 +114,7 @@ def test_split_filter_and_draft_revision_marker(monkeypatch, tmp_path, fake):
     seen = {}
     monkeypatch.setattr(G, "load_pipeline", lambda model_id, revision=None: seen.setdefault("rev", revision) or object())
     v2 = json.loads((ROOT / "configs/experiment_v2.json").read_text())
-    v2.update(image_size=64, seeds=[0], seeds_core=[0], seeds_branch_bases=[0])
+    v2.update(image_size=64, seeds=[0], seeds_core=[0], seeds_branch_bases=[0], revision="UNPINNED-DRAFT")   # explicit draft marker
     (tmp_path / "cfg.json").write_text(json.dumps(v2))
     pv2 = json.loads((ROOT / "data/benchmark_v2/prompts_v2.json").read_text())
     (tmp_path / "p.json").write_text(json.dumps(pv2))

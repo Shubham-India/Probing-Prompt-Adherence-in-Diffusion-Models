@@ -135,3 +135,33 @@ def test_plan_columns_and_mask_helpers():
     m = torch.zeros(4, 4); m[1, 1] = 5
     assert E.top_q_mask(m, 0.25).sum() == 4 and E.top_q_mask(m, 0.25)[1, 1]
     assert E.iou(E.top_q_mask(m, 0.25), E.top_q_mask(m, 0.25)) == 1.0
+
+
+def _tiny_unet():
+    diffusers = __import__("diffusers")
+    torch.manual_seed(0)
+    return diffusers.UNet2DConditionModel(sample_size=8, in_channels=4, out_channels=4, layers_per_block=1, block_out_channels=(32, 64),
+                                          down_block_types=("CrossAttnDownBlock2D", "DownBlock2D"), up_block_types=("UpBlock2D", "CrossAttnUpBlock2D"),
+                                          cross_attention_dim=32, attention_head_dim=8, norm_num_groups=8).eval()
+
+
+def test_restore_processors_returns_exact_baseline_and_set_default_is_unusable():
+    """Regression for the R0 failure: set_default_attn_processor() raises once an EditProcessor is installed (diffusers 0.41)."""
+    import pytest
+    unet = _tiny_unet()
+    before = {k: type(v) for k, v in unet.attn_processors.items()}
+    x, enc, t = torch.randn(1, 4, 8, 8), torch.randn(1, 7, 32), torch.tensor([10])
+    with torch.no_grad():
+        ref = unet(x, t, encoder_hidden_states=enc).sample
+    st = E.EditState(mode="off")
+    E.install_edit(unet, st)
+    assert any(isinstance(v, E.EditProcessor) for v in unet.attn_processors.values())
+    with pytest.raises(ValueError):
+        unet.set_default_attn_processor()                     # the original failing call
+    E.restore_processors(unet, st)
+    assert {k: type(v) for k, v in unet.attn_processors.items()} == before
+    assert not any(isinstance(v, E.EditProcessor) for v in unet.attn_processors.values())
+    with torch.no_grad():
+        assert torch.equal(ref, unet(x, t, encoder_hidden_states=enc).sample)
+    with pytest.raises(RuntimeError):
+        E.restore_processors(unet, E.EditState(mode="off"))   # never installed => explicit error, no silent no-op

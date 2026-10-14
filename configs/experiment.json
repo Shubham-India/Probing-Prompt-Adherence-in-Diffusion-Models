@@ -1,6 +1,6 @@
 {
   "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
-  "revision": null,
+  "revision": "f03de327dd89b501a01da37fc5240cf4fdba85a1",
   "image_size": 512,
   "cfg_scales": [2, 7.5, 15],
   "steps": [20, 40],

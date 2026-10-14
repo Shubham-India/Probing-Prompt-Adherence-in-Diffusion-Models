@@ -57,10 +57,11 @@ def main():
         st = EP.EditState(mode="off")
         EP.install_edit(pipe.unet, st)
         r["hook_off_control_maxdiff"] = diff(base, G.generate_image(pipe, p["prompt"], CFG, STEPS, seed, size))
-        pipe.unet.set_default_attn_processor()
+        EP.restore_processors(pipe.unet, st)      # NOT set_default_attn_processor(): see edit_probe.restore_processors
+        r["restored_baseline_maxdiff"] = diff(base, G.generate_image(pipe, p["prompt"], CFG, STEPS, seed, size))
         results.append(r)
         print(json.dumps(r), flush=True)
-    required = ["determinism_maxdiff", "loop_from_step0_maxdiff", "reload_resume_maxdiff", "d0_branch_maxdiff", "hook_off_control_maxdiff"]
+    required = ["determinism_maxdiff", "loop_from_step0_maxdiff", "reload_resume_maxdiff", "d0_branch_maxdiff", "hook_off_control_maxdiff", "restored_baseline_maxdiff"]
     ok = all(r[k] == 0 for r in results for k in required) and all(r["saved_latent_recompute_equal"] for r in results)
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     Path(a.out).write_text(json.dumps({"all_required_identities_hold": ok, "required": required, "results": results}, indent=1))
