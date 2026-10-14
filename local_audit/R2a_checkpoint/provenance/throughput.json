@@ -1,0 +1,31 @@
+{
+ "n_gpus": 2,
+ "n_images_per_probe": 6,
+ "plain": {
+  "returncode": 0,
+  "wall_s": 52.9,
+  "per_image_s_median": 6.16,
+  "per_image_s_all": [
+   6.13,
+   6.15,
+   6.16,
+   6.26,
+   6.35
+  ],
+  "stderr_tail": ",  9.05it/s]\n\nLoading weights:   0%|          | 0/196 [00:00<?, ?it/s]\u001b[A\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 196/196 [00:00<00:00, 2608.13it/s]\n\nLoading pipeline components...:  83%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u258e | 5/6 [00:00<00:00,  9.46it/s]\nLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 6/6 [00:00<00:00,  9.11it/s]\n"
+ },
+ "latents": {
+  "returncode": 0,
+  "wall_s": 53.3,
+  "per_image_s_median": 6.25,
+  "per_image_s_all": [
+   6.23,
+   6.25,
+   6.25,
+   6.35,
+   6.36
+  ],
+  "stderr_tail": ", 11.89it/s]\n\nLoading weights:   0%|          | 0/196 [00:00<?, ?it/s]\u001b[A\nLoading weights: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 196/196 [00:00<00:00, 2658.97it/s]\n\nLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 6/6 [00:00<00:00,  8.44it/s]\nLoading pipeline components...: 100%|\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588| 6/6 [00:00<00:00,  8.25it/s]\n"
+ },
+ "two_workers_wall_s": 53.9
+}

@@ -1,0 +1,16 @@
+/usr/local/lib/python3.13/dist-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+200 images to generate (0 already done)
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/196 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 196/196 [00:00<00:00, 2369.43it/s]
+Loading pipeline components...:  33%|███▎      | 2/6 [00:00<00:00,  6.55it/s]Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00,  6.96it/s]Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00,  7.83it/s]Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00,  7.52it/s]
+[20/200] sg_0010_CAN__cfg7.5__st40__seed2 6.23s
+[40/200] sg_0020_CAN__cfg7.5__st40__seed2 6.2s
+[60/200] sg_0030_CAN__cfg7.5__st40__seed2 6.22s
+[80/200] sg_0040_CAN__cfg7.5__st40__seed2 6.2s
+[100/200] sg_0050_CAN__cfg7.5__st40__seed2 6.22s
+[120/200] sg_0060_CAN__cfg7.5__st40__seed2 6.24s
+[140/200] sg_0070_CAN__cfg7.5__st40__seed2 6.23s
+[160/200] sg_0080_CAN__cfg7.5__st40__seed2 6.22s
+[180/200] sg_0090_CAN__cfg7.5__st40__seed2 6.22s
+[200/200] sg_0100_CAN__cfg7.5__st40__seed2 6.22s
