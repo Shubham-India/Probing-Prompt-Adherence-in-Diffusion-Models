@@ -94,7 +94,7 @@ def main():
                 E.detect(img0, E.required_objects(p["constraints"]), models, "cuda")
             rep["timing"]["judge_s_per_image"] = round((time.time() - t) / len(prompts), 3)
             import diversity as DV
-            t = time.time(); d = DV.DinoEmbedder("cuda", cache_dir=ROOT / "models", revision=rv["facebook/dinov2-small"]); rep["timing"]["dino_load_s"] = round(time.time() - t, 1)
+            t = time.time(); d = DV.DinoEmbedder("cuda", cache_dir=E.model_cache_dir(), revision=rv["facebook/dinov2-small"]); rep["timing"]["dino_load_s"] = round(time.time() - t, 1)
             t = time.time(); d([img0] * 4); rep["timing"]["dino_s_per_image"] = round((time.time() - t) / 4, 3)
         except Exception as e:
             rep["checks"]["evaluator_error"] = f"{type(e).__name__}: {e}"

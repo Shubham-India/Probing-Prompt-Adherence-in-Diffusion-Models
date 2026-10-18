@@ -68,7 +68,7 @@ def main():
     emb_ids, embs, dino = [], [], None
     if a.diversity:
         import diversity as DV
-        dino = DV.DinoEmbedder("cuda", cache_dir=ROOT / "models", revision=cfg.get("evaluator_revisions", {}).get(DV.DINO_ID)) if not a.fake_judge else None
+        dino = DV.DinoEmbedder("cuda", cache_dir=E.model_cache_dir(), revision=cfg.get("evaluator_revisions", {}).get(DV.DINO_ID)) if not a.fake_judge else None
     with open(a.out, "a") as f:
         for i, r in enumerate(todo, 1):
             img_path = next(v for k, v in r["abs_files"].items() if k.endswith(".png"))

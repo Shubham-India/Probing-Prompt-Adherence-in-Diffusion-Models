@@ -23,9 +23,12 @@ SIZE_RATIO = 1.5   # Revision 3 J-size: the intended larger object's box area mu
 MAX_BOXES = 10
 
 
+from model_cache import model_cache_dir  # noqa: E402
+
+
 def load_models(device, owl_revision=None, clip_revision=None):
     """Default (revision None) reproduces the pilot behaviour; Revision 3 passes the pinned revisions from configs/experiment_r3.json."""
-    cache = ROOT / "models"
+    cache = model_cache_dir()
     owl_p = OwlViTProcessor.from_pretrained("google/owlvit-base-patch32", cache_dir=cache, revision=owl_revision)
     owl = OwlViTForObjectDetection.from_pretrained("google/owlvit-base-patch32", cache_dir=cache, revision=owl_revision).to(device).eval()
     clip_p = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache, revision=clip_revision)

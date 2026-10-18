@@ -19,12 +19,13 @@ from diffusers import DDIMScheduler, StableDiffusionPipeline
 
 ROOT = Path(__file__).resolve().parent.parent
 import jobs as J  # noqa: E402  (torch-free helpers)
+from model_cache import model_cache_dir  # noqa: E402  (writable; never inside the read-only Kaggle input)
 
 
 def load_pipeline(model_id, revision=None):
     pipe = StableDiffusionPipeline.from_pretrained(
         model_id, revision=revision, torch_dtype=torch.float16, variant="fp16",
-        safety_checker=None, requires_safety_checker=False, cache_dir=ROOT / "models")
+        safety_checker=None, requires_safety_checker=False, cache_dir=model_cache_dir())
     pipe.scheduler = DDIMScheduler.from_config(pipe.scheduler.config)
     pipe.set_progress_bar_config(disable=True)
     return pipe.to("cuda")

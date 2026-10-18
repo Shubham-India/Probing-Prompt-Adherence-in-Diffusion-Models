@@ -25,8 +25,8 @@ def load(cfg, fake=False):
                                   block_out_channels=(32,), latent_channels=4, norm_num_groups=8, sample_size=8)
     sched = diffusers.DDIMScheduler(num_train_timesteps=1000, beta_start=0.00085, beta_end=0.012, beta_schedule="scaled_linear",
                                     clip_sample=False, set_alpha_to_one=False, steps_offset=1)
-    import os
-    cache = Path(os.environ.get("GBC_MODEL_CACHE", ROOT / "models"))
+    from model_cache import model_cache_dir
+    cache = model_cache_dir()
     tok = CLIPTokenizer.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache, local_files_only=True)
     tok.model_max_length = 77                     # CLIP text length; some cached tokenizer configs omit it
     te = CLIPTextModel(CLIPTextConfig(vocab_size=tok.vocab_size, hidden_size=32, intermediate_size=37, num_hidden_layers=1, num_attention_heads=4,
