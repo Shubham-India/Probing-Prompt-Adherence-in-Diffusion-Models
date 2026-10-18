@@ -105,7 +105,7 @@
  "colour_synonyms": {
   "red": "crimson",
   "blue": "azure",
-  "yellow": "golden",
+  "yellow": "lemon",
   "green": "emerald",
   "orange": "tangerine",
   "purple": "violet",
@@ -120,7 +120,7 @@
   "right_of": "to the right of"
  },
  "relation_synonyms": {
-  "left_of": "on the left side of",
-  "right_of": "on the right side of"
+  "left_of": "on the left of",
+  "right_of": "on the right of"
  }
 }

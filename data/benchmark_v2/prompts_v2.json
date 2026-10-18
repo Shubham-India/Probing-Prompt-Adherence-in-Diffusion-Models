@@ -486,7 +486,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony umbrella and a golden pillow on a wooden table",
+  "prompt": "an ebony umbrella and a lemon pillow on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -1086,7 +1086,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony book and a golden sphere on a concrete floor",
+  "prompt": "an ebony book and a lemon sphere on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -1686,7 +1686,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony cow and a golden basket",
+  "prompt": "an ebony cow and a lemon basket",
   "constraints": [
    {
     "type": "presence",
@@ -2286,7 +2286,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony cow and a golden cup on a wooden table",
+  "prompt": "an ebony cow and a lemon cup on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -2886,7 +2886,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bowl and a golden cat on a concrete floor",
+  "prompt": "an ebony bowl and a lemon cat on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -3486,7 +3486,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony candle and a golden cat",
+  "prompt": "an ebony candle and a lemon cat",
   "constraints": [
    {
     "type": "presence",
@@ -4086,7 +4086,7 @@
   "split": "DEV",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony hat and a golden bus on a concrete floor",
+  "prompt": "an ebony hat and a lemon bus on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -4541,7 +4541,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure bottle on the right side of an emerald car on a concrete floor",
+  "prompt": "an azure bottle on the right of an emerald car on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -4717,7 +4717,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "four ebony kites and a golden teapot on a concrete floor",
+  "prompt": "four ebony kites and a lemon teapot on a concrete floor",
   "constraints": [
    {
     "type": "count",
@@ -5201,7 +5201,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure chair on the right side of an emerald car on a wooden table",
+  "prompt": "an azure chair on the right of an emerald car on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -5381,7 +5381,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony sphere on the right side of a golden basket",
+  "prompt": "an ebony sphere on the right of a lemon basket",
   "constraints": [
    {
     "type": "presence",
@@ -5721,7 +5721,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ivory cat on the left side of a violet shoe on a concrete floor",
+  "prompt": "an ivory cat on the left of a violet shoe on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -5901,7 +5901,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure apple on the right side of an emerald cow on a concrete floor",
+  "prompt": "an azure apple on the right of an emerald cow on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -6081,7 +6081,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony backpack on the right side of a golden candle",
+  "prompt": "an ebony backpack on the right of a lemon candle",
   "constraints": [
    {
     "type": "presence",
@@ -6261,7 +6261,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a tangerine chair on the left side of a crimson ball on a concrete floor",
+  "prompt": "a tangerine chair on the left of a crimson ball on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -6441,7 +6441,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ivory umbrella on the left side of a violet sphere on a concrete floor",
+  "prompt": "an ivory umbrella on the left of a violet sphere on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -6777,7 +6777,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "four ebony chairs and a golden umbrella on a wooden table",
+  "prompt": "four ebony chairs and a lemon umbrella on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -7101,7 +7101,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ivory umbrella on the right side of a violet bench",
+  "prompt": "an ivory umbrella on the right of a violet bench",
   "constraints": [
    {
     "type": "presence",
@@ -7281,7 +7281,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure bowl on the right side of an emerald basket on a concrete floor",
+  "prompt": "an azure bowl on the right of an emerald basket on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -7457,7 +7457,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "two ebony benches and a golden book on a wooden table",
+  "prompt": "two ebony benches and a lemon book on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -7621,7 +7621,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a tangerine kite on the right side of a crimson bench",
+  "prompt": "a tangerine kite on the right of a crimson bench",
   "constraints": [
    {
     "type": "presence",
@@ -8121,7 +8121,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony apple on the left side of a golden candle on a concrete floor",
+  "prompt": "an ebony apple on the left of a lemon candle on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -8301,7 +8301,7 @@
   "split": "DEV",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a tangerine cow on the left side of a crimson book on a concrete floor",
+  "prompt": "a tangerine cow on the left of a crimson book on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -8875,7 +8875,7 @@
   "split": "DEV",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "two golden laptops on a wooden table",
+  "prompt": "two lemon laptops on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -9571,7 +9571,7 @@
   "split": "DEV",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "three golden cubes",
+  "prompt": "three lemon cubes",
   "constraints": [
    {
     "type": "count",
@@ -10096,7 +10096,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a basket on the right side of a bus",
+  "prompt": "a basket on the right of a bus",
   "constraints": [
    {
     "type": "presence",
@@ -10182,7 +10182,7 @@
    }
   ],
   "pair_group": "basket|bus",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10217,7 +10217,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a ball on the left side of an umbrella on a wooden table",
+  "prompt": "a ball on the left of an umbrella on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -10303,7 +10303,7 @@
    }
   ],
   "pair_group": "ball|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10338,7 +10338,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a backpack on the right side of a car on a concrete floor",
+  "prompt": "a backpack on the right of a car on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -10424,7 +10424,7 @@
    }
   ],
   "pair_group": "backpack|car",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10459,7 +10459,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cup on the left side of a basket on a concrete floor",
+  "prompt": "a cup on the left of a basket on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -10545,7 +10545,7 @@
    }
   ],
   "pair_group": "basket|cup",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10580,7 +10580,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a boat on the right side of a sphere on a wooden table",
+  "prompt": "a boat on the right of a sphere on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -10666,7 +10666,7 @@
    }
   ],
   "pair_group": "boat|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10701,7 +10701,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cow on the left side of a bus on a concrete floor",
+  "prompt": "a cow on the left of a bus on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -10787,7 +10787,7 @@
    }
   ],
   "pair_group": "bus|cow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10822,7 +10822,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a sphere on the right side of a chair",
+  "prompt": "a sphere on the right of a chair",
   "constraints": [
    {
     "type": "presence",
@@ -10908,7 +10908,7 @@
    }
   ],
   "pair_group": "chair|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -10943,7 +10943,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a dog on the left side of a backpack on a wooden table",
+  "prompt": "a dog on the left of a backpack on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11029,7 +11029,7 @@
    }
   ],
   "pair_group": "backpack|dog",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11064,7 +11064,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a shoe on the right side of a cow on a wooden table",
+  "prompt": "a shoe on the right of a cow on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11150,7 +11150,7 @@
    }
   ],
   "pair_group": "cow|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11185,7 +11185,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cup on the left side of a guitar on a wooden table",
+  "prompt": "a cup on the left of a guitar on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11271,7 +11271,7 @@
    }
   ],
   "pair_group": "cup|guitar",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11306,7 +11306,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "an apple on the right side of a basket on a wooden table",
+  "prompt": "an apple on the right of a basket on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11392,7 +11392,7 @@
    }
   ],
   "pair_group": "apple|basket",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11427,7 +11427,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cup on the right side of a sphere on a concrete floor",
+  "prompt": "a cup on the right of a sphere on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -11513,7 +11513,7 @@
    }
   ],
   "pair_group": "cup|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11548,7 +11548,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a dog on the right side of a pillow on a wooden table",
+  "prompt": "a dog on the right of a pillow on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11634,7 +11634,7 @@
    }
   ],
   "pair_group": "dog|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11669,7 +11669,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a book on the right side of a ball on a concrete floor",
+  "prompt": "a book on the right of a ball on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -11755,7 +11755,7 @@
    }
   ],
   "pair_group": "ball|book",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11790,7 +11790,7 @@
   "split": "DEV",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a kite on the right side of a guitar on a wooden table",
+  "prompt": "a kite on the right of a guitar on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -11876,7 +11876,7 @@
    }
   ],
   "pair_group": "guitar|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -11935,7 +11935,7 @@
    }
   ],
   "pair_group": "bottle|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12020,7 +12020,7 @@
    }
   ],
   "pair_group": "dog|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12105,7 +12105,7 @@
    }
   ],
   "pair_group": "hat|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12190,7 +12190,7 @@
    }
   ],
   "pair_group": "bus|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12275,7 +12275,7 @@
    }
   ],
   "pair_group": "ball|cat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12360,7 +12360,7 @@
    }
   ],
   "pair_group": "apple|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12445,7 +12445,7 @@
    }
   ],
   "pair_group": "basket|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12530,7 +12530,7 @@
    }
   ],
   "pair_group": "ball|car",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12615,7 +12615,7 @@
    }
   ],
   "pair_group": "boat|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12700,7 +12700,7 @@
    }
   ],
   "pair_group": "apple|bench",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12785,7 +12785,7 @@
    }
   ],
   "pair_group": "basket|bench",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12870,7 +12870,7 @@
    }
   ],
   "pair_group": "bottle|bus",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -12955,7 +12955,7 @@
    }
   ],
   "pair_group": "candle|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -13040,7 +13040,7 @@
    }
   ],
   "pair_group": "ball|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -13125,7 +13125,7 @@
    }
   ],
   "pair_group": "ball|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -13191,7 +13191,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bottle and a golden chair",
+  "prompt": "an ebony bottle and a lemon chair",
   "constraints": [
    {
     "type": "presence",
@@ -13791,7 +13791,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony cat and a golden car",
+  "prompt": "an ebony cat and a lemon car",
   "constraints": [
    {
     "type": "presence",
@@ -14391,7 +14391,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony car and a golden pillow",
+  "prompt": "an ebony car and a lemon pillow",
   "constraints": [
    {
     "type": "presence",
@@ -14991,7 +14991,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bench and a golden dog on a concrete floor",
+  "prompt": "an ebony bench and a lemon dog on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -15591,7 +15591,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony backpack and a golden cat on a concrete floor",
+  "prompt": "an ebony backpack and a lemon cat on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -16191,7 +16191,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bus and a golden bench on a concrete floor",
+  "prompt": "an ebony bus and a lemon bench on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -16791,7 +16791,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony kite and a golden backpack on a concrete floor",
+  "prompt": "an ebony kite and a lemon backpack on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -17391,7 +17391,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony chair and a golden book on a concrete floor",
+  "prompt": "an ebony chair and a lemon book on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -17991,7 +17991,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony dog and a golden shoe on a concrete floor",
+  "prompt": "an ebony dog and a lemon shoe on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -18591,7 +18591,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony guitar and a golden apple on a wooden table",
+  "prompt": "an ebony guitar and a lemon apple on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -19191,7 +19191,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony teapot and a golden umbrella",
+  "prompt": "an ebony teapot and a lemon umbrella",
   "constraints": [
    {
     "type": "presence",
@@ -19791,7 +19791,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony cat and a golden bottle",
+  "prompt": "an ebony cat and a lemon bottle",
   "constraints": [
    {
     "type": "presence",
@@ -20391,7 +20391,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bowl and a golden shoe on a wooden table",
+  "prompt": "an ebony bowl and a lemon shoe on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -20991,7 +20991,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony book and a golden backpack",
+  "prompt": "an ebony book and a lemon backpack",
   "constraints": [
    {
     "type": "presence",
@@ -21591,7 +21591,7 @@
   "split": "TEST",
   "category": "binding",
   "variant": "PAR",
-  "prompt": "an ebony bench and a golden candle",
+  "prompt": "an ebony bench and a lemon candle",
   "constraints": [
    {
     "type": "presence",
@@ -22192,7 +22192,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "four ebony shoes and a golden bus on a concrete floor",
+  "prompt": "four ebony shoes and a lemon bus on a concrete floor",
   "constraints": [
    {
     "type": "count",
@@ -22356,7 +22356,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet boat on the right side of a crimson ball on a concrete floor",
+  "prompt": "a violet boat on the right of a crimson ball on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -22852,7 +22852,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "two ebony cups and a golden ball on a concrete floor",
+  "prompt": "two ebony cups and a lemon ball on a concrete floor",
   "constraints": [
    {
     "type": "count",
@@ -23016,7 +23016,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet cup on the left side of a crimson boat",
+  "prompt": "a violet cup on the left of a crimson boat",
   "constraints": [
    {
     "type": "presence",
@@ -23356,7 +23356,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald boat on the left side of a tangerine apple",
+  "prompt": "an emerald boat on the left of a tangerine apple",
   "constraints": [
    {
     "type": "presence",
@@ -23532,7 +23532,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "three ebony pillows and a golden bowl on a wooden table",
+  "prompt": "three ebony pillows and a lemon bowl on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -23856,7 +23856,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure hat on the left side of an ivory umbrella",
+  "prompt": "an azure hat on the left of an ivory umbrella",
   "constraints": [
    {
     "type": "presence",
@@ -24036,7 +24036,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald chair on the right side of a tangerine guitar",
+  "prompt": "an emerald chair on the right of a tangerine guitar",
   "constraints": [
    {
     "type": "presence",
@@ -24212,7 +24212,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "three ebony kites and a golden boat on a concrete floor",
+  "prompt": "three ebony kites and a lemon boat on a concrete floor",
   "constraints": [
    {
     "type": "count",
@@ -24376,7 +24376,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet basket on the left side of a crimson ball on a wooden table",
+  "prompt": "a violet basket on the left of a crimson ball on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -24876,7 +24876,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony dog on the left side of a golden cow on a wooden table",
+  "prompt": "an ebony dog on the left of a lemon cow on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -25056,7 +25056,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet cow on the right side of a crimson candle",
+  "prompt": "a violet cow on the right of a crimson candle",
   "constraints": [
    {
     "type": "presence",
@@ -25236,7 +25236,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure cup on the right side of an ivory dog on a wooden table",
+  "prompt": "an azure cup on the right of an ivory dog on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -25576,7 +25576,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony bench on the right side of a golden cat on a concrete floor",
+  "prompt": "an ebony bench on the right of a lemon cat on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -25756,7 +25756,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet bottle on the left side of a crimson teapot",
+  "prompt": "a violet bottle on the left of a crimson teapot",
   "constraints": [
    {
     "type": "presence",
@@ -26252,7 +26252,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "three ebony cars and a golden guitar on a concrete floor",
+  "prompt": "three ebony cars and a lemon guitar on a concrete floor",
   "constraints": [
    {
     "type": "count",
@@ -26736,7 +26736,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald car on the right side of a tangerine boat on a concrete floor",
+  "prompt": "an emerald car on the right of a tangerine boat on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -26912,7 +26912,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "three ebony books and a golden dog",
+  "prompt": "three ebony books and a lemon dog",
   "constraints": [
    {
     "type": "count",
@@ -27396,7 +27396,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald basket on the left side of a tangerine chair on a concrete floor",
+  "prompt": "an emerald basket on the left of a tangerine chair on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -27576,7 +27576,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony backpack on the left side of a golden hat on a wooden table",
+  "prompt": "an ebony backpack on the left of a lemon hat on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -27756,7 +27756,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet cup on the left side of a crimson apple on a concrete floor",
+  "prompt": "a violet cup on the left of a crimson apple on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -27936,7 +27936,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure bowl on the right side of an ivory bottle on a wooden table",
+  "prompt": "an azure bowl on the right of an ivory bottle on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -28116,7 +28116,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald backpack on the left side of a tangerine bottle",
+  "prompt": "an emerald backpack on the left of a tangerine bottle",
   "constraints": [
    {
     "type": "presence",
@@ -28296,7 +28296,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony hat on the right side of a golden car",
+  "prompt": "an ebony hat on the right of a lemon car",
   "constraints": [
    {
     "type": "presence",
@@ -28636,7 +28636,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure bowl on the left side of an ivory sphere on a wooden table",
+  "prompt": "an azure bowl on the left of an ivory sphere on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -28816,7 +28816,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an emerald cup on the right side of a tangerine umbrella on a concrete floor",
+  "prompt": "an emerald cup on the right of a tangerine umbrella on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -28996,7 +28996,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony guitar on the right side of a golden book on a concrete floor",
+  "prompt": "an ebony guitar on the right of a lemon book on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -29176,7 +29176,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "a violet basket on the left side of a crimson dog on a wooden table",
+  "prompt": "a violet basket on the left of a crimson dog on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -29356,7 +29356,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an azure bowl on the left side of an ivory book on a concrete floor",
+  "prompt": "an azure bowl on the left of an ivory book on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -29696,7 +29696,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "an ebony apple on the left side of a golden hat on a wooden table",
+  "prompt": "an ebony apple on the left of a lemon hat on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -30352,7 +30352,7 @@
   "split": "TEST",
   "category": "multi",
   "variant": "PAR",
-  "prompt": "three ebony guitars and a golden teapot",
+  "prompt": "three ebony guitars and a lemon teapot",
   "constraints": [
    {
     "type": "count",
@@ -31098,7 +31098,7 @@
   "split": "TEST",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "two golden forks on a wooden table",
+  "prompt": "two lemon forks on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -31794,7 +31794,7 @@
   "split": "TEST",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "four golden bananas",
+  "prompt": "four lemon bananas",
   "constraints": [
    {
     "type": "count",
@@ -32490,7 +32490,7 @@
   "split": "TEST",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "four golden bikes on a wooden table",
+  "prompt": "four lemon bikes on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -33186,7 +33186,7 @@
   "split": "TEST",
   "category": "counting",
   "variant": "PAR",
-  "prompt": "four golden clocks on a wooden table",
+  "prompt": "four lemon clocks on a wooden table",
   "constraints": [
    {
     "type": "count",
@@ -33276,7 +33276,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a bowl on the right side of a bench on a wooden table",
+  "prompt": "a bowl on the right of a bench on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -33362,7 +33362,7 @@
    }
   ],
   "pair_group": "bench|bowl",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -33397,7 +33397,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a hat on the right side of a basket",
+  "prompt": "a hat on the right of a basket",
   "constraints": [
    {
     "type": "presence",
@@ -33483,7 +33483,7 @@
    }
   ],
   "pair_group": "basket|hat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -33518,7 +33518,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cat on the right side of a kite on a wooden table",
+  "prompt": "a cat on the right of a kite on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -33604,7 +33604,7 @@
    }
   ],
   "pair_group": "cat|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -33639,7 +33639,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a shoe on the right side of a chair on a concrete floor",
+  "prompt": "a shoe on the right of a chair on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -33725,7 +33725,7 @@
    }
   ],
   "pair_group": "chair|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -33760,7 +33760,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a basket on the left side of a kite on a concrete floor",
+  "prompt": "a basket on the left of a kite on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -33846,7 +33846,7 @@
    }
   ],
   "pair_group": "basket|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -33881,7 +33881,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cow on the left side of a teapot on a wooden table",
+  "prompt": "a cow on the left of a teapot on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -33967,7 +33967,7 @@
    }
   ],
   "pair_group": "cow|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34002,7 +34002,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a candle on the left side of a chair on a concrete floor",
+  "prompt": "a candle on the left of a chair on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -34088,7 +34088,7 @@
    }
   ],
   "pair_group": "candle|chair",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34123,7 +34123,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a bottle on the right side of a kite",
+  "prompt": "a bottle on the right of a kite",
   "constraints": [
    {
     "type": "presence",
@@ -34209,7 +34209,7 @@
    }
   ],
   "pair_group": "bottle|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34244,7 +34244,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a hat on the left side of a book on a wooden table",
+  "prompt": "a hat on the left of a book on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -34330,7 +34330,7 @@
    }
   ],
   "pair_group": "book|hat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34365,7 +34365,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a candle on the right side of a bowl on a wooden table",
+  "prompt": "a candle on the right of a bowl on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -34451,7 +34451,7 @@
    }
   ],
   "pair_group": "bowl|candle",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34486,7 +34486,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a car on the left side of a dog on a wooden table",
+  "prompt": "a car on the left of a dog on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -34572,7 +34572,7 @@
    }
   ],
   "pair_group": "car|dog",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34607,7 +34607,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a shoe on the right side of a boat",
+  "prompt": "a shoe on the right of a boat",
   "constraints": [
    {
     "type": "presence",
@@ -34693,7 +34693,7 @@
    }
   ],
   "pair_group": "boat|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34728,7 +34728,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a candle on the left side of an umbrella on a concrete floor",
+  "prompt": "a candle on the left of an umbrella on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -34814,7 +34814,7 @@
    }
   ],
   "pair_group": "candle|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34849,7 +34849,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a teapot on the left side of an apple on a concrete floor",
+  "prompt": "a teapot on the left of an apple on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -34935,7 +34935,7 @@
    }
   ],
   "pair_group": "apple|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -34970,7 +34970,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a pillow on the left side of a backpack on a concrete floor",
+  "prompt": "a pillow on the left of a backpack on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -35056,7 +35056,7 @@
    }
   ],
   "pair_group": "backpack|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35091,7 +35091,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a bench on the right side of a ball on a wooden table",
+  "prompt": "a bench on the right of a ball on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -35177,7 +35177,7 @@
    }
   ],
   "pair_group": "ball|bench",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35212,7 +35212,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a sphere on the right side of a car on a wooden table",
+  "prompt": "a sphere on the right of a car on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -35298,7 +35298,7 @@
    }
   ],
   "pair_group": "car|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35333,7 +35333,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a teapot on the left side of a chair",
+  "prompt": "a teapot on the left of a chair",
   "constraints": [
    {
     "type": "presence",
@@ -35419,7 +35419,7 @@
    }
   ],
   "pair_group": "chair|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35454,7 +35454,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a guitar on the left side of a basket on a wooden table",
+  "prompt": "a guitar on the left of a basket on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -35540,7 +35540,7 @@
    }
   ],
   "pair_group": "basket|guitar",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35575,7 +35575,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a book on the right side of a bottle on a concrete floor",
+  "prompt": "a book on the right of a bottle on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -35661,7 +35661,7 @@
    }
   ],
   "pair_group": "book|bottle",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35696,7 +35696,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a hat on the right side of a candle on a wooden table",
+  "prompt": "a hat on the right of a candle on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -35782,7 +35782,7 @@
    }
   ],
   "pair_group": "candle|hat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35817,7 +35817,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "an apple on the left side of a sphere on a wooden table",
+  "prompt": "an apple on the left of a sphere on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -35903,7 +35903,7 @@
    }
   ],
   "pair_group": "apple|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -35938,7 +35938,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "an apple on the left side of a cat",
+  "prompt": "an apple on the left of a cat",
   "constraints": [
    {
     "type": "presence",
@@ -36024,7 +36024,7 @@
    }
   ],
   "pair_group": "apple|cat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36059,7 +36059,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a cat on the left side of a book on a wooden table",
+  "prompt": "a cat on the left of a book on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -36145,7 +36145,7 @@
    }
   ],
   "pair_group": "book|cat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36180,7 +36180,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a car on the left side of a cup on a concrete floor",
+  "prompt": "a car on the left of a cup on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -36266,7 +36266,7 @@
    }
   ],
   "pair_group": "car|cup",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36301,7 +36301,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a bench on the left side of a bottle on a concrete floor",
+  "prompt": "a bench on the left of a bottle on a concrete floor",
   "constraints": [
    {
     "type": "presence",
@@ -36387,7 +36387,7 @@
    }
   ],
   "pair_group": "bench|bottle",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36422,7 +36422,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a chair on the right side of a bowl on a wooden table",
+  "prompt": "a chair on the right of a bowl on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -36508,7 +36508,7 @@
    }
   ],
   "pair_group": "bowl|chair",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36543,7 +36543,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a chair on the left side of a cow",
+  "prompt": "a chair on the left of a cow",
   "constraints": [
    {
     "type": "presence",
@@ -36629,7 +36629,7 @@
    }
   ],
   "pair_group": "chair|cow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36664,7 +36664,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a shoe on the right side of a ball on a wooden table",
+  "prompt": "a shoe on the right of a ball on a wooden table",
   "constraints": [
    {
     "type": "presence",
@@ -36750,7 +36750,7 @@
    }
   ],
   "pair_group": "ball|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36785,7 +36785,7 @@
   "split": "TEST",
   "category": "spatial",
   "variant": "PAR",
-  "prompt": "a ball on the right side of a teapot",
+  "prompt": "a ball on the right of a teapot",
   "constraints": [
    {
     "type": "presence",
@@ -36871,7 +36871,7 @@
    }
   ],
   "pair_group": "ball|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -36930,7 +36930,7 @@
    }
   ],
   "pair_group": "bus|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37015,7 +37015,7 @@
    }
   ],
   "pair_group": "bottle|cow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37100,7 +37100,7 @@
    }
   ],
   "pair_group": "backpack|cup",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37185,7 +37185,7 @@
    }
   ],
   "pair_group": "backpack|boat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37270,7 +37270,7 @@
    }
   ],
   "pair_group": "cow|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37355,7 +37355,7 @@
    }
   ],
   "pair_group": "basket|car",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37440,7 +37440,7 @@
    }
   ],
   "pair_group": "bench|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37525,7 +37525,7 @@
    }
   ],
   "pair_group": "bus|chair",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37610,7 +37610,7 @@
    }
   ],
   "pair_group": "bowl|cow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37695,7 +37695,7 @@
    }
   ],
   "pair_group": "ball|bowl",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37780,7 +37780,7 @@
    }
   ],
   "pair_group": "apple|chair",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37865,7 +37865,7 @@
    }
   ],
   "pair_group": "bus|candle",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -37950,7 +37950,7 @@
    }
   ],
   "pair_group": "book|umbrella",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38035,7 +38035,7 @@
    }
   ],
   "pair_group": "book|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38120,7 +38120,7 @@
    }
   ],
   "pair_group": "bottle|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38205,7 +38205,7 @@
    }
   ],
   "pair_group": "basket|pillow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38290,7 +38290,7 @@
    }
   ],
   "pair_group": "bowl|guitar",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38375,7 +38375,7 @@
    }
   ],
   "pair_group": "boat|cat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38460,7 +38460,7 @@
    }
   ],
   "pair_group": "apple|dog",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38545,7 +38545,7 @@
    }
   ],
   "pair_group": "bench|teapot",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38630,7 +38630,7 @@
    }
   ],
   "pair_group": "dog|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38715,7 +38715,7 @@
    }
   ],
   "pair_group": "bench|hat",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38800,7 +38800,7 @@
    }
   ],
   "pair_group": "cup|kite",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38885,7 +38885,7 @@
    }
   ],
   "pair_group": "basket|shoe",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -38970,7 +38970,7 @@
    }
   ],
   "pair_group": "boat|book",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -39055,7 +39055,7 @@
    }
   ],
   "pair_group": "boat|dog",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -39140,7 +39140,7 @@
    }
   ],
   "pair_group": "bowl|bus",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -39225,7 +39225,7 @@
    }
   ],
   "pair_group": "boat|bus",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -39310,7 +39310,7 @@
    }
   ],
   "pair_group": "guitar|sphere",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {
@@ -39395,7 +39395,7 @@
    }
   ],
   "pair_group": "car|cow",
-  "n_objects": 2,
+  "n_objects": 1,
   "n_constraints": 1
  },
  {

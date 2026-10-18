@@ -28,6 +28,23 @@ def constraint_words(constraints, prompt):
     return w
 
 
+_PLURALS = None
+
+
+def token_positions(idx, word):
+    """Token positions of a constraint word in the prompt. Constraints name the singular noun ("kite") while counting prompts use the plural
+    ("four black kites"); the lexicon plural (data/benchmark_v2/lexicon.json) is used when the singular is absent, so the counted object's noun
+    map is recorded instead of NaN. The map stays keyed by the constraint word."""
+    global _PLURALS
+    if idx.get(word):
+        return idx[word]
+    if _PLURALS is None:
+        from pathlib import Path
+        lex = Path(__file__).resolve().parent.parent / "data" / "benchmark_v2" / "lexicon.json"
+        _PLURALS = json.loads(lex.read_text())["nouns"] if lex.exists() else {}
+    return idx.get(_PLURALS.get(word, ""), [])
+
+
 def group_maps(store, resolutions=(16, 32)):
     """store: list of [tokens, side, side] tensors (one per attn2 layer call of the step). Returns {res: [tokens, res, res]} and layer counts."""
     import torch
@@ -48,7 +65,7 @@ def generate_with_attention_groups(pipe, prompt, constraints, cfg, steps, init_l
     store = A.install(pipe)
     words = constraint_words(constraints, prompt)
     idx = A.word_token_indices(pipe.tokenizer, prompt)
-    tok = {w: idx.get(w, []) for w in words}
+    tok = {w: token_positions(idx, w) for w in words}
     per_step = {r: [] for r in resolutions}
     counts_seen = {}
     kept = {}

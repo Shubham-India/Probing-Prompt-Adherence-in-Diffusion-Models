@@ -663,7 +663,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony umbrella and a golden pillow on a wooden table",
+    "prompt": "an ebony umbrella and a lemon pillow on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -1459,7 +1459,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony book and a golden sphere on a concrete floor",
+    "prompt": "an ebony book and a lemon sphere on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -2255,7 +2255,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony cow and a golden basket",
+    "prompt": "an ebony cow and a lemon basket",
     "constraints": [
      {
       "type": "presence",
@@ -3051,7 +3051,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony cow and a golden cup on a wooden table",
+    "prompt": "an ebony cow and a lemon cup on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -3847,7 +3847,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bowl and a golden cat on a concrete floor",
+    "prompt": "an ebony bowl and a lemon cat on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -4643,7 +4643,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony candle and a golden cat",
+    "prompt": "an ebony candle and a lemon cat",
     "constraints": [
      {
       "type": "presence",
@@ -5439,7 +5439,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony hat and a golden bus on a concrete floor",
+    "prompt": "an ebony hat and a lemon bus on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -6047,7 +6047,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure bottle on the right side of an emerald car on a concrete floor",
+    "prompt": "an azure bottle on the right of an emerald car on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -6274,7 +6274,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four ebony kites and a golden teapot on a concrete floor",
+    "prompt": "four ebony kites and a lemon teapot on a concrete floor",
     "constraints": [
      {
       "type": "count",
@@ -6917,7 +6917,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure chair on the right side of an emerald car on a wooden table",
+    "prompt": "an azure chair on the right of an emerald car on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -7154,7 +7154,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony sphere on the right side of a golden basket",
+    "prompt": "an ebony sphere on the right of a lemon basket",
     "constraints": [
      {
       "type": "presence",
@@ -7602,7 +7602,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ivory cat on the left side of a violet shoe on a concrete floor",
+    "prompt": "an ivory cat on the left of a violet shoe on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -7839,7 +7839,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure apple on the right side of an emerald cow on a concrete floor",
+    "prompt": "an azure apple on the right of an emerald cow on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -8076,7 +8076,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony backpack on the right side of a golden candle",
+    "prompt": "an ebony backpack on the right of a lemon candle",
     "constraints": [
      {
       "type": "presence",
@@ -8313,7 +8313,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a tangerine chair on the left side of a crimson ball on a concrete floor",
+    "prompt": "a tangerine chair on the left of a crimson ball on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -8550,7 +8550,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ivory umbrella on the left side of a violet sphere on a concrete floor",
+    "prompt": "an ivory umbrella on the left of a violet sphere on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -8988,7 +8988,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four ebony chairs and a golden umbrella on a wooden table",
+    "prompt": "four ebony chairs and a lemon umbrella on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -9420,7 +9420,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ivory umbrella on the right side of a violet bench",
+    "prompt": "an ivory umbrella on the right of a violet bench",
     "constraints": [
      {
       "type": "presence",
@@ -9657,7 +9657,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure bowl on the right side of an emerald basket on a concrete floor",
+    "prompt": "an azure bowl on the right of an emerald basket on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -9884,7 +9884,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "two ebony benches and a golden book on a wooden table",
+    "prompt": "two ebony benches and a lemon book on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -10105,7 +10105,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a tangerine kite on the right side of a crimson bench",
+    "prompt": "a tangerine kite on the right of a crimson bench",
     "constraints": [
      {
       "type": "presence",
@@ -10764,7 +10764,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony apple on the left side of a golden candle on a concrete floor",
+    "prompt": "an ebony apple on the left of a lemon candle on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -11001,7 +11001,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a tangerine cow on the left side of a crimson book on a concrete floor",
+    "prompt": "a tangerine cow on the left of a crimson book on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -11756,7 +11756,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "two golden laptops on a wooden table",
+    "prompt": "two lemon laptops on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -12748,7 +12748,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three golden cubes",
+    "prompt": "three lemon cubes",
     "constraints": [
      {
       "type": "count",
@@ -13506,7 +13506,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a basket on the right side of a bus",
+    "prompt": "a basket on the right of a bus",
     "constraints": [
      {
       "type": "presence",
@@ -13673,7 +13673,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a ball on the left side of an umbrella on a wooden table",
+    "prompt": "a ball on the left of an umbrella on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -13840,7 +13840,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a backpack on the right side of a car on a concrete floor",
+    "prompt": "a backpack on the right of a car on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -14007,7 +14007,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cup on the left side of a basket on a concrete floor",
+    "prompt": "a cup on the left of a basket on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -14174,7 +14174,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a boat on the right side of a sphere on a wooden table",
+    "prompt": "a boat on the right of a sphere on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -14341,7 +14341,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cow on the left side of a bus on a concrete floor",
+    "prompt": "a cow on the left of a bus on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -14508,7 +14508,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a sphere on the right side of a chair",
+    "prompt": "a sphere on the right of a chair",
     "constraints": [
      {
       "type": "presence",
@@ -14675,7 +14675,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a dog on the left side of a backpack on a wooden table",
+    "prompt": "a dog on the left of a backpack on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -14842,7 +14842,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a shoe on the right side of a cow on a wooden table",
+    "prompt": "a shoe on the right of a cow on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -15009,7 +15009,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cup on the left side of a guitar on a wooden table",
+    "prompt": "a cup on the left of a guitar on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -15176,7 +15176,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an apple on the right side of a basket on a wooden table",
+    "prompt": "an apple on the right of a basket on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -15343,7 +15343,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cup on the right side of a sphere on a concrete floor",
+    "prompt": "a cup on the right of a sphere on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -15510,7 +15510,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a dog on the right side of a pillow on a wooden table",
+    "prompt": "a dog on the right of a pillow on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -15677,7 +15677,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a book on the right side of a ball on a concrete floor",
+    "prompt": "a book on the right of a ball on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -15844,7 +15844,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a kite on the right side of a guitar on a wooden table",
+    "prompt": "a kite on the right of a guitar on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -17904,7 +17904,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bottle and a golden chair",
+    "prompt": "an ebony bottle and a lemon chair",
     "constraints": [
      {
       "type": "presence",
@@ -18700,7 +18700,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony cat and a golden car",
+    "prompt": "an ebony cat and a lemon car",
     "constraints": [
      {
       "type": "presence",
@@ -19496,7 +19496,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony car and a golden pillow",
+    "prompt": "an ebony car and a lemon pillow",
     "constraints": [
      {
       "type": "presence",
@@ -20292,7 +20292,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bench and a golden dog on a concrete floor",
+    "prompt": "an ebony bench and a lemon dog on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -21088,7 +21088,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony backpack and a golden cat on a concrete floor",
+    "prompt": "an ebony backpack and a lemon cat on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -21884,7 +21884,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bus and a golden bench on a concrete floor",
+    "prompt": "an ebony bus and a lemon bench on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -22680,7 +22680,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony kite and a golden backpack on a concrete floor",
+    "prompt": "an ebony kite and a lemon backpack on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -23476,7 +23476,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony chair and a golden book on a concrete floor",
+    "prompt": "an ebony chair and a lemon book on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -24272,7 +24272,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony dog and a golden shoe on a concrete floor",
+    "prompt": "an ebony dog and a lemon shoe on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -25068,7 +25068,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony guitar and a golden apple on a wooden table",
+    "prompt": "an ebony guitar and a lemon apple on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -25864,7 +25864,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony teapot and a golden umbrella",
+    "prompt": "an ebony teapot and a lemon umbrella",
     "constraints": [
      {
       "type": "presence",
@@ -26660,7 +26660,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony cat and a golden bottle",
+    "prompt": "an ebony cat and a lemon bottle",
     "constraints": [
      {
       "type": "presence",
@@ -27456,7 +27456,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bowl and a golden shoe on a wooden table",
+    "prompt": "an ebony bowl and a lemon shoe on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -28252,7 +28252,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony book and a golden backpack",
+    "prompt": "an ebony book and a lemon backpack",
     "constraints": [
      {
       "type": "presence",
@@ -29048,7 +29048,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bench and a golden candle",
+    "prompt": "an ebony bench and a lemon candle",
     "constraints": [
      {
       "type": "presence",
@@ -29845,7 +29845,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four ebony shoes and a golden bus on a concrete floor",
+    "prompt": "four ebony shoes and a lemon bus on a concrete floor",
     "constraints": [
      {
       "type": "count",
@@ -30066,7 +30066,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet boat on the right side of a crimson ball on a concrete floor",
+    "prompt": "a violet boat on the right of a crimson ball on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -30715,7 +30715,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "two ebony cups and a golden ball on a concrete floor",
+    "prompt": "two ebony cups and a lemon ball on a concrete floor",
     "constraints": [
      {
       "type": "count",
@@ -30936,7 +30936,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet cup on the left side of a crimson boat",
+    "prompt": "a violet cup on the left of a crimson boat",
     "constraints": [
      {
       "type": "presence",
@@ -31384,7 +31384,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald boat on the left side of a tangerine apple",
+    "prompt": "an emerald boat on the left of a tangerine apple",
     "constraints": [
      {
       "type": "presence",
@@ -31611,7 +31611,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three ebony pillows and a golden bowl on a wooden table",
+    "prompt": "three ebony pillows and a lemon bowl on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -32043,7 +32043,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure hat on the left side of an ivory umbrella",
+    "prompt": "an azure hat on the left of an ivory umbrella",
     "constraints": [
      {
       "type": "presence",
@@ -32280,7 +32280,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald chair on the right side of a tangerine guitar",
+    "prompt": "an emerald chair on the right of a tangerine guitar",
     "constraints": [
      {
       "type": "presence",
@@ -32507,7 +32507,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three ebony kites and a golden boat on a concrete floor",
+    "prompt": "three ebony kites and a lemon boat on a concrete floor",
     "constraints": [
      {
       "type": "count",
@@ -32728,7 +32728,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet basket on the left side of a crimson ball on a wooden table",
+    "prompt": "a violet basket on the left of a crimson ball on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -33387,7 +33387,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony dog on the left side of a golden cow on a wooden table",
+    "prompt": "an ebony dog on the left of a lemon cow on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -33624,7 +33624,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet cow on the right side of a crimson candle",
+    "prompt": "a violet cow on the right of a crimson candle",
     "constraints": [
      {
       "type": "presence",
@@ -33861,7 +33861,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure cup on the right side of an ivory dog on a wooden table",
+    "prompt": "an azure cup on the right of an ivory dog on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -34309,7 +34309,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony bench on the right side of a golden cat on a concrete floor",
+    "prompt": "an ebony bench on the right of a lemon cat on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -34546,7 +34546,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet bottle on the left side of a crimson teapot",
+    "prompt": "a violet bottle on the left of a crimson teapot",
     "constraints": [
      {
       "type": "presence",
@@ -35195,7 +35195,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three ebony cars and a golden guitar on a concrete floor",
+    "prompt": "three ebony cars and a lemon guitar on a concrete floor",
     "constraints": [
      {
       "type": "count",
@@ -35838,7 +35838,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald car on the right side of a tangerine boat on a concrete floor",
+    "prompt": "an emerald car on the right of a tangerine boat on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -36065,7 +36065,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three ebony books and a golden dog",
+    "prompt": "three ebony books and a lemon dog",
     "constraints": [
      {
       "type": "count",
@@ -36708,7 +36708,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald basket on the left side of a tangerine chair on a concrete floor",
+    "prompt": "an emerald basket on the left of a tangerine chair on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -36945,7 +36945,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony backpack on the left side of a golden hat on a wooden table",
+    "prompt": "an ebony backpack on the left of a lemon hat on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -37182,7 +37182,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet cup on the left side of a crimson apple on a concrete floor",
+    "prompt": "a violet cup on the left of a crimson apple on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -37419,7 +37419,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure bowl on the right side of an ivory bottle on a wooden table",
+    "prompt": "an azure bowl on the right of an ivory bottle on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -37656,7 +37656,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald backpack on the left side of a tangerine bottle",
+    "prompt": "an emerald backpack on the left of a tangerine bottle",
     "constraints": [
      {
       "type": "presence",
@@ -37893,7 +37893,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony hat on the right side of a golden car",
+    "prompt": "an ebony hat on the right of a lemon car",
     "constraints": [
      {
       "type": "presence",
@@ -38341,7 +38341,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure bowl on the left side of an ivory sphere on a wooden table",
+    "prompt": "an azure bowl on the left of an ivory sphere on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -38578,7 +38578,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an emerald cup on the right side of a tangerine umbrella on a concrete floor",
+    "prompt": "an emerald cup on the right of a tangerine umbrella on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -38815,7 +38815,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony guitar on the right side of a golden book on a concrete floor",
+    "prompt": "an ebony guitar on the right of a lemon book on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -39052,7 +39052,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a violet basket on the left side of a crimson dog on a wooden table",
+    "prompt": "a violet basket on the left of a crimson dog on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -39289,7 +39289,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an azure bowl on the left side of an ivory book on a concrete floor",
+    "prompt": "an azure bowl on the left of an ivory book on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -39737,7 +39737,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an ebony apple on the left side of a golden hat on a wooden table",
+    "prompt": "an ebony apple on the left of a lemon hat on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -40597,7 +40597,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "three ebony guitars and a golden teapot",
+    "prompt": "three ebony guitars and a lemon teapot",
     "constraints": [
      {
       "type": "count",
@@ -41621,7 +41621,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "two golden forks on a wooden table",
+    "prompt": "two lemon forks on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -42613,7 +42613,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four golden bananas",
+    "prompt": "four lemon bananas",
     "constraints": [
      {
       "type": "count",
@@ -43605,7 +43605,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four golden bikes on a wooden table",
+    "prompt": "four lemon bikes on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -44597,7 +44597,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "four golden clocks on a wooden table",
+    "prompt": "four lemon clocks on a wooden table",
     "constraints": [
      {
       "type": "count",
@@ -44735,7 +44735,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a bowl on the right side of a bench on a wooden table",
+    "prompt": "a bowl on the right of a bench on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -44902,7 +44902,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a hat on the right side of a basket",
+    "prompt": "a hat on the right of a basket",
     "constraints": [
      {
       "type": "presence",
@@ -45069,7 +45069,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cat on the right side of a kite on a wooden table",
+    "prompt": "a cat on the right of a kite on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -45236,7 +45236,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a shoe on the right side of a chair on a concrete floor",
+    "prompt": "a shoe on the right of a chair on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -45403,7 +45403,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a basket on the left side of a kite on a concrete floor",
+    "prompt": "a basket on the left of a kite on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -45570,7 +45570,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cow on the left side of a teapot on a wooden table",
+    "prompt": "a cow on the left of a teapot on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -45737,7 +45737,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a candle on the left side of a chair on a concrete floor",
+    "prompt": "a candle on the left of a chair on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -45904,7 +45904,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a bottle on the right side of a kite",
+    "prompt": "a bottle on the right of a kite",
     "constraints": [
      {
       "type": "presence",
@@ -46071,7 +46071,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a hat on the left side of a book on a wooden table",
+    "prompt": "a hat on the left of a book on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -46238,7 +46238,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a candle on the right side of a bowl on a wooden table",
+    "prompt": "a candle on the right of a bowl on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -46405,7 +46405,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a car on the left side of a dog on a wooden table",
+    "prompt": "a car on the left of a dog on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -46572,7 +46572,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a shoe on the right side of a boat",
+    "prompt": "a shoe on the right of a boat",
     "constraints": [
      {
       "type": "presence",
@@ -46739,7 +46739,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a candle on the left side of an umbrella on a concrete floor",
+    "prompt": "a candle on the left of an umbrella on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -46906,7 +46906,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a teapot on the left side of an apple on a concrete floor",
+    "prompt": "a teapot on the left of an apple on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -47073,7 +47073,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a pillow on the left side of a backpack on a concrete floor",
+    "prompt": "a pillow on the left of a backpack on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -47240,7 +47240,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a bench on the right side of a ball on a wooden table",
+    "prompt": "a bench on the right of a ball on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -47407,7 +47407,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a sphere on the right side of a car on a wooden table",
+    "prompt": "a sphere on the right of a car on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -47574,7 +47574,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a teapot on the left side of a chair",
+    "prompt": "a teapot on the left of a chair",
     "constraints": [
      {
       "type": "presence",
@@ -47741,7 +47741,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a guitar on the left side of a basket on a wooden table",
+    "prompt": "a guitar on the left of a basket on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -47908,7 +47908,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a book on the right side of a bottle on a concrete floor",
+    "prompt": "a book on the right of a bottle on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -48075,7 +48075,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a hat on the right side of a candle on a wooden table",
+    "prompt": "a hat on the right of a candle on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -48242,7 +48242,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an apple on the left side of a sphere on a wooden table",
+    "prompt": "an apple on the left of a sphere on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -48409,7 +48409,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "an apple on the left side of a cat",
+    "prompt": "an apple on the left of a cat",
     "constraints": [
      {
       "type": "presence",
@@ -48576,7 +48576,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a cat on the left side of a book on a wooden table",
+    "prompt": "a cat on the left of a book on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -48743,7 +48743,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a car on the left side of a cup on a concrete floor",
+    "prompt": "a car on the left of a cup on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -48910,7 +48910,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a bench on the left side of a bottle on a concrete floor",
+    "prompt": "a bench on the left of a bottle on a concrete floor",
     "constraints": [
      {
       "type": "presence",
@@ -49077,7 +49077,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a chair on the right side of a bowl on a wooden table",
+    "prompt": "a chair on the right of a bowl on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -49244,7 +49244,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a chair on the left side of a cow",
+    "prompt": "a chair on the left of a cow",
     "constraints": [
      {
       "type": "presence",
@@ -49411,7 +49411,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a shoe on the right side of a ball on a wooden table",
+    "prompt": "a shoe on the right of a ball on a wooden table",
     "constraints": [
      {
       "type": "presence",
@@ -49578,7 +49578,7 @@
    {
     "type": "PAR",
     "rewrite_rule": "synonym_lexicon",
-    "prompt": "a ball on the right side of a teapot",
+    "prompt": "a ball on the right of a teapot",
     "constraints": [
      {
       "type": "presence",

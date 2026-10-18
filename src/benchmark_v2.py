@@ -38,11 +38,13 @@ NOUNS = {  # singular -> plural (DRAFT lexicon, ~40 concrete objects)
 CONFLICTS = [{"cube", "box"}, {"ball", "sphere"}, {"car", "bus"}, {"cup", "bowl"}, {"backpack", "suitcase"}, {"bench", "chair"},
              {"cup", "teapot"}, {"bottle", "vase"}, {"cube", "sphere"}, {"ball", "apple"}, {"sheep", "cow"}, {"cat", "dog"}]
 COLOURS = ["red", "blue", "yellow", "green", "orange", "purple", "white", "black"]   # no brown/pink (RB 11.4)
-COLOUR_SYN = {"red": "crimson", "blue": "azure", "yellow": "golden", "green": "emerald", "orange": "tangerine",
+# Amendment 2026-10-18 (variant review H3, OWNER_DECISIONS Q1=A, DL-32): yellow "golden" -> "lemon" (judge CLIP read "golden" as brown);
+# relation synonym "on the left/right side of" -> "on the left/right of" (intrinsic-frame reading for oriented reference objects).
+COLOUR_SYN = {"red": "crimson", "blue": "azure", "yellow": "lemon", "green": "emerald", "orange": "tangerine",
               "purple": "violet", "white": "ivory", "black": "ebony"}
 NOUN_SYN = {"bicycle": "bike"}
 REL_TEXT = {"left_of": "to the left of", "right_of": "to the right of"}
-REL_SYN = {"left_of": "on the left side of", "right_of": "on the right side of"}
+REL_SYN = {"left_of": "on the left of", "right_of": "on the right of"}
 CONVERSE = {"left_of": "right_of", "right_of": "left_of"}
 PILOT_PAIRS_PATH = ROOT / "data" / "prompts.json"
 
@@ -369,13 +371,23 @@ def sha(path):
     return hashlib.sha256(b).hexdigest()
 
 
+def variant_n_objects(scene, variant):
+    """Objects in the variant's own scene: the scene's objects, minus a CF-O deletion, plus a CF-O insertion (amendment 2026-10-18, DL-34;
+    previously the scene's count was written on every variant row)."""
+    te = variant.get("target_edit") or {}
+    n = len(scene["objects"])
+    if te.get("field") == "objects":
+        n += 1 if te.get("insert") else -1 if te.get("delete") else 0
+    return n
+
+
 def flat_prompts(scenes):
     rows = []
     for s in scenes:
         for v in s["variants"]:
             rows.append({"id": v["variant_id"], "scene_id": s["scene_id"], "split": s["split"], "category": s["category"], "variant": v["type"],
                          "prompt": v["prompt"], "constraints": v["constraints"], "pair_group": s["object_pair_group"],
-                         "n_objects": len(s["objects"]), "n_constraints": len(v["constraints"])})
+                         "n_objects": variant_n_objects(s, v), "n_constraints": len(v["constraints"])})
     return rows
 
 

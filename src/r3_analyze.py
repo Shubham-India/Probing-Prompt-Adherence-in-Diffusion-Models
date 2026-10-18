@@ -341,6 +341,25 @@ def dev_constants(core_rows, branch_rows, n_boot):
                 "s_star_global": CAG.s_star_global(t50_num, 2)}, gates=gates, ha_dev=ha)
 
 
+# ---------------------------------------------------------------- S2 (supporting, exploratory): variant-level outcome rates
+def analyse_s2(core_rows):
+    """TEST variant-level outcome rates (CAN, PAR, ORD, CF-*) at CFG 7.5 / 40 steps, after the Q2 rules: generations counted once (dedup R1/R2, applied
+    by main) and TEST rows whose prompt text also occurs in DEV excluded (dedup R3). Descriptive; outside the Holm family."""
+    import dedup as D
+    rows = [r for r in core_rows if r.get("split") == "TEST" and float(r["cfg"]) == 7.5 and int(r["steps"]) == 40]
+    rows, excluded = D.exclude_dev_overlap(rows)
+    by = defaultdict(lambda: defaultdict(list))
+    scenes = defaultdict(set)
+    for r in rows:
+        scenes[r.get("variant")].add(r.get("scene_id"))
+        for f in FAMS:
+            if r.get(f) is not None:
+                by[r.get("variant")][f].append(float(r[f]))
+    rates = {v: dict(n_rows=sum(1 for r in rows if r.get("variant") == v), n_scenes=len(scenes[v]),
+                     **{f: dict(mean=round(float(np.mean(x)), 4), n=len(x)) for f, x in fams.items()}) for v, fams in sorted(by.items())}
+    return dict(status="SUPPORTING (S2, exploratory)", excluded_dev_overlap=len(excluded), excluded_job_ids=excluded[:200], rates=rates)
+
+
 def clean(o):
     """JSON-safe: non-finite floats become strings ('inf', 'nan'); numpy scalars become Python numbers; tuples become lists."""
     if isinstance(o, dict):
@@ -375,12 +394,17 @@ def main():
     rows = [r for p in a.rows for r in read(p)]
     if not a.allow_fake and any(r.get("fake_pipeline") or r.get("fake_judge") for r in rows):
         sys.exit("fake rows present (dry-run output); refusing to analyse without --allow-fake")
+    import dedup as D
+    rows, dlog = D.dedup(rows)                 # Q2 (DL-33): one generation counts once; duplicate canonical scenes count once
+    dedup_summary = dict(dropped_scenes=dlog["dropped_scenes"], n_dropped_generations=len(dlog["dropped_generations"]),
+                         n_dropped_dependents=len(dlog["dropped_dependents"]), dropped_generations=dlog["dropped_generations"][:200])
     core = [r for r in rows if r.get("kind", "core") == "core"]
     branches = [r for r in rows if r.get("kind") == "branch"]
     if a.mode == "dev":
         if any(r.get("split") == "TEST" for r in rows):
             sys.exit("TEST rows are not allowed in the DEV analysis")
         out = dev_constants(core, branches, a.n_boot)
+        out["dedup"] = dedup_summary
     else:
         if any(r.get("split") == "TEST" for r in rows):
             import protocol_r3
@@ -407,7 +431,7 @@ def main():
         fake = any(r.get("fake_pipeline") or r.get("fake_judge") for r in rows)
         status = ("DRY-RUN (fake pipeline/judge; not a result)" if fake
                   else "CONFIRMATORY" if any(r.get("split") == "TEST" for r in rows) else "EXPLORATORY (DEV rows)")
-        out = dict(results=finalise(res), status=status)
+        out = dict(results=finalise(res), status=status, dedup=dedup_summary, supporting=dict(S2=analyse_s2(core)))
     Path(a.out).write_text(json.dumps(clean(out), indent=1))
     print(json.dumps({k: (v.get("final", v.get("decision")) if isinstance(v, dict) else v) for k, v in out.get("results", out.get("gates", {})).items()}, indent=1, default=str))
 

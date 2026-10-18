@@ -1,0 +1,425 @@
+{
+ "note": "CANDIDATE decisions proposed by rule; not owner decisions. Adopt with scripts/adopt_candidate_review.py.",
+ "benchmark_inputs": {
+  "prompts_v2.json": "36423d4292c191c603fe7295b04f858116687f476f995fa4fdb9219599726851",
+  "prompts_ps.json": "431fe1cc2b0ea46c1b35cccb23da36aae074f0728727ccabeaaa80b19a2b8d52",
+  "lexicon.json": "c5ca9faa209cac87eb81fbdfbb5ec0b82250c5164dee99e253ae1e8df3569359",
+  "scene_graphs.json": "f252f1b097b9c067a2213cfd3b891dfa16c376a12136142728088d8bd6aba4a2",
+  "ps_family.json": "d7ce48843451c1845e3966bc8a801424ac1d894eb240bbb4fb45731ea1f9590c",
+  "splits.json": "daae2e9d7d81b1033084616cbf87e5ee661d4d8be26c0a2724fb96f8becd9354",
+  "splits_ps.json": "c1f84f251d64c4962eba0a1c852e04277da0c9057fedced4e2303ea121f00426"
+ },
+ "prompt_rows": 1674,
+ "lexicon_rows": 73,
+ "proposed": {
+  "PASS": 1600,
+  "FAIL": 74
+ },
+ "proposed_lexicon": {
+  "PASS": 70,
+  "FAIL": 3
+ },
+ "projected_rejection_rate": 0.0442,
+ "groups": [
+  {
+   "sheet": "variant_review",
+   "rules": "R-OK",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 1311
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-LEX-NOUN",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 40
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-NOBJ",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 35
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-DUP; R-NOBJ",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q2",
+   "n": 35
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ebony; R-SYN-golden",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 32
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-OK; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 29
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-ivory",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 22
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-violet; R-SYN-crimson",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 21
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-emerald; R-SYN-tangerine",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 21
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-DUP-CROSS; R-NOBJ",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q2",
+   "n": 20
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-DUP",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q2",
+   "n": 18
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-OK; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 16
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-LEX-CONFLICT",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 12
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-tangerine; R-SYN-crimson",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 11
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ivory; R-SYN-violet",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 11
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-emerald",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 10
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-LEX-COLOUR",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 8
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ebony; R-SYN-golden; R-REL-OK",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ebony",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-golden",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-tangerine",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ivory",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 6
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-OK; R-SYN-crimson",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 5
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-violet",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 5
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-emerald",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 5
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-violet; R-SYN-crimson; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 5
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-ivory; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 4
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-emerald; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 3
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-emerald; R-SYN-tangerine; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 3
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-emerald; R-SYN-tangerine; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 3
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ebony; R-SYN-golden; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 3
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ivory; R-SYN-violet; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 2
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-tangerine; R-SYN-crimson; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 2
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-violet; R-SYN-crimson; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 2
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-LEX-REL",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 2
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 2
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-ivory; R-SYN-violet; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-emerald; R-REL-OK",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-tangerine; R-SYN-crimson; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "variant_review",
+   "rules": "R-SYN-azure; R-SYN-ivory; R-REL-INTRINSIC",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-crimson",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-azure",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-golden",
+   "decision": "FAIL",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-emerald",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-tangerine",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-violet",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-ivory",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-SYN-ebony",
+   "decision": "PASS",
+   "confidence": "medium",
+   "depends_on": "Q1",
+   "n": 1
+  },
+  {
+   "sheet": "lexicon_review",
+   "rules": "R-LEX-NSYN",
+   "decision": "PASS",
+   "confidence": "high",
+   "depends_on": "",
+   "n": 1
+  }
+ ]
+}

@@ -27,5 +27,12 @@
          "support": "concordance >= 0.8 AND Spearman CI > 0 for at least two types", "reject": "concordance <= 0.5 OR all within-type CIs include 0 with upper bound < 0.15",
          "p_value": "one-sided bootstrap p for concordance <= 0.5"},
   "exclusions": "a job with a missing/corrupt output after one retry is excluded and listed in exclusions.csv with its reason; no outcome-dependent exclusion",
-  "missing_data": "conditional outcomes undefined when objects are absent are not imputed; eligibility counts are reported for every estimate"
+  "missing_data": "conditional outcomes undefined when objects are absent are not imputed; eligibility counts are reported for every estimate",
+  "duplicates": {
+    "decision": "OWNER_DECISIONS Q2 = A (2026-10-18), docs/R3_DECISION_LOG.md DL-33; implemented in src/dedup.py, applied by src/r3_analyze.py before every estimate",
+    "R1_generation_dedup": "core rows of one split with the same (normalised prompt text, CFG, steps, seed) are one generation and count once (124 such rows in the full manifests); kept: CAN before other variants, main benchmark before PS family, then smaller prompt id; branch/switch rows on a dropped base are dropped with it",
+    "R2_duplicate_canonical_scenes": "scenes of one split with the same normalised canonical prompt count once (PS family scene dropped: psD05_P duplicates sg_0091)",
+    "R3_dev_test_overlap": "TEST rows whose prompt text also occurs in DEV are excluded from TEST variant-level (S2) estimates (11 TEST CF-O items; 32 groups of identical DEV/TEST generations)",
+    "benchmark_and_manifests": "unchanged; duplicates are still generated (156 redundant generations, 0.6% of compute)"
+  }
 }
