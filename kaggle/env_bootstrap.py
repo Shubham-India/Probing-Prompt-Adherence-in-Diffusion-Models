@@ -28,7 +28,10 @@ from pathlib import Path
 REQUIRED_PACKAGES = ("torch", "torchvision", "diffusers", "transformers", "accelerate", "safetensors", "huggingface-hub", "huggingface_hub", "tokenizers",
                      "numpy", "scipy", "pandas", "pillow", "scikit-learn", "statsmodels")
 STALE_MODULES = ("diffusers", "transformers", "torchao")
-REMOVE = ("torchao",)
+REMOVE = {  # preinstalled packages the project never imports, removed because they break the pinned stack (each re-checked by pip check after)
+    "torchao": "unused optional integration that breaks diffusers 0.41 imports",
+    "nilearn": "unused; nilearn 0.14.1 requires pandas>=2.3.0, conflicting with the pinned pandas==2.2.3 required by google-colab",
+}
 PROBE = r"""
 import json, sys
 out = {}
@@ -139,7 +142,7 @@ def bootstrap(requirements, out_dir, dry_run=False, python=sys.executable, loade
             step = dict(installed_version=v, action="none (not installed)")
             if v:
                 un = _run([python, "-m", "pip", "uninstall", "-y", dist], timeout=600)
-                step.update(action="uninstalled (unused optional integration that breaks diffusers 0.41 imports)", returncode=un["returncode"], stderr=un["stderr"][-800:])
+                step.update(action=f"uninstalled ({REMOVE[dist]})", returncode=un["returncode"], stderr=un["stderr"][-800:])
                 if un["returncode"] != 0 or installed_version(dist, python):
                     rec["steps"][f"remove_{dist}"] = step
                     fail(f"could not uninstall {dist} {v}")

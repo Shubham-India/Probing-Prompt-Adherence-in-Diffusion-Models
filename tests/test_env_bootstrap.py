@@ -2,6 +2,7 @@
 distribution, and every failure path of bootstrap() raises and records ok=false."""
 import json
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -54,8 +55,9 @@ def test_parse_and_classify_pip_check():
 
 class Fake:
     """Scripted pip / probe results for bootstrap() failure paths."""
-    def __init__(self, install_rc=0, torch=("2.11.0", "2.11.0"), torchao=(None,), uninstall_rc=0, probe_ok=True, pip_check_after=""):
-        self.install_rc, self.torch, self.torchao, self.uninstall_rc, self.probe_ok, self.after = install_rc, list(torch), list(torchao), uninstall_rc, probe_ok, pip_check_after
+    def __init__(self, install_rc=0, torch=("2.11.0", "2.11.0"), torchao=(None,), nilearn=(None,), uninstall_rc=0, probe_ok=True, pip_check_after=""):
+        self.install_rc, self.uninstall_rc, self.probe_ok, self.after = install_rc, uninstall_rc, probe_ok, pip_check_after
+        self.versions = dict(torch=list(torch), torchao=list(torchao), nilearn=list(nilearn))
         self.calls, self.checks = [], 0
 
     def run(self, cmd, timeout=0, env=None):
@@ -72,7 +74,7 @@ class Fake:
         raise AssertionError(cmd)
 
     def version(self, dist, python=None):
-        seq = self.torch if dist == "torch" else self.torchao
+        seq = self.versions[dist]
         return seq.pop(0) if len(seq) > 1 else seq[0]
 
     def probe(self, python=None, env=None):
@@ -111,6 +113,27 @@ def test_every_failure_raises_and_records_not_ok(monkeypatch, tmp_path, fake, ne
     with pytest.raises(E.BootstrapError, match=needle):
         run(monkeypatch, tmp_path, fake)
     assert record(tmp_path)["ok"] is False
+
+
+def test_unused_nilearn_is_removed_and_its_pandas_conflict_would_block(monkeypatch, tmp_path):
+    fake = Fake(nilearn=("0.14.1", None))
+    rec = run(monkeypatch, tmp_path, fake)
+    assert rec["ok"] is True and rec["steps"]["remove_nilearn"]["installed_version"] == "0.14.1"
+    assert any(c[-1] == "nilearn" and "uninstall" in c for c in fake.calls)
+    conflict = "nilearn 0.14.1 has requirement pandas>=2.3.0, but you have pandas 2.2.3.\n"
+    with pytest.raises(E.BootstrapError, match="pip check reports conflicts"):
+        run(monkeypatch, tmp_path, Fake(pip_check_after=conflict))      # had it stayed installed, the pandas pin conflict blocks the run
+
+
+def test_removed_packages_are_not_used_by_the_project():
+    for d in ("src", "kaggle", "scripts", "configs"):
+        for f in (ROOT / d).rglob("*"):
+            if f.suffix in (".py", ".json") and f.name != "env_bootstrap.py":
+                text = f.read_text(encoding="utf-8", errors="replace")
+                for pkg in E.REMOVE:
+                    assert not re.search(rf"^\s*(import|from)\s+{pkg}\b|[\"']{pkg}[\"']", text, flags=re.M), f"{f} uses {pkg}"
+    req = (ROOT / "requirements-kaggle.txt").read_text()
+    assert "pandas==2.2.3" in req.splitlines()
 
 
 def test_unrelated_pip_conflict_is_recorded_not_hidden(monkeypatch, tmp_path):
