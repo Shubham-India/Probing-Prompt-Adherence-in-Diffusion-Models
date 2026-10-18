@@ -45,3 +45,15 @@ def test_judge_interface_flags_uncertainty():
         Q.Backend().ask(None, "x"); assert False
     except NotImplementedError:
         pass
+
+
+def test_export_and_score_roundtrip(tmp_path):
+    import json
+    truth = [dict(name="synth_0000", prompt_id="synth_0000", objects=[], constraints=[{"type": "presence", "object": "cube"}, {"type": "binding", "object": "cube", "color": "red"}], expected=[1, 0]),
+             dict(name="synth_0001", prompt_id="synth_0001", objects=[], constraints=[{"type": "presence", "object": "cone"}], expected=[0])]
+    (tmp_path / "truth.jsonl").write_text("\n".join(json.dumps(t) for t in truth) + "\n")
+    assert S.export_for_judge(tmp_path) == 2
+    assert json.loads((tmp_path / "prompts_synth.json").read_text())[0]["constraints"] == truth[0]["constraints"]
+    (tmp_path / "eval.jsonl").write_text(json.dumps(dict(name="synth_0000", constraint_results=[1, 1])) + "\n" + json.dumps(dict(name="synth_0001", constraint_results=[0])) + "\n")
+    st = S.score_eval(tmp_path)
+    assert st["presence"]["accuracy"] == 1.0 and st["binding"]["accuracy"] == 0.0 and st["ALL"]["n"] == 3

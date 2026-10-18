@@ -77,3 +77,14 @@ def test_analysis_plan_matches_code_defaults():
     import math
     assert math.log(plan["HC"]["beta_max_scale"]) == pytest.approx(math.log(2))
     assert inspect.signature(C.windows_from_t50_dev).parameters["window_len"].default == plan["HC"]["window_length"]
+
+
+def test_manifest_keys_are_posix_and_hashes_ignore_crlf(tmp_path):
+    """Found in the R2a local audit: Windows backslash keys and CRLF checkouts made a manifest non-portable to the Linux Kaggle clone."""
+    root = stage(tmp_path)
+    freeze_it(root)
+    man = json.loads((root / "docs/freeze/freeze_manifest.json").read_text())
+    assert man["files"] and all("\\" not in k for k in man["files"])
+    f = root / "src/commitment.py"
+    f.write_bytes(f.read_bytes().replace(b"\r\n", b"\n").replace(b"\n", b"\r\n"))      # same content, CRLF line endings
+    assert FZ.verify(root) == []

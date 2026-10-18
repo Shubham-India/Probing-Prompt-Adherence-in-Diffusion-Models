@@ -38,13 +38,15 @@ def canonical_config_bytes(path):
 def file_hash(root, rel):
     p = Path(root) / rel
     data = canonical_config_bytes(p) if rel.endswith("experiment_v2.json") else p.read_bytes()
+    if rel.endswith((".py", ".json", ".md", ".txt", ".jsonl")):
+        data = data.replace(b"\r\n", b"\n")   # a Windows checkout (autocrlf) must hash like the Linux clone used on Kaggle
     return hashlib.sha256(data).hexdigest()
 
 
 def collect(root):
     files = []
     for pat in TRACKED:
-        files += sorted(str(p.relative_to(root)) for p in Path(root).glob(pat))
+        files += sorted(p.relative_to(root).as_posix() for p in Path(root).glob(pat))   # POSIX keys: manifests must be portable
     return sorted(set(files))
 
 

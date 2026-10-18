@@ -19,15 +19,17 @@ ROOT = Path(__file__).resolve().parent.parent
 COLORS = ["red", "blue", "yellow", "green", "orange", "purple", "white", "black", "brown", "pink"]
 # Thresholds were fixed a priori; a sweep on the manually labelled validation subset (report/validation.md) showed accuracy was insensitive to them.
 THRESHOLDS = {"presence": 0.10, "count": 0.15, "distinct_iou": 0.5, "nms_iou": 0.3}
+SIZE_RATIO = 1.5   # Revision 3 J-size: the intended larger object's box area must be >= 1.5x the other's (RB 24.6); both objects detected
 MAX_BOXES = 10
 
 
-def load_models(device):
+def load_models(device, owl_revision=None, clip_revision=None):
+    """Default (revision None) reproduces the pilot behaviour; Revision 3 passes the pinned revisions from configs/experiment_r3.json."""
     cache = ROOT / "models"
-    owl_p = OwlViTProcessor.from_pretrained("google/owlvit-base-patch32", cache_dir=cache)
-    owl = OwlViTForObjectDetection.from_pretrained("google/owlvit-base-patch32", cache_dir=cache).to(device).eval()
-    clip_p = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache)
-    clip = CLIPModel.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache).to(device).eval()
+    owl_p = OwlViTProcessor.from_pretrained("google/owlvit-base-patch32", cache_dir=cache, revision=owl_revision)
+    owl = OwlViTForObjectDetection.from_pretrained("google/owlvit-base-patch32", cache_dir=cache, revision=owl_revision).to(device).eval()
+    clip_p = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache, revision=clip_revision)
+    clip = CLIPModel.from_pretrained("openai/clip-vit-base-patch32", cache_dir=cache, revision=clip_revision).to(device).eval()
     return owl_p, owl, clip_p, clip
 
 
@@ -90,7 +92,7 @@ def distinct_best_boxes(dets, objects):
 def score(constraints, dets):
     """One 0/1 result per constraint, in the same order as the constraints list."""
     objects = sorted({c["object"] for c in constraints if "object" in c} |
-                     {c[k] for c in constraints for k in ("left", "right") if k in c})
+                     {c[k] for c in constraints for k in ("left", "right", "larger", "smaller") if k in c})
     best = distinct_best_boxes(dets, objects)
     counted = {c["object"] for c in constraints if c["type"] == "count"}
     results = []
@@ -112,6 +114,12 @@ def score(constraints, dets):
             l, r = best.get(c["left"]), best.get(c["right"])
             centre = lambda d: (d["box"][0] + d["box"][2]) / 2
             ok = l is not None and r is not None and centre(l) < centre(r)
+        elif t == "size":   # Revision 3: relative size; an undetected object makes the constraint fail (conditional version below)
+            big, small = best.get(c["larger"]), best.get(c["smaller"])
+            area = lambda d: max(d["box"][2] - d["box"][0], 0) * max(d["box"][3] - d["box"][1], 0)
+            ok = big is not None and small is not None and area(small) > 0 and area(big) >= SIZE_RATIO * area(small)
+        else:
+            raise ValueError(f"unknown constraint type {t}")
         results.append(int(bool(ok)))
     return results
 
@@ -127,8 +135,7 @@ def run_detection(run, prompts, device):
         for i, s in enumerate(todo, 1):
             image = Image.open(run / "images" / f"{s['name']}.png").convert("RGB")
             constraints = prompts[s["prompt_id"]]["constraints"]
-            objects = sorted({c["object"] for c in constraints if "object" in c} |
-                             {c[k] for c in constraints for k in ("left", "right") if k in c})
+            objects = required_objects(constraints)
             dets = detect(image, objects, models, device)
             sim, embedding = clip_score(image, s["prompt"], models[2], models[3], device)
             f.write(json.dumps({"name": s["name"], "detections": dets, "clip_score": round(sim, 3),
@@ -138,7 +145,7 @@ def run_detection(run, prompts, device):
 
 
 def required_objects(constraints):
-    return sorted({c["object"] for c in constraints if "object" in c} | {c[k] for c in constraints for k in ("left", "right") if k in c})
+    return sorted({c["object"] for c in constraints if "object" in c} | {c[k] for c in constraints for k in ("left", "right", "larger", "smaller") if k in c})
 
 
 UNCERTAIN_BAND = 0.03   # a required object's best detection within +/- band of the presence threshold is flagged (does not change any outcome)
@@ -162,6 +169,12 @@ def conditional_outcomes(constraints, dets):
         else:
             out[f"{key}_given_pres"] = None
             out[f"joint_{key}"] = None
+    # Revision 3 additions (appended after the D-04 fields; absent constraint families give null)
+    cnt = [r for c, r in zip(constraints, res) if c["type"] == "count"]
+    out["count_ok"] = int(all(cnt)) if cnt else None
+    siz = [r for c, r in zip(constraints, res) if c["type"] == "size"]
+    out["size_given_pres"] = (int(all(siz)) if pres_all else None) if siz else None
+    out["joint_size"] = int(pres_all and all(siz)) if siz else None
     best = [max((d["score"] for d in dets.get(o, [])), default=0.0) for o in objs]
     out["uncertain"] = int(any(abs(b - THRESHOLDS["presence"]) <= UNCERTAIN_BAND for b in best))
     return out

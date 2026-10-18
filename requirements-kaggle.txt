@@ -1,5 +1,10 @@
-# Pins for Kaggle notebooks. torch/torchvision are NOT pinned here: use the image's CUDA build and record it with kaggle/env_probe.py.
-# Versions copied from requirements.txt (the pilot environment); whether this exact set installs on the Kaggle image is UNVERIFIED until run R0.
+# Pins for Kaggle notebooks, installed by kaggle/env_bootstrap.py (never with a bare `pip install` before the bootstrap).
+# torch/torchvision are NOT pinned: the image's CUDA build is kept (the bootstrap fails if the install replaces torch).
+# torchao is REMOVED by the bootstrap: diffusers 0.41.0 imports torchao.quantization.FqnToConfig whenever any torchao is installed (presence check
+# only), so an older preinstalled torchao breaks `from diffusers import StableDiffusionPipeline`. This project never quantizes; see env_bootstrap.py.
+# Validation status (2026-10-18): reproduced and fixed locally (torch 2.6.0+cu124, Python 3.13.5; torchao 0.12.0 -> FqnToConfig ImportError ->
+# uninstall -> fresh-process import OK). On the Kaggle image (Python 3.13, torch 2.11.0+cu128, 2x T4) it is UNVERIFIED until a PREFLIGHT run
+# records env_bootstrap.json with ok=true.
 accelerate==1.15.0
 diffusers==0.41.0
 transformers==5.19.0

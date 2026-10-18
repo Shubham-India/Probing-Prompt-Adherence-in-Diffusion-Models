@@ -1,0 +1,197 @@
+{
+  "schema": "r3-1",
+  "status": "DRAFT - not frozen. Values are the Revision 3 design (GRAND_RESEARCH_BLUEPRINT.md sections 0 and 24); DEV-derived constants live in protocol/protocol_freeze.json, never here.",
+  "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "revision": "f03de327dd89b501a01da37fc5240cf4fdba85a1",
+  "image_size": 512,
+  "steps": 40,
+  "scheduler": {
+    "name": "DDIM",
+    "eta": 0.0
+  },
+  "negative_prompt": "",
+  "cfg_core": 7.5,
+  "seeds_core": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "seeds_branch_bases": [
+    0,
+    1
+  ],
+  "benchmark": {
+    "prompts": "data/benchmark_v2/prompts_v2.json",
+    "ps_prompts": "data/benchmark_v2/prompts_ps.json"
+  },
+  "commitment": {
+    "grid": [
+      6,
+      12,
+      18,
+      24,
+      30,
+      36
+    ],
+    "D": 8,
+    "M": 2,
+    "equal_ratio_target": 0.3,
+    "variants_dev": [
+      "D8",
+      "ER30",
+      "FULL"
+    ],
+    "variants_test": [
+      "D8",
+      "ER30"
+    ],
+    "cfg_levels": [
+      2,
+      7.5,
+      15
+    ],
+    "variants_extra_cfg": [
+      "D8"
+    ],
+    "scenes_per_split": {
+      "DEV": 100,
+      "TEST": 100
+    },
+    "scene_selection": "category-stratified, scene_id order: DEV uses all 100 DEV scenes; TEST takes per category the first scenes in scene_id order with quotas binding 30, multi 25, counting 15, spatial 15, presence 15",
+    "test_quota": {
+      "binding": 30,
+      "multi": 25,
+      "counting": 15,
+      "spatial": 15,
+      "presence": 15
+    },
+    "dev_extra_cfg_rehearsal_scenes": 20
+  },
+  "cfg_steps_study": {
+    "cfg": [
+      2,
+      5,
+      7.5,
+      10,
+      15
+    ],
+    "steps": [
+      20,
+      40
+    ],
+    "split": "TEST",
+    "n_scenes": 150,
+    "quota": {
+      "binding": 45,
+      "multi": 37,
+      "counting": 23,
+      "spatial": 22,
+      "presence": 23
+    },
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "variants": [
+      "CAN"
+    ]
+  },
+  "attention": {
+    "record": true,
+    "resolutions": [
+      16,
+      32
+    ],
+    "store": "constraint words only, conditional branch, heads averaged, layers averaged within a resolution group, every step"
+  },
+  "cag": {
+    "w_hi": 7.5,
+    "w_lo_primary": 1.0,
+    "w_lo_secondary": 3.0,
+    "margin": 2,
+    "arms": [
+      "A2",
+      "A3",
+      "A4",
+      "A6"
+    ],
+    "split_scenes": "all TEST canonical prompts",
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "dev_quality_guard": {
+      "arms": [
+        "A2"
+      ],
+      "w_lo": [
+        1.0,
+        3.0
+      ],
+      "seeds": [
+        0,
+        1
+      ]
+    }
+  },
+  "switch": {
+    "types": [
+      "CF-C",
+      "CF-R",
+      "CF-S"
+    ],
+    "scenes_per_type": {
+      "DEV": 10,
+      "TEST": 40
+    },
+    "seeds": [
+      0,
+      1
+    ],
+    "note": "CF-S exists only in the PS family (16 TEST / 8 DEV CSR scenes), so its count is capped by availability"
+  },
+  "ps_family": {
+    "seeds": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "branch_subsets": [
+      "C",
+      "CS",
+      "CR",
+      "CSR"
+    ],
+    "branch_seeds": [
+      0,
+      1
+    ],
+    "branch_variants": [
+      "D8"
+    ],
+    "branch_split": "TEST"
+  },
+  "workers": {
+    "num_shards": 3,
+    "shard_unit": "scene group (main benchmark: scene_id; PS family: pair id)"
+  },
+  "image_equivalent": "UNet evaluations / 80 (a 40-step CFG image); a branch or switch only runs the remaining steps",
+  "evaluator_revisions": {
+    "google/owlvit-base-patch32": "cbc355fb364588351c5d51c7f74465e8e7ec6f72",
+    "openai/clip-vit-base-patch32": "3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+    "facebook/dinov2-small": "ed25f3a31f01632728cabb09d1542f84ab7b0056",
+    "_verified": "2026-10-18 via huggingface.co/api/models (main sha at that date); SD 1.5 pin f03de327 is the repo's initial commit and its fp16 unet/vae/text_encoder LFS hashes equal those of 451f4fe (main), so the pilot cache and the pin hold the same weights"
+  },
+  "licenses": {
+    "stable-diffusion-v1-5/stable-diffusion-v1-5": "creativeml-openrail-m (hub metadata)",
+    "google/owlvit-base-patch32": "apache-2.0 (hub metadata)",
+    "facebook/dinov2-small": "apache-2.0 (hub metadata)",
+    "openai/clip-vit-base-patch32": "not stated in hub metadata (model card: see repository); UNVERIFIED"
+  }
+}

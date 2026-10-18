@@ -1,0 +1,9 @@
+{
+  "_comment": "Owner-controlled stage gates. Claude never sets a value to true. A gate becomes true only after the evidence named in docs/KAGGLE_MASTER_RUNBOOK.md exists. src/stage_guard.py refuses a stage while any of its gates is not true.",
+  "evaluator_audit_complete": false,
+  "variant_review_complete": false,
+  "synthetic_probe_threshold_approved": false,
+  "d13_resolved_for_r3": false,
+  "r3_authorised": false,
+  "addendum_b_signed": false
+}

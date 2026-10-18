@@ -87,13 +87,49 @@ def corrupt(cons, rng):
     return cons
 
 
+def export_for_judge(out):
+    """Writes samples.jsonl + prompts_synth.json next to truth.jsonl so that `python src/evaluate.py --run <out> --prompts <out>/prompts_synth.json` can score the images."""
+    out = Path(out)
+    truth = [json.loads(l) for l in (out / "truth.jsonl").read_text().splitlines() if l.strip()]
+    (out / "prompts_synth.json").write_text(json.dumps([dict(id=r["name"], category="synthetic", prompt="", constraints=r["constraints"]) for r in truth]))
+    with open(out / "samples.jsonl", "w") as f:
+        for r in truth:
+            f.write(json.dumps(dict(name=r["name"], prompt_id=r["name"], category="synthetic", prompt="", cfg=0, steps=0, seed=0, size=SIZE)) + "\n")
+    return len(truth)
+
+
+def score_eval(out, eval_name="eval.jsonl"):
+    """Judge accuracy per constraint type against the exact truth in truth.jsonl (E22). Returns {type: {n, accuracy, tp, fp, fn, tn}} plus ALL."""
+    out = Path(out)
+    truth = {r["name"]: r for r in (json.loads(l) for l in (out / "truth.jsonl").read_text().splitlines() if l.strip())}
+    stats = {}
+    for line in (out / eval_name).read_text().splitlines():
+        if not line.strip():
+            continue
+        e = json.loads(line)
+        tr = truth[e["name"]]
+        for c, exp, pred in zip(tr["constraints"], tr["expected"], e["constraint_results"]):
+            for key in (c["type"], "ALL"):
+                s = stats.setdefault(key, dict(tp=0, fp=0, fn=0, tn=0))
+                s["tp" if exp and pred else "fp" if pred else "fn" if exp else "tn"] += 1
+    for s in stats.values():
+        n = sum(s.values())
+        s["n"], s["accuracy"] = n, (s["tp"] + s["tn"]) / n if n else None
+    return stats
+
+
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     ap.add_argument("--n", type=int, default=200)
     ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--export-judge-run", action="store_true", help="after generating, also write samples.jsonl and prompts_synth.json for evaluate.py")
+    ap.add_argument("--score", default=None, metavar="EVAL_JSONL", help="do not generate: score an existing <out>/<EVAL_JSONL> against truth.jsonl")
     a = ap.parse_args()
     out = Path(a.out)
+    if a.score:
+        print(json.dumps(score_eval(out, a.score), indent=1))
+        raise SystemExit(0)
     (out / "images").mkdir(parents=True, exist_ok=True)
     rng = random.Random(a.seed)
     with open(out / "truth.jsonl", "w") as f:
@@ -105,3 +141,5 @@ if __name__ == "__main__":
             img.save(out / "images" / f"{name}.png")
             f.write(json.dumps(dict(name=name, prompt_id=name, objects=objs, constraints=cons, expected=expected(objs, cons))) + "\n")
     print("wrote", a.n, "scenes to", out)
+    if a.export_judge_run:
+        print("exported judge run files for", export_for_judge(out), "scenes")

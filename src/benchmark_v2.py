@@ -362,7 +362,11 @@ def validate(scenes, cfg):
 
 
 def sha(path):
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    """SHA-256 with CRLF normalised to LF for text files, so a Windows (autocrlf) checkout and the Linux Kaggle copy agree."""
+    b = Path(path).read_bytes()
+    if Path(path).suffix in (".json", ".md", ".py", ".txt", ".jsonl"):
+        b = b.replace(b"\r\n", b"\n")
+    return hashlib.sha256(b).hexdigest()
 
 
 def flat_prompts(scenes):
@@ -405,10 +409,221 @@ def check():
         print(" ", e)
     sys.exit(0 if not errs and regen and not stale else 1)
 
+# ===== Revision 3: problem-statement (PS) flagship family with relative size (RB 24.6) ===================================
+# Additive: written to separate files (ps_family.json, prompts_ps.json, splits_ps.json, hashes_ps.json) so that the main benchmark
+# files, their hashes and every run already made from them (R2a) stay valid. Size exists only in this family.
+PS_SUBSETS = ["P", "C", "S", "R", "CS", "CR", "SR", "CSR"]          # on top of presence: Colour, Size, spatial Relation
+TABLETOP = ["cup", "book", "vase", "clock", "bottle", "bowl", "teapot", "lamp", "hat", "shoe", "ball", "apple", "banana", "cube",
+            "sphere", "pillow", "basket", "candle", "box", "laptop", "backpack", "mirror"]
+
+
+def ps_phrase(o, use_colour, use_size):
+    words = [o["attributes"]["size"]] if use_size else []
+    words += [o["attributes"]["colour"]] if use_colour else []
+    w = " ".join(words + [o["noun"]])
+    return f"{art(w)} {w}"
+
+
+def ps_render(sg):
+    sub = sg["ps"]["subset"]
+    a, b = sg["objects"]
+    uc, us = "C" in sub, "S" in sub
+    if "R" in sub:
+        r = sg["relations"][0]["rel"]
+        return f"{ps_phrase(a, uc, us)} {REL_TEXT[r]} {ps_phrase(b, uc, us)} {sg['background']}"
+    return f"{ps_phrase(a, uc, us)} and {ps_phrase(b, uc, us)} {sg['background']}"
+
+
+def ps_constraints(sg):
+    sub = sg["ps"]["subset"]
+    a, b = sg["objects"]
+    cons = [{"type": "presence", "object": a["noun"]}, {"type": "presence", "object": b["noun"]}]
+    if "C" in sub:
+        cons += [{"type": "binding", "object": o["noun"], "color": o["attributes"]["colour"]} for o in (a, b)]
+    if "S" in sub:
+        big, small = (a, b) if a["attributes"]["size"] == "large" else (b, a)
+        cons.append({"type": "size", "larger": big["noun"], "smaller": small["noun"]})
+    if "R" in sub:
+        r = sg["relations"][0]
+        left, right = (a, b) if r["rel"] == "left_of" else (b, a)
+        cons.append({"type": "spatial", "left": left["noun"], "right": right["noun"]})
+    return cons
+
+
+def ps_variants(sg):
+    """CAN for every subset; counterfactuals (exactly one declared field) only for the full subset CSR, which E31 uses:
+    CF-C colour swap, CF-S size swap, CF-R relation reversal."""
+    v = [dict(type="CAN", prompt=ps_render(sg), constraints=ps_constraints(sg))]
+    if sg["ps"]["subset"] == "CSR":
+        for typ, field in (("CF-C", "colour"), ("CF-S", "size"), ("CF-R", "relation")):
+            e = copy.deepcopy(sg)
+            a, b = e["objects"]
+            if field == "relation":
+                e["relations"][0]["rel"] = CONVERSE[e["relations"][0]["rel"]]
+            else:
+                a["attributes"][field], b["attributes"][field] = b["attributes"][field], a["attributes"][field]
+            v.append(dict(type=typ, target_edit={"field": field}, prompt=ps_render(e), constraints=ps_constraints(e), _graph=e))
+    for x in v:
+        x["variant_id"] = f"{sg['scene_id']}_{x['type'].replace('-', '')}"
+        x["review"] = {"reviewer": None, "status": "pending"}
+    return v
+
+
+def ps_graph_diff(a, b):
+    d = set()
+    if [o["noun"] for o in a["objects"]] != [o["noun"] for o in b["objects"]]:
+        d.add("objects")
+    for x, y in zip(a["objects"], b["objects"]):
+        for k in ("colour", "size"):
+            if x["attributes"].get(k) != y["attributes"].get(k):
+                d.add(k)
+    if a["relations"] != b["relations"]:
+        d.add("relation")
+    return d
+
+
+def generate_ps(cfg, main_scenes):
+    p = cfg["ps_family"]
+    rng = random.Random(p["seed"])
+    main_groups = defaultdict(set)
+    for x in main_scenes:
+        main_groups[x["split"]].add(x["object_pair_group"])
+    pilot = json.loads(PILOT_PAIRS_PATH.read_text())
+    pilot_groups = {"|".join(sorted({c["object"] for c in q["constraints"] if "object" in c} | {c[k] for c in q["constraints"] for k in ("left", "right") if k in c})) for q in pilot}
+    pairs = [tuple(sorted(x)) for x in itertools.combinations(sorted(TABLETOP), 2) if not conflict(*x)]
+    rng.shuffle(pairs)
+    chosen = {"DEV": [], "TEST": []}
+    for split, other in (("DEV", "TEST"), ("TEST", "DEV")):
+        for pr in pairs:
+            g = "|".join(pr)
+            taken = {q for s in chosen.values() for q in s}
+            if len(chosen[split]) >= p["pairs"][split] or pr in taken or g in main_groups[other] or (split == "TEST" and g in pilot_groups):
+                continue
+            chosen[split].append(pr)
+    scenes = []
+    for split in ("DEV", "TEST"):
+        for k, (n1, n2) in enumerate(chosen[split]):
+            pid = f"ps{split[0]}{k:02d}"
+            ca, cb = rng.sample(COLOURS, 2)
+            big_first = rng.random() < 0.5
+            rel = rng.choice(list(REL_TEXT))
+            objs = [make_obj(1, n1, 1, ca), make_obj(2, n2, 1, cb)]
+            objs[0]["attributes"]["size"], objs[1]["attributes"]["size"] = ("large", "small") if big_first else ("small", "large")
+            for sub in PS_SUBSETS:
+                sg = {"scene_id": f"{pid}_{sub}", "split": split, "category": "ps_family", "ps": {"pair_id": pid, "subset": sub},
+                      "objects": copy.deepcopy(objs), "relations": [{"rel": rel, "subject": "o1", "object": "o2"}] if "R" in sub else [],
+                      "background": p["background"], "object_pair_group": "|".join(sorted((n1, n2))), "shard_group": pid}
+                sg["size_relation"] = ({"rel": "larger_than", "subject": "o1" if big_first else "o2", "object": "o2" if big_first else "o1"}
+                                       if "S" in sub else None)
+                sg["variants"] = ps_variants(sg)
+                scenes.append(sg)
+    return scenes
+
+
+def validate_ps(ps, main_scenes, cfg):
+    errs = []
+    ids = [s["scene_id"] for s in ps] + [s["scene_id"] for s in main_scenes]
+    if len(ids) != len(set(ids)):
+        errs.append("scene ids not unique across main benchmark and PS family")
+    pids = [v["variant_id"] for s in ps for v in s["variants"]] + [v["variant_id"] for s in main_scenes for v in s["variants"]]
+    if len(pids) != len(set(pids)):
+        errs.append("prompt ids not unique")
+    by_group = defaultdict(set)
+    for s in ps + main_scenes:
+        by_group[s["object_pair_group"]].add(s["split"])
+    errs += [f"pair group {g} in several splits" for g, v in by_group.items() if len(v) > 1]
+    pairs = defaultdict(set)
+    for s in ps:
+        pairs[s["ps"]["pair_id"]].add(s["split"])
+    for pid in pairs:
+        subs = sorted(x["ps"]["subset"] for x in ps if x["ps"]["pair_id"] == pid)
+        if subs != sorted(PS_SUBSETS):
+            errs.append(f"{pid}: subsets {subs} incomplete")
+    errs += [f"PS pair {k} in several splits" for k, v in pairs.items() if len(v) > 1]
+    for split in ("DEV", "TEST"):
+        n = len({s["ps"]["pair_id"] for s in ps if s["split"] == split})
+        if n != cfg["ps_family"]["pairs"][split]:
+            errs.append(f"{split}: {n} PS pairs, expected {cfg['ps_family']['pairs'][split]}")
+    want = {"C": {"binding"}, "S": {"size"}, "R": {"spatial"}}
+    for s in ps:
+        can = s["variants"][0]
+        types = {c["type"] for c in can["constraints"]} - {"presence"}
+        if types != set().union(*[want[ch] for ch in s["ps"]["subset"] if ch in want]):
+            errs.append(f"{can['variant_id']}: constraint types {sorted(types)} do not match subset {s['ps']['subset']}")
+        for v in s["variants"]:
+            low = v["prompt"].lower()
+            for c in v["constraints"]:
+                for k in ("object", "left", "right", "larger", "smaller"):
+                    if k in c and c[k] not in low:
+                        errs.append(f"{v['variant_id']}: noun {c[k]} missing from text")
+                if c["type"] == "binding" and c["color"] not in low:
+                    errs.append(f"{v['variant_id']}: colour {c['color']} missing from text")
+        words = can["prompt"].lower().split()
+        if ("S" in s["ps"]["subset"]) != ("small" in words and "large" in words):
+            errs.append(f"{can['variant_id']}: size words inconsistent with subset")
+        for v in s["variants"][1:]:
+            if "_graph" in v and ps_graph_diff(s, v["_graph"]) != {v["target_edit"]["field"]}:
+                errs.append(f"{v['variant_id']}: edit differs in {sorted(ps_graph_diff(s, v['_graph']))}, declared {v['target_edit']['field']}")
+            if canon(v["constraints"]) == canon(can["constraints"]):
+                errs.append(f"{v['variant_id']}: counterfactual does not change constraints")
+    return errs
+
+
+def ps_flat(ps):
+    rows = []
+    for s in ps:
+        for v in s["variants"]:
+            rows.append({"id": v["variant_id"], "scene_id": s["scene_id"], "split": s["split"], "category": "ps_family", "variant": v["type"],
+                         "prompt": v["prompt"], "constraints": v["constraints"], "pair_group": s["object_pair_group"], "shard_group": s["shard_group"],
+                         "ps_pair_id": s["ps"]["pair_id"], "ps_subset": s["ps"]["subset"], "n_objects": 2, "n_constraints": len(v["constraints"])})
+    return rows
+
+
+PS_FILES = ("ps_family.json", "prompts_ps.json", "splits_ps.json")
+
+
+def ps_clean(ps):
+    return [dict(s, variants=[{k: x for k, x in v.items() if k != "_graph"} for v in s["variants"]]) for s in ps]
+
+
+def build_ps():
+    cfg = json.loads((ROOT / "configs" / "benchmark_v2.json").read_text())
+    main = json.loads((OUT / "scene_graphs.json").read_text())
+    ps = generate_ps(cfg, main)
+    errs = validate_ps(ps, main, cfg)
+    if errs:
+        sys.exit("PS family validation failed:\n" + "\n".join(errs[:30]))
+    (OUT / "ps_family.json").write_text(json.dumps(ps_clean(ps), indent=1))
+    (OUT / "prompts_ps.json").write_text(json.dumps(ps_flat(ps), indent=1))
+    (OUT / "splits_ps.json").write_text(json.dumps({sp: sorted({s["ps"]["pair_id"] for s in ps if s["split"] == sp}) for sp in ("DEV", "TEST")}, indent=1))
+    (OUT / "hashes_ps.json").write_text(json.dumps({f: sha(OUT / f) for f in PS_FILES} | {"generator": sha(__file__), "config": sha(ROOT / "configs" / "benchmark_v2.json")}, indent=1))
+    print(f"PS family: {len(ps)} scenes, {sum(len(s['variants']) for s in ps)} prompts")
+
+
+def check_ps():
+    cfg = json.loads((ROOT / "configs" / "benchmark_v2.json").read_text())
+    main = json.loads((OUT / "scene_graphs.json").read_text())
+    regen = generate_ps(cfg, main)
+    errs = validate_ps(regen, main, cfg)
+    same = json.loads((OUT / "prompts_ps.json").read_text()) == ps_flat(regen)
+    hashes = json.loads((OUT / "hashes_ps.json").read_text())
+    stale = [f for f in PS_FILES if sha(OUT / f) != hashes[f]]
+    print(f"PS family validation errors: {len(errs)}; regenerates identically: {same}; stale hashes: {stale}")
+    for e in errs[:30]:
+        print(" ", e)
+    return not errs and same and not stale
+
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--build", action="store_true")
     ap.add_argument("--validate", action="store_true")
+    ap.add_argument("--build-ps", action="store_true", help="Revision 3: build the PS flagship family with relative size (separate files)")
+    ap.add_argument("--validate-ps", action="store_true")
     a = ap.parse_args()
-    build() if a.build else check()
+    if a.build_ps:
+        build_ps()
+    elif a.validate_ps:
+        sys.exit(0 if check_ps() else 1)
+    else:
+        build() if a.build else check()
