@@ -10,7 +10,7 @@ diffusers==0.41.0
 transformers==5.19.0
 safetensors==0.8.0
 numpy
-pandas
+pandas==2.2.3
 pillow
 scipy
 scikit-learn==1.9.1
