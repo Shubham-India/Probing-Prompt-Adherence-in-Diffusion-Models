@@ -193,5 +193,24 @@
     "google/owlvit-base-patch32": "apache-2.0 (hub metadata)",
     "facebook/dinov2-small": "apache-2.0 (hub metadata)",
     "openai/clip-vit-base-patch32": "not stated in hub metadata (model card: see repository); UNVERIFIED"
+  },
+  "hps_guard": {
+    "_note": "DEV CAG quality guard (Addendum C, blueprint: drop <= 0.5 HPS points); kaggle/nb05_dev_hps_guard.py, src/hps_guard.py; DL-43",
+    "hps_version": "v2.0",
+    "hpsv2_version": "1.2.0",
+    "extra_packages": [
+      "clint",
+      "args",
+      "ftfy",
+      "wcwidth"
+    ],
+    "repo": "xswu/HPSv2",
+    "checkpoint": "HPS_v2_compressed.pt",
+    "revision": "697403c78157020a1ae59d23f111aa58ced35b0a",
+    "licence": "apache-2.0",
+    "bpe_vocab_url": "https://raw.githubusercontent.com/mlfoundations/open_clip/v2.24.0/src/open_clip/bpe_simple_vocab_16e6.txt.gz",
+    "bpe_vocab_sha256": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
+    "dev_cag_guard_manifest_sha256": "80251995a493be7a68bdabf148a9e3ae7d5a58188241ca55d2cbc1f3fce76e6a",
+    "drop_points": 0.5
   }
 }

@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 TEXT = (".py", ".json", ".md", ".txt", ".jsonl", ".csv")
 NOTEBOOKS = [("nb00_preflight_dev_freeze.py", "00_PREFLIGHT_DEV_FREEZE"), ("nb01_test_core_cfg_worker.py", "01_TEST_CORE_CFG_WORKER"),
              ("nb02_test_commitment_worker.py", "02_TEST_COMMITMENT_WORKER"), ("nb03_test_cag_size_worker.py", "03_TEST_CAG_SIZE_WORKER"),
-             ("nb04_merge_analyze_export.py", "04_MERGE_ANALYZE_EXPORT")]
+             ("nb04_merge_analyze_export.py", "04_MERGE_ANALYZE_EXPORT"), ("nb05_dev_hps_guard.py", "05_DEV_HPS_GUARD")]
 SOURCE_DIRS = ["src", "kaggle", "configs", "scripts", "tests", "data/benchmark_v2", "protocol"]
 SOURCE_FILES = ["requirements-kaggle.txt", "requirements.txt", "data/prompts.json", "docs/ADDENDUM_C.md", "docs/R3_DECISION_LOG.md", "docs/AUDIT_PROTOCOL_DEV.md",
                 "GRAND_RESEARCH_BLUEPRINT.md"]
