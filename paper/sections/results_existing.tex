@@ -1,0 +1,20 @@
+\section{Existing evidence}\label{sec:existing}
+This section separates (A) exploratory pilot findings, (B) infrastructure and integrity checks, and (C) first-pass DEV outcomes from an unaudited judge. None of it tests HA, HB or HC.
+
+\subsection{A. Pilot (exploratory)}
+The pilot generated \pilotImages{} images (\pilotPrompts{} prompts, three CFG scales, two step counts, \pilotSeeds{} seeds). Table~\ref{tab:pilot-adherence} and Figure~\ref{fig:pilot} show constraint satisfaction; CFG contrasts are in Table~\ref{tab:pilot-cfg}. With only $4$--$6$ prompts per category the intervals are wide and no CFG effect on adherence is resolved; absence of a resolved effect is not evidence of its absence.
+\begin{figure}[t]\centering\includegraphics[width=0.7\linewidth]{figures/pilot_adherence.pdf}\caption{Pilot constraint satisfaction against CFG (40 steps, exploratory).}\label{fig:pilot}\end{figure}
+\input{tables/pilot_adherence}
+\input{tables/pilot_cfg_contrasts}
+Global attention re-weighting (scale~2 against the control path) changed overall adherence by \intAllDiff{} (95\% CI \intAllLo{} to \intAllHi{}), i.e.\ no resolved improvement (Table~\ref{tab:pilot-intervention}).
+\input{tables/pilot_intervention}
+Among binding-bearing pilot images, all required objects were detected in \pilotEligibleN{} of \pilotBindingN{} (\pilotEligible{}), but only \pilotEligibleBMN{} of \pilotBindingBMN{} (\pilotEligibleBM{}) for the binding and multi categories, because counting prompts are always eligible; the pilot's legacy binding score already counts omissions as failures. In prompt-grouped cross-validation, early attention features added $\Delta$AUC of \dAucAttnNoise{} (95\% CI \dAucAttnNoiseLo{} to \dAucAttnNoiseHi{}) over the design and seed baseline, whereas seed identity added \dAucNoiseDesign{} (Table~\ref{tab:pilot-nested}); only six distinct noise vectors exist in the pilot, a seed-0 deficit appeared (permutation $p=\seedP$), and both are post hoc observations that motivate HB without testing it.
+\input{tables/pilot_nested_auc}
+
+\subsection{B. Infrastructure and integrity (not scientific findings)}
+On a Tesla T4 with the committed code, the GPU identity script ran \rZeroCases{} cases and \rZeroHold{} (determinism, loop from step 0, reload-and-resume, zero-magnitude branch, hook-off control, restored baseline; maximum pixel difference $0$). The scope is three pilot prompts at one seed and setting; the model revision is not recorded inside that artifact. The R2a DEV core contains $400$ images and \rTwoLatents{} saved checkpoints; an independent audit passed \rTwoPassed{} of \rTwoChecks{} hard checks (manifest coverage, hashes, readability, no duplicates or orphans, checkpoint layout). A one-sample-pair regeneration on a different GPU matched the stored latent at the same step best, supporting the checkpoint indexing; this was not a bit-level Kaggle comparison. Two throughput probes disagree by about $25\%$ (Table~\ref{tab:throughput}) and are not reconciled.
+\input{tables/infra_throughput}
+
+\subsection{C. First-pass DEV outcomes (unaudited judge)}
+\input{tables/r2a_first_pass}
+Only about \rTwoPres{} of binding-bearing DEV images have every required object detected and binding given presence is defined for \rTwoEligN{} of \rTwoBB{} images. Whether this reflects the model or the detector cannot be said before the audit.

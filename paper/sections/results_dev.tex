@@ -1,0 +1,15 @@
+\section{Development-split results (exploratory)}\label{sec:resDEV}
+Everything in this section uses DEV scenes only and was fixed before any TEST image was generated. None of it is a confirmatory result.
+
+\paragraph{Generation.} All DEV stages completed and were verified against their manifests: 1,784 DEV variant and size-family images, 8,896 restart branches, CFG~2/15 bases and prompt switches, 400 CAG guard images, and the 400 canonical images of the earlier core run. Every image was judged once (11,080 judged images).
+
+\paragraph{An estimator bug found and fixed before TEST.} The chance-agreement term $A0$ had pooled every core image of a scene, including paraphrases, counterfactual variants and other guidance scales, instead of only the independent seeds of the branches' own base prompt as specified. This lowered $A0$ and biased every $C(t)$ upwards. The code was corrected and the DEV constants recomputed from the verified judgements; both versions are archived.
+
+\paragraph{DEV gates.} Table~\ref{tab:dev-gates} lists every predeclared DEV gate. The HA precision gate failed (CI half-width 7.94 steps against a limit of 4), so HA is exploratory by the predeclared rule. The full-resample control also failed. Its statistic is the maximum over 30 cells, several of which rest on fewer than ten scenes; even exactly independent outcomes would rarely meet it at this sample size. The presence cells nevertheless show a consistent offset of about $+0.16$ that is not explained by sampling error and has no identified cause in the code; it is reported as an open validity concern for the restart estimator. The CAG quality guard failed at $w_{lo}=1$ and passed at $w_{lo}=3$, so $w_{lo}=3$ is used on TEST.
+\input{tables/dev_gates}
+
+\paragraph{DEV persistence steps.} Table~\ref{tab:dev-t50} gives the DEV $t_{50}$ per kind. After the correction the two restart variants agree in sign for $\Delta t_{50}$, but both intervals are wide and include zero. Binding is already above 0.5 at the first grid step (left-censored), so the DEV data cannot place it relative to presence.
+\input{tables/dev_t50}
+
+\paragraph{Judge audit.} One annotator labelled a stratified DEV sample (Table~\ref{tab:dev-audit}); no valid double annotation exists. Only presence met the predeclared criterion, so per-type results for count, binding, spatial relation and relative size are exploratory. The relative-size judge missed the criterion narrowly (0.846).
+\input{tables/dev_audit}

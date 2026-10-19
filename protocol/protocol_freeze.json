@@ -1,0 +1,214 @@
+{
+ "approved_by": null,
+ "approved_utc": null,
+ "audit": {
+  "_basis": "annotator A only (Shubham, 2026-10-18); criterion weighted accuracy >= 0.85 (docs/AUDIT_PROTOCOL_DEV.md); deviations (DL-38/39): DEV package B labelled by the same person inside the A session (not used); size package B and the pilot-40 second review (H2) not labelled; source: docs/evidence/audit_20261019/",
+  "binding": {
+   "ci95": [
+    0.722,
+    0.8712
+   ],
+   "criterion_met": false,
+   "n_used": 156,
+   "status": "EXPLORATORY",
+   "weighted_accuracy": 0.7998
+  },
+  "count": {
+   "ci95": [
+    0.6852,
+    0.8426
+   ],
+   "criterion_met": false,
+   "n_used": 108,
+   "status": "EXPLORATORY",
+   "weighted_accuracy": 0.7685
+  },
+  "presence": {
+   "ci95": [
+    0.8021,
+    0.9074
+   ],
+   "criterion_met": true,
+   "n_used": 159,
+   "status": "CONFIRMATORY-ELIGIBLE",
+   "weighted_accuracy": 0.8558
+  },
+  "size": {
+   "ci95": [
+    0.7943,
+    0.8971
+   ],
+   "criterion_met": false,
+   "n_used": 175,
+   "status": "EXPLORATORY",
+   "weighted_accuracy": 0.8457
+  },
+  "spatial": {
+   "ci95": [
+    0.5229,
+    0.7064
+   ],
+   "criterion_met": false,
+   "n_used": 109,
+   "status": "EXPLORATORY",
+   "weighted_accuracy": 0.6147
+  }
+ },
+ "constants": {
+  "_provenance": {
+   "t50_source": "dev_constants_A0fix.json (r3_analyze dev on eval_rows.jsonl sha256 9b5b9992..., DEV analysis run 89e309e; DL-40)",
+   "w_lo_source": "hps_guard.json of r3-dev-hps-guard-20261019T212000Z-93dbad8 (verified; w_lo=1 failed -0.518, w_lo=3 passed -0.259; DL-44)"
+  },
+  "s_star_global": 12,
+  "t50_dev_w7.5": {
+   "bind_given_pres": 6.0,
+   "count": 18.88888888888889,
+   "joint_bind": 12.999999999999998,
+   "presence": 9.285714285714294,
+   "spatial_given_pres": 6.000000000000001
+  },
+  "w_lo": 3.0
+ },
+ "created_utc": "2026-10-19T22:28:00.875694+00:00",
+ "dry_run": false,
+ "files": {
+  "configs/analysis_plan_r3.json": "15011ad073fb3cc31b675873069ae5eefffad7827e6a9ba9bd2899967e3afa97",
+  "configs/benchmark_v2.json": "8ecc9859450db7a0c7b0a82c8070149a1375650411145c0d1c19784fc45345d4",
+  "configs/experiment_r3.json": "1950fa3b4ce0e91a0b99b546eb2ebd1719d7b75080b4805f90ffa35835949fbc",
+  "data/benchmark_v2/lexicon.json": "dddb7f9f55e45d197ce1334726e2eda0900c5498333f45236be77963496bc924",
+  "data/benchmark_v2/prompts_ps.json": "431fe1cc2b0ea46c1b35cccb23da36aae074f0728727ccabeaaa80b19a2b8d52",
+  "data/benchmark_v2/prompts_v2.json": "000bc41ae5f07300c69f92bb2d1067a1a2de503e472eb0b10a0d846a997766f3",
+  "data/benchmark_v2/ps_family.json": "d7ce48843451c1845e3966bc8a801424ac1d894eb240bbb4fb45731ea1f9590c",
+  "data/benchmark_v2/scene_graphs.json": "0c8011925857e4e9a82987f6bb35bd8ed8de68ddfea426493f3050bb83e08e7e",
+  "data/benchmark_v2/splits.json": "daae2e9d7d81b1033084616cbf87e5ee661d4d8be26c0a2724fb96f8becd9354",
+  "data/benchmark_v2/splits_ps.json": "c1f84f251d64c4962eba0a1c852e04277da0c9057fedced4e2303ea121f00426",
+  "docs/ADDENDUM_C.md": "bf528c085a626de1ae921c157e0d50a37c5abec407b6ba9d06207a4917cd84b6",
+  "kaggle/env_bootstrap.py": "92e2c2ae4c881207c82e5c99aed578a83835dc64da0da0d856d1f65ed09fcfb2",
+  "kaggle/env_probe.py": "3969d046d9b80bd9c3171ffeb1c05f1e18820b0e1bd17493bc955a1296d3bbd8",
+  "kaggle/finish_run.py": "1648323f189e9c0f58be47cb43f1fea8c565b3716372213942bd335ebdb09a7e",
+  "kaggle/make_bundle.py": "2e4fd405c8719adb4b0fc7c68a3d2607ab8aa1430416a5d5cd663b0409f1fdd2",
+  "kaggle/make_core_dataset.py": "bb15fb604c19417f0bc20e65f46424665308937da2c8d02c63883d48fc8cbf57",
+  "kaggle/nb00_preflight_dev_freeze.py": "f9e6f4799b7b457a237a88533c5e9ed7f2bd41f0c0cfbd22407749323c0a80d3",
+  "kaggle/nb01_test_core_cfg_worker.py": "0a58323d0fc964e4c102e987c2f69821b175a159eeb2ec2aa3644599e0dbdfcd",
+  "kaggle/nb02_test_commitment_worker.py": "bc982e50254e741d410e70a10e1f7f76d94a63875295bbb87a793da2e0834c53",
+  "kaggle/nb03_test_cag_size_worker.py": "e1925206d14d366bdf55e5a66051a923974a9db900ded18bd259882bcd301024",
+  "kaggle/nb04_merge_analyze_export.py": "7024abaed70d2232836587000faf55767aed8d8dca54e6c39bf0c31184ab6f6e",
+  "kaggle/nb05_dev_hps_guard.py": "a1157e5bd0872ecfca6370d56b5d87aae84879bdca3ba70ab4272986f70d6323",
+  "kaggle/nbtools.py": "c73bf1741d856e4e98973de331203e5818c574baa30d28cb29e9b8ff6bce4f5b",
+  "kaggle/r3_preflight.py": "d3658dfd6d76144702967445b078a5902235622df41a73d43c730f1a7f4f6aee",
+  "kaggle/run_throughput.py": "9cbdd1dfb6adffdad3ea003eee6a17fb64d1eb16a26261fe71286954f87ff7c9",
+  "kaggle/setup.py": "29645c35defc11492c4a65c796f75d849c58244b0d2b52279682919b35bab817",
+  "requirements-kaggle.txt": "2f7b109a7aa9798985aa4ddb75df4671219f86e3d9106156aab3c24b028d8b65",
+  "scripts/adopt_candidate_review.py": "62c79c5394b5a83ec4e5cfca6f1b84a8f3564d3c7baa6fad6dc322fcd8a8a8e7",
+  "scripts/build_archive.py": "13b9e2d60486a24be4491526c7f03b3f6ba8aa20e93b7ef456e6b59bf520dd8b",
+  "scripts/build_manifests.py": "0505e00ccbbed22c56e0116e6bafd39ebe4e2d02cb7f52fda2ba0ed22304d022",
+  "scripts/build_release.py": "3cc8da60da78ad4944573446287b113a619bb9a47a407d36bf0cea93260b05a4",
+  "scripts/build_report.py": "a6065df1d35c549b77f7abcf56f55218071b19e8c7cf18649243aa491b50864c",
+  "scripts/build_size_audit.py": "3366dab42f0940e04caca20da5edc7c06a55c00122ac6f266857630a3d3bcd48",
+  "scripts/build_variant_review.py": "ae2e2e1e5ebc8d57a3533e79db3cd2dcf09432395cf1576a7fff56c8d5c3235f",
+  "scripts/check_variant_review.py": "8360893791fbaaa46a1c11d7af50e7bfca50bb8a90b2379d49340bc937e86617",
+  "scripts/dryrun_notebooks.py": "dfd34f695563bce8d782a640decc99e1ece8af568055d5279eccfa9442484751",
+  "scripts/final_analysis.py": "cb3eb4e9528b07a31f4f654c484ecfa8fa933267c26eb9a107cd76e4ed35fd3e",
+  "scripts/merge_shards.py": "38ff6a2296e26cf01988140709bde739948fdaa0d18d63ef745e1a8e1f0e3e28",
+  "scripts/paper_dev_tables.py": "de8a51022ec6319d7a55ee1b093493ce2b37a9f891491d250b06a6ce036fd53b",
+  "scripts/propose_variant_review.py": "9a7269975e473502f7e79f53bedcbbb725e3cf90be360529597b3f550a1f55ba",
+  "scripts/review_packet.py": "75271d229d9c5063bebd869cde637d429dd5d634b89a80eba7c2b1fc3a3605be",
+  "scripts/synonym_candidates.py": "ee5fe1af2de10814f9028f86a03015d509137ae140a498b94ea83caf6455a344",
+  "scripts/synonym_evidence.py": "6de60392fdb2ff0401da0665137e69fb98d754f7c3a7f8513a50bcb37ed8f73d",
+  "scripts/validate_benchmark.py": "a855a757568d133cab8deaa94a2ec95f2db22a10f3009bb587a1e03831a8cd65",
+  "scripts/validate_protocol.py": "cc6f21f0c274b66c949b6d7a67441e82acec008f568ff7de35ad65d27cfdc072",
+  "scripts/verify_outputs.py": "194ad053056de79cae6d83b241b584da1f2ebabbb4d9ed31e1a792db7014837f",
+  "src/analyze.py": "ea0fd56131f6c199ee9ff11b6fa0a0d66902fd9e95a845b05c87006f97e012fe",
+  "src/analyze_attention.py": "8b406441fe9717ed2c1f110f4ef17479da16a4df1a91223670d7252389654e04",
+  "src/analyze_commitment.py": "d9c68c51b8534a6cb600072a5fc4d9856c8a2fe9a797e42254753c28f0a36b48",
+  "src/analyze_hc.py": "d9dcb05d5cef8499ff9bb6a1480f7b2016cedbecdcb4b176855ccf5bd3f12cb7",
+  "src/analyze_intervention.py": "7923313dce3c1c19ffe8debe9d51c232e34ffd482aefe36542fc62562da1467f",
+  "src/analyze_noise.py": "b2629888769ddf704ea145e7b1a20a1acea2e1fd3a73095f8f206cc3ab062f93",
+  "src/analyze_pilot_conditional.py": "0aa9bf1bd323e01cbd3870630357418e3f1ec712129af8d3d3917c396e98618b",
+  "src/attention.py": "75c2bee2615ddb110990cbc85a8851a153e79697ffe922bb8f612ffeac3c230d",
+  "src/attn_record.py": "dded4c3b7bdbadffa452b22bbec2a5b8c1bda0244fa217bc5d7b96abd9c4224d",
+  "src/attn_stability.py": "31ffde8e5085f7229928f9d30cdb404ec8a0fc7f21b80167b4cf9fc52fe34934",
+  "src/audit_dev.py": "b4d1c92066cad13ed59b962a0ac53a897e189949da6bb9f9c6c622e8418860fc",
+  "src/audit_run.py": "36cbc1d7539af17c708601d4e837bebdc67d825b1b57808c0a9ace62df532cd7",
+  "src/audit_sample.py": "2dcd8d7fbc85ca327bdf8113bc940c0248e54491c1eccafc384e9e4908b39962",
+  "src/benchmark_v2.py": "c8b1ab7223297861b9512b4a841c00b49d0526b50cca030af5078519e25c6775",
+  "src/branch.py": "0c198c701521b5d5d03840f144d46f3514b8998f3e8c0bc1282fecf0c6e4e2d3",
+  "src/build_benchmark.py": "b1b1fa6a0aa0ad3325d1bce7d10a7e4dc7a598101c975e81bd99d4ef384c46cb",
+  "src/build_draft.py": "a6fcbc939bee2e4ba578c3a81e457f9fbe183961a71b436de832a5d479825e2e",
+  "src/cag.py": "dd77f24c2631461293acc20cc3ccda352625e67857f8659b8f202e2d9ae79a5b",
+  "src/commitment.py": "e9fbbc9510d137f9e474af184f400ce879998951bec275dc3c81e35baf6d3ba5",
+  "src/config_schema.py": "ba710c64703203433c91ed5cb5f65f6155977c2432667e9ebfcc53e3a6a81b21",
+  "src/dedup.py": "c54f8a0c5ca465fbc71ab18ade60f59a8340de9f1079547f91c2d27a2f31f7d4",
+  "src/design_recompute.py": "6080ad050b0fb1d49d58f152ba0151e48bddec8a16cea62a3bdd8ae71124b4b7",
+  "src/dev_gate_observed.py": "5c5c1300e425ae841754d62851b8782fac65ce2373f061b9761fd8324475d61c",
+  "src/dev_gate_sim.py": "09bdcd8d4e877a7fde18f2633baf0687f5b429ab523a37fb2f45ca78982f4c9b",
+  "src/diversity.py": "553dd42097b540e973ef0448b8a0bdd7fc01928f535ee726b6c8e8ab4a0e42b4",
+  "src/edit_probe.py": "a4f50f6cb56f1a339a1bda605be3b7e8a9de82484c41c177a0730af842b6002c",
+  "src/evaluate.py": "29b875f5c55643dcdd24d9923f3e9c3e7e0ab3d7504960c252f1c02d3cbcddb0",
+  "src/features.py": "6b7003588f7617058c53aad8c2afa2f410d643aaac8fe29f113116c9b299b3ef",
+  "src/figures.py": "e10d98722ab01819150dfddcdc46d29e627d0fc5101eac4a892588312ab329f3",
+  "src/freeze.py": "4d10b0dfd976f28cb4bd818ba6d6f58cd8413bfc5f0ecae2bed4b550a340f45e",
+  "src/generate.py": "1f9eb3a36cc14d326f778d8b8d6da41b14837ae14eda8ef3b6ebbcc219bcfbd3",
+  "src/hps_guard.py": "fbba4b8085b1364fd105f25f9e53b41ecc2c5b45349c02ffe2aab1da2a518aed",
+  "src/intervene.py": "95c17f1e57abcc0dc155817d2d0ccba83d4be2423ac5c27ef1a9aa848bf9cabb",
+  "src/jobs.py": "bdceedc5abc549dc17d2703031ff29741e8bf035e028bb4c8351e593ecb5aa72",
+  "src/judge_vqa.py": "6c2dab77d3e6752fe0eeeba53cba312629cd469ed970f7dfca185207f79e8c31",
+  "src/manifests.py": "ddc42641f9552c7de253394843ce1622775bf6622f7d1937c8143ef18a9926b6",
+  "src/merge_samples.py": "5b55d9c9c4f44d2bd5c18d5c7adf0dd27bec55f1040b997a7f2ef4180cfc8b17",
+  "src/model_cache.py": "58d1f50e4af56a2454a80a879a440edb505dae22946ce215cfb01b8ed2a77643",
+  "src/pipeline_factory.py": "8ea833f45c2ca42d1296afdf12107dad122df70c0829b399ddc143982991caa4",
+  "src/predict_failure.py": "7267edfea205283b6e4f9e594b5c504175f2af178b9259e2d42a87da159f202c",
+  "src/protocol_r3.py": "a8724821e23fa5287b0a15a006588c40f857ea1e829577a0f98816ebf967b978",
+  "src/r3_analyze.py": "30303191baaaf0f0a80b56f9760ed06fdb0d8fd15072b061ec93b6c85866651b",
+  "src/r3_evaluate.py": "2a593414a8ecedd6b5557009e95b0746f54ed378bf4c5f489a70c9ef849063ad",
+  "src/r3_merge.py": "7218a1d19e7a6e628c661b6a73d7fc7e994b0748cc4fea91d6f04e8fefa05eba",
+  "src/r3_report.py": "9b6a73a12b2a2788ba36b324bcfb2d69183dd1c79510c4d830095c8dd3023f21",
+  "src/r3_run.py": "3e25954809b46c713138e46a19c5c752375dd94121c236a6df203b14561bdaf5",
+  "src/report_numbers.py": "303003f91ee845f68d304ddbe741b4bd2970eb3635f6c3a52904d20f7933e4aa",
+  "src/run_branches.py": "ccd5b054e14b100ea60fb37b4eeb506ff032c5dcdd7093dbacb21c931ad9c2f0",
+  "src/stage_guard.py": "434fac57ed63851770801dc9fc05131b4724fc647cee65fd92b951686d87249b",
+  "src/switch.py": "ab31574adabbf932a45e1d4bc13e81d89bae5cc79ab8b7e15f4c3a0bafb549b9",
+  "src/synth_probe.py": "27ee150a9b6e781373432259fb0580cfe5b7d1690fd363ac218313a0cf82e270",
+  "src/validate_human.py": "df131581ff52de7fa6b9449fe2973daaa8c6d5828ef147f5c442bbb3c49093f8",
+  "src/validate_metrics.py": "b22aac604cbf8cecdf8967dab192dd71caf09cc7aae344086c12a71ebc870094",
+  "src/verify_branches.py": "3e5368b7cfbe68e1b0561e5ae69d885985bc34f3ec8b664b913b6b4ba8ee0cfc",
+  "src/verify_outputs.py": "3a896c001df1e0ffb1ba9fb7560056490bcad10c9626dfb0cedd1201d9aacd27"
+ },
+ "hypotheses": [
+  "HA",
+  "HD",
+  "HE",
+  "HF"
+ ],
+ "judge": {
+  "colours": [
+   "red",
+   "blue",
+   "yellow",
+   "green",
+   "orange",
+   "purple",
+   "white",
+   "black",
+   "brown",
+   "pink"
+  ],
+  "size_ratio": 1.5,
+  "thresholds": {
+   "count": 0.15,
+   "distinct_iou": 0.5,
+   "nms_iou": 0.3,
+   "presence": 0.1
+  },
+  "uncertain_band": 0.03
+ },
+ "multiplicity": "Holm over HA, HD, HE, HF (configs/analysis_plan_r3.json)",
+ "problems_at_draft": [],
+ "schema": "protocol-r3-1",
+ "status": "DRAFT",
+ "test_manifests": {
+  "TEST_CAG_SIZE": "dc17dd1989b22c28f51bf72fa984809f08773bbe335f5a35ccfa26d5712e1177",
+  "TEST_COMMIT": "ebfbe0b9c7be7d060ccac16ca387bdbf2b3fb2e29e6f52ea9948be995467c73a",
+  "TEST_CORE": "111747299132387005209f6e8e316d978ef51326fc430b08bd38dd9d793df2a8"
+ }
+}

@@ -111,7 +111,11 @@ try:
         vocab.parent.mkdir(parents=True, exist_ok=True)
         urllib.request.urlretrieve(HPS["bpe_vocab_url"], vocab)
         DIAG["steps"]["hpsv2"]["vocab_fetched_sha256"] = sha_file(vocab)
-        assert DIAG["steps"]["hpsv2"]["vocab_fetched_sha256"] == HPS["bpe_vocab_sha256"], "tokenizer vocabulary hash differs from the pinned one"
+    # Verify the vocabulary actually used, whether it was pre-existing or just fetched (DL-46: a pre-existing file used to skip this check)
+    DIAG["steps"]["hpsv2"]["vocab_source"] = "fetched" if "vocab_fetched_sha256" in DIAG["steps"]["hpsv2"] else "pre-existing"
+    DIAG["steps"]["hpsv2"]["vocab_sha256"] = sha_file(vocab)
+    assert DIAG["steps"]["hpsv2"]["vocab_sha256"] == HPS["bpe_vocab_sha256"], \
+        f"tokenizer vocabulary ({DIAG['steps']['hpsv2']['vocab_source']}) sha256 {DIAG['steps']['hpsv2']['vocab_sha256']} differs from the pinned {HPS['bpe_vocab_sha256']}"
     assert "cp" in inspect.signature(hps_scoring.score).parameters, "hpsv2.img_score.score has no checkpoint argument: cannot pin the checkpoint"
     from huggingface_hub import hf_hub_download
     CKPT = hf_hub_download(HPS["repo"], HPS["checkpoint"], revision=HPS["revision"])

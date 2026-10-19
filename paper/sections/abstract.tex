@@ -1,0 +1,7 @@
+\begin{abstract}
+Text-to-image diffusion models often produce plausible images that violate parts of the prompt: an object is missing, a colour lands on the wrong object, a count, a relative size or a spatial relation is wrong.
+We study \emph{when} each of these constraints becomes stable during denoising and \emph{what classifier-free guidance (CFG) changes about it}, on Stable Diffusion~1.5 and a controlled scene-graph benchmark with a factorial family built around the problem statement's example (``a small red cube and a large blue sphere'').
+Two interventional probes estimate a chance-corrected restart-persistence step $t_{50}$ per constraint type: re-noising a saved trajectory state and switching from a counterfactual to the canonical prompt mid-trajectory.
+Four pre-specified hypotheses ask whether $t_{50}$ differs between constraint types (HA), whether higher CFG moves it earlier (HD), whether the step at which cross-attention stops changing tracks it without labels (HF), and whether a guidance schedule that switches from high to low guidance after the DEV-measured step keeps adherence while raising seed diversity and beating a reversed schedule (HE).
+This draft reports only what exists: an exploratory 28-prompt pilot, reproducibility and integrity checks of the first Kaggle runs, and a first-pass, still unaudited, evaluation of \rTwoBB{} development images. \textbf{All confirmatory results are pending}; the test split is sealed and the protocol is not frozen.
+\end{abstract}

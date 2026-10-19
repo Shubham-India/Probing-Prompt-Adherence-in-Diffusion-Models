@@ -58,3 +58,17 @@ def test_released_notebook_matches_the_source():
     code = "\n".join("".join(c["source"]) for c in nb["cells"] if c["cell_type"] == "code")
     if "hps_scoring" in code:                     # a release built after the fix
         assert "hpsv2.score(" not in code
+
+
+def test_vocabulary_hash_is_checked_whether_pre_existing_or_fetched():
+    """DL-46: the tokenizer vocabulary's sha256 is asserted against the pin on every run, not only after a download."""
+    s = NB.read_text(encoding="utf-8")
+    i = s.index('DIAG["steps"]["hpsv2"]["vocab_sha256"] = sha_file(vocab)')
+    j = s.index('if not vocab.exists():')
+    assert i > j                                                        # computed after the optional fetch, outside its branch
+    line = s[s.rfind("\n", 0, i) + 1:s.index("\n", i)]
+    assert line.startswith("    DIAG") and not line.startswith("        ")    # not indented under the `if not vocab.exists()` branch
+    assert 'assert DIAG["steps"]["hpsv2"]["vocab_sha256"] == HPS["bpe_vocab_sha256"]' in s
+    assert '"vocab_source"' in s
+    cfg = json.loads((ROOT / "configs" / "experiment_r3.json").read_text())
+    assert cfg["hps_guard"]["bpe_vocab_sha256"] == "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a"
