@@ -10,9 +10,14 @@ def run(*args):
     return r.returncode, json.loads(r.stdout)
 
 
-def test_all_gates_false_in_the_repository():
+def test_every_true_gate_is_backed_by_a_recorded_owner_decision():
+    """Gates default to false; a gate may be true only when an owner-decision row of docs/R3_DECISION_LOG.md names it (e.g. DL-39)."""
     gates = json.loads((ROOT / "configs" / "stage_gates.json").read_text())
-    assert [k for k, v in gates.items() if not k.startswith("_") and v is not False] == []
+    true = [k for k, v in gates.items() if not k.startswith("_") and v is True]
+    assert all(v in (True, False) for k, v in gates.items() if not k.startswith("_"))
+    owner_rows = [l for l in (ROOT / "docs" / "R3_DECISION_LOG.md").read_text(encoding="utf-8").splitlines()
+                  if l.startswith("| DL-") and "Owner decisions" in l and l.rstrip().endswith("| owner |")]
+    assert [k for k in true if not any(f"`{k}`" in row for row in owner_rows)] == []
 
 
 def test_every_stage_is_refused_while_gates_are_false():

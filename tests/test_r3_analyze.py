@@ -129,3 +129,21 @@ def test_hf_concordance_from_synthetic_attention(tmp_path):
     hf = RA.analyse_hf(core, br, ts, n_boot=100)
     assert hf["concordance"] == 1.0 and hf["pairs"] == 1
     assert hf["decision"] in ("inconclusive", "supported", "rejected (bounded null)")
+
+
+def test_chance_agreement_uses_only_the_branch_base_prompt_and_settings():
+    """DL-40: A0 must come from the independent seeds of the branches' own base prompt at the base CFG/steps, not from every core row of the
+    scene (other variants, CFG levels or step counts)."""
+    core = [dict(job_id=f"s_CAN__cfg7.5__seed{i}", kind="core", scene_id="s", prompt_id="s_CAN", variant="CAN", cfg=7.5, steps=40, seed=i,
+                 objects_present=y) for i, y in enumerate([1, 1, 1, 0])]
+    core += [dict(job_id=f"s_CFO__cfg7.5__seed{i}", kind="core", scene_id="s", prompt_id="s_CFO", variant="CF-O", cfg=7.5, steps=40, seed=i,
+                  objects_present=0) for i in range(4)]
+    core += [dict(job_id=f"s_CAN__cfg2__seed{i}", kind="core", scene_id="s", prompt_id="s_CAN", variant="CAN", cfg=2, steps=40, seed=i,
+                  objects_present=0) for i in range(2)]
+    core += [dict(job_id=f"s_CAN__cfg7.5__st20__seed{i}", kind="core", scene_id="s", prompt_id="s_CAN", variant="CAN", cfg=7.5, steps=20, seed=i,
+                  objects_present=0) for i in range(2)]
+    br = [dict(job_id=f"b{t}{m}{b}", kind="branch", scene_id="s", prompt_id="s_CAN", cfg=7.5, steps=40, seed=b, restart="FULL", t=t, m=m,
+               base_job=f"s_CAN__cfg7.5__seed{b}", objects_present=1) for t in GRID for m in range(2) for b in range(2)]
+    adf, a0 = RA.prepare(core, br, "FULL")
+    row = a0[(a0.scene == "s") & (a0.kind == "presence")].iloc[0]
+    assert row.n_seeds == 4 and abs(row.A0 - 0.5) < 1e-12        # seeds [1,1,1,0]: 6 of 12 ordered pairs agree

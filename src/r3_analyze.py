@@ -49,9 +49,19 @@ def attach(br, core_rows):
     return br.merge(base, on=["base", "kind"], how="inner")
 
 
+def base_key(r):
+    return (r.get("prompt_id"), float(r["cfg"]), int(r["steps"]))
+
+
 def prepare(core_rows, branch_rows, variant):
-    core = long(core_rows, False).drop(columns=["base"])
-    br = attach(long([r for r in branch_rows if (r.get("restart") or r.get("variant")) == variant], True), core_rows)
+    """Chance agreement A0 uses only the independent seeds of the branches' own BASE prompts at the base CFG and steps (Addendum C: "A0 the
+    agreement of independent seeds"; commitment.chance_agreement: "pairs of independent seeds on the canonical prompt"). Fix 2026-10-20 (DL-40):
+    every core row of a scene was pooled before (other variants, CFG levels and step counts), which lowered A0 and biased C upwards."""
+    sel = [r for r in branch_rows if (r.get("restart") or r.get("variant")) == variant]
+    bases = {r["base_job"] for r in sel}
+    keys = {base_key(r) for r in core_rows if (r.get("job_id") or r.get("name")) in bases}
+    core = long([r for r in core_rows if base_key(r) in keys], False).drop(columns=["base"])
+    br = attach(long(sel, True), core_rows)
     a0 = C.chance_agreement(core)
     adf = C.agreement(br.drop(columns=["variant", "base"]))
     return adf, a0
