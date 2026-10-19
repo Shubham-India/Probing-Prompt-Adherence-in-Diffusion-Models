@@ -98,3 +98,14 @@ def test_double_annotation_disagreements_are_excluded(tmp_path):
     rep = A.score(key, la, lb, n_boot=50)
     assert rep["presence"]["n_excluded_ambiguous_or_disagree"] >= len(flipped)
     assert rep["presence"]["double_annotation"]["raw_agreement"] < 1.0
+
+
+def test_size_question_is_neutral_and_maps_answers_to_truth():
+    import random
+    import audit_dev as AD
+    c = {"type": "size", "larger": "vase", "smaller": "hat"}
+    q = AD.question(c, random.Random(0))
+    keys = [o[0] for o in q["options"]]
+    assert set(keys) == {"obj:vase", "obj:hat", "same", "absent", "amb"} and "larger" not in q["text"].lower().split("which one looks")[0]
+    assert AD.truth(c, "obj:vase") == (1, 1) and AD.truth(c, "obj:hat") == (0, 1) and AD.truth(c, "same") == (0, 1)
+    assert AD.truth(c, "absent") == (0, 0) and AD.truth(c, "amb") == (None, None)

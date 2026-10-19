@@ -57,7 +57,8 @@ Computed by `python src/audit_dev.py score --key local_audit/audit_dev/key/audit
 3. Click "Download labels CSV" (also automatic at the end). Save it unedited as `local_audit/audit_dev/labels/labels_A.csv`.
 4. Annotator B (different person) does the same with `local_audit/audit_dev/annotator_B/label.html` (120 items incl. practice) -> `labels_B.csv`.
 5. The pilot-40 reviewer does `local_audit/audit_pilot40/annotator_A/label.html` (125 items) -> `labels_pilot40.csv`.
-6. Tell Claude when the files are in place. Claude then runs the scoring commands, nothing else.
+6. **Size judge (Revision 3, added 2026-10-19; same rules as above):** `local_audit/audit_size_dev/annotator_A/label.html` (176 items: census of every DEV size judgement in the verified DEV_CORE run; question "which one looks LARGER") -> `local_audit/audit_size_dev/labels/labels_size_A.csv`; the re-annotation subset `annotator_B/label.html` (40 items; a different person, or the same person after >= 48 h, reported as intra-rater) -> `labels_size_B.csv`. Built by `python scripts/build_size_audit.py --dev-core <verified DEV_CORE folder>`. Criterion unchanged: size is confirmatory only with >= 140 usable judgements and weighted accuracy >= 0.85 (Addendum C); otherwise size results are EXPLORATORY. Score: `python src/audit_dev.py score --key local_audit/audit_size_dev/key/audit_key.csv --a labels_size_A.csv --b labels_size_B.csv --out local_audit/audit_size_dev/size_audit_report.json`.
+7. Tell Claude when the files are in place. Claude then runs the scoring commands, nothing else.
 
 ## 7. Synthetic detector probe (E22) — specification only (not run)
 | Item | Specification |

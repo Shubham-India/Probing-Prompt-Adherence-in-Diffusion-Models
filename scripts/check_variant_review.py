@@ -8,6 +8,7 @@ Usage: python scripts/check_variant_review.py [--dir docs/evidence/variant_revie
 import argparse
 import hashlib
 import json
+import re
 import sys
 import time
 from collections import Counter, defaultdict
@@ -17,6 +18,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import build_variant_review as V  # noqa: E402
 
 DECISIONS = {"PASS", "FAIL", "AMBIGUOUS"}
+PLACEHOLDER = re.compile(r"your\s*(full\s*)?name|<[^>]*>|^\s*(name|reviewer|tbd|todo|xxx+|n/?a|-+)\s*$", re.I)   # not an identity
 THRESHOLD = 0.20
 
 
@@ -45,6 +47,8 @@ def check_sheet(done, expected, fields, label):
             probs.append(f"{label}: {i}: PASS on an auto-flagged row without a reason (say why the flag does not invalidate it)")
         if not (g.get("reviewer") or "").strip() or not (g.get("review_date") or "").strip():
             probs.append(f"{label}: {i}: reviewer or review_date missing")
+        elif PLACEHOLDER.search(g["reviewer"]):
+            probs.append(f"{label}: {i}: reviewer {g['reviewer']!r} is a placeholder, not a name")
     return probs, got
 
 

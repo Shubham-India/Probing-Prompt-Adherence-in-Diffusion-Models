@@ -44,6 +44,12 @@ def question(c, rng):
         rng.shuffle(pair)
         opts = [(f"obj:{pair[0]}", f"the {pair[0]}"), (f"obj:{pair[1]}", f"the {pair[1]}"), ("absent", "one or both not visible"), ("amb", "ambiguous / cannot tell")]
         return dict(qtype="left", text=f"Which one is further to the LEFT in the image? (compare the horizontal centres of the {pair[0]} and the {pair[1]})", options=opts)
+    if t == "size":                    # Revision 3 relative size (PS family); neutral: both objects offered in random order
+        pair = [c["larger"], c["smaller"]]
+        rng.shuffle(pair)
+        opts = [(f"obj:{pair[0]}", f"the {pair[0]}"), (f"obj:{pair[1]}", f"the {pair[1]}"), ("same", "about the same size"),
+                ("absent", "one or both not visible"), ("amb", "ambiguous / cannot tell")]
+        return dict(qtype="larger", text=f"Which one looks LARGER in the image (the area it covers)? The {pair[0]} or the {pair[1]}?", options=opts)
     raise ValueError(t)
 
 
@@ -66,6 +72,10 @@ def truth(c, response):
         if r == "absent":
             return 0, 0
         return int(r == f"obj:{c['left']}"), 1
+    if t == "size":
+        if r == "absent":
+            return 0, 0
+        return int(r == f"obj:{c['larger']}"), 1          # "about the same size" -> the constraint does not hold
     raise ValueError(t)
 
 
@@ -78,7 +88,7 @@ def population(rows, prompts, subset=None):
         cons = prompts[r["prompt_id"]]["constraints"]
         for i, (c, pred) in enumerate(zip(cons, r["constraint_results"])):
             items.append(dict(name=r["name"], i=i, type=c["type"], pred=int(pred), unc=int(r.get("uncertain") or 0), c=c,
-                              objpres=r.get("objects_present") if c["type"] in ("binding", "spatial") else None))
+                              objpres=r.get("objects_present") if c["type"] in ("binding", "spatial", "size") else None))
     return items
 
 
@@ -165,10 +175,12 @@ def file_sha(p):
     return hashlib.sha256(Path(p).read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
-def build(rows, prompts, images_dir, out, seed, quotas, subset=None, n_practice=20, n_double=100, args_for_manifest=None):
+def build(rows, prompts, images_dir, out, seed, quotas, subset=None, n_practice=20, n_double=100, args_for_manifest=None, types=None):
     out = Path(out)
     rng = random.Random(seed)
     pop = population(rows, prompts, subset)
+    if types is not None:                          # e.g. the Revision 3 size-only package
+        pop = [it for it in pop if it["type"] in types]
     if subset is None:
         chosen, strata = allocate(pop, quotas, rng)
         taken = {(it["name"], it["i"]) for it in chosen}
@@ -300,8 +312,10 @@ def score(key_rows, la, lb=None, n_boot=2000):
             continue
         recs_by_type[r["type"]].append(dict(stratum=r["stratum"], N=int(r["N_h"] or 0), n=int(r["n_h"] or 0), pred=int(r["judge_pred"]), ok=a_ok,
                                            present=a_pres, objpres=r["objects_present"], type=r["type"]))
-    for t in ("presence", "count", "binding", "spatial"):
+    for t in ("presence", "count", "binding", "spatial", "size"):
         rs = recs_by_type.get(t, [])
+        if t == "size" and not rs and not tot[t]:
+            continue
         k = sum(r["pred"] == r["ok"] for r in rs)
         row = dict(n_items_labelled=tot[t], n_used=len(rs), n_excluded_ambiguous_or_disagree=amb[t], unweighted_accuracy=(k / len(rs) if rs else None),
                    wilson95_unweighted=list(wilson(k, len(rs))), human_positive_share_in_sample=(sum(r["ok"] for r in rs) / len(rs) if rs else None))

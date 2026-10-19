@@ -103,3 +103,25 @@ def test_stale_candidates_are_refused(proposed, tmp_path):
     (d / "candidate_summary.json").write_text(json.dumps(s))
     r = run("adopt_candidate_review.py", "--dir", d, "--reviewer", "owner", "--date", "2026-10-19")
     assert r.returncode != 0 and "different benchmark files" in (r.stdout + r.stderr)
+
+
+def test_placeholder_reviewer_is_refused_and_can_be_renamed(proposed, tmp_path):
+    d = fresh(proposed, tmp_path)
+    assert run("adopt_candidate_review.py", "--dir", d, "--reviewer", "YOUR FULL NAME", "--date", "2026-10-19", "--answers", "Q1=A,Q2=A").returncode != 0
+    import csv
+    for sheet, fields in (("variant_review.csv", V.FIELDS), ("lexicon_review.csv", V.LEX_FIELDS)):    # as if adopted with the placeholder
+        rows = V.read_csv(d / sheet)
+        cand = {c["item_id"]: c for c in V.read_csv(d / "candidate_review.csv")}
+        for r in rows:
+            r.update(decision=cand[r["item_id"]]["proposed_decision"], reason="[adopted candidate] x", reviewer="YOUR FULL NAME", review_date="2026-10-19")
+        with open(d / sheet, "w", newline="", encoding="utf-8-sig") as f:
+            w = csv.DictWriter(f, fieldnames=fields)
+            w.writeheader()
+            w.writerows(rows)
+    r = run("check_variant_review.py", "--dir", d)
+    ev = json.loads((d / "variant_review_evidence.json").read_text())
+    assert r.returncode == 1 and any("placeholder" in p for p in ev["problems"])
+    assert run("adopt_candidate_review.py", "--dir", d, "--rename-reviewer", "YOUR FULL NAME", "<your name>").returncode != 0
+    assert run("adopt_candidate_review.py", "--dir", d, "--rename-reviewer", "YOUR FULL NAME", "A. Person").returncode == 0
+    assert run("check_variant_review.py", "--dir", d).returncode == 0
+    assert {x["reviewer"] for x in V.read_csv(d / "variant_review.csv")} == {"A. Person"}

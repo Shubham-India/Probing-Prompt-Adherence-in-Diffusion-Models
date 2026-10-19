@@ -29,15 +29,32 @@ def write(path, rows, fields):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--reviewer", required=True)
-    ap.add_argument("--date", required=True)
+    ap.add_argument("--reviewer", default=None)
+    ap.add_argument("--date", default=None)
     ap.add_argument("--answers", default="", help="answered owner questions, e.g. Q1=A,Q2=A (see OWNER_DECISIONS.md)")
     ap.add_argument("--only-rules", default="", help="comma-separated rule ids; adopt only candidates whose rules are all in this list")
     ap.add_argument("--exclude", nargs="*", default=[], help="item ids you want to decide yourself")
     ap.add_argument("--dir", default=str(D))
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--rename-reviewer", nargs=2, metavar=("OLD", "NEW"), default=None,
+                    help="only correct the reviewer field: rows whose reviewer is exactly OLD get NEW (e.g. a placeholder typed by mistake); nothing else changes")
     a = ap.parse_args()
-    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", a.date) or not a.reviewer.strip():
+    if a.rename_reviewer:
+        old, new = a.rename_reviewer
+        if not new.strip() or re.search(r"your\s*(full\s*)?name|<[^>]*>", new, re.I):
+            sys.exit("NEW must be your real name")
+        n = 0
+        for sheet, fields in (("variant_review.csv", V.FIELDS), ("lexicon_review.csv", V.LEX_FIELDS)):
+            rows = V.read_csv(Path(a.dir) / sheet)
+            for r in rows:
+                if r.get("reviewer") == old:
+                    r["reviewer"] = new.strip()
+                    n += 1
+            if not a.dry_run:
+                write(Path(a.dir) / sheet, rows, fields)
+        print(json.dumps(dict(renamed_rows=n, old=old, new=new.strip(), dry_run=a.dry_run)))
+        return
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", a.date or "") or not (a.reviewer or "").strip() or re.search(r"your\s*(full\s*)?name|<[^>]*>", a.reviewer, re.I):
         sys.exit("--reviewer and --date YYYY-MM-DD are required")
     d = Path(a.dir)
     answers = dict(x.split("=", 1) for x in a.answers.split(",") if "=" in x)
