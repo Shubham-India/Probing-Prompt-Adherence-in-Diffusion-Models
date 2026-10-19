@@ -307,7 +307,9 @@ def analyse_hf(core_rows, branch_rows, tstab, n_boot):
 
 # ---------------------------------------------------------------- Holm
 def holm(pvals, alpha=0.05):
-    items = sorted((p, k) for k, p in pvals.items() if p is not None and math.isfinite(p))
+    """Holm over the WHOLE registered family: a hypothesis without a p-value (not estimable) counts as p = 1, so m is always the family size
+    (DL-48; previously m shrank to the number of available p-values)."""
+    items = sorted(((p if p is not None and math.isfinite(p) else 1.0), k) for k, p in pvals.items())
     adj, prev = {}, 0.0
     m = len(items)
     for i, (p, k) in enumerate(items):
@@ -317,14 +319,26 @@ def holm(pvals, alpha=0.05):
 
 
 def finalise(results):
-    adj = holm({k: v.get("p") for k, v in results.items()}, PLAN["multiplicity"]["alpha"])
+    """Holm over the registered family, then the classifications fixed before TEST (analysis_plan_r3.json `pre_test_status`, Addendum C C5):
+    an EXPLORATORY hypothesis is never reported SUPPORTED, and HD is supportable only through the estimands listed there."""
+    fam = PLAN["multiplicity"]["family"]
+    adj = holm({k: (results.get(k) or {}).get("p") for k in fam}, PLAN["multiplicity"]["alpha"])
+    st = PLAN.get("pre_test_status", {})
     for k, v in results.items():
-        v["p_holm"] = adj.get(k)
+        v["p_holm"] = None if v.get("p") is None else adj.get(k)
         dec = v.get("decision", "")
-        if dec == "supported" and (adj.get(k) is None or adj[k] >= PLAN["multiplicity"]["alpha"]):
-            v["final"] = "inconclusive (rule passed but Holm-adjusted p >= 0.05)"
+        if dec == "supported" and (v["p_holm"] is None or v["p_holm"] >= PLAN["multiplicity"]["alpha"]):
+            final = "inconclusive (rule passed but Holm-adjusted p >= 0.05)"
         else:
-            v["final"] = dec
+            final = dec
+        sup_est = st.get("supportable_estimands", {}).get(k)
+        if final == "supported" and sup_est is not None and isinstance(v.get("estimands"), dict):
+            if not any((v["estimands"].get(e) or {}).get("decision") == "supported" for e in sup_est):
+                final = f"EXPLORATORY: rule passed only through estimands outside {sup_est} (judge criterion not met)"
+        if k in st.get("exploratory", {}):
+            final = f"EXPLORATORY ({st['exploratory'][k]}); rule outcome: {final}"
+        v["final"] = final
+        v["pre_test_status"] = st.get("exploratory", {}).get(k) or st.get("disclosure", {}).get(k)
     return results
 
 

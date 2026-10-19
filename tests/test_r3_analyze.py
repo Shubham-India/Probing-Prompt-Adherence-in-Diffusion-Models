@@ -86,7 +86,8 @@ def test_he_intersection_union_rule():
 def test_holm_and_final_labels():
     res = {"HA": dict(p=0.001, decision="supported"), "HD": dict(p=0.04, decision="supported"), "HE": dict(p=0.2, decision="not supported"), "HF": dict(p=None, decision="not estimable")}
     out = RA.finalise(res)
-    assert out["HA"]["final"] == "supported" and abs(out["HA"]["p_holm"] - 0.003) < 1e-12
+    assert abs(out["HA"]["p_holm"] - 0.004) < 1e-12                         # Holm over the whole family of four (HF has no p: counts as 1)
+    assert out["HA"]["final"].startswith("EXPLORATORY") and out["HA"]["final"].endswith("rule outcome: supported")   # pre-TEST status
     assert out["HD"]["final"].startswith("inconclusive")                     # 0.04 * 2 = 0.08 >= 0.05 after Holm
     adj = RA.holm({"a": 0.01, "b": 0.02, "c": 0.03})
     assert adj == {"a": 0.03, "b": 0.04, "c": 0.04}
@@ -147,3 +148,21 @@ def test_chance_agreement_uses_only_the_branch_base_prompt_and_settings():
     adf, a0 = RA.prepare(core, br, "FULL")
     row = a0[(a0.scene == "s") & (a0.kind == "presence")].iloc[0]
     assert row.n_seeds == 4 and abs(row.A0 - 0.5) < 1e-12        # seeds [1,1,1,0]: 6 of 12 ordered pairs agree
+
+
+def test_holm_counts_the_whole_registered_family():
+    """DL-48: a missing p counts as 1, so m stays 4 (HA, HD, HE, HF)."""
+    adj = RA.holm({"HA": None, "HD": 0.01, "HE": 0.02, "HF": None})
+    assert abs(adj["HD"] - 0.04) < 1e-12 and abs(adj["HE"] - 0.06) < 1e-12 and adj["HA"] == 1.0
+
+
+def test_pre_test_status_is_applied_to_the_final_labels():
+    """HA is never reported SUPPORTED (DEV gate failed); HD only via presence (Addendum C C5, DL-45)."""
+    res = RA.finalise({"HA": dict(decision="supported", p=0.001),
+                       "HD": dict(decision="supported", p=0.001, estimands={"presence": {"decision": "inconclusive"}, "bind_given_pres": {"decision": "supported"}}),
+                       "HE": dict(decision="supported", p=0.001), "HF": dict(decision="inconclusive", p=0.5)})
+    assert res["HA"]["final"].startswith("EXPLORATORY (DEV precision gate failed")
+    assert res["HD"]["final"].startswith("EXPLORATORY: rule passed only through estimands outside ['presence']")
+    assert res["HE"]["final"] == "supported" and "F includes judge types" in res["HE"]["pre_test_status"]
+    res2 = RA.finalise({"HD": dict(decision="supported", p=0.001, estimands={"presence": {"decision": "supported"}}), "HA": dict(decision="inconclusive", p=None)})
+    assert res2["HD"]["final"] == "supported"

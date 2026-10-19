@@ -1,6 +1,6 @@
 {
- "approved_by": null,
- "approved_utc": null,
+ "approved_by": "Shubham",
+ "approved_utc": "2026-10-19T23:36:56.537750+00:00",
  "audit": {
   "_basis": "annotator A only (Shubham, 2026-10-18); criterion weighted accuracy >= 0.85 (docs/AUDIT_PROTOCOL_DEV.md); deviations (DL-38/39): DEV package B labelled by the same person inside the A session (not used); size package B and the pilot-40 second review (H2) not labelled; source: docs/evidence/audit_20261019/",
   "binding": {
@@ -57,7 +57,7 @@
  "constants": {
   "_provenance": {
    "t50_source": "dev_constants_A0fix.json (r3_analyze dev on eval_rows.jsonl sha256 9b5b9992..., DEV analysis run 89e309e; DL-40)",
-   "w_lo_source": "hps_guard.json of r3-dev-hps-guard-20261019T212000Z-93dbad8 (verified; w_lo=1 failed -0.518, w_lo=3 passed -0.259; DL-44)"
+   "w_lo_source": "hps_guard.json of r3-dev-hps-guard-20261019T225352Z-73cd966 (verified, vocabulary sha256 = pin; scores identical to 93dbad8; DL-44/46)"
   },
   "s_star_global": 12,
   "t50_dev_w7.5": {
@@ -69,10 +69,10 @@
   },
   "w_lo": 3.0
  },
- "created_utc": "2026-10-19T22:28:00.875694+00:00",
+ "created_utc": "2026-10-19T23:33:58.071398+00:00",
  "dry_run": false,
  "files": {
-  "configs/analysis_plan_r3.json": "15011ad073fb3cc31b675873069ae5eefffad7827e6a9ba9bd2899967e3afa97",
+  "configs/analysis_plan_r3.json": "2e9cb3ea577534eee36c10991af1eb59c961b068d5b2f63fc809e9efc7d8bf94",
   "configs/benchmark_v2.json": "8ecc9859450db7a0c7b0a82c8070149a1375650411145c0d1c19784fc45345d4",
   "configs/experiment_r3.json": "1950fa3b4ce0e91a0b99b546eb2ebd1719d7b75080b4805f90ffa35835949fbc",
   "data/benchmark_v2/lexicon.json": "dddb7f9f55e45d197ce1334726e2eda0900c5498333f45236be77963496bc924",
@@ -82,7 +82,7 @@
   "data/benchmark_v2/scene_graphs.json": "0c8011925857e4e9a82987f6bb35bd8ed8de68ddfea426493f3050bb83e08e7e",
   "data/benchmark_v2/splits.json": "daae2e9d7d81b1033084616cbf87e5ee661d4d8be26c0a2724fb96f8becd9354",
   "data/benchmark_v2/splits_ps.json": "c1f84f251d64c4962eba0a1c852e04277da0c9057fedced4e2303ea121f00426",
-  "docs/ADDENDUM_C.md": "bf528c085a626de1ae921c157e0d50a37c5abec407b6ba9d06207a4917cd84b6",
+  "docs/ADDENDUM_C.md": "ce505a11bb2f404912f03c126f150ff224217b8ef016b1dbaecde384207b0251",
   "kaggle/env_bootstrap.py": "92e2c2ae4c881207c82e5c99aed578a83835dc64da0da0d856d1f65ed09fcfb2",
   "kaggle/env_probe.py": "3969d046d9b80bd9c3171ffeb1c05f1e18820b0e1bd17493bc955a1296d3bbd8",
   "kaggle/finish_run.py": "1648323f189e9c0f58be47cb43f1fea8c565b3716372213942bd335ebdb09a7e",
@@ -109,7 +109,9 @@
   "scripts/check_variant_review.py": "8360893791fbaaa46a1c11d7af50e7bfca50bb8a90b2379d49340bc937e86617",
   "scripts/dryrun_notebooks.py": "dfd34f695563bce8d782a640decc99e1ece8af568055d5279eccfa9442484751",
   "scripts/final_analysis.py": "cb3eb4e9528b07a31f4f654c484ecfa8fa933267c26eb9a107cd76e4ed35fd3e",
+  "scripts/final_report.py": "d1577d0ccac083839f25b460536a46c5a5f7bdb0d72514221976caf3e32d6b94",
   "scripts/merge_shards.py": "38ff6a2296e26cf01988140709bde739948fdaa0d18d63ef745e1a8e1f0e3e28",
+  "scripts/owner_finalize_freeze.py": "74e775c5d1f0916b01af1246726a12e1d653f939c73dce6b6e7d072051c3bc76",
   "scripts/paper_dev_tables.py": "de8a51022ec6319d7a55ee1b093493ce2b37a9f891491d250b06a6ce036fd53b",
   "scripts/propose_variant_review.py": "9a7269975e473502f7e79f53bedcbbb725e3cf90be360529597b3f550a1f55ba",
   "scripts/review_packet.py": "75271d229d9c5063bebd869cde637d429dd5d634b89a80eba7c2b1fc3a3605be",
@@ -159,7 +161,7 @@
   "src/pipeline_factory.py": "8ea833f45c2ca42d1296afdf12107dad122df70c0829b399ddc143982991caa4",
   "src/predict_failure.py": "7267edfea205283b6e4f9e594b5c504175f2af178b9259e2d42a87da159f202c",
   "src/protocol_r3.py": "a8724821e23fa5287b0a15a006588c40f857ea1e829577a0f98816ebf967b978",
-  "src/r3_analyze.py": "30303191baaaf0f0a80b56f9760ed06fdb0d8fd15072b061ec93b6c85866651b",
+  "src/r3_analyze.py": "7b7541713d4ac5901b2952374dfe96ef877cf3cecfdfc025eb150fe22f71e127",
   "src/r3_evaluate.py": "2a593414a8ecedd6b5557009e95b0746f54ed378bf4c5f489a70c9ef849063ad",
   "src/r3_merge.py": "7218a1d19e7a6e628c661b6a73d7fc7e994b0748cc4fea91d6f04e8fefa05eba",
   "src/r3_report.py": "9b6a73a12b2a2788ba36b324bcfb2d69183dd1c79510c4d830095c8dd3023f21",
@@ -174,6 +176,7 @@
   "src/verify_branches.py": "3e5368b7cfbe68e1b0561e5ae69d885985bc34f3ec8b664b913b6b4ba8ee0cfc",
   "src/verify_outputs.py": "3a896c001df1e0ffb1ba9fb7560056490bcad10c9626dfb0cedd1201d9aacd27"
  },
+ "freeze_sha256": "c9706a7ebd592589b42e082652852fe0acc4235832a5b6ca9141caae6c7e1a56",
  "hypotheses": [
   "HA",
   "HD",
@@ -205,7 +208,7 @@
  "multiplicity": "Holm over HA, HD, HE, HF (configs/analysis_plan_r3.json)",
  "problems_at_draft": [],
  "schema": "protocol-r3-1",
- "status": "DRAFT",
+ "status": "FROZEN",
  "test_manifests": {
   "TEST_CAG_SIZE": "dc17dd1989b22c28f51bf72fa984809f08773bbe335f5a35ccfa26d5712e1177",
   "TEST_COMMIT": "ebfbe0b9c7be7d060ccac16ca387bdbf2b3fb2e29e6f52ea9948be995467c73a",

@@ -34,5 +34,21 @@
     "R2_duplicate_canonical_scenes": "scenes of one split with the same normalised canonical prompt count once (PS family scene dropped: psD05_P duplicates sg_0091)",
     "R3_dev_test_overlap": "TEST rows whose prompt text also occurs in DEV are excluded from TEST variant-level (S2) estimates (11 TEST CF-O items; 32 groups of identical DEV/TEST generations)",
     "benchmark_and_manifests": "unchanged; duplicates are still generated (156 redundant generations, 0.6% of compute)"
+  },
+  "pre_test_status": {
+    "_note": "fixed before TEST from DEV evidence (Addendum C C5 status note, DL-38/40/45); applied by r3_analyze.finalise",
+    "exploratory": {
+      "HA": "DEV precision gate failed (half-width 7.94 > 4); binding judge below the audit criterion"
+    },
+    "supportable_estimands": {
+      "HD": [
+        "presence"
+      ]
+    },
+    "disclosure": {
+      "HE": "F includes judge types below the audit criterion (count, binding, spatial, size); presence-only F reported as EXPLORATORY sensitivity",
+      "HF": "type orderings include judge types below the audit criterion",
+      "HD": "binding estimand EXPLORATORY (judge criterion not met)"
+    }
   }
 }

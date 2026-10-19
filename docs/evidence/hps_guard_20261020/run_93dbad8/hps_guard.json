@@ -1,0 +1,48 @@
+{
+ "rule": "pass if mean(A2 - A1) >= -0.5 HPS points (x100), paired by prompt and seed",
+ "per_w_lo": {
+  "1": {
+   "n_pairs": 200,
+   "n_scenes": 100,
+   "mean_change_points": -0.51788330078125,
+   "ci95_points": [
+    -0.621728515625,
+    -0.41812133789062517
+   ],
+   "mean_a2_points": 27.87689208984375,
+   "mean_a1_points": 28.394775390625,
+   "passed": false
+  },
+  "3": {
+   "n_pairs": 200,
+   "n_scenes": 100,
+   "mean_change_points": -0.25885009765625,
+   "ci95_points": [
+    -0.324346923828125,
+    -0.2043884277343751
+   ],
+   "mean_a2_points": 28.13592529296875,
+   "mean_a1_points": 28.394775390625,
+   "passed": true
+  }
+ },
+ "decision": {
+  "w_lo": 3.0,
+  "note": "guard failed for w_lo = 1 and passed for w_lo = 3: w_lo = 3 adopted before TEST (Addendum C)"
+ },
+ "hps": {
+  "version": "v2.0",
+  "package": "hpsv2==1.2.0",
+  "checkpoint": {
+   "repo": "xswu/HPSv2",
+   "file": "HPS_v2_compressed.pt",
+   "revision": "697403c78157020a1ae59d23f111aa58ced35b0a",
+   "sha256": "07cb0d20626232204ca3a6ec53ff5984e7e53212a8a7b0e0ec2bac1bdaf125a1"
+  }
+ },
+ "inputs": {
+  "dev_cag_guard_run": "r3-dev-cag-guard-v2-s0of1-20261019T193820Z-99a0e5b",
+  "dev_cag_guard_manifest": "80251995a493be7a68bdabf148a9e3ae7d5a58188241ca55d2cbc1f3fce76e6a",
+  "n_images": 600
+ }
+}

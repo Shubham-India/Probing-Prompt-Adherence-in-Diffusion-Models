@@ -1,6 +1,6 @@
 {
- "run_id": "r3-dev-hps-guard-20261019T212000Z-93dbad8",
- "source_commit": "93dbad82a7cfad5584804693774bf1666759a3ec",
+ "run_id": "r3-dev-hps-guard-20261019T225352Z-73cd966",
+ "source_commit": "73cd966deec2a63a854949ce8f122fba0d47baaa",
  "steps": {
   "pip_install_hpsv2": {
    "returncode": 0,
@@ -9,7 +9,9 @@
   "torch_unchanged": true,
   "hpsv2": {
    "version": "1.2.0",
-   "vocab_present": true,
+   "vocab_present_before_import": false,
+   "vocab_source": "fetched",
+   "vocab_sha256": "924691ac288e54409236115652ad4aa250f48203de50a9e4722a6ecd48d6804a",
    "score_signature": "(img_path: Union[list, str, PIL.Image.Image], prompt: str, cp: str = None, hps_version: str = 'v2.0') -> list"
   },
   "checkpoint": {
@@ -28,7 +30,7 @@
     0.285888671875
    ],
    "all_in_0_1": true,
-   "seconds": 42.8
+   "seconds": 43.0
   }
  },
  "ok": true
