@@ -103,24 +103,25 @@ try:
     # verified repo revision (sha256 recorded below), so the package's own load behaviour is restored for this process only.
     os.environ["TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD"] = "1"
     import hpsv2
+    from hpsv2 import img_score as hps_scoring     # hpsv2 1.2.0: only img_score.score accepts cp (the top-level wrapper does not)
     pkg = Path(hpsv2.__file__).parent
     vocab = pkg / "src" / "open_clip" / "bpe_simple_vocab_16e6.txt.gz"
-    DIAG["steps"]["hpsv2"] = dict(version=getattr(hpsv2, "__version__", HPS["hpsv2_version"]), vocab_present=vocab.exists(), score_signature=str(inspect.signature(hpsv2.score)))
+    DIAG["steps"]["hpsv2"] = dict(version=getattr(hpsv2, "__version__", HPS["hpsv2_version"]), vocab_present=vocab.exists(), score_signature=str(inspect.signature(hps_scoring.score)))
     if not vocab.exists():                       # known packaging gap of the PyPI wheel: fetch the tokenizer vocabulary from the pinned open_clip commit
         vocab.parent.mkdir(parents=True, exist_ok=True)
         urllib.request.urlretrieve(HPS["bpe_vocab_url"], vocab)
         DIAG["steps"]["hpsv2"]["vocab_fetched_sha256"] = sha_file(vocab)
         assert DIAG["steps"]["hpsv2"]["vocab_fetched_sha256"] == HPS["bpe_vocab_sha256"], "tokenizer vocabulary hash differs from the pinned one"
-    assert "cp" in inspect.signature(hpsv2.score).parameters, "hpsv2.score has no checkpoint argument: cannot pin the checkpoint"
+    assert "cp" in inspect.signature(hps_scoring.score).parameters, "hpsv2.img_score.score has no checkpoint argument: cannot pin the checkpoint"
     from huggingface_hub import hf_hub_download
     CKPT = hf_hub_download(HPS["repo"], HPS["checkpoint"], revision=HPS["revision"])
     DIAG["steps"]["checkpoint"] = dict(repo=HPS["repo"], file=HPS["checkpoint"], revision=HPS["revision"], sha256=sha_file(CKPT))
     t = time.time()
     test = CAG[:2]
-    s_cag = [float(x) for x in hpsv2.score([str(CAG_DIR / "images" / f"{r['job_id']}.png") for r in test[:1]], test[0]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
-    s_cag += [float(x) for x in hpsv2.score([str(CAG_DIR / "images" / f"{r['job_id']}.png") for r in test[1:2]], test[1]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
-    s_a1 = [float(x) for x in hpsv2.score([str(A1_DIR / f"{HG.a1_job(r['prompt_id'], r['seed'])}.png") for r in test[:1]], test[0]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
-    s_a1 += [float(x) for x in hpsv2.score([str(A1_DIR / f"{HG.a1_job(r['prompt_id'], r['seed'])}.png") for r in test[1:2]], test[1]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
+    s_cag = [float(x) for x in hps_scoring.score([str(CAG_DIR / "images" / f"{r['job_id']}.png") for r in test[:1]], test[0]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
+    s_cag += [float(x) for x in hps_scoring.score([str(CAG_DIR / "images" / f"{r['job_id']}.png") for r in test[1:2]], test[1]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
+    s_a1 = [float(x) for x in hps_scoring.score([str(A1_DIR / f"{HG.a1_job(r['prompt_id'], r['seed'])}.png") for r in test[:1]], test[0]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
+    s_a1 += [float(x) for x in hps_scoring.score([str(A1_DIR / f"{HG.a1_job(r['prompt_id'], r['seed'])}.png") for r in test[1:2]], test[1]["prompt"], cp=CKPT, hps_version=HPS["hps_version"])]
     finite = all(0.0 < x < 1.0 for x in s_cag + s_a1)
     DIAG["steps"]["diagnostic_scores"] = dict(cag=s_cag, a1=s_a1, all_in_0_1=finite, seconds=round(time.time() - t, 1))
     DIAG["ok"] = bool(finite)
@@ -148,7 +149,7 @@ if not DIAGNOSTIC_ONLY:
     scores = {}
     t = time.time()
     for k, (pr, lst) in enumerate(by_prompt.items()):
-        vals = hpsv2.score([str(p) for _, p in lst], pr, cp=CKPT, hps_version=HPS["hps_version"])
+        vals = hps_scoring.score([str(p) for _, p in lst], pr, cp=CKPT, hps_version=HPS["hps_version"])
         for (jid, _), v in zip(lst, vals):
             scores[jid] = float(v)
         if k % 20 == 0:
