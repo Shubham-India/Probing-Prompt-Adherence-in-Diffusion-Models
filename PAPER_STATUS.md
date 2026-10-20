@@ -1,70 +1,93 @@
-# Paper status — Guide Before Commitment (R3)
+# Paper status: Guide Before Commitment (R3)
 
-Updated 2026-10-20. Manuscript: `paper/main.tex`. Overleaf package: `paper/paper_overleaf.zip` (60 files; rebuilt by `python paper/make_overleaf_zip.py`, not committed). **No PDF has been compiled**: there is no TeX engine on this machine. Static checks pass: 31 cited keys, 0 uncited; all macros defined; all references, labels and inputs resolve; braces, math and environments balanced in all 46 `.tex` files.
+Updated 2026-10-20.
 
-## Evidence used (hierarchy)
-1. **Signed protocol.** `protocol/protocol_freeze.json` (source 40ade4d), VERIFIED after all edits. No protocol-bound file was changed (`src/`, `kaggle/`, `scripts/`, `configs/`, benchmark, `docs/ADDENDUM_C.md`).
-2. **Partial TEST archive.** `kaggle_outputs/gbc-test-partial/r3-test-partial-20261020T134300Z-40ade4d.{meta,merged}.part01of01.zip`. The SHA-256 checksums match. This is the canonical source for every partial-TEST number.
-   - The run id `r3-test-partial-20261020T133549Z-40ade4d` named in the request was **not found** anywhere on disk; only the 134300Z run exists.
-3. **Local replication.** `local_audit/partial_run/work/final_r3-test-partial-20261020T095729Z-40ade4d`: the same frozen code, re-judged on an RTX 3050 with torch 2.6. All 16,974 de-duplicated judged rows are identical and all four rule outcomes are identical; bootstrap p-values differ by ≤ 0.002.
-4. **DEV evidence.** `docs/evidence/` holds the DEV constants, audit verdicts and HPS guard results.
+**Deliverables**
+- Manuscript: `paper/main.tex`.
+- Compiled PDF: `paper/main.pdf`, 34 pages. Built locally with Tectonic 0.15 from the Overleaf package. All pages were rendered and inspected; there are no overfull boxes and no undefined references or citations.
+- Overleaf package: `paper/paper_overleaf.zip`, 70 files (pdfLaTeX + BibTeX, main file `main.tex`). Rebuild with `python paper/make_overleaf_zip.py`; the ZIP is not committed.
 
-## Integrity checks on the partial archive
-- **Coverage.** CORE shards 0–1 (6,172 jobs, 133 scenes), COMMIT 0–1 (7,080, 85), CAG_SIZE 1–2 (3,750, 222). Merged = manifest jobs for every present shard. Missing: CORE s2, COMMIT s2, CAG_SIZE s0. Nothing is imputed.
-- **The 17,002 vs 14,592 discrepancy is not in the saved data.** `eval_rows.jsonl` has 17,002 rows. `dino_embeddings.npz` has 17,002 embeddings: unique ids, all finite, no zero vectors, 8,501 per GPU part. The local run also logged "judged rows: 17002 | embeddings: 17002". The 14,592 figure is not reproduced by any saved file; it may come from the 133549Z run, which isn't on disk.
-- **De-duplication** removes 28 repeated generations, leaving 16,974 rows. The embeddings have 16,594 distinct vectors, because identical generations share an embedding.
-- **Recorded warnings.**
-  - `RuntimeWarning: Mean of empty slice` (r3_analyze.py:296): scenes with no eligible pair for a type; set to NaN by design.
-  - `ConstantInputWarning` (attn_stability.py:142): degenerate HF bootstrap resamples, which are dropped.
-  - Neither changes a point estimate. The size-type Spearman interval [−1, 1] is uninformative.
+The signed protocol (`protocol/protocol_freeze.json`, source 40ade4d) still verifies after all edits. No file under `src/`, `kaggle/`, `scripts/`, `configs/`, `data/` or `protocol/` was changed.
 
-## Verified findings (all PARTIAL TEST, EXPLORATORY)
-| Claim in paper | Value | Evidence file → field |
+## Evidence used
+1. **Signed protocol** and frozen manifests.
+2. **Partial-test archive** `kaggle_outputs/gbc-test-partial/r3-test-partial-20261020T134300Z-40ade4d.*`. Checksums verified.
+   - It covers TEST_CORE shards 0–1, TEST_COMMIT shards 0–1 and TEST_CAG_SIZE shards 1–2.
+   - The `gbc-test-core-s2` and `gbc-test-commit-s2` folders are empty.
+   - A run `…133549Z…` is not on disk.
+3. **Local re-judging** (RTX 3050, torch 2.6) of the same images. It reproduced all 16,974 de-duplicated judged rows exactly.
+4. **Saved attention maps**: 2,516 `.npz` files, 40 steps, 16×16 and 32×32, one map per constraint word. They come from the TEST_CORE s0/s1 and TEST_CAG_SIZE s1/s2 attention archives, extracted to scratch and not committed.
+5. **DEV evaluation rows**: `local_audit/dev_analysis/x/eval_rows.jsonl` (git-excluded), used for the full-resample diagnosis.
+
+## Review items: resolution
+| # | Issue | Resolution (evidence) |
 |---|---|---|
-| HD presence Δt50 (w15 − w2) | −8.67 [−16.34, −4.72], Holm p = 0.046, rule "supported" | `partial_results.json` → `results.HD.estimands.presence`, `results.HD.p_holm` |
-| t50 presence by w | 22.5 / 16.2 / 13.8 at w = 2 / 7.5 / 15 | `reports/partial/robustness.json` → `hd.by_error["0.0"].presence.t50_by_w` |
-| Not a chance-correction artefact | mean A0: 0.729 at w=2 vs 0.697 at w=15; raw agreement at t=18: 0.79 vs 0.90 | `robustness.json` → `hd.A0_mean`, `hd.raw_agreement` |
-| HD fragile to independent judge error | e = 0.05: −12.9 [−15.5, 0.3]; e = 0.10: interval reaches 0; e = 0.144 (audit): all curves left-censored | `robustness.json` → `hd.by_error` |
-| HD heterogeneity | both shards negative; counting scenes +11.4 (10 scenes) | `robustness.json` → `hd_by_shard`, `hd_by_category` |
-| DEV ordering does not replicate | binding ≤6 → 19.8, presence 9.3 → 16.2, count 18.9 → 15.3 (D8; ER30 same direction) | `dev_constants_final.json` → `ha_dev`; `partial_results.json` → `results.HA.variants` |
-| HE not supported | A2 − A1 on F: −0.016, 90% CI [−0.035, 0.003] (margin −0.03); beats-reversed fails | `partial_results.json` → `results.HE` |
-| CAG diversity is a dose effect | mean w 4.64 vs 7.5; A6 (constant at the same mean) +0.027; A2 − A6 −0.013 [−0.026, −0.001]; A2 − A4 −0.030 | `robustness.json` → `he_arms` |
-| HF rejected | concordance 0.30 [0.20, 0.75]; within-type Spearman intervals all include 0 | `partial_results.json` → `results.HF` |
-| CFG dose–response on adherence | presence 0.32 → 0.43; all-satisfied 0.09 → 0.17 (w 2 → 15; 102 common scenes) | `robustness.json` → `cfg_rates` |
+| 1 | DEV table said 163 scenes, text said 100 | 163 is the number of DEV scene IDs after de-duplication (164 minus `psD05_P`), not the analysis unit. HA uses the 100 scenes with restart branches (`dev_constants_final.json` → `ha_dev.variants.*.n_scenes`). The hard-coded caption is in the bound `scripts/paper_dev_tables.py`, so a corrected table `tables/dev_t50_r3.tex` is generated by `make_paper_assets.py` and used instead. |
+| 2 | HD interval [-16.34, -4.72] vs [-16.13, -4.87] | The registered value is [-16.34, -4.72] (`partial_results.json` → `results.HD.estimands.presence.ci95`). The other came from the earlier post-hoc script (2,000 draws, different seed). `robustness.py` now uses the registered key "HD" with 10,000 draws and reproduces the registered interval exactly; every table and the text now agree. |
+| 3 | TEST_COMMIT 85 vs 111 vs 67 | TEST_COMMIT has 85 scene IDs: 67 with restart branches and 54 with switch jobs. HA/D8 at w=7.5 uses 111 = 67 + 44 size-family scenes with branches. HD is informed by the 67 scenes with branches at w=2 and 15; the registered bootstrap resamples all 111. All of this is in `tables/partial_units.tex`. |
+| 4 | CAG_SIZE 222 scenes | 222 scene IDs = 134 main-benchmark scenes with CAG arms + 88 size-family scenes. The 88 come from 11 object-pair groups, so their independence is limited; this is disclosed in the limitations. |
+| 5 | HE 67 vs 134 | A1 exists only for scenes in the present TEST_CORE shards, so A2−A1 (non-inferiority and diversity) uses 67 scenes, all in CAG shard 1. A2−A4 (registered timing) and the matched-mean contrasts use all 134. The registered output's `n_scenes = 288` counts every scene with an F value, not paired scenes. Captions are now corrected. |
+| 6 | HF "rejected" | The rejection rule is registered (`analysis_plan_r3.json` → HF.reject: "concordance <= 0.5 OR …"), so "rejected" is kept. The rule is now stated in the hypotheses section. |
+| 7 | HB/HC references | HB was the Revision-2 question "is attention a forecast or a read-out?" (blueprint §8.2), demoted in Revision 3. The pilot text now says so. The unused files `results_HA/HB/HC.tex` are no longer included. |
+| 8 | s* = 12 vs joint-binding t50 = 13 | The frozen rule (`src/cag.py: s_star`) takes the maximum over the prompt's constraint types: presence 9.29 and binding 6.0, the latter left-censored and entering as a number. Joint binding is not a constraint type, so ⌈9.29⌉+2 = 12; count prompts get ⌈18.89⌉+2 = 21. Size has no DEV value, but there are no size prompts in the CAG arms. Verified on every generated TEST CAG job (`all_records.jsonl` → `s_star`). Explained in Methods. |
+| 9 | Other counts | HD p: Table 9 shows the registered p_HD = min(1, 2·min p) = 0.0116, Table 11 the per-estimand p = 0.0058; both captions now say so. Binding HD is shown as "n.e." instead of "-inf". All CAG arms use 80 UNet calls, because w_lo = 3 keeps the unconditional branch. Judge accuracies match `audit_verdicts.json`. |
+
+## Full-resample control (DEV): diagnosis (`diagnostics/full_control.py` → `reports/diagnostics/full_control.json`)
+- The gate maximum of 0.568 is spatial at t = 6, a cell informed by 5 scenes. Under exchangeable outcomes with the same design, the gate statistic has a median of 1.0 and passes 0.15 in 0 of 1,000 simulations: the registered gate was unpassable.
+- The presence offset (mean C = 0.159 across t) lies beyond the null (simulation p = 0.008).
+- What is ruled out:
+  - FULL noise seeds are hashed and unique, with no collision with base seeds.
+  - Marginal rates are equal (FULL 0.389 vs seeds 0.390).
+  - The estimator is unbiased under exchangeability (simulation and `tests/test_posthoc_sensitivity.py`).
+- What remains: FULL–FULL agreement (0.730) exceeds seed–seed agreement (0.653) by 0.076, CI [0.028, 0.126], and FULL agrees about 0.70 with every panel seed. There is no seed main effect (p = 0.36).
+- **Unresolved** between two causes: (a) the fixed four-noise seed panel shared by all prompts, or (b) an undetected base/branch generation difference (the R0 identity test covered only 3 prompts).
+- The registered estimates are not changed. As a sensitivity analysis, subtracting the offset leaves HD at −10.96 [−17.95, −3.83].
+- Smallest deciding experiment, about 400 images: regenerate FULL branches with panel seeds 2/3 through the branch code for 50 DEV scenes, plus four new base seeds per scene.
+
+## New analyses and figures (all post hoc, labelled as such)
+- `diagnostics/attention.py` produces `attn_success_failure.pdf`, `attn_tstab.pdf`, `attn_evolution.pdf` and `attn_examples.pdf` (appendix), plus `tables/attn_numbers.tex`:
+  - Within-scene found-vs-missed: 226 pairs in 159 scenes. Localisation and overlap differences are already significant at step 1; at step 10 they are +0.062 [0.049, 0.075] and −0.051 [−0.066, −0.037].
+  - Guidance on identical noise: noun overlap at step 10 falls from 0.688 (w=2) to 0.623 (w=15); paired difference −0.065 [−0.081, −0.051].
+  - t_stab, paired w15−w2: presence −9.6 [−10.0, −9.2], binding −9.1, count −2.7.
+  - HF explanation: t_stab spans only 8.2–14.7 across types; binding stabilises earliest (8.2) but persists latest (19.8), because the colour-word map follows the object's layout.
+  - Evidence gaps: no maps for restart branches, switches, 20-step images or CAG arms.
+- `partial/robustness.py` additions: registered-draw HD robustness with the offset row; CFG vs presence, whole-prompt satisfaction, CLIP score and DINOv2 diversity (102 common scenes); paired 40−20 steps (no adherence difference); adherence vs number of constraints (0.33 at 2 constraints, at most 0.07 at 4 or more); units table; registered values reused in the HE table (marked †).
+- Tests: `tests/test_posthoc_sensitivity.py` (3 tests: correction identity, recovery of true C under simulated error, estimator unbiased under a FULL null). Targeted suite: 33 passed.
+
+## Verified findings (partial test split, exploratory)
+| Claim | Value | Source |
+|---|---|---|
+| HD presence Δt50 | −8.67 [−16.34, −4.72], p_HD 0.0116, Holm 0.046 | `partial_results.json` → `results.HD` |
+| Not a chance-correction artefact | A0 0.729 (w=2) vs 0.697 (w=15); raw agreement at t=18: 0.79 vs 0.90 | `reports/partial/robustness.json` → `hd` |
+| Fragile to independent judge error | e = 0.05: interval reaches 0.71; e = 0.144: not identifiable | `robustness.json` → `hd.by_error` |
+| Counting-scene reversal | +11.4 [9.0, 15.0], 10 scenes | `robustness.json` → `hd_by_category` |
+| DEV→TEST non-transfer | binding ≤6 → 19.8; presence 9.3 → 16.2 | `dev_constants_final.json`, `partial_results.json` |
+| HE not supported; diversity is a dose effect | A2−A1 F −0.016 [90% CI −0.035, 0.003]; A2−A6 diversity −0.013 [−0.026, −0.001] | `partial_results.json` → `HE`; `robustness.json` → `he_arms` |
+| HF rejected (registered rule) | concordance 0.30 [0.20, 0.75] | `partial_results.json` → `HF` |
+| Attention findings | see above | `reports/diagnostics/attention.json` |
 
 Every number in the text is a generated macro:
-- `tables/r3_numbers.tex` (DEV) comes from `paper/make_paper_assets.py`.
-- `tables/partial_robust_numbers.tex` (partial TEST) comes from `partial/robustness.py`.
-- The `tables/partial_*.tex` tables come from `partial/partial_report.py`.
+- `tables/r3_numbers.tex` (DEV)
+- `tables/partial_robust_numbers.tex` (post-hoc)
+- `tables/attn_numbers.tex` (attention)
 
-## Unsupported or inconclusive
-- **HA:** inconclusive and exploratory, because its DEV precision gate failed. The binding judge was not validated.
-- **HE:** not supported. The registered contrast confounds timing with dose.
-- **HF:** rejected.
-- **All non-presence results** are exploratory. Only presence met the audit criterion (0.856), and there is a single annotator with no valid double annotation.
-
-## Changes in this pass
-- **New:** `partial/robustness.py` (exploratory analyses that reuse the frozen estimator functions) and `sections/results_partial_robustness.tex`.
-- **New tables:** `partial_t50_by_w`, `partial_robust_hd`, `partial_dev_vs_test`, `partial_he_arms`, `partial_robust_numbers`.
-- **New figures:** `partial_hd_dose.pdf`, `partial_cfg_rates.pdf`, `partial_he_arms.pdf`.
-- **Methods:** added the judge-error stress-test equation (Eq. `eq:err-corr`).
-- **Rewritten:** abstract, the introduction's findings paragraph and contribution (vi), discussion, conclusion, and the limitations (5 new items).
-- **Bibliography:** author lists completed and checked against arXiv metadata for dynamiccfg2025, grimal2025step, ban2024negative, kamath2025geneval2, diffusionprobe2026 (CVPR 2026), guo2024initno (CVPR 2024) and minderer2022owlvit (ECCV 2022). The description of Grimal et al. was corrected to their abstract's actual claim (later steps favoured).
-- **Fixes in `partial_report.py`:**
-  - The HF table emitted truncated JSON with an unclosed brace, which would have broken compilation.
-  - The HE interval is now shown to 3 decimals; at 2 it hid the −0.035 lower bound against the −0.03 margin.
-  - Descriptive figure captions.
-- **Source of the partial-TEST section:** now built from the canonical Kaggle archive rather than the local replication.
+## Bibliography
+- All working notes are removed.
+- Metadata was verified against arXiv or Crossref. The Gather-and-Bind author names were wrong; they are corrected to Huan Fu and Guoqing Cheng (DOI 10.1016/j.cag.2024.104118).
+- Full-text verification exists only for Prompt-to-Prompt and Attend-and-Excite (and the Gather-and-Bind entry is marked FT); the others are abstract-level (`x-verification`).
 
 ## Remaining
-- **Confirmatory analysis is blocked.** It needs TEST_CORE s2, TEST_COMMIT s2 and TEST_CAG_SIZE s0; the folders `kaggle_outputs/gbc-test-core-s2` and `gbc-test-commit-s2` are empty. When all nine shards exist, the integration path is: notebook 04 with `PHASE=TEST`, then `python scripts/final_report.py --final <archive>`, which replaces `sections/results_confirmatory.tex`; then `python paper/make_overleaf_zip.py`.
-- **Author names and affiliations** remain a placeholder in `main.tex`. Fill them in yourself; they were not invented.
-- **15 bibliography entries are verified at abstract level only**, marked `x-verification={ABS}` in `references.bib`.
-- **Single next action:** upload `paper/paper_overleaf.zip` to Overleaf (New Project → Upload Project; compiler pdfLaTeX; main file `main.tex`; BibTeX runs automatically), compile, and check float placement and table widths.
+- **Confirmatory analysis:** needs TEST_CORE s2, TEST_COMMIT s2 and TEST_CAG_SIZE s0.
+- **Seed-paired judge audit:** decides whether HD survives independent-error concerns.
+- **400-image full-resample experiment:** resolves the presence offset.
+- **Author names and affiliations:** placeholder; fill in yourself.
+- **Not cosmetically fixed:** the pilot figure's log-axis tick labels and the throughput table's session timestamps come from protocol-bound generators and were left as is (appendix only).
 
-## Regenerate partial-TEST assets
+## Regenerate
 ```
 python partial/partial_report.py --final kaggle_outputs/gbc-test-partial
-python partial/robustness.py --final <extracted meta folder> --records <extracted merged/all_records.jsonl> [--compare <second eval_rows.jsonl>]
+python partial/robustness.py --final <meta dir> --records <merged/all_records.jsonl> --compare <second eval_rows.jsonl>
+python diagnostics/full_control.py --rows <DEV eval_rows.jsonl> --sims 1000
+python diagnostics/attention.py --attention <attention dirs> --rows <eval_rows.jsonl> --partial <partial_results.json> --images-zip <TEST_CORE image zips>
 python paper/make_overleaf_zip.py
 ```

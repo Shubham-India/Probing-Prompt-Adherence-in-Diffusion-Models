@@ -1,11 +1,13 @@
 \begin{table}[t]\centering\small
-\caption{HD on the available shards (PARTIAL TEST, EXPLORATORY): $t_{50}$ by guidance scale; binding estimand exploratory by the audit.}\label{tab:partial-hd}
+\caption{HD on the available shards (PARTIAL TEST, EXPLORATORY): $t_{50}$ by guidance scale and the per-estimand bootstrap $p$. The registered HD $p$ in Table~\ref{tab:partial-hyp} is $\min(1, 2\min p)$ over the two estimands. Binding is exploratory by the audit; n.e.: not estimable because binding never reaches $C=0.5$ at $w=2$ (right-censored).}\label{tab:partial-hd}
+\begin{adjustbox}{max width=\linewidth}
 \begin{tabular}{llrlrl}
 \toprule
 Estimand & $t_{50}$ ($w$=2 / 7.5 / 15) & $\Delta t_{50}$ (15$-$2) & 95\% CI & $p$ & rule \\
 \midrule
 presence & 22.5 / 16.2 / 13.8 & -8.67 & [-16.34, -4.72] & 0.0058 & supported \\
-binding $\mid$ presence & >36 / 19.8 / 12.5 & -inf & [-24.00, 1.50] & 0.0742 & inconclusive \\
+binding $\mid$ presence & $>36$ / 19.8 / 12.5 & n.e. & [-24.00, 1.50] & 0.0742 & inconclusive \\
 \bottomrule
 \end{tabular}
+\end{adjustbox}
 \end{table}

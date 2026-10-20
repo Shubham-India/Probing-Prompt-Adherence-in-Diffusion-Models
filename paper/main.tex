@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 \usepackage[margin=1in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,array}
+\usepackage{amsmath,amssymb,booktabs,graphicx,xcolor,array,adjustbox}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[hidelinks]{hyperref}
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{PENDING}}\ (#1)}
@@ -9,9 +9,10 @@
 \input{tables/numbers.tex}
 \input{tables/r3_numbers.tex}
 \input{tables/partial_robust_numbers.tex}
+\input{tables/attn_numbers.tex}
 \title{Guide Before Commitment: When Does a Diffusion Model Decide What It Draws, and What Does Classifier-Free Guidance Change?}
 \author{Author names and affiliations: \textit{placeholder}}
-\date{Pre-registered study; development split complete, test split partial}
+\date{Pre-registered study; development split complete, test split partial (6 of 9 shards)}
 \begin{document}
 \maketitle
 \input{sections/abstract}
@@ -25,12 +26,13 @@
 \input{sections/results_dev}
 \input{sections/results_partial}
 \input{sections/results_partial_robustness}
+\input{sections/results_attention}
 \input{sections/results_confirmatory}
-\input{sections/results_existing}
 \input{sections/discussion}
 \input{sections/limitations}
 \input{sections/reproducibility}
 \input{sections/conclusion}
 \bibliographystyle{plainnat}
 \bibliography{references}
+\input{sections/appendix}
 \end{document}

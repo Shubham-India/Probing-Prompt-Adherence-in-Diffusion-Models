@@ -1,17 +1,16 @@
 \section{Limitations and threats to validity}\label{sec:limits}
 \begin{enumerate}
-\item \textbf{Incomplete test split.} Three of nine test shards are missing; test results are partial and exploratory, and the registered confirmatory analysis has not been run.
-\item \textbf{Post-hoc analyses.} Every analysis in Section~\ref{sec:resROBUST} was chosen after the registered outcomes were known; none is corrected for multiplicity, and subgroup rows (shards, categories) rest on 10--34 scenes.
-\item \textbf{Judge-error structure.} The HD contrast does not survive an independent-error correction at the audited presence error rate; whether it is real depends on how judge errors are distributed across seeds, which the audit did not measure.
-\item \textbf{Dose confound in the registered HE contrast.} CAG (mean $w=\rbMeanWAtwo$) is registered against constant $w=7.5$, so HE's diversity component mixes timing with dose; the matched-mean arms A4 and A6 resolve this only in exploratory contrasts.
-\item \textbf{Transfer of DEV constants.} Commitment times estimated on DEV did not replicate on the partial test split, so the frozen switch steps $s^\star$ are mis-timed for binding on the test scenes; CAG is tested here as frozen, not as it would be with accurate switch steps.
-\item \textbf{HD resampling scope.} The registered HD bootstrap resamples the union of scenes over the three guidance levels (\rbHdUnion{}), of which \rbHdScenes{} inform the contrast; restricting to those changes the interval only slightly (Table~\ref{tab:partial-robust-hd}).
-\item \textbf{Judge validity.} Only presence met the pre-declared accuracy criterion; binding, count, spatial relation and relative size are exploratory. One annotator labelled the audit; no valid double annotation exists, and the pilot-label second review was not done.
-\item \textbf{Failed development gates.} The HA precision gate and the full-resample control failed; the latter shows an unexplained positive presence offset that would inflate $C(t)$.
-\item \textbf{Probe dependence.} Restart persistence is defined relative to a re-noising magnitude; under D8 that magnitude varies with $t$, so absolute $t_{50}$ is not a model property. Several $t_{50}$ values are censored at the first grid step.
-\item \textbf{Selection.} Conditional outcomes (binding, spatial relation, size given presence) select on a generated variable.
-\item \textbf{Scope.} One model (Stable Diffusion~1.5), one scheduler and resolution; relative size rests on 24 object pairs; prompts are synthetic and some colour--object pairs are unnatural by design.
-\item \textbf{Estimator correction.} The chance-agreement term was corrected on DEV before the test split (Section~\ref{sec:resDEV}); results computed before the correction are archived but not used.
-\item \textbf{Prior-art review.} Several related works were checked at abstract level only; novelty is not claimed beyond the stated candidate gap.
-\item \textbf{AI assistance.} Code and documentation were produced with AI assistance; human labels were produced without AI assistance.
+\item \textbf{Incomplete test split.} Three of nine test shards are missing. All test results are partial and exploratory, and the registered confirmatory analysis has not been run (Section~\ref{sec:resCONF}).
+\item \textbf{Judge validity and error structure.} Only presence met the pre-declared accuracy criterion; results for binding, count, spatial relation and relative size are exploratory. One annotator labelled the audit, and no valid double annotation exists. The HD conclusion depends on how presence errors are distributed across seeds, which the audit did not measure.
+\item \textbf{Estimator validity.} The full-resample control shows an unexplained positive presence offset. Absolute $t_{50}$ values are therefore probe- and seed-panel-relative. Contrasts between guidance scales are less affected (Section~\ref{sec:resROBUST}). The registered gate for this control could not have been passed at the DEV sample size.
+\item \textbf{Transfer of DEV constants.} Commitment times did not replicate from DEV to the test scenes, so CAG was tested with switch steps that are mis-timed for binding.
+\item \textbf{Dose confound in the registered HE contrast.} CAG is registered against constant $w=7.5$ at a lower mean guidance. Only the post-hoc matched-mean contrasts separate timing from dose.
+\item \textbf{Post-hoc analyses.} Sections~\ref{sec:resROBUST} and~\ref{sec:resATTN} were chosen after the registered outcomes were known and are not corrected for multiplicity. Subgroups rest on 10--34 scenes.
+\item \textbf{Units and dependence.} Scenes are resampled as independent units. The 88 size-family scenes come from 11 object pairs, so their independence is overstated. The registered HD bootstrap resamples 111 scenes, of which 67 inform the contrast.
+\item \textbf{Attention coverage.} Maps were saved only for canonical 40-step images: none for restart branches, prompt switches, 20-step images or CAG arms. Attention results are associations, not interventions.
+\item \textbf{Probe dependence and censoring.} Restart persistence is defined relative to a re-noising magnitude, and several $t_{50}$ values are censored at the first grid step.
+\item \textbf{Selection.} Conditional outcomes (binding, spatial relation and size given presence) condition on a generated variable.
+\item \textbf{Scope.} One model (Stable Diffusion~1.5), one sampler and resolution, and synthetic prompts; some colour--object pairs are unnatural by design.
+\item \textbf{Literature check.} Most related works were checked at abstract level; novelty is claimed only for the specific combination stated in Section~\ref{sec:related}.
+\item \textbf{AI assistance.} Code, analysis scripts and manuscript drafts were produced with AI assistance under the author's direction. The DEV audit labels were produced by the author without AI assistance; the pilot validation labels were drafted with AI assistance and corrected by the author (Appendix~\ref{sec:existing}).
 \end{enumerate}

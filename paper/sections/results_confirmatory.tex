@@ -1,4 +1,9 @@
 \section{Registered confirmatory analysis}\label{sec:resCONF}
-% PLACEHOLDER - replaced when the complete test split exists: notebook 04 (PHASE = TEST) -> python scripts/final_report.py --final <archive>
-\pending{the registered confirmatory analysis requires all nine test shards; TEST\_CORE shard 2, TEST\_COMMIT shard 2 and TEST\_CAG\_SIZE shard 0 are missing}.
-When they exist, \texttt{scripts/final\_report.py} verifies the archive and the signed protocol, refuses any non-confirmatory input, and writes \texttt{sections/results\_test.tex} with \texttt{tables/test\_hypotheses.tex} (fields \texttt{results.\{HA,HD,HE,HF\}.\{p, p\_holm, final\}}), \texttt{test\_ha/hd/he/hf/s2.tex} and \texttt{figures/test\_*.pdf}. No confirmatory claim is made in this paper before that.
+% Replaced automatically when the complete test split exists (notebook 04, PHASE = TEST; scripts/final_report.py verifies the archive and the signed protocol).
+\pending{requires all nine test shards}. The registered confirmatory test has not been run, because three of nine test shards were not generated:
+\begin{itemize}
+\item TEST\_CORE shard 2 holds a third of the base images and attention maps, which every hypothesis needs.
+\item TEST\_COMMIT shard 2 holds a third of the restart branches used by HA and HD.
+\item TEST\_CAG\_SIZE shard 0 holds a third of the CAG arms and size-family scenes used by HE and by HA's size estimates.
+\end{itemize}
+Its absence also limits HE's comparison against constant guidance to the 67 scenes of one CAG shard (Table~\ref{tab:partial-units}). Once the shards exist, the frozen pipeline will replace this section with the registered result, without any change to estimators, rules or constants. No statement in this paper is a confirmatory finding.

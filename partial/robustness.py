@@ -28,6 +28,7 @@ import r3_analyze as RA  # noqa: E402
 TAB, FIG, REP = ROOT / "paper" / "tables", ROOT / "paper" / "figures", ROOT / "reports" / "partial"
 LEVELS = (2, 7.5, 15)
 NB = 2000
+NB_REG = 10000   # registered bootstrap draws; HD resamples use the registered key "HD" so that e = 0 reproduces the registered interval
 FAMS = RA.FAMS
 FAM_TEX = {"objects_present": "presence", "count_ok": "count", "bind_given_pres": "binding$\\mid$pres.", "spatial_given_pres": "spatial$\\mid$pres.",
            "size_given_pres": "size$\\mid$pres.", "all_satisfied": "all satisfied"}
@@ -46,14 +47,15 @@ def t50(num, den):
     return RA.t50_of(num, den)[0]
 
 
-def corrected(num, den, cnt, e):
+def corrected(num, den, cnt, e, delta=0.0):
     """Error-corrected arrays for the pooled estimator C = sum(A - A0) / sum(1 - A0): the denominator of every observed cell becomes 1 - c - A0_obs
     (c = 2e(1 - e)); numerators are unchanged. e = 0 reproduces the registered estimator exactly."""
     c = 2 * e * (1 - e)
-    return num, np.where(cnt > 0, den - c, 0.0)
+    d2 = np.where(cnt > 0, den - c, 0.0)
+    return num - delta * d2, d2   # delta: subtract a constant offset from the pooled C (C' = C - delta)
 
 
-def hd_block(core, br, scene_filter=None, errors=(0.0,), kinds=("presence",)):
+def hd_block(core, br, scene_filter=None, errors=(0.0,), kinds=("presence",), offsets=()):
     per = {}
     for w in LEVELS:
         cr = [r for r in core if float(r["cfg"]) == w and r["steps"] == 40 and (scene_filter is None or r["scene_id"] in scene_filter)]
@@ -63,8 +65,8 @@ def hd_block(core, br, scene_filter=None, errors=(0.0,), kinds=("presence",)):
         per[w] = RA.prepare(cr, brr, "D8")
     scenes = sorted(set().union(*[set(a.scene) | set(b.scene) for a, b in per.values()]))
     arr = {w: {k: C._arrays(per[w][0], per[w][1], k, scenes, RA.GRID) for k in kinds} for w in per}
-    g = rng()
-    idx = [g.integers(0, len(scenes), len(scenes)) for _ in range(NB)]
+    g = C._rng("HD")
+    idx = [g.integers(0, len(scenes), len(scenes)) for _ in range(NB_REG)]
     both = {s for s in scenes if all(any(r.scene == s for r in per[w][0][["scene"]].itertuples()) for w in (2, 15))}
     out = dict(n_scenes=len(scenes), n_informative=len(both), by_error={})
     for e in errors:
@@ -79,6 +81,12 @@ def hd_block(core, br, scene_filter=None, errors=(0.0,), kinds=("presence",)):
                           t50_by_w={str(w): t50(*a[w]) for w in a},
                           t50_ci={str(w): pct([t50(a[w][0][i], a[w][1][i]) for i in idx]) for w in a})
         out["by_error"][str(e)] = res
+    out["by_offset"] = {}
+    for dl in offsets:
+        a = {w: corrected(*arr[w]["presence"], 0.0, dl) for w in arr}
+        draws = [t50(a[15][0][i], a[15][1][i]) - t50(a[2][0][i], a[2][1][i]) for i in idx]
+        out["by_offset"][f"{dl:.3f}"] = dict(delta=t50(*a[15]) - t50(*a[2]), ci95=pct(draws), p=RA.boot_p_two_sided(draws),
+                                             t50_by_w={str(w): t50(*a[w]) for w in a})
     out["A0_mean"] = {str(w): {k: float(per[w][1][per[w][1].kind == k].A0.mean()) for k in kinds} for w in per}
     out["curves"] = {str(w): {k: [None if not math.isfinite(x) else float(x) for x in C.curve_from_arrays(*arr[w][k][:2])] for k in kinds} for w in arr}
     out["raw_agreement"] = {str(w): {k: [float(per[w][0][(per[w][0].kind == k) & (per[w][0].t == t)].A.mean()) for t in RA.GRID] for k in kinds} for w in per}
@@ -92,6 +100,51 @@ def scene_boot_mean(vals_by_scene, g):
     m = np.array([np.mean(v) for v in s])
     d = [m[g.integers(0, len(m), len(m))].mean() for _ in range(NB)]
     return float(m.mean()), pct(d), len(m)
+
+
+def cfg_quality(core, emb, prompts):
+    """Canonical prompts on the scenes generated at every (w, steps) cell: per-cell scene means of presence, whole-prompt satisfaction, CLIP score
+    and seed diversity (mean pairwise DINOv2 cosine distance over the 4 seeds); paired 40 - 20 step differences per w; adherence at w = 7.5,
+    40 steps by the number of constraints in the prompt (all canonical scenes)."""
+    import diversity as DV
+    can = [r for r in core if r.get("variant") == "CAN"]
+    cells = defaultdict(set)
+    for r in can:
+        cells[(float(r["cfg"]), r["steps"])].add(r["scene_id"])
+    common = set.intersection(*cells.values()) if cells else set()
+    per = defaultdict(lambda: defaultdict(list))     # (w, steps) -> scene -> list of rows
+    for r in can:
+        if r["scene_id"] in common:
+            per[(float(r["cfg"]), r["steps"])][r["scene_id"]].append(r)
+
+    def scene_vals(rs, metric):
+        if metric == "diversity":
+            v = [emb[r["job_id"]] for r in rs if r["job_id"] in emb]
+            return DV.mean_pairwise_cosine_distance(np.asarray(v)) if len(v) >= 2 else None
+        x = [float(r[metric]) for r in rs if r.get(metric) is not None]
+        return float(np.mean(x)) if x else None
+    metrics = ("objects_present", "all_satisfied", "clip_score", "diversity")
+    out = dict(n_common_scenes=len(common), cells={}, paired_40_minus_20={})
+    for (w, st), sc in sorted(per.items()):
+        out["cells"][f"{w:g}|{st}"] = {}
+        for m in metrics:
+            vals = {s: scene_vals(rs, m) for s, rs in sc.items()}
+            out["cells"][f"{w:g}|{st}"][m] = scene_boot_mean({s: [v] for s, v in vals.items() if v is not None}, rng())
+    for w in (2.0, 5.0, 7.5, 10.0, 15.0):
+        if (w, 20) in per and (w, 40) in per:
+            out["paired_40_minus_20"][f"{w:g}"] = {}
+            for m in metrics:
+                d = [scene_vals(per[(w, 40)][s], m) - scene_vals(per[(w, 20)][s], m) for s in common
+                     if scene_vals(per[(w, 40)][s], m) is not None and scene_vals(per[(w, 20)][s], m) is not None]
+                out["paired_40_minus_20"][f"{w:g}"][m] = scene_boot_mean({i: [v] for i, v in enumerate(d)}, rng())
+    comp = defaultdict(lambda: defaultdict(list))
+    for r in can:
+        if float(r["cfg"]) == 7.5 and r["steps"] == 40:
+            n = prompts.get(r["prompt_id"], {}).get("n_constraints") or len(prompts.get(r["prompt_id"], {}).get("constraints", []))
+            comp[n][r["scene_id"]].append(r)
+    out["by_n_constraints"] = {str(n): {m: scene_boot_mean({s: [scene_vals(rs, m)] for s, rs in sc.items() if scene_vals(rs, m) is not None}, rng())
+                                        for m in ("objects_present", "all_satisfied")} for n, sc in sorted(comp.items())}
+    return out
 
 
 def cfg_rates(core):
@@ -195,9 +248,9 @@ def ci_s(ci, nd=2):
 
 def write_table(name, caption, label, head, rows, spec, note=None, fit=False):
     L = [f"% generated by partial/robustness.py", r"\begin{table}[t]\centering\small", rf"\caption{{{caption}}}\label{{{label}}}",
-         (r"\resizebox{\linewidth}{!}{" if fit else "") + rf"\begin{{tabular}}{{{spec}}}", r"\toprule", " & ".join(head) + r" \\", r"\midrule"]
+         r"\begin{adjustbox}{max width=\linewidth}" + rf"\begin{{tabular}}{{{spec}}}", r"\toprule", " & ".join(head) + r" \\", r"\midrule"]
     L += [" & ".join(str(c) for c in r) + r" \\" for r in rows]
-    L += [r"\bottomrule", r"\end{tabular}" + ("}" if fit else "")] +([rf"\par\smallskip\footnotesize {note}"] if note else []) + [r"\end{table}", ""]
+    L += [r"\bottomrule", r"\end{tabular}\end{adjustbox}"] +([rf"\par\smallskip\footnotesize {note}"] if note else []) + [r"\end{table}", ""]
     (TAB / f"{name}.tex").write_text("\n".join(L), encoding="utf-8")
 
 
@@ -219,7 +272,10 @@ def main():
     R = dict(status="EXPLORATORY robustness analyses of the PARTIAL TEST rows (not in the registered analysis plan)", source=str(d.name),
              n_rows=len(rows), dedup=dlog if isinstance(dlog, dict) else str(dlog), presence_error_rate=e_pres)
 
-    R["hd"] = hd_block(core, br, errors=(0.0, 0.05, 0.10, e_pres), kinds=("presence", "bind_given_pres"))
+    fc = ROOT / "reports" / "diagnostics" / "full_control.json"
+    full_offset = json.loads(fc.read_text())["null_simulation"]["presence_mean_C_observed"] if fc.exists() else None
+    R["dev_full_presence_offset"] = full_offset
+    R["hd"] = hd_block(core, br, errors=(0.0, 0.05, 0.10, e_pres), kinds=("presence", "bind_given_pres"), offsets=(full_offset,) if full_offset else ())
     inf = {r["scene_id"] for r in br if float(r["cfg"]) == 2 and r.get("restart") == "D8"} & {r["scene_id"] for r in br if float(r["cfg"]) == 15 and r.get("restart") == "D8"}
     b = hd_block(core, br, scene_filter=inf)
     R["hd_informative"] = dict(n_scenes=b["n_scenes"], **b["by_error"]["0.0"]["presence"])
@@ -241,6 +297,9 @@ def main():
         if b:
             R["hd_by_category"][c] = dict(n_scenes=b["n_scenes"], **b["by_error"]["0.0"]["presence"])
     R["cfg_rates"] = cfg_rates(core)
+    cfgj = json.loads((ROOT / "configs" / "experiment_r3.json").read_text())
+    prompts = {p["id"]: p for f in (cfgj["benchmark"]["prompts"], cfgj["benchmark"]["ps_prompts"]) for p in json.loads((ROOT / f).read_text())}
+    R["cfg_quality"] = cfg_quality(core, emb, prompts)
     R["he_arms"] = he_arms(core, cag, emb)
     if a.compare:
         R["reproducibility"] = reproducibility(rows, D.dedup(RA.read(Path(a.compare)))[0])
@@ -249,17 +308,21 @@ def main():
 
     # ---------------- tables
     hd, pres = R["hd"], R["hd"]["by_error"]
-    rows_t = [[f"registered estimand ($e = 0$; resampling all {hd['n_scenes']} scenes)", hd["n_informative"], fmt(pres["0.0"]["presence"]["delta"]), ci_s(pres["0.0"]["presence"]["ci95"])],
+    rows_t = [[f"registered estimate and interval ($e = 0$; bootstrap over all {hd['n_scenes']} scenes)", hd["n_informative"], fmt(pres["0.0"]["presence"]["delta"]), ci_s(pres["0.0"]["presence"]["ci95"])],
               ["resampling only the scenes with $w = 2$ and $w = 15$ branches", R["hd_informative"]["n_scenes"], fmt(R["hd_informative"]["delta"]), ci_s(R["hd_informative"]["ci95"])]]
     for e in ("0.05", "0.1", str(e_pres)):
         r = pres[e]["presence"]
         rows_t.append([f"judge error $e = {float(e):.3f}$" + (" (audit)" if float(e) == e_pres else ""), hd["n_informative"], fmt(r["delta"]), ci_s(r["ci95"])])
+    for dl, r in hd.get("by_offset", {}).items():
+        rows_t.append([f"$C(t) - {float(dl):.3f}$ (DEV full-resample presence offset)", hd["n_informative"], fmt(r["delta"]), ci_s(r["ci95"])])
     for sh, r in R["hd_by_shard"].items():
         rows_t.append([f"TEST\\_CORE shard {sh.split('/')[0]} only", r["n_scenes"], fmt(r["delta"]), ci_s(r["ci95"])])
     for c, r in R["hd_by_category"].items():
         rows_t.append([f"category: {c}", r["n_scenes"], fmt(r["delta"]), ci_s(r["ci95"])])
     write_table("partial_robust_hd", r"Robustness of the HD presence contrast $\Delta t_{50} = t_{50}(w{=}15) - t_{50}(w{=}2)$ (steps; scene-bootstrap 95\% CI). "
-                r"Judge-error rows correct $C(t)$ for symmetric, non-differential misclassification at rate $e$ (Eq.~\ref{eq:err-corr}). Partial TEST, exploratory.",
+                r"Judge-error rows correct $C(t)$ for symmetric, non-differential misclassification at rate $e$ (Eq.~\ref{eq:err-corr}); the offset row subtracts the presence offset "
+                r"of the DEV full-resample control from $C(t)$ at every $w$. All rows use the registered bootstrap draws; ``scenes'' counts scenes with branches at both $w = 2$ and $w = 15$. "
+                r"Partial TEST, exploratory.",
                 "tab:partial-robust-hd", ["Analysis", "scenes", r"$\Delta t_{50}$", "95\\% CI"], rows_t, "lrrr",
                 note="Subgroup rows have few scenes; an interval that includes 0 there is a statement about power, not about the effect.")
     t_rows = []
@@ -270,15 +333,60 @@ def main():
     write_table("partial_t50_by_w", r"Commitment time by guidance scale on canonical prompts (restart D8, 40 steps; partial TEST, exploratory). $\bar A_0$: mean chance agreement of independent seeds.",
                 "tab:partial-t50-w", ["$w$", r"$t_{50}$ presence", "95\\% CI", r"$\bar A_0$ presence", r"$t_{50}$ binding$\mid$pres."], t_rows, "rrrrr",
                 note=r"``--'' marks a curve that never reaches $C = 0.5$ on the grid (right-censored, $t_{50} > 36$).")
-    arm_name = {"A2": "A2 (CAG) $-$ A1", "A3": "A3 (global $s^\star$) $-$ A1", "A4": "A4 (reversed) $-$ A1", "A6": "A6 (constant at A2 mean) $-$ A1",
+    arm_name = {"A2": "A2 (CAG) $-$ A1", "A3": r"A3 (global $s^\star$) $-$ A1", "A4": "A4 (reversed) $-$ A1", "A6": "A6 (constant at A2 mean) $-$ A1",
                 "A2-A6": "A2 $-$ A6 (timing at equal dose)", "A2-A4": "A2 $-$ A4 (registered timing contrast)"}
+    PRr = json.loads((d / "partial_results.json").read_text())["results"]["HE"]
+    reg = {("A2", "div"): (PRr["diversity"]["estimate"], PRr["diversity"]["ci95"]), ("A2-A4", "F"): (PRr["timing"]["estimate"], PRr["timing"]["ci95"]),
+           ("A3", "F"): tuple(PRr["secondary"]["A3_minus_A1"]), ("A6", "F"): tuple(PRr["secondary"]["A6_minus_A1"])}
+    for (arm, m), (e_, ci_) in reg.items():
+        if arm in R["he_arms"]:
+            R["he_arms"][arm][m].update(estimate=e_, ci95=list(ci_), registered=True)
+
+    def cell(r, m):
+        x = r[m]
+        return f"{fmt(x['estimate'], 3)} {ci_s(x['ci95'], 3)}" + (r"$^{\dagger}$" if x.get("registered") else "")
     a_rows = []
     for arm, r in R["he_arms"].items():
-        a_rows.append([arm_name.get(arm, arm), f"{fmt(r['mean_guidance'])} vs {fmt(r['mean_guidance_ref'])}", r["F"]["n"], f"{fmt(r['F']['estimate'], 3)} {ci_s(r['F']['ci95'], 3)}",
-                       f"{fmt(r['presence']['estimate'], 3)} {ci_s(r['presence']['ci95'], 3)}", f"{fmt(r['div']['estimate'], 3)} {ci_s(r['div']['ci95'], 3)}"])
+        a_rows.append([arm_name.get(arm, arm), f"{fmt(r['mean_guidance'])} vs {fmt(r['mean_guidance_ref'])}", r["F"]["n"], cell(r, "F"), cell(r, "presence"), cell(r, "div")])
     write_table("partial_he_arms", r"Guidance-schedule contrasts paired by scene (difference, 95\% CI); A1 is constant $w = 7.5$. $\bar w$: mean applied guidance of the two arms. "
                 r"Presence is the only judged family that met the audit criterion. Partial TEST, exploratory.",
-                "tab:partial-he-arms", ["Contrast", r"$\bar w$", "scenes", r"$\Delta F$", r"$\Delta$ presence", r"$\Delta$ diversity"], a_rows, "lrrlll", fit=True)
+                "tab:partial-he-arms", ["Contrast", r"$\bar w$", "scenes", r"$\Delta F$", r"$\Delta$ presence", r"$\Delta$ diversity"], a_rows, "lrrlll", fit=True,
+                note=r"$^{\dagger}$Output of the registered analysis (its own bootstrap draws); other cells are post-hoc. ``scenes'': scenes with both arms. "
+                     r"A1 exists only for scenes of the present TEST\_CORE shards, so contrasts with A1 use 67 scenes (all in CAG shard 1); contrasts between CAG arms use all 134.")
+
+    # ---------------- analysis units: which scenes enter which estimate
+    if a.records:
+        recs = [json.loads(line) for line in open(a.records, encoding="utf-8")]
+        PRall = json.loads((d / "partial_results.json").read_text())
+
+        def sc(f):
+            return {r["scene_id"] for r in recs if f(r)}
+        core_s, commit_s, cagst_s = sc(lambda r: r["stage"] == "TEST_CORE"), sc(lambda r: r["stage"] == "TEST_COMMIT"), sc(lambda r: r["stage"] == "TEST_CAG_SIZE")
+        arms_s = sc(lambda r: r.get("kind") == "cag")
+        size_s = cagst_s - arms_s
+        d8_75 = sc(lambda r: r.get("kind") == "branch" and r.get("restart") == "D8" and float(r["cfg"]) == 7.5)
+        er30 = sc(lambda r: r.get("kind") == "branch" and r.get("restart") == "ER30")
+        d8_2_15 = sc(lambda r: r.get("kind") == "branch" and r.get("restart") == "D8" and float(r["cfg"]) == 2) & sc(lambda r: r.get("kind") == "branch" and r.get("restart") == "D8" and float(r["cfg"]) == 15)
+        sw = sc(lambda r: r.get("kind") == "switch")
+        U = dict(core=len(core_s), commit=len(commit_s), commit_branch=len(commit_s & d8_75), commit_switch=len(commit_s & sw), cagsize=len(cagst_s),
+                 cag_arms=len(arms_s), size_family=len(size_s), size_groups=len({r["shard_group"] for r in recs if r["scene_id"] in size_s}),
+                 size_branch=len(size_s & d8_75), ha_d8=len(d8_75), ha_er30=len(er30), hd=len(d8_2_15), he_a1=len(arms_s & core_s), he_arms=len(arms_s),
+                 he_shards=sorted({r["shard"] for r in recs if r.get("kind") == "cag" and r["scene_id"] in core_s}),
+                 hf=PRall["results"]["HF"]["n_scenes"], hf_maps=PRall["coverage"]["hypotheses"]["attention_maps"], he_reported=PRall["results"]["HE"]["n_scenes"])
+        R["units"] = U
+        u_rows = [["TEST\\_CORE (shards 0, 1)", f"{U['core']} scene IDs", "canonical, variant and CFG $\\times$ steps images; attention maps"],
+                  ["TEST\\_COMMIT (shards 0, 1)", f"{U['commit']} scene IDs", f"{U['commit_branch']} with restart branches, {U['commit_switch']} with prompt-switch jobs"],
+                  ["TEST\\_CAG\\_SIZE (shards 1, 2)", f"{U['cagsize']} scene IDs", f"{U['cag_arms']} main-benchmark scenes with CAG arms; {U['size_family']} size-family scenes "
+                   f"({U['size_groups']} object-pair groups), {U['size_branch']} of them with restart branches"],
+                  [r"\midrule HA, D8 ($w = 7.5$)", f"{U['ha_d8']} scenes", f"{U['commit_branch']} TEST\\_COMMIT + {U['size_branch']} size-family scenes"],
+                  ["HA, ER30", f"{U['ha_er30']} scenes", "TEST\\_COMMIT only"],
+                  ["HD", f"{U['hd']} scenes", f"branches at $w = 2$ and $15$ (TEST\\_COMMIT); the registered bootstrap resamples all {U['ha_d8']}"],
+                  ["HE, A2 vs A1 (adherence, diversity)", f"{U['he_a1']} scenes", f"A1 needs a TEST\\_CORE image; only CAG shard {', '.join(s.split('/')[0] for s in U['he_shards'])} overlaps"],
+                  ["HE, A2 vs A4; dose-matched contrasts", f"{U['he_arms']} scenes", "all scenes with CAG arms"],
+                  ["HF", f"{U['hf']} scenes", f"{U['hf_maps']:,} attention maps at $w = 7.5$"]]
+        write_table("partial_units", r"What the partial TEST split contains and which scenes enter each estimate (scene = independent unit; seeds, branches and arms of a scene "
+                    r"are resampled together). Partial TEST.", "tab:partial-units", ["Stage or estimate", "Units", "Composition"], u_rows, "llp{7.2cm}",
+                    note=f"The registered HE output lists {U['he_reported']} scenes: every scene with an adherence value in A1 or any CAG arm, not the number of paired scenes.")
 
     # ---------------- DEV vs partial TEST commitment times (D8 and ER30, w = 7.5)
     dev = json.loads((ROOT / "docs" / "evidence" / "dev_analysis_20261020" / "dev_constants_final.json").read_text())["ha_dev"]["variants"]
@@ -334,6 +442,20 @@ def main():
     for w, nm in ((2, "Two"), (7.5, "Seven"), (15, "Fifteen")):
         r = cr.get(f"{w}|40", {})
         M += [mac(f"rbRatePres{nm}", fmt(r.get("objects_present", (math.nan,))[0], 2)), mac(f"rbRateAll{nm}", fmt(r.get("all_satisfied", (math.nan,))[0], 2))]
+    cq = R["cfg_quality"]
+    for w, nm in ((2, "Two"), (15, "Fifteen")):
+        c_ = cq["cells"].get(f"{w:g}|40", {})
+        M += [mac(f"rbClip{nm}", fmt(c_.get("clip_score", (math.nan,))[0], 1)), mac(f"rbDiv{nm}", fmt(c_.get("diversity", (math.nan,))[0], 3))]
+    M.append(mac("rbCommon", cq["n_common_scenes"]))
+    st = cq["paired_40_minus_20"].get("7.5", {})
+    if st:
+        M += [mac("rbStepAll", fmt(st["all_satisfied"][0], 3)), mac("rbStepAllLo", fmt(st["all_satisfied"][1][0], 3)), mac("rbStepAllHi", fmt(st["all_satisfied"][1][1], 3))]
+    bn = cq["by_n_constraints"]
+    ns = sorted(bn, key=int)
+    M += [mac("rbCompFourPlusMax", fmt(max(bn[n]["all_satisfied"][0] for n in ns if int(n) >= 4), 2))]
+    M += [mac("rbCompLoN", ns[0]), mac("rbCompHiN", ns[-1]), mac("rbCompLo", fmt(bn[ns[0]]["all_satisfied"][0], 2)), mac("rbCompHi", fmt(bn[ns[-1]]["all_satisfied"][0], 2))]
+    for dl, r in R["hd"].get("by_offset", {}).items():
+        M += [mac("rbHdOff", fmt(r["delta"])), mac("rbHdOffLo", fmt(r["ci95"][0])), mac("rbHdOffHi", fmt(r["ci95"][1])), mac("rbOffset", f"{float(dl):.3f}")]
     if "reproducibility" in R:
         rp = R["reproducibility"]
         M += [mac("rbRepMatched", f"{rp['matched']:,}"), mac("rbRepIdentical", f"{rp['rows_identical']:,}"),
@@ -366,17 +488,36 @@ def main():
     ax[1].set_ylabel(r"$\Delta t_{50}$ (w=15 $-$ w=2), steps"); ax[1].set_title("(b) HD under judge error", fontsize=8)
     fig.tight_layout(); fig.savefig(FIG / "partial_hd_dose.pdf"); fig.savefig(REP / "partial_hd_dose.png", dpi=150); plt.close(fig)
 
-    fig, axs = plt.subplots(1, 3, figsize=(6.6, 2.3), sharex=True)
-    for ax, f in zip(axs, ("objects_present", "bind_given_pres", "all_satisfied")):
-        for steps, ls in ((40, "-"), (20, "--")):
-            ws = [w for w in (2, 5, 7.5, 10, 15) if f"{w}|{steps}" in cr]
-            m = [cr[f"{w}|{steps}"][f][0] for w in ws]
-            lo = [cr[f"{w}|{steps}"][f][1][0] for w in ws]
-            hi = [cr[f"{w}|{steps}"][f][1][1] for w in ws]
-            ax.plot(ws, m, ls, marker="o", ms=3, label=f"{steps} steps"); ax.fill_between(ws, lo, hi, alpha=0.15)
-        ax.set_title(FAM_TEX[f].replace("$\\mid$", "|"), fontsize=8); ax.set_xlabel("guidance w")
-    axs[0].set_ylabel("rate (scene mean)"); axs[0].legend(fontsize=7)
+    cq = R["cfg_quality"]["cells"]
+    titles = {"objects_present": "presence rate", "all_satisfied": "whole prompt satisfied", "clip_score": "CLIP score", "diversity": "seed diversity (DINOv2)"}
+    fig, axs = plt.subplots(1, 4, figsize=(7.0, 2.2), sharex=True)
+    for ax, f in zip(axs, titles):
+        for steps, ls, c in ((40, "-", "C0"), (20, "--", "C1")):
+            ws = [w for w in (2, 5, 7.5, 10, 15) if f"{w:g}|{steps}" in cq]
+            v = [cq[f"{w:g}|{steps}"][f] for w in ws]
+            ax.plot(ws, [x[0] for x in v], ls, marker="o", ms=3, color=c, label=f"{steps} steps")
+            ax.fill_between(ws, [x[1][0] for x in v], [x[1][1] for x in v], alpha=0.15, color=c)
+        ax.set_title(titles[f], fontsize=7); ax.set_xlabel("guidance w")
+    axs[0].legend(fontsize=6)
     fig.tight_layout(); fig.savefig(FIG / "partial_cfg_rates.pdf"); fig.savefig(REP / "partial_cfg_rates.png", dpi=150); plt.close(fig)
+
+    pq, bn = R["cfg_quality"]["paired_40_minus_20"], R["cfg_quality"]["by_n_constraints"]
+    fig, axs = plt.subplots(1, 2, figsize=(6.6, 2.4))
+    for i, (f, c) in enumerate((("objects_present", "C0"), ("all_satisfied", "C2"))):
+        ws = [w for w in pq]
+        axs[0].errorbar([float(w) + (i - 0.5) * 0.3 for w in ws], [pq[w][f][0] for w in ws],
+                        yerr=[[pq[w][f][0] - pq[w][f][1][0] for w in ws], [pq[w][f][1][1] - pq[w][f][0] for w in ws]], fmt="o", capsize=2, color=c, label=titles[f])
+    axs[0].axhline(0, color="grey", lw=0.8); axs[0].set_xlabel("guidance w"); axs[0].set_ylabel("40 steps $-$ 20 steps"); axs[0].legend(fontsize=6)
+    axs[0].set_title(f"(a) paired step-count difference ({R['cfg_quality']['n_common_scenes']} scenes)", fontsize=7)
+    ns = sorted(bn, key=int)
+    for i, (f, c) in enumerate((("objects_present", "C0"), ("all_satisfied", "C2"))):
+        axs[1].errorbar([int(n) + (i - 0.5) * 0.15 for n in ns], [bn[n][f][0] for n in ns],
+                        yerr=[[bn[n][f][0] - bn[n][f][1][0] for n in ns], [bn[n][f][1][1] - bn[n][f][0] for n in ns]], fmt="o-", ms=3, capsize=2, color=c, label=titles[f])
+    for n in ns:
+        axs[1].annotate(f"{bn[n]['all_satisfied'][2]}", (int(n), 0.02), fontsize=5, ha="center", color="grey")
+    axs[1].set_xlabel("constraints in the prompt"); axs[1].set_ylabel("rate (scene mean)"); axs[1].set_ylim(0, 1); axs[1].legend(fontsize=6)
+    axs[1].set_title("(b) adherence by prompt complexity (w = 7.5)", fontsize=7)
+    fig.tight_layout(); fig.savefig(FIG / "partial_steps_complexity.pdf"); fig.savefig(REP / "partial_steps_complexity.png", dpi=150); plt.close(fig)
 
     fig, axs = plt.subplots(1, 3, figsize=(6.6, 2.3), sharey=True)
     arms = list(R["he_arms"])

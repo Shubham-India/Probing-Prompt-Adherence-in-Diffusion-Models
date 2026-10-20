@@ -1,19 +1,21 @@
 \begin{table*}[t]\centering\small
-\caption{Closest prior work and this study. Entries describe each method at the level verified for this draft: full text for P2P and Attend-and-Excite; abstract or project page for the others (marked in \texttt{references.bib}). ``--'' means the aspect is not the method's aim.}\label{tab:related}
-\begin{tabular}{p{3.0cm}p{3.6cm}p{3.6cm}p{3.6cm}}
+\caption{Closest prior work and this study: what each method measures, what it changes during sampling, and how it is evaluated. ``--'': not an aim of the method. Descriptions of Prompt-to-Prompt and Attend-and-Excite were checked against the full papers, the others against their abstracts (marked in the bibliography source).}\label{tab:related}
+\begin{tabular}{p{2.9cm}p{3.7cm}p{3.7cm}p{3.7cm}}
 \toprule
-Method & What it measures & What it intervenes on & How it is evaluated \\
+Method & Measures & Intervenes on & Evaluated by \\
 \midrule
-Prompt-to-Prompt \citep{hertz2023p2p} & -- & cross-attention maps during generation (injection, re-weighting) & image edits, qualitative and quantitative comparisons \\
-Attend-and-Excite \citep{chefer2023attend} & subject-token attention as a neglect signal & latents at inference, to raise neglected tokens' attention & object presence/binding via CLIP-based metrics and a user study \\
-Prompt Mixing \citep{patashnik2023mixing} & -- & prompt used in different denoising intervals & localisation of shape variations \\
-Critical windows \citep{li2024critical} & theoretical time windows of feature emergence & -- & theory and experiments \\
+Prompt-to-Prompt \citep{hertz2023p2p} & -- & cross-attention maps (injection, re-weighting) to edit an image & edit fidelity, qualitative and quantitative \\
+Attend-and-Excite \citep{chefer2023attend} & subject-token attention as a neglect signal & latents at inference, to raise neglected tokens' attention & object presence and binding (CLIP-based metrics, user study) \\
+Prompt Mixing \citep{patashnik2023mixing} & -- & which prompt is used in which denoising interval & localisation of shape variations \\
+Critical windows \citep{li2024critical} & time windows in which features emerge (theory) & -- & theory and experiments \\
 Interval guidance \citep{kynkaanniemi2024interval} & -- & CFG applied only in a limited noise interval & distribution and sample quality \\
-CADS \citep{sadat2024cads} & -- & annealed (noised) conditioning during sampling & diversity and quality \\
+CADS \citep{sadat2024cads} & -- & conditioning annealed with noise early in sampling & diversity and quality \\
 Dynamic CFG \citep{dynamiccfg2025} & per-step feedback from latent evaluators & per-step guidance scale, chosen online & prompt adherence and quality \\
-Step selection \citep{grimal2025step} & -- & conditioning signal strengthened at selected denoising steps (later steps favoured) & text--image alignment \\
+Step selection \citep{grimal2025step} & -- & conditioning signal strengthened at selected steps & text--image alignment \\
+InitNO \citep{guo2024initno} & attention-based validity of the initial noise & initial noise, optimised before sampling & text--image alignment \\
+Diffusion Probe \citep{diffusionprobe2026} & early cross-attention as a predictor of final quality & -- (used for prompt and seed selection) & prediction accuracy \\
 \midrule
-This study & chance-corrected restart persistence $C(t)$, $t_{50}$ per constraint type; attention stabilisation $t_{\mathrm{stab}}$ & two-level CFG schedule switched at $s^\star$ derived from DEV $t_{50}$ (CAG) & pre-registered tests with a human-audited detector judge; constant, reversed, matched-mean and global-switch controls \\
+This study & interventional, chance-corrected persistence $C(t)$ and $t_{50}$ per constraint type; attention stabilisation & two-level CFG switched at a step derived from development-set $t_{50}$ (CAG) & pre-registered tests with a human-audited judge; constant, reversed and matched-mean schedule controls \\
 \bottomrule
 \end{tabular}
 \end{table*}

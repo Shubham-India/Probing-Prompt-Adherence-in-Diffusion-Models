@@ -19,10 +19,10 @@ Source: `D:\prompt_Project\local_audit\partial_x\r3-test-partial-20261020T134300
 
 ## Limitations
 - Missing TEST shards (not imputed): TEST_CORE shard 2; TEST_COMMIT shard 2; TEST_CAG_SIZE shard 0; estimates cover only the scene groups of the present shards.
-- This is not the registered confirmatory analysis: that requires all nine shards and notebook 04; Holm-adjusted p-values are shown for completeness only.
-- HA is exploratory by its failed DEV precision gate; the full-resample control failed on DEV (Section on DEV results).
+- This is not the registered confirmatory analysis, which requires all nine shards; Holm-adjusted p-values are shown for completeness only.
+- HA is exploratory by its failed DEV precision gate; the full-resample control failed on DEV.
 - Only the presence judge met the audit criterion (single annotator, no valid double annotation); count, binding, spatial and size outcomes are exploratory.
-- HE uses only scenes with both A1 and CAG images (67 scenes).
+- HE contrasts with constant guidance use only the 67 scenes with both A1 and CAG images (one CAG shard); the comparison with the reversed schedule uses all scenes with CAG arms.
 
 Figures: ['partial_curves_D8.pdf', 'partial_curves_ER30.pdf', 'partial_he.pdf', 'partial_s2_presence.pdf']
 LaTeX: paper/sections/results_partial.tex, paper/tables/partial_*.tex

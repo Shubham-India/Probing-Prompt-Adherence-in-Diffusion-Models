@@ -1,4 +1,12 @@
 \section{Experimental design and execution}\label{sec:design}
-All jobs come from deterministic manifests sharded by scene group over three workers (Table~\ref{tab:design}). A stage guard refuses any stage whose owner-controlled gates are false, and test jobs are refused unless the signed protocol verifies against the code, configurations, benchmark, judge definition and development-set constants. Every worker output is merged against its manifest before analysis; missing, duplicated, corrupt or mismatching outputs are rejected, never silently dropped.
-The development stages ran first: the canonical DEV core (400 images: 100 prompts, four seeds, saved states; restarts branch from seeds 0 and 1), the DEV variants and size family (\devCoreJobs{} jobs), restart branches and CFG bases (\devCommitJobs{} jobs) and the CAG quality guard (\devCagJobs{} jobs). The test split comprises \testCoreJobs{} core and CFG$\times$steps jobs, \testCommitJobs{} restart and switch jobs, and \testCagJobs{} CAG and size-family jobs (\testEq{} full-generation equivalents). Generation used two NVIDIA T4 GPUs at about 7.0~s per 40-step image per GPU.
+All jobs come from deterministic manifests sharded by scene group over three shards per stage (Table~\ref{tab:design}). Each stage ran only after the gates of the previous one had been checked. Test jobs could run only if the signed protocol verified against the code, configurations, benchmark, judge definition and development-set constants. Every output was merged against its manifest before analysis; missing, duplicated, corrupt or mismatching outputs are rejected, never silently dropped.
+
+The development split comprises:
+\begin{itemize}
+\item the canonical DEV core: 400 images from 100 prompts and four seeds, with saved intermediate states; restarts branch from seeds 0 and 1;
+\item the DEV variants and size family (\devCoreJobs{} jobs);
+\item restart branches and CFG bases (\devCommitJobs{} jobs);
+\item the CAG quality guard (\devCagJobs{} jobs).
+\end{itemize}
+The test split comprises \testCoreJobs{} core and CFG$\times$steps jobs, \testCommitJobs{} restart and switch jobs, and \testCagJobs{} CAG and size-family jobs (\testEq{} full-generation equivalents). Six of its nine shards were generated: TEST\_CORE shards 0--1, TEST\_COMMIT shards 0--1 and TEST\_CAG\_SIZE shards 1--2 (Table~\ref{tab:partial-units}). Generation used NVIDIA T4 GPUs at about 7~s per 40-step image.
 \input{tables/r3_design}

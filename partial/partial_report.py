@@ -36,8 +36,9 @@ def tex(s):
 
 
 def table(name, caption, label, head, rows, spec):
-    L = [r"\begin{table}[t]\centering\small", rf"\caption{{{caption}}}\label{{{label}}}", rf"\begin{{tabular}}{{{spec}}}", r"\toprule", " & ".join(head) + r" \\", r"\midrule"]
-    L += [" & ".join(str(c) for c in r) + r" \\" for r in rows] + [r"\bottomrule", r"\end{tabular}", r"\end{table}"]
+    L = [r"\begin{table}[t]\centering\small", rf"\caption{{{caption}}}\label{{{label}}}", r"\begin{adjustbox}{max width=\linewidth}", rf"\begin{{tabular}}{{{spec}}}",
+         r"\toprule", " & ".join(head) + r" \\", r"\midrule"]
+    L += [" & ".join(str(c) for c in r) + r" \\" for r in rows] + [r"\bottomrule", r"\end{tabular}", r"\end{adjustbox}", r"\end{table}"]
     (TABLES / name).write_text("\n".join(L) + "\n", encoding="utf-8")
 
 
@@ -100,7 +101,7 @@ def main():
         hyp.append([h, what, f(e, nd), f(ci, nd), f(r.get("p"), 4), f(r.get("p_holm"), 4), tex(rule).replace("$<$=", r"$\le$")])
         csv_rows.append(dict(hypothesis=h, estimand=what, estimate=e, ci=ci, p=r.get("p"), p_holm=r.get("p_holm"), rule_outcome=rule, label=LABEL))
     table("partial_hypotheses.tex", rf"Hypotheses on the available TEST shards ({LABEL}). $p_{{\mathrm{{Holm}}}}$ over the registered family is shown for completeness only; "
-          "no result here is a confirmatory finding.", "tab:partial-hyp", ["Hyp.", "Estimand", "Estimate", "CI", "$p$", "$p_{\\mathrm{Holm}}$", "Rule outcome on partial data"],
+          r"no result here is a confirmatory finding. $p$ is the registered hypothesis-level $p$ (for HD, $\min(1, 2\min p)$ over its two estimands; Table~\ref{tab:partial-hd}).", "tab:partial-hyp", ["Hyp.", "Estimand", "Estimate", "CI", "$p$", "$p_{\\mathrm{Holm}}$", "Rule outcome on partial data"],
           hyp, "llrlrrp{4.2cm}")
 
     ha = R.get("HA", {}).get("variants", {})
@@ -112,15 +113,19 @@ def main():
           "tab:partial-ha", ["Kind", "D8", "ER30"], rows, "lrr")
 
     hd = (R.get("HD", {}).get("estimands") or {})
-    table("partial_hd.tex", rf"HD on the available shards ({LABEL}): $t_{{50}}$ by guidance scale; binding estimand exploratory by the audit.", "tab:partial-hd",
+    def dl(x):
+        return "n.e." if isinstance(x, str) and "inf" in x or (isinstance(x, float) and not math.isfinite(x)) else f(x)
+    table("partial_hd.tex", rf"HD on the available shards ({LABEL}): $t_{{50}}$ by guidance scale and the per-estimand bootstrap $p$. The registered HD $p$ in "
+          r"Table~\ref{tab:partial-hyp} is $\min(1, 2\min p)$ over the two estimands. Binding is exploratory by the audit; n.e.: not estimable because "
+          r"binding never reaches $C=0.5$ at $w=2$ (right-censored).", "tab:partial-hd",
           ["Estimand", "$t_{50}$ ($w$=2 / 7.5 / 15)", r"$\Delta t_{50}$ (15$-$2)", "95\\% CI", "$p$", "rule"],
-          [[KINDS.get(k, k), " / ".join(f(v.get("t50_by_w", {}).get(w), 1) for w in ("2", "7.5", "15")), f(v.get("delta")), f(v.get("ci95")), f(v.get("p"), 4), tex(v.get("decision"))]
+          [[KINDS.get(k, k), " / ".join(f(v.get("t50_by_w", {}).get(w), 1) for w in ("2", "7.5", "15")).replace(">36", "$>36$"), dl(v.get("delta")), f(v.get("ci95")), f(v.get("p"), 4), tex(v.get("decision"))]
            for k, v in hd.items()], "llrlrl")
 
     he = R.get("HE", {})
     cond, sec = he.get("conditions") or {}, he.get("secondary") or {}
-    table("partial_he.tex", rf"HE: CAG ($w_{{lo}}=3$) vs constant CFG 7.5 (A1) and the reversed schedule A4, on scenes with both A1 and CAG images ({LABEL}; "
-          rf"{C.get('hypotheses', {}).get('HE_scenes_with_A1_and_CAG', '--')} scenes).", "tab:partial-he", ["Contrast", "Estimate", "CI", "Requirement", "Met"],
+    table("partial_he.tex", rf"HE: CAG ($w_{{lo}}=3$) vs constant CFG 7.5 (A1) and the reversed schedule A4 ({LABEL}). Contrasts with A1 use the "
+          rf"{C.get('hypotheses', {}).get('HE_scenes_with_A1_and_CAG', '--')} scenes that have both A1 and CAG images; A2$-$A4 uses every scene with CAG arms (Table~\ref{{tab:partial-units}}).", "tab:partial-he", ["Contrast", "Estimate", "CI", "Requirement", "Met"],
           [["A2$-$A1 on $F$", f((he.get("non_inferiority") or {}).get("estimate"), 3), f((he.get("non_inferiority") or {}).get("ci90"), 3), r"90\% CI lower $>-0.03$", f(cond.get("non_inferior"))],
            ["A2$-$A1 diversity", f((he.get("diversity") or {}).get("estimate"), 4), f((he.get("diversity") or {}).get("ci95"), 4), r"95\% CI $>0$", f(cond.get("more_diverse"))],
            ["A2$-$A4 on $F$", f((he.get("timing") or {}).get("estimate"), 3), f((he.get("timing") or {}).get("ci95"), 3), r"95\% CI $>0$", f(cond.get("beats_reversed"))],
@@ -178,25 +183,39 @@ def main():
 
     missing = {st: C[st].get("missing") for st in ("TEST_CORE", "TEST_COMMIT", "TEST_CAG_SIZE") if C[st].get("missing")}
     lim = [f"Missing TEST shards (not imputed): {'; '.join(f'{st} shard {chr(44).join(map(str, v))}' for st, v in missing.items())}; estimates cover only the scene groups of the present shards.",
-           "This is not the registered confirmatory analysis: that requires all nine shards and notebook 04; Holm-adjusted p-values are shown for completeness only.",
-           "HA is exploratory by its failed DEV precision gate; the full-resample control failed on DEV (Section on DEV results).",
+           "This is not the registered confirmatory analysis, which requires all nine shards; Holm-adjusted p-values are shown for completeness only.",
+           "HA is exploratory by its failed DEV precision gate; the full-resample control failed on DEV.",
            "Only the presence judge met the audit criterion (single annotator, no valid double annotation); count, binding, spatial and size outcomes are exploratory.",
-           f"HE uses only scenes with both A1 and CAG images ({C.get('hypotheses', {}).get('HE_scenes_with_A1_and_CAG')} scenes)."]
-    sec = [r"\section{Partial TEST results (exploratory)}\label{sec:resPARTIAL}",
-           "Generated by \\texttt{partial/partial\\_report.py} from the verified TEST shards that exist (" + tex(prov) + "). "
-           "Every quantity below is \\textbf{exploratory}: it covers a subset of the TEST scenes and is not the registered confirmatory test.",
-           r"\input{tables/partial_coverage}", r"\input{tables/partial_hypotheses}", r"\input{tables/partial_ha}", r"\input{tables/partial_hd}", r"\input{tables/partial_he}"]
-    if calls:
-        sec.append(r"\input{tables/partial_he_cost}")
-    sec += [r"\input{tables/partial_hf}", r"\input{tables/partial_s2}"]
-    caps = {"partial_curves_D8.pdf": "Chance-corrected persistence $C(t)$ by prompt type under the D8 restart probe ($w=7.5$); dashed line marks $C=0.5$, whose crossing defines $t_{50}$.",
-            "partial_curves_ER30.pdf": "Chance-corrected persistence $C(t)$ by prompt type under the ER30 restart probe ($w=7.5$); dashed line marks $C=0.5$.",
-            "partial_he.pdf": "HE contrasts on the composite $F$: A2$-$A1 (90\\% CI, non-inferiority; dotted line is the $-0.03$ margin) and A2$-$A4 (95\\% CI, timing versus the reversed schedule).",
-            "partial_s2_presence.pdf": "S2: object-presence rate by prompt variant."}
-    for fg in figs:
-        sec += [r"\begin{figure}[t]\centering", rf"\includegraphics[width=0.75\linewidth]{{figures/{fg}}}",
-                rf"\caption{{{caps.get(fg, tex(fg[:-4]))} Partial TEST, exploratory.}}\label{{fig:{fg[:-4].replace('_', '-')}}}", r"\end{figure}"]
+           f"HE contrasts with constant guidance use only the {C.get('hypotheses', {}).get('HE_scenes_with_A1_and_CAG')} scenes with both A1 and CAG images (one CAG shard); "
+           "the comparison with the reversed schedule uses all scenes with CAG arms."]
+    sec = [r"\section{Registered analysis on the partial test split}\label{sec:resPARTIAL}",
+           r"This section applies the registered estimators and decision rules, unchanged, to the six test shards that exist. "
+           r"Because three shards are missing, every result is \textbf{partial and exploratory}: it covers a subset of the test scenes, and the Holm-adjusted "
+           r"$p$-values are reported over the full registered family for completeness, not as a confirmatory test (Table~\ref{tab:partial-hyp}). "
+           r"Only presence has a validated judge (Section~\ref{sec:evaluation}). HF's outcome uses the registered rejection rule "
+           r"(concordance $\le 0.5$, Section~\ref{sec:rq}).",
+           r"\input{tables/partial_coverage}", r"\input{tables/partial_hypotheses}", r"\input{tables/partial_ha}", r"\input{tables/partial_hd}", r"\input{tables/partial_he}",
+           r"\input{tables/partial_hf}"]
+    caps = {"partial_curves_D8.pdf": "Chance-corrected persistence $C(t)$ by constraint type under the D8 restart probe ($w=7.5$); dashed line marks $C=0.5$, whose crossing defines $t_{50}$.",
+            "partial_curves_ER30.pdf": "Chance-corrected persistence $C(t)$ by constraint type under the ER30 restart probe ($w=7.5$); dashed line marks $C=0.5$.",
+            "partial_s2_presence.pdf": "Supporting analysis S2: object-presence rate by prompt variant."}
+    main_figs, app_figs = [x for x in figs if x == "partial_curves_D8.pdf"], [x for x in figs if x in ("partial_curves_ER30.pdf", "partial_s2_presence.pdf")]
+
+    def fig_block(fg):
+        return [r"\begin{figure}[t]\centering", rf"\includegraphics[width=0.7\linewidth]{{figures/{fg}}}",
+                rf"\caption{{{caps.get(fg, tex(fg[:-4]))} Partial test split, exploratory.}}\label{{fig:{fg[:-4].replace('_', '-')}}}", r"\end{figure}"]
+    for fg in main_figs:
+        sec += fig_block(fg)
     sec += [r"\paragraph{Limitations of this analysis.}", r"\begin{itemize}"] + [rf"\item {tex(x)}" for x in lim] + [r"\end{itemize}"]
+    app = [r"\subsection{Additional registered outputs on the partial test split}\label{app:partial}",
+           "Supporting variant-level outcome rates (S2), the per-arm network evaluations of the CAG arms, and the equal-ratio restart curves. "
+           "Every CAG arm evaluates the network 80 times per image, because $w_{lo}=3$ keeps the unconditional branch."]
+    if calls:
+        app.append(r"\input{tables/partial_he_cost}")
+    app.append(r"\input{tables/partial_s2}")
+    for fg in app_figs:
+        app += fig_block(fg)
+    (SECS / "appendix_partial.tex").write_text("\n".join(app) + "\n", encoding="utf-8")
     (SECS / "results_partial.tex").write_text("\n".join(sec) + "\n", encoding="utf-8")
     m = (ROOT / "paper" / "main.tex").read_text(encoding="utf-8")
     if "sections/results_partial" not in m:
