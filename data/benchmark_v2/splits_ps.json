@@ -1,0 +1,30 @@
+{
+ "DEV": [
+  "psD00",
+  "psD01",
+  "psD02",
+  "psD03",
+  "psD04",
+  "psD05",
+  "psD06",
+  "psD07"
+ ],
+ "TEST": [
+  "psT00",
+  "psT01",
+  "psT02",
+  "psT03",
+  "psT04",
+  "psT05",
+  "psT06",
+  "psT07",
+  "psT08",
+  "psT09",
+  "psT10",
+  "psT11",
+  "psT12",
+  "psT13",
+  "psT14",
+  "psT15"
+ ]
+}

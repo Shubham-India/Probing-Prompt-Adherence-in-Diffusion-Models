@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "model_id": "stable-diffusion-v1-5/stable-diffusion-v1-5",
+  "revision": "f03de327dd89b501a01da37fc5240cf4fdba85a1",
+  "image_size": 512,
+  "cfg_scales": [7.5],
+  "steps": [40],
+  "seeds": [0, 1, 2, 3],
+  "seeds_core": [0, 1, 2, 3],
+  "seeds_branch_bases": [0, 1],
+  "scheduler": {"name": "DDIM", "eta": 0.0},
+  "restart": {
+    "grid": [6, 12, 18, 24, 30, 36],
+    "D": 8,
+    "equal_ratio_target": 0.30,
+    "D_sensitivity": [4, 12],
+    "full_resample_control": true
+  },
+  "num_shards": 2,
+  "split_manifest": null,
+  "freeze": {"addendum_hash": null, "test_sealed": true}
+}

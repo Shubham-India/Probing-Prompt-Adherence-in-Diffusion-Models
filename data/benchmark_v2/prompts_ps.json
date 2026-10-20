@@ -1,0 +1,9698 @@
+[
+ {
+  "id": "psD00_P_CAN",
+  "scene_id": "psD00_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a hat and a vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD00_C_CAN",
+  "scene_id": "psD00_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow hat and a white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD00_S_CAN",
+  "scene_id": "psD00_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small hat and a large vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD00_R_CAN",
+  "scene_id": "psD00_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a hat to the left of a vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD00_CS_CAN",
+  "scene_id": "psD00_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small yellow hat and a large white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD00_CR_CAN",
+  "scene_id": "psD00_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow hat to the left of a white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD00_SR_CAN",
+  "scene_id": "psD00_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small hat to the left of a large vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD00_CSR_CAN",
+  "scene_id": "psD00_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small yellow hat to the left of a large white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD00_CSR_CFC",
+  "scene_id": "psD00_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small white hat to the left of a large yellow vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD00_CSR_CFS",
+  "scene_id": "psD00_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large yellow hat to the left of a small white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD00_CSR_CFR",
+  "scene_id": "psD00_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small yellow hat to the right of a large white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|vase",
+  "shard_group": "psD00",
+  "ps_pair_id": "psD00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD01_P_CAN",
+  "scene_id": "psD01_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a candle and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD01_C_CAN",
+  "scene_id": "psD01_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow candle and a purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD01_S_CAN",
+  "scene_id": "psD01_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small candle and a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD01_R_CAN",
+  "scene_id": "psD01_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a candle to the left of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD01_CS_CAN",
+  "scene_id": "psD01_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small yellow candle and a large purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD01_CR_CAN",
+  "scene_id": "psD01_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow candle to the left of a purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD01_SR_CAN",
+  "scene_id": "psD01_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small candle to the left of a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD01_CSR_CAN",
+  "scene_id": "psD01_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small yellow candle to the left of a large purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD01_CSR_CFC",
+  "scene_id": "psD01_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small purple candle to the left of a large yellow sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD01_CSR_CFS",
+  "scene_id": "psD01_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large yellow candle to the left of a small purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD01_CSR_CFR",
+  "scene_id": "psD01_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small yellow candle to the right of a large purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|sphere",
+  "shard_group": "psD01",
+  "ps_pair_id": "psD01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD02_P_CAN",
+  "scene_id": "psD02_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball and a box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD02_C_CAN",
+  "scene_id": "psD02_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black ball and a red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD02_S_CAN",
+  "scene_id": "psD02_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball and a large box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD02_R_CAN",
+  "scene_id": "psD02_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball to the left of a box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD02_CS_CAN",
+  "scene_id": "psD02_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black ball and a large red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD02_CR_CAN",
+  "scene_id": "psD02_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black ball to the left of a red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD02_SR_CAN",
+  "scene_id": "psD02_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball to the left of a large box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD02_CSR_CAN",
+  "scene_id": "psD02_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black ball to the left of a large red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD02_CSR_CFC",
+  "scene_id": "psD02_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small red ball to the left of a large black box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD02_CSR_CFS",
+  "scene_id": "psD02_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large black ball to the left of a small red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "ball",
+    "smaller": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "box"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD02_CSR_CFR",
+  "scene_id": "psD02_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small black ball to the right of a large red box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "box",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|box",
+  "shard_group": "psD02",
+  "ps_pair_id": "psD02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD03_P_CAN",
+  "scene_id": "psD03_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball and a book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD03_C_CAN",
+  "scene_id": "psD03_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue ball and a yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD03_S_CAN",
+  "scene_id": "psD03_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball and a large book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD03_R_CAN",
+  "scene_id": "psD03_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball to the left of a book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD03_CS_CAN",
+  "scene_id": "psD03_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue ball and a large yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD03_CR_CAN",
+  "scene_id": "psD03_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue ball to the left of a yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD03_SR_CAN",
+  "scene_id": "psD03_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball to the left of a large book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD03_CSR_CAN",
+  "scene_id": "psD03_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue ball to the left of a large yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD03_CSR_CFC",
+  "scene_id": "psD03_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small yellow ball to the left of a large blue book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD03_CSR_CFS",
+  "scene_id": "psD03_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large blue ball to the left of a small yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "ball",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "book"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD03_CSR_CFR",
+  "scene_id": "psD03_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small blue ball to the right of a large yellow book on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|book",
+  "shard_group": "psD03",
+  "ps_pair_id": "psD03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD04_P_CAN",
+  "scene_id": "psD04_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a hat and a mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD04_C_CAN",
+  "scene_id": "psD04_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue hat and a yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD04_S_CAN",
+  "scene_id": "psD04_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small hat and a large mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD04_R_CAN",
+  "scene_id": "psD04_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a hat to the right of a mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD04_CS_CAN",
+  "scene_id": "psD04_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue hat and a large yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD04_CR_CAN",
+  "scene_id": "psD04_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue hat to the right of a yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD04_SR_CAN",
+  "scene_id": "psD04_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small hat to the right of a large mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD04_CSR_CAN",
+  "scene_id": "psD04_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue hat to the right of a large yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD04_CSR_CFC",
+  "scene_id": "psD04_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small yellow hat to the right of a large blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD04_CSR_CFS",
+  "scene_id": "psD04_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large blue hat to the right of a small yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "mirror"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD04_CSR_CFR",
+  "scene_id": "psD04_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small blue hat to the left of a large yellow mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "mirror"
+   }
+  ],
+  "pair_group": "hat|mirror",
+  "shard_group": "psD04",
+  "ps_pair_id": "psD04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD05_P_CAN",
+  "scene_id": "psD05_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an apple and a pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD05_C_CAN",
+  "scene_id": "psD05_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a green apple and a white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD05_S_CAN",
+  "scene_id": "psD05_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large apple and a small pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD05_R_CAN",
+  "scene_id": "psD05_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an apple to the right of a pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD05_CS_CAN",
+  "scene_id": "psD05_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large green apple and a small white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD05_CR_CAN",
+  "scene_id": "psD05_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a green apple to the right of a white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD05_SR_CAN",
+  "scene_id": "psD05_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large apple to the right of a small pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD05_CSR_CAN",
+  "scene_id": "psD05_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large green apple to the right of a small white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD05_CSR_CFC",
+  "scene_id": "psD05_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large white apple to the right of a small green pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD05_CSR_CFS",
+  "scene_id": "psD05_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small green apple to the right of a large white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "apple"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "apple"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD05_CSR_CFR",
+  "scene_id": "psD05_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large green apple to the left of a small white pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "apple"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "apple",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "apple",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "apple",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "apple|pillow",
+  "shard_group": "psD05",
+  "ps_pair_id": "psD05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD06_P_CAN",
+  "scene_id": "psD06_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cup and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD06_C_CAN",
+  "scene_id": "psD06_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue cup and a purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD06_S_CAN",
+  "scene_id": "psD06_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large cup and a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD06_R_CAN",
+  "scene_id": "psD06_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cup to the left of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD06_CS_CAN",
+  "scene_id": "psD06_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large blue cup and a small purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD06_CR_CAN",
+  "scene_id": "psD06_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue cup to the left of a purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD06_SR_CAN",
+  "scene_id": "psD06_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large cup to the left of a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD06_CSR_CAN",
+  "scene_id": "psD06_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large blue cup to the left of a small purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD06_CSR_CFC",
+  "scene_id": "psD06_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large purple cup to the left of a small blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD06_CSR_CFS",
+  "scene_id": "psD06_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small blue cup to the left of a large purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "cup"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD06_CSR_CFR",
+  "scene_id": "psD06_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large blue cup to the right of a small purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|sphere",
+  "shard_group": "psD06",
+  "ps_pair_id": "psD06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD07_P_CAN",
+  "scene_id": "psD07_P",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bottle and a cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psD07_C_CAN",
+  "scene_id": "psD07_C",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black bottle and a purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD07_S_CAN",
+  "scene_id": "psD07_S",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small bottle and a large cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD07_R_CAN",
+  "scene_id": "psD07_R",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bottle to the left of a cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psD07_CS_CAN",
+  "scene_id": "psD07_CS",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black bottle and a large purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD07_CR_CAN",
+  "scene_id": "psD07_CR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black bottle to the left of a purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psD07_SR_CAN",
+  "scene_id": "psD07_SR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small bottle to the left of a large cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psD07_CSR_CAN",
+  "scene_id": "psD07_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black bottle to the left of a large purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD07_CSR_CFC",
+  "scene_id": "psD07_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small purple bottle to the left of a large black cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD07_CSR_CFS",
+  "scene_id": "psD07_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large black bottle to the left of a small purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "bottle",
+    "smaller": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psD07_CSR_CFR",
+  "scene_id": "psD07_CSR",
+  "split": "DEV",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small black bottle to the right of a large purple cube on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "bottle"
+   }
+  ],
+  "pair_group": "bottle|cube",
+  "shard_group": "psD07",
+  "ps_pair_id": "psD07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT00_P_CAN",
+  "scene_id": "psT00_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bowl and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT00_C_CAN",
+  "scene_id": "psT00_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow bowl and a black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT00_S_CAN",
+  "scene_id": "psT00_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large bowl and a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT00_R_CAN",
+  "scene_id": "psT00_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bowl to the left of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT00_CS_CAN",
+  "scene_id": "psT00_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow bowl and a small black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT00_CR_CAN",
+  "scene_id": "psT00_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow bowl to the left of a black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT00_SR_CAN",
+  "scene_id": "psT00_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large bowl to the left of a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT00_CSR_CAN",
+  "scene_id": "psT00_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow bowl to the left of a small black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT00_CSR_CFC",
+  "scene_id": "psT00_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large black bowl to the left of a small yellow sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT00_CSR_CFS",
+  "scene_id": "psT00_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small yellow bowl to the left of a large black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "bowl"
+   },
+   {
+    "type": "spatial",
+    "left": "bowl",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT00_CSR_CFR",
+  "scene_id": "psT00_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large yellow bowl to the right of a small black sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bowl"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "bowl",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "bowl",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "bowl"
+   }
+  ],
+  "pair_group": "bowl|sphere",
+  "shard_group": "psT00",
+  "ps_pair_id": "psT00",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT01_P_CAN",
+  "scene_id": "psT01_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a book and a candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT01_C_CAN",
+  "scene_id": "psT01_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange book and a yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT01_S_CAN",
+  "scene_id": "psT01_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small book and a large candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT01_R_CAN",
+  "scene_id": "psT01_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a book to the left of a candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT01_CS_CAN",
+  "scene_id": "psT01_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange book and a large yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT01_CR_CAN",
+  "scene_id": "psT01_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange book to the left of a yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT01_SR_CAN",
+  "scene_id": "psT01_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small book to the left of a large candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT01_CSR_CAN",
+  "scene_id": "psT01_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange book to the left of a large yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT01_CSR_CFC",
+  "scene_id": "psT01_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small yellow book to the left of a large orange candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "orange"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT01_CSR_CFS",
+  "scene_id": "psT01_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large orange book to the left of a small yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT01_CSR_CFR",
+  "scene_id": "psT01_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small orange book to the right of a large yellow candle on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|candle",
+  "shard_group": "psT01",
+  "ps_pair_id": "psT01",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT02_P_CAN",
+  "scene_id": "psT02_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a banana and a teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT02_C_CAN",
+  "scene_id": "psT02_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow banana and a blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT02_S_CAN",
+  "scene_id": "psT02_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large banana and a small teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT02_R_CAN",
+  "scene_id": "psT02_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a banana to the right of a teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT02_CS_CAN",
+  "scene_id": "psT02_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow banana and a small blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT02_CR_CAN",
+  "scene_id": "psT02_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow banana to the right of a blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT02_SR_CAN",
+  "scene_id": "psT02_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large banana to the right of a small teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT02_CSR_CAN",
+  "scene_id": "psT02_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow banana to the right of a small blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT02_CSR_CFC",
+  "scene_id": "psT02_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large blue banana to the right of a small yellow teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT02_CSR_CFS",
+  "scene_id": "psT02_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small yellow banana to the right of a large blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "teapot",
+    "smaller": "banana"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT02_CSR_CFR",
+  "scene_id": "psT02_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large yellow banana to the left of a small blue teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "banana",
+    "right": "teapot"
+   }
+  ],
+  "pair_group": "banana|teapot",
+  "shard_group": "psT02",
+  "ps_pair_id": "psT02",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT03_P_CAN",
+  "scene_id": "psT03_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a banana and a shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT03_C_CAN",
+  "scene_id": "psT03_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a red banana and a blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT03_S_CAN",
+  "scene_id": "psT03_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large banana and a small shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT03_R_CAN",
+  "scene_id": "psT03_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a banana to the right of a shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT03_CS_CAN",
+  "scene_id": "psT03_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large red banana and a small blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT03_CR_CAN",
+  "scene_id": "psT03_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a red banana to the right of a blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT03_SR_CAN",
+  "scene_id": "psT03_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large banana to the right of a small shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT03_CSR_CAN",
+  "scene_id": "psT03_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large red banana to the right of a small blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT03_CSR_CFC",
+  "scene_id": "psT03_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large blue banana to the right of a small red shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT03_CSR_CFS",
+  "scene_id": "psT03_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small red banana to the right of a large blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "banana"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "banana"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT03_CSR_CFR",
+  "scene_id": "psT03_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large red banana to the left of a small blue shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "banana"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "banana",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "banana",
+    "smaller": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "banana",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "banana|shoe",
+  "shard_group": "psT03",
+  "ps_pair_id": "psT03",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT04_P_CAN",
+  "scene_id": "psT04_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bottle and a pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT04_C_CAN",
+  "scene_id": "psT04_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue bottle and a purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT04_S_CAN",
+  "scene_id": "psT04_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small bottle and a large pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT04_R_CAN",
+  "scene_id": "psT04_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a bottle to the left of a pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT04_CS_CAN",
+  "scene_id": "psT04_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue bottle and a large purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT04_CR_CAN",
+  "scene_id": "psT04_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a blue bottle to the left of a purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT04_SR_CAN",
+  "scene_id": "psT04_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small bottle to the left of a large pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT04_CSR_CAN",
+  "scene_id": "psT04_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small blue bottle to the left of a large purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT04_CSR_CFC",
+  "scene_id": "psT04_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small purple bottle to the left of a large blue pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT04_CSR_CFS",
+  "scene_id": "psT04_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large blue bottle to the left of a small purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "bottle",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "bottle",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT04_CSR_CFR",
+  "scene_id": "psT04_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small blue bottle to the right of a large purple pillow on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "bottle"
+   },
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "binding",
+    "object": "bottle",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "bottle"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "bottle"
+   }
+  ],
+  "pair_group": "bottle|pillow",
+  "shard_group": "psT04",
+  "ps_pair_id": "psT04",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT05_P_CAN",
+  "scene_id": "psT05_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a lamp and a teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT05_C_CAN",
+  "scene_id": "psT05_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a white lamp and a red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT05_S_CAN",
+  "scene_id": "psT05_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large lamp and a small teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT05_R_CAN",
+  "scene_id": "psT05_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a lamp to the right of a teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT05_CS_CAN",
+  "scene_id": "psT05_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large white lamp and a small red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT05_CR_CAN",
+  "scene_id": "psT05_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a white lamp to the right of a red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT05_SR_CAN",
+  "scene_id": "psT05_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large lamp to the right of a small teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT05_CSR_CAN",
+  "scene_id": "psT05_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large white lamp to the right of a small red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT05_CSR_CFC",
+  "scene_id": "psT05_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large red lamp to the right of a small white teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT05_CSR_CFS",
+  "scene_id": "psT05_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small white lamp to the right of a large red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "teapot",
+    "smaller": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "teapot",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT05_CSR_CFR",
+  "scene_id": "psT05_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large white lamp to the left of a small red teapot on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "presence",
+    "object": "teapot"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "teapot",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "teapot"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "teapot"
+   }
+  ],
+  "pair_group": "lamp|teapot",
+  "shard_group": "psT05",
+  "ps_pair_id": "psT05",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT06_P_CAN",
+  "scene_id": "psT06_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a laptop and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT06_C_CAN",
+  "scene_id": "psT06_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a green laptop and a red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT06_S_CAN",
+  "scene_id": "psT06_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small laptop and a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT06_R_CAN",
+  "scene_id": "psT06_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a laptop to the right of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT06_CS_CAN",
+  "scene_id": "psT06_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small green laptop and a large red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT06_CR_CAN",
+  "scene_id": "psT06_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a green laptop to the right of a red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT06_SR_CAN",
+  "scene_id": "psT06_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small laptop to the right of a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT06_CSR_CAN",
+  "scene_id": "psT06_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small green laptop to the right of a large red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT06_CSR_CFC",
+  "scene_id": "psT06_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small red laptop to the right of a large green sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT06_CSR_CFS",
+  "scene_id": "psT06_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large green laptop to the right of a small red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "laptop",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "laptop"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT06_CSR_CFR",
+  "scene_id": "psT06_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small green laptop to the left of a large red sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "laptop"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "laptop",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "laptop"
+   },
+   {
+    "type": "spatial",
+    "left": "laptop",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "laptop|sphere",
+  "shard_group": "psT06",
+  "ps_pair_id": "psT06",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT07_P_CAN",
+  "scene_id": "psT07_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cup and a hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT07_C_CAN",
+  "scene_id": "psT07_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black cup and a red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT07_S_CAN",
+  "scene_id": "psT07_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small cup and a large hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT07_R_CAN",
+  "scene_id": "psT07_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cup to the right of a hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT07_CS_CAN",
+  "scene_id": "psT07_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black cup and a large red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT07_CR_CAN",
+  "scene_id": "psT07_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a black cup to the right of a red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT07_SR_CAN",
+  "scene_id": "psT07_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small cup to the right of a large hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT07_CSR_CAN",
+  "scene_id": "psT07_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small black cup to the right of a large red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT07_CSR_CFC",
+  "scene_id": "psT07_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small red cup to the right of a large black hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "black"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT07_CSR_CFS",
+  "scene_id": "psT07_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large black cup to the right of a small red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "cup",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "cup"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT07_CSR_CFR",
+  "scene_id": "psT07_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small black cup to the left of a large red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cup"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "cup",
+    "color": "black"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "cup"
+   },
+   {
+    "type": "spatial",
+    "left": "cup",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "cup|hat",
+  "shard_group": "psT07",
+  "ps_pair_id": "psT07",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT08_P_CAN",
+  "scene_id": "psT08_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball and a mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT08_C_CAN",
+  "scene_id": "psT08_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a red ball and a blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT08_S_CAN",
+  "scene_id": "psT08_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball and a large mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT08_R_CAN",
+  "scene_id": "psT08_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a ball to the right of a mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT08_CS_CAN",
+  "scene_id": "psT08_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small red ball and a large blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT08_CR_CAN",
+  "scene_id": "psT08_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a red ball to the right of a blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT08_SR_CAN",
+  "scene_id": "psT08_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small ball to the right of a large mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT08_CSR_CAN",
+  "scene_id": "psT08_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small red ball to the right of a large blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT08_CSR_CFC",
+  "scene_id": "psT08_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small blue ball to the right of a large red mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT08_CSR_CFS",
+  "scene_id": "psT08_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large red ball to the right of a small blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "ball",
+    "smaller": "mirror"
+   },
+   {
+    "type": "spatial",
+    "left": "mirror",
+    "right": "ball"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT08_CSR_CFR",
+  "scene_id": "psT08_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small red ball to the left of a large blue mirror on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "ball"
+   },
+   {
+    "type": "presence",
+    "object": "mirror"
+   },
+   {
+    "type": "binding",
+    "object": "ball",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "mirror",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "mirror",
+    "smaller": "ball"
+   },
+   {
+    "type": "spatial",
+    "left": "ball",
+    "right": "mirror"
+   }
+  ],
+  "pair_group": "ball|mirror",
+  "shard_group": "psT08",
+  "ps_pair_id": "psT08",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT09_P_CAN",
+  "scene_id": "psT09_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a basket and a box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT09_C_CAN",
+  "scene_id": "psT09_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a purple basket and a white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT09_S_CAN",
+  "scene_id": "psT09_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large basket and a small box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT09_R_CAN",
+  "scene_id": "psT09_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a basket to the left of a box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT09_CS_CAN",
+  "scene_id": "psT09_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large purple basket and a small white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT09_CR_CAN",
+  "scene_id": "psT09_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a purple basket to the left of a white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT09_SR_CAN",
+  "scene_id": "psT09_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large basket to the left of a small box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT09_CSR_CAN",
+  "scene_id": "psT09_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large purple basket to the left of a small white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT09_CSR_CFC",
+  "scene_id": "psT09_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large white basket to the left of a small purple box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT09_CSR_CFS",
+  "scene_id": "psT09_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small purple basket to the left of a large white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "box",
+    "smaller": "basket"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "box"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT09_CSR_CFR",
+  "scene_id": "psT09_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large purple basket to the right of a small white box on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "box"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "box",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "box"
+   },
+   {
+    "type": "spatial",
+    "left": "box",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|box",
+  "shard_group": "psT09",
+  "ps_pair_id": "psT09",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT10_P_CAN",
+  "scene_id": "psT10_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a candle and a vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT10_C_CAN",
+  "scene_id": "psT10_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow candle and a white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT10_S_CAN",
+  "scene_id": "psT10_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large candle and a small vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT10_R_CAN",
+  "scene_id": "psT10_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a candle to the right of a vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT10_CS_CAN",
+  "scene_id": "psT10_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow candle and a small white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT10_CR_CAN",
+  "scene_id": "psT10_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a yellow candle to the right of a white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT10_SR_CAN",
+  "scene_id": "psT10_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large candle to the right of a small vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT10_CSR_CAN",
+  "scene_id": "psT10_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large yellow candle to the right of a small white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT10_CSR_CFC",
+  "scene_id": "psT10_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large white candle to the right of a small yellow vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "white"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "yellow"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT10_CSR_CFS",
+  "scene_id": "psT10_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small yellow candle to the right of a large white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "vase",
+    "smaller": "candle"
+   },
+   {
+    "type": "spatial",
+    "left": "vase",
+    "right": "candle"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT10_CSR_CFR",
+  "scene_id": "psT10_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large yellow candle to the left of a small white vase on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "candle"
+   },
+   {
+    "type": "presence",
+    "object": "vase"
+   },
+   {
+    "type": "binding",
+    "object": "candle",
+    "color": "yellow"
+   },
+   {
+    "type": "binding",
+    "object": "vase",
+    "color": "white"
+   },
+   {
+    "type": "size",
+    "larger": "candle",
+    "smaller": "vase"
+   },
+   {
+    "type": "spatial",
+    "left": "candle",
+    "right": "vase"
+   }
+  ],
+  "pair_group": "candle|vase",
+  "shard_group": "psT10",
+  "ps_pair_id": "psT10",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT11_P_CAN",
+  "scene_id": "psT11_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a basket and a lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT11_C_CAN",
+  "scene_id": "psT11_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange basket and a green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT11_S_CAN",
+  "scene_id": "psT11_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large basket and a small lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT11_R_CAN",
+  "scene_id": "psT11_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a basket to the right of a lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT11_CS_CAN",
+  "scene_id": "psT11_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large orange basket and a small green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT11_CR_CAN",
+  "scene_id": "psT11_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange basket to the right of a green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT11_SR_CAN",
+  "scene_id": "psT11_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large basket to the right of a small lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT11_CSR_CAN",
+  "scene_id": "psT11_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large orange basket to the right of a small green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT11_CSR_CFC",
+  "scene_id": "psT11_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large green basket to the right of a small orange lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "orange"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT11_CSR_CFS",
+  "scene_id": "psT11_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small orange basket to the right of a large green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "lamp",
+    "smaller": "basket"
+   },
+   {
+    "type": "spatial",
+    "left": "lamp",
+    "right": "basket"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT11_CSR_CFR",
+  "scene_id": "psT11_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large orange basket to the left of a small green lamp on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "basket"
+   },
+   {
+    "type": "presence",
+    "object": "lamp"
+   },
+   {
+    "type": "binding",
+    "object": "basket",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "lamp",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "basket",
+    "smaller": "lamp"
+   },
+   {
+    "type": "spatial",
+    "left": "basket",
+    "right": "lamp"
+   }
+  ],
+  "pair_group": "basket|lamp",
+  "shard_group": "psT11",
+  "ps_pair_id": "psT11",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT12_P_CAN",
+  "scene_id": "psT12_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a book and a hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT12_C_CAN",
+  "scene_id": "psT12_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange book and a red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT12_S_CAN",
+  "scene_id": "psT12_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large book and a small hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT12_R_CAN",
+  "scene_id": "psT12_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a book to the right of a hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT12_CS_CAN",
+  "scene_id": "psT12_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large orange book and a small red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT12_CR_CAN",
+  "scene_id": "psT12_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange book to the right of a red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT12_SR_CAN",
+  "scene_id": "psT12_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large book to the right of a small hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT12_CSR_CAN",
+  "scene_id": "psT12_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large orange book to the right of a small red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT12_CSR_CFC",
+  "scene_id": "psT12_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large red book to the right of a small orange hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "red"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "orange"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT12_CSR_CFS",
+  "scene_id": "psT12_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small orange book to the right of a large red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "hat",
+    "smaller": "book"
+   },
+   {
+    "type": "spatial",
+    "left": "hat",
+    "right": "book"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT12_CSR_CFR",
+  "scene_id": "psT12_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large orange book to the left of a small red hat on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "book"
+   },
+   {
+    "type": "presence",
+    "object": "hat"
+   },
+   {
+    "type": "binding",
+    "object": "book",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "hat",
+    "color": "red"
+   },
+   {
+    "type": "size",
+    "larger": "book",
+    "smaller": "hat"
+   },
+   {
+    "type": "spatial",
+    "left": "book",
+    "right": "hat"
+   }
+  ],
+  "pair_group": "book|hat",
+  "shard_group": "psT12",
+  "ps_pair_id": "psT12",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT13_P_CAN",
+  "scene_id": "psT13_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cube and a shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT13_C_CAN",
+  "scene_id": "psT13_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange cube and a green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT13_S_CAN",
+  "scene_id": "psT13_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small cube and a large shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT13_R_CAN",
+  "scene_id": "psT13_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a cube to the left of a shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT13_CS_CAN",
+  "scene_id": "psT13_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange cube and a large green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT13_CR_CAN",
+  "scene_id": "psT13_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange cube to the left of a green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT13_SR_CAN",
+  "scene_id": "psT13_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small cube to the left of a large shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT13_CSR_CAN",
+  "scene_id": "psT13_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange cube to the left of a large green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT13_CSR_CFC",
+  "scene_id": "psT13_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small green cube to the left of a large orange shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "green"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "orange"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT13_CSR_CFS",
+  "scene_id": "psT13_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large orange cube to the left of a small green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "cube",
+    "smaller": "shoe"
+   },
+   {
+    "type": "spatial",
+    "left": "cube",
+    "right": "shoe"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT13_CSR_CFR",
+  "scene_id": "psT13_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small orange cube to the right of a large green shoe on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "cube"
+   },
+   {
+    "type": "presence",
+    "object": "shoe"
+   },
+   {
+    "type": "binding",
+    "object": "cube",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "shoe",
+    "color": "green"
+   },
+   {
+    "type": "size",
+    "larger": "shoe",
+    "smaller": "cube"
+   },
+   {
+    "type": "spatial",
+    "left": "shoe",
+    "right": "cube"
+   }
+  ],
+  "pair_group": "cube|shoe",
+  "shard_group": "psT13",
+  "ps_pair_id": "psT13",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT14_P_CAN",
+  "scene_id": "psT14_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a clock and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT14_C_CAN",
+  "scene_id": "psT14_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange clock and a blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT14_S_CAN",
+  "scene_id": "psT14_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small clock and a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT14_R_CAN",
+  "scene_id": "psT14_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a clock to the right of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT14_CS_CAN",
+  "scene_id": "psT14_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange clock and a large blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT14_CR_CAN",
+  "scene_id": "psT14_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "an orange clock to the right of a blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT14_SR_CAN",
+  "scene_id": "psT14_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small clock to the right of a large sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT14_CSR_CAN",
+  "scene_id": "psT14_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a small orange clock to the right of a large blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT14_CSR_CFC",
+  "scene_id": "psT14_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a small blue clock to the right of a large orange sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "orange"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT14_CSR_CFS",
+  "scene_id": "psT14_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a large orange clock to the right of a small blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "clock",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "clock"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT14_CSR_CFR",
+  "scene_id": "psT14_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a small orange clock to the left of a large blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "clock"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "clock",
+    "color": "orange"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "clock"
+   },
+   {
+    "type": "spatial",
+    "left": "clock",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "clock|sphere",
+  "shard_group": "psT14",
+  "ps_pair_id": "psT14",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT15_P_CAN",
+  "scene_id": "psT15_P",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a pillow and a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "P",
+  "n_objects": 2,
+  "n_constraints": 2
+ },
+ {
+  "id": "psT15_C_CAN",
+  "scene_id": "psT15_C",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a purple pillow and a blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "C",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT15_S_CAN",
+  "scene_id": "psT15_S",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large pillow and a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "S",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT15_R_CAN",
+  "scene_id": "psT15_R",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a pillow to the left of a sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "R",
+  "n_objects": 2,
+  "n_constraints": 3
+ },
+ {
+  "id": "psT15_CS_CAN",
+  "scene_id": "psT15_CS",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large purple pillow and a small blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CS",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT15_CR_CAN",
+  "scene_id": "psT15_CR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a purple pillow to the left of a blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CR",
+  "n_objects": 2,
+  "n_constraints": 5
+ },
+ {
+  "id": "psT15_SR_CAN",
+  "scene_id": "psT15_SR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large pillow to the left of a small sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "SR",
+  "n_objects": 2,
+  "n_constraints": 4
+ },
+ {
+  "id": "psT15_CSR_CAN",
+  "scene_id": "psT15_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CAN",
+  "prompt": "a large purple pillow to the left of a small blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT15_CSR_CFC",
+  "scene_id": "psT15_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-C",
+  "prompt": "a large blue pillow to the left of a small purple sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "blue"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "purple"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT15_CSR_CFS",
+  "scene_id": "psT15_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-S",
+  "prompt": "a small purple pillow to the left of a large blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "sphere",
+    "smaller": "pillow"
+   },
+   {
+    "type": "spatial",
+    "left": "pillow",
+    "right": "sphere"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ },
+ {
+  "id": "psT15_CSR_CFR",
+  "scene_id": "psT15_CSR",
+  "split": "TEST",
+  "category": "ps_family",
+  "variant": "CF-R",
+  "prompt": "a large purple pillow to the right of a small blue sphere on a wooden table",
+  "constraints": [
+   {
+    "type": "presence",
+    "object": "pillow"
+   },
+   {
+    "type": "presence",
+    "object": "sphere"
+   },
+   {
+    "type": "binding",
+    "object": "pillow",
+    "color": "purple"
+   },
+   {
+    "type": "binding",
+    "object": "sphere",
+    "color": "blue"
+   },
+   {
+    "type": "size",
+    "larger": "pillow",
+    "smaller": "sphere"
+   },
+   {
+    "type": "spatial",
+    "left": "sphere",
+    "right": "pillow"
+   }
+  ],
+  "pair_group": "pillow|sphere",
+  "shard_group": "psT15",
+  "ps_pair_id": "psT15",
+  "ps_subset": "CSR",
+  "n_objects": 2,
+  "n_constraints": 6
+ }
+]

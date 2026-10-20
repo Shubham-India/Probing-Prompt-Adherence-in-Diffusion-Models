@@ -74,9 +74,17 @@ def split_sections(text):
     return {parts[i]: parts[i + 1].strip() for i in range(1, len(parts), 2)}
 
 
+def pilot_versions():
+    """Library versions that PRODUCED the pilot (not the versions installed where the report happens to be rebuilt):
+    torch from the first samples.jsonl record, the others from the pinned requirements.txt."""
+    pins = dict(l.strip().split("==", 1) for l in (ROOT / "requirements.txt").read_text().splitlines() if "==" in l)
+    first = json.loads((RUN / "samples.jsonl").read_text(encoding="utf-8").splitlines()[0])
+    return dict(diffusers_version=pins["diffusers"], torch_version=first["torch"], transformers_version=pins["transformers"])
+
+
 def main():
     V = numbers(RUN)
-    V.update(diffusers_version=version("diffusers"), torch_version=version("torch"), transformers_version=version("transformers"))
+    V.update(**pilot_versions())
     check_claims(V)
     check_intervention_claims()
     tables = (RUN / "results" / "tables.md").read_text().split("## ")
@@ -88,7 +96,7 @@ def main():
     e2e = (ROOT / "outputs" / "e2e.log").read_text(errors="ignore") if (ROOT / "outputs" / "e2e.log").exists() else ""
     V["e2e_status"] = "completed: E2E-DONE" if "E2E-DONE" in e2e else "NOT completed"
     for template, target in (("report/report_template.md", "report/report.md"), ("report/defense_template.md", "report/defense.md"),
-                             ("README_template.md", "README.md"), ("report/validation_template.md", "report/validation.md")):
+                             ("report/PILOT_README_template.md", "report/PILOT_README.md"), ("report/validation_template.md", "report/validation.md")):
         out = (ROOT / template).read_text(encoding="utf-8").format_map(V)
         (ROOT / target).write_text(out, encoding="utf-8")
         print(target, "written;", len(out.split()), "words")

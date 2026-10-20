@@ -1,0 +1,53 @@
+{
+ "presence": {
+  "criterion_met": true,
+  "weighted_accuracy": 0.8558,
+  "ci95": [
+   0.8021,
+   0.9074
+  ],
+  "n_used": 159,
+  "status": "CONFIRMATORY-ELIGIBLE"
+ },
+ "count": {
+  "criterion_met": false,
+  "weighted_accuracy": 0.7685,
+  "ci95": [
+   0.6852,
+   0.8426
+  ],
+  "n_used": 108,
+  "status": "EXPLORATORY"
+ },
+ "binding": {
+  "criterion_met": false,
+  "weighted_accuracy": 0.7998,
+  "ci95": [
+   0.722,
+   0.8712
+  ],
+  "n_used": 156,
+  "status": "EXPLORATORY"
+ },
+ "spatial": {
+  "criterion_met": false,
+  "weighted_accuracy": 0.6147,
+  "ci95": [
+   0.5229,
+   0.7064
+  ],
+  "n_used": 109,
+  "status": "EXPLORATORY"
+ },
+ "size": {
+  "criterion_met": false,
+  "weighted_accuracy": 0.8457,
+  "ci95": [
+   0.7943,
+   0.8971
+  ],
+  "n_used": 175,
+  "status": "EXPLORATORY"
+ },
+ "_basis": "annotator A only (Shubham, 2026-10-18); criterion weighted accuracy >= 0.85 (docs/AUDIT_PROTOCOL_DEV.md); deviations (DL-38/39): DEV package B labelled by the same person inside the A session (not used); size package B and the pilot-40 second review (H2) not labelled; source: docs/evidence/audit_20261019/"
+}

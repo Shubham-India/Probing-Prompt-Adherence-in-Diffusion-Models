@@ -1,15 +1,71 @@
+# --- Python and local environments ---
 .venv/
-models/
-outputs/*/images/
 __pycache__/
 *.pyc
-r2a-20261014T130457Z-daef6c4_backup.zip
-local_audit/R2a_checkpoint.zip
+.pytest_cache/
+.env
+models/
 
-# Large archives and generated files
-*.zip
+# --- Credentials and secrets ---
+kaggle.json
+*.token
+runbook_secrets/
+
+# --- Private human annotations ---
+/labels_*.csv
+
+# --- Generated archives and Kaggle run by-products ---
+/r2a-20261014T130457Z-daef6c4_backup.zip
+/local_audit/R2a_checkpoint.zip
+/two_worker_probe.zip
+/gbc-r2a-core-upload.zip
+/preflight_output.zip
+/kaggle_bundle.zip
+/*.part*of*.zip
+
 kaggle_core_dataset/
 kaggle_outputs/
-env.json
-env_bootstrap.json
-*.log
+kaggle_returns/
+kaggle_bundle/
+
+/ARCHIVE_MANIFEST.json
+/env.json
+/env_bootstrap.json
+/preflight.json
+/preflight_process.log
+/m.jsonl
+/owner_stage_gates_*.json
+/dev_constants.json
+
+# --- Local audits and scratch work ---
+/local_audit/
+
+# --- Regenerable outputs ---
+outputs/*/images/
+/outputs/results_draft/
+/release/
+protocol/*.tmp
+
+# Overleaf source package
+/paper/paper_overleaf.zip
+
+# LaTeX build by-products (keep committed paper/main.pdf)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+
+# Generated previews and logs
+reports/**/*.png
+reports/**/*.log
+
+# --- Local renders and editor by-products ---
+/main_latex.pdf
+/Guide_Before_Commitment_*.pdf
+*\[Autosaved\]*
+
+# --- Third-party materials kept locally ---
+/Researcha-thon Project/
+/Research-a-thon2.0 PS*.pdf

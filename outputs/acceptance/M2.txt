@@ -1,0 +1,4 @@
+# M2 acceptance (2026-10-13)
+reproduction: 1008/1008 images re-score identically to outputs/main/eval.jsonl
+legacy field disagreements vs per_image.csv: binding 0, spatial 0, all_satisfied 0
+4 passed in 6.49s

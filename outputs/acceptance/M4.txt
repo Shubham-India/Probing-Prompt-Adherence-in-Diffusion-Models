@@ -1,0 +1,14 @@
+# M4 acceptance (2026-10-13) CPU only, fake pipeline
+plugins: anyio-4.15.1
+collecting ... collected 7 items
+
+tests/test_shards.py::test_default_names_match_pilot_samples PASSED      [ 14%]
+tests/test_shards.py::test_shards_disjoint_and_complete PASSED           [ 28%]
+tests/test_shards.py::test_test_prompts_need_frozen_config PASSED        [ 42%]
+tests/test_shards.py::test_generate_resume_shards_verify_merge PASSED    [ 57%]
+tests/test_shards.py::test_conflicting_duplicates_abort_merge PASSED     [ 71%]
+tests/test_shards.py::test_latent_saving_and_default_record_has_no_extra_fields PASSED [ 85%]
+tests/test_shards.py::test_default_flags_keep_pilot_record_schema PASSED [100%]
+
+============================== 7 passed in 8.23s ===============================
+NOT DONE: local-GPU run 'generate.py --limit 3' twice and byte-identity vs pilot images (needs the owner's RTX 3050).

@@ -1,0 +1,15 @@
+\begin{table}[t]
+\centering\small
+\caption{Pilot nested prediction of the primary outcome (40-step images, prompt-grouped cross-validation, 28 prompts); exploratory.}
+\label{tab:pilot-nested}
+\begin{tabular}{lrr}
+\toprule
+Contrast & $\Delta$AUC & 95\% prompt-bootstrap CI \\
+\midrule
+attn\_minus\_design & +0.067 & [0.028, 0.122] \\
+noise\_minus\_design & +0.002 & [-0.028, 0.027] \\
+attn\_minus\_noise & +0.050 & [0.017, 0.097] \\
+\bottomrule
+\end{tabular}
+\par\smallskip\footnotesize Base rate 0.236. Only six distinct noise vectors exist in the pilot, so noise features equal seed identity (noise vs design: -0.007).
+\end{table}

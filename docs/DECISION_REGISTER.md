@@ -1,8 +1,53 @@
 # Decision register
 
+> **Revision 3 (2026-10-18):** implementation decisions DL-01..DL-26 are in `docs/R3_DECISION_LOG.md`; rows marked OWNER need the owner's decision before the freeze (E30 scene count, ER30 on TEST, Holm/CI rule, CAG quality-guard metric, HF area parameter, reversed-arm guidance cap, compute). The Revision 2 decisions below (working defaults D-02..D-06, D-12 approved; D-13 decided) remain in force where Revision 3 does not override them.
+
+
 Status values: **OPEN** (needs a decision), **PROPOSED** (resolution recommended, awaiting approval), **RESOLVED**.
 "Approval" = human approval required before implementation. Research blueprint = `GRAND_RESEARCH_BLUEPRINT.md` (Revision 2); section numbers refer to it.
 Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/sched_check_output.txt` (executed on CPU during the audit) or on files read in the repository.
+
+## Status update 2026-10-13 (owner instruction: conservative working defaults, applied transparently)
+| ID | Working default now implemented | Where | Still needed from the owner |
+|---|---|---|---|
+| D-01 | Scheduler-indexed restart implemented and CPU-tested (timesteps and alpha-bar equal diffusers; ratios equal the audit evidence; D=0 identity; synthetic moment test) | `src/branch.py`, `tests/test_branch_math.py` | none; real-latent validation pending a GPU run |
+| D-02 | D=8 kept; effective jump, ratio, timesteps, clipped flag logged per branch; t=6 reported as clipped; ER30 and D in {4,12} implemented; HA support requires ER30 sign agreement | `branch.py`, `run_branches.py`, `analyze_commitment.py` | confirm in Addendum B |
+| D-03 | "restart persistence" wording in code and docs | `commitment.py`, `docs/ADDENDUM_B.md` | confirm |
+| D-04 | five outcomes implemented additively (`evaluate.py --conditional`); eligibility and missing-object rates reported; HA/HC need conditional + joint agreement | `evaluate.py`, `analyze_pilot_conditional.py`, `analyze_commitment.py`, `analyze_hc.py` | confirm |
+| D-05 | literal definition primary, competitive subset sensitivity; counts derived (TEST 140/110, DEV 70/55); precision recomputed | `benchmark_v2.py`, `design_recompute.py` | choose primary population |
+| D-06 | freeze manifest + verify tooling; TEST refused by `generate.py`, `run_branches.py`, `analyze_commitment.py`, `analyze_hc.py` without a verified frozen config | `freeze.py`, `config_schema.py`, `jobs.py` | none until freeze |
+| D-07 | custom denoise loop identical to the pipeline on a tiny random CPU pipeline; real SD 1.5 fp16 identity UNVERIFIED | `branch.py`, `tests/test_branch_loop.py`, `tests/gpu_identity.py` | run R0 |
+| D-08 | fp16 latent per image, 6 steps, hash in the record; branch noise float32 CPU then cast | `generate.py`, `branch.py` | run R0 (reload equals recompute) |
+| D-11 (revision) | model revision pinned to `f03de327dd89b501a01da37fc5240cf4fdba85a1` in both experiment configs; propagation to `from_pretrained` tested; revision is still not frozen (no freeze manifest) | `configs/*.json`, `tests/test_revision_pin.py` | none |
+| D-12 | rules implemented in `commitment.windows_from_t50_dev` | `commitment.py` | confirm |
+| D-13 | **DECIDED 2026-10-14**: defer R3 until the audit is done; no 4 base seeds to chase the gate; gate unchanged. Re-sizing with measured evaluator error rates pending | `src/dev_gate_observed.py`, `docs/AUDIT_PROTOCOL_DEV.md` | labels from the owner |
+| D-07/D-08 evidence update | **Kaggle artifact verified 2026-10-14**: `gpu_identity.json` (run `r0-20261014T145606Z-daef6c4`, Tesla T4, 3 cases, torch 2.11.0+cu128, diffusers 0.41.0): determinism, loop from step 0, reload-and-resume, D=0 branch, hook-off control and restored baseline all have max pixel difference 0, and saved latent recompute is equal; I recomputed `all_required_identities_hold` from the per-case values: true. Local RTX 3050 diagnostic agrees. Scope: 3 pilot prompts, seed 0, CFG 7.5, 40 steps; nothing is claimed for other prompts, settings or the V2 prompts | `docs/R0_R1_AUDIT.md`, `docs/R2A_AUDIT_REPORT.md` 4 | none for D-07/D-08 |
+**Owner decision 2026-10-14:** D-02, D-03, D-04, D-05 (literal population primary, competitive subset as sensitivity), D-06 and D-12 working defaults are **APPROVED as working defaults only**. This is not approval of the final protocol, of Addendum B as a whole, or of the freeze; nothing is frozen and no TEST scene has been generated, scored or inspected. D-01, D-07, D-08 need no approval. D-09 (statistics) and D-10 (evaluator) remain open, D-10 pending the DEV audit (`docs/AUDIT_PROTOCOL_DEV.md`).
+**D-13 decided by the owner 2026-10-14:** R3 execution is deferred until the evaluator audit is complete; four base seeds are **not approved** as a way to meet the confidence-interval gate; the four-step gate is not to be changed to make a result pass.
+
+## D-14 Stage gates, evaluator-model provenance and R2b scope (found 2026-10-17)
+| Aspect | Content |
+|---|---|
+| Stage gates | `configs/stage_gates.json` (all false) is read by `src/stage_guard.py`; a stage is refused unless its gates are true and its inputs verify. Only the owner sets a gate, in a commit, after the named evidence exists. `r4` additionally requires `freeze.verify() == []`. Status: IMPLEMENTED, tested; no gate set. |
+| R2b scope | the older RUN CARD (470 prompts x 4 = 1,880 images) would regenerate the 400 canonical R2a images; the plan is 370 non-canonical prompts x 4 = **1,480** images. Corrected in `docs/KAGGLE_MASTER_RUNBOOK.md` 4.2 and tested. Still blocked on the variant review. |
+| Evaluator-model provenance | OWL-ViT and CLIP are loaded without a pinned revision, and per-run records do not store their revisions (two CLIP snapshots exist locally). Proposed (protocol-neutral): pin and record revisions before the freeze. Approval: owner. |
+| LaTeX | the paper draft has not been compiled (no toolchain); static checks only. |
+
+## D-13 Branch bases and eligibility for the HA DEV gate (found in the R2a audit)
+
+| Aspect | Content |
+|---|---|
+| Evidence (VERIFIED, J1 unaudited) | R2a, 70 literal binding-bearing DEV scenes: all objects detected in 40.4% of images; bind given presence is defined for 113 of 280 images; of the 140 images from the configured branch bases (seeds 0,1) only **62** are eligible; only **31 of 70** scenes have at least 2 eligible seeds; chance agreement A0 for bind given presence 0.72 (presence 0.693, joint 0.86). |
+| Consequence | `dev_gate_sim.py` (assumption-driven; its own caveats apply) predicted a Delta-t50 half-width of about 7.8 steps for roughly 28 eligible scenes, above the 4-step gate in Addendum B. Under the current design the gate would probably fail, spending the R3 budget (about 5,730 image-equivalents, section below) for an exploratory result. |
+| Options | (a) Keep bases [0,1] and accept an exploratory HA on DEV. (b) Use all four seeds (latents exist for all 400 images): eligible base images 62 -> 113, branch cost x2. (c) Branch only from eligible base images (selected by the J1 verdict on the **base** image): fewer wasted branches, but selection on an outcome must be declared in the Addendum and handled in the estimator. (d) Change M. |
+| Needs | Owner choice (protocol decision); then update `seeds_branch_bases`/M and re-run `dev_gate_sim.py` with the **observed** eligibility (0.40) and A0 values. |
+| Approval | **Yes.** Not decided by Claude. |
+| Cost basis (revised 2026-10-14 with R0-session throughput) | R3 (D8, ER30, FULL; M=2; bases 0,1) = 7,200 jobs = 5,730 image-equivalents; 4 bases = 14,400 jobs = 11,460. Two measured T4 rates: 6.2 s per image (R1 session 10:10 UTC and the real R2a run: 200 images per worker in 1,243 s and 1,245 s with both workers busy) and 7.6-7.8 s (probe in the R0 session, 15:02 UTC, first image excluded). Two workers, no slowdown observed. Wall time with 2 workers: **2 bases 4.9-6.2 h, 4 bases 9.9-12.5 h**; with a 25% allowance for restarts/failures and 0.1 h loading: 2 bases 6.3-7.9 h, 4 bases 12.4-15.7 h. Session length and quota are unknown, so 4 bases would need several resumed sessions. Evaluation of the branches (J1) is separate: about 2 min for 400 images locally (about 0.3 s/image), i.e. roughly 36 min for 7,200. |
+| Correction 2026-10-14 (later) | The flip-rate rows below came from a cruder noise model (a flip applied once to values copied from the observed base). `dev_gate_observed.py` now uses a latent-truth model: the base truth is drawn from the posterior given the observed J1 output and the error rates, persistence acts on the truth, and the branch is read with independent error. Illustrative symmetric-error results with that model (20 replicates x 300 draws, true delta 0/6/12): **5% error** 2 bases 3.6 / 4.4 / 6.4, 4 bases 2.9 / 3.9 / 5.4; **10% error** 2 bases 14.5 / 13.1 / 13.8, 4 bases 14.0 / 12.1 / 10.1 with the estimator unreliable in almost all replicates. So the earlier 10% numbers were optimistic; the conclusion (the gate is not reachable with realistic judge noise at 70 scenes, and 4 seeds do not rescue it) is strengthened, but only measured error rates can settle it. |
+| Evidence update 2026-10-14 (data-anchored simulation, `src/dev_gate_observed.py`; planning tool, NOT evidence about the model) | Uses the observed R2a base outcomes of the 70 binding-bearing scenes (eligibility, scene clustering, real 1 - A0 weights; only 11 scenes have A0 < 1 for bind given presence) and the real estimator `commitment.bootstrap_delta_t50`; branch outcomes simulated from hard persistence (tau_presence 12, tau_binding = 12 + delta). 20 replicates x 300 bootstrap draws per cell (Monte Carlo error is large; read the pattern, not the decimals). Extra base seeds are extra branches of the same scenes; the bootstrap resamples scenes, so they are not counted as independent. Mean 95% half-width of Delta-t50 (steps), gate <= 4: **noise-free evaluator, full persistence:** 2 bases 1.7 / 2.7 / 5.5 and 4 bases 1.5 / 2.5 / 3.1 for true delta 0 / 6 / 12. **Evaluator flip rate 10% (plausible: pilot audit accuracy 0.89-0.93):** 2 bases 6.9 / 7.5 / 6.1; 4 bases 5.9 / 6.0 / 4.4. **Flip 10% and persistence ceiling 0.8:** 12-14 for both, with the estimator flagged unreliable in most replicates. Share of replicates meeting the gate under flip 10%: 0.00-0.25 (2 bases), 0.00-0.55 (4 bases). |
+| Reading | The gate (<= 4 steps) is achievable only if the evaluator is nearly noise-free and persistence is near-complete. With realistic judge noise it is not achievable with 70 scenes at either 2 or 4 base seeds; 4 bases narrow the interval by roughly 15-30% at twice the branch cost. The limiting quantity is the number of scenes with informative disagreement, not images. |
+| Recommendation (Claude, for the owner to decide) | Do **not** pay for 4 bases in order to pass the gate. Either (a) run R3 with the configured 2 bases as a **rehearsal** that estimates curves, controls and judge-noise sensitivity, and state in Addendum B beforehand that HA on DEV is exploratory; or (b) first improve the instrument (audited judge, lower flip rate; more or more informative DEV binding scenes) and re-run this simulation with measured flip rates. Changing the gate or the HA design is a protocol decision. |
+
 
 ## D-01 Restart indexing and direction (task B1)
 
@@ -63,6 +108,14 @@ Nothing below is yet approved. Entries marked *verified* rely on `docs/evidence/
 | C-7 | Edit arms: E12 uses 6 arms FULL (3,360 images) vs 4 arms LIMITED | LIMITED drops mid and global arms; HC is still defined by early/late | Accept; record that LIMITED cannot report dose-response. |
 
 Approval: **yes** for C-1 (changes the sample-size basis).
+
+
+### D-05 working resolution (2026-10-13, applied under the owner's conservative-default instruction; still requires owner confirmation for the Addendum)
+- Definition applied: binding-bearing = canonical constraint list contains >= 1 `binding` item; the count is **derived** by `src/benchmark_v2.py` (`design_counts.json`) and independently recounted in `tests/test_benchmark_v2.py`. A stricter *competitive* subset (>= 2 coloured objects) is also reported.
+- Result for the generated draft (quotas unchanged: DEV 100, TEST 200): binding-bearing **140 / 70** (TEST / DEV) because every multi template includes colours and counting scenes carry a colour; competitive **110 / 55**. The C-1 figures 110/55 therefore correspond to the competitive subset, 140/70 to the literal definition. Quotas were **not** changed to reach these numbers; the multi-template mix is a config parameter (`multi_templates`) and the counts move if it changes.
+- Spatial-bearing scenes: 54 (TEST), 28 (DEV), not the blueprint's ~70, because only about half of multi scenes carry a relation.
+- Precision (`data/benchmark_v2/design_precision.json`, Hanley-McNeil on effective n, ICC 0.52 and k=4 quoted from RB, AUC 0.75 assumed): TEST single-AUC half-width 0.083 (literal, anchor check vs RB ~0.08) and 0.094 (competitive); DEV 0.118 / 0.133. E12 image counts: TEST 3,360 (literal) / 2,640 (competitive); DEV tuning 1,120 / 880.
+- Owner decision still needed: which definition is the PRIMARY population for HB/HC (literal 140 vs competitive 110). Default until answered: literal definition primary, competitive reported as a sensitivity analysis. Nothing is frozen.
 
 ## D-12 Undefined cases of DEV-derived quantities (found in review)
 | Quantity (RB) | Undefined when | Proposed rule |

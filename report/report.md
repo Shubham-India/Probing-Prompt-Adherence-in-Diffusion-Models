@@ -7,7 +7,7 @@ Every number comes from `outputs/main/results/` and `outputs/intervention/result
 We study how classifier-free guidance (CFG) scale and the number of DDIM denoising steps affect compositional prompt adherence in Stable Diffusion 1.5,
 using 28 systematically generated prompts (presence, attribute binding, counting, spatial relations, multi-constraint), 3 CFG scales (2, 7.5, 15),
 2 step counts (20, 40) and 6 seeds (1008 images, paired across conditions). Adherence was scored with OWL-ViT detections and CLIP colour classification and
-checked on 40 hand-labelled images (0.93 presence, 0.83 binding, 1.00 count, 0.90 spatial accuracy; spatial has only 2 positive labelled constraints).
+checked on 40 hand-labelled images (0.93 presence, 0.89 binding, 1.00 count, 0.89 spatial accuracy; spatial has only 2 positive labelled constraints).
 Overall success was low (0.22-0.32 depending on the condition). Raising CFG from 2 to 7.5 changed overall success by +0.07 (95% CI [-0.01, +0.15]; Holm p = 0.174),
 a positive but statistically inconclusive effect; going from 7.5 to 15 gave -0.01. Steps (40 vs 20) changed it by -0.02 ([-0.07, +0.02]) and the CFG x steps interaction was not detectable (Wald p = 0.37).
 CLIP image-text similarity rose clearly from CFG 2 to 7.5 (+1.88, d_z = 1.2) and seed diversity fell (0.21 to 0.14).
@@ -59,14 +59,14 @@ binding (CLIP argmax colour of the object's box equals the requested colour; maj
 Primary outcome per image: all constraints satisfied, except counting prompts, where the count constraint alone is used because the yellow-apple colour check is unreliable (decision logged in `report/protocol.md`).
 Secondary: CLIP image-text similarity (not an adherence measure; the same CLIP-B/32 also classifies colour, so the two share biases) and seed diversity (1 - mean pairwise cosine of CLIP image embeddings).
 
-Validation (`report/validation.md`, `src/validate_metrics.py`): 40 randomly drawn pilot images, labelled by Claude (single, non-independent annotator) and re-inspected in a second pass; accuracy of the automatic constraint results:
+Validation (`report/validation.md`, `src/validate_metrics.py`): 40 randomly drawn pilot images; labels drafted by Claude from the images before any automatic score was seen, adjusted in a non-blind second pass by Claude (images 2, 9, 29, 35: two constraints made ambiguous, two colour calls made stricter), and revised by the project owner (images 26, 32, 38); the final labels are in `data/validation_labels.json`. Accuracy of the automatic constraint results against the final labels:
 
-| constraint | n (second pass) | accuracy first pass | accuracy second pass | accuracy strict-colour variant | labelled positives |
+| constraint | n | accuracy | precision | recall | labelled positives |
 |---|---|---|---|---|---|
-| presence | 59 | 0.93 | 0.93 | 0.93 | 46 |
-| binding (colour) | 35 | 0.81 | 0.83 | 0.89 | 18 |
-| count | 10 | 0.91 | 1.00 | 1.00 | 5 |
-| spatial | 10 | 0.90 | 0.90 | 0.90 | 2 |
+| presence | 58 | 0.93 | 1.00 | 0.91 | 46 |
+| binding (colour) | 37 | 0.89 | 0.93 | 0.81 | 16 |
+| count | 10 | 1.00 | 1.00 | 1.00 | 5 |
+| spatial | 9 | 0.89 | 1.00 | 0.50 | 2 |
 
 Spatial accuracy is poorly established (few positive examples) and count has only 10 labelled constraints.
 

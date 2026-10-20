@@ -1,0 +1,54 @@
+{
+  "schema": "analysis-r3-1",
+  "status": "DRAFT - frozen only through protocol/protocol_freeze.json",
+  "source": "GRAND_RESEARCH_BLUEPRINT.md sections 0, 8.0, 24.4-24.8; working defaults D-02..D-06, D-12 (approved 2026-10-14)",
+  "unit": "scene graph (PS family: scene = one subset scene; pair id is the shard group)",
+  "bootstrap": {"draws": 10000, "keys": {"HA": "HA", "HD": "HD", "HE": "HE", "HF": "HF"}, "note": "scene-level resampling; one resample of scenes is shared across CFG levels (HD) and across arms (HE)"},
+  "multiplicity": {"family": ["HA", "HD", "HE", "HF"], "method": "Holm", "alpha": 0.05,
+                   "rule": "a hypothesis is reported SUPPORTED only if its own decision rule passes AND its Holm-adjusted p < 0.05"},
+  "HA": {"estimand": "Delta t50 = t50(bind_given_pres) - t50(presence) at w = 7.5, restart D8", "practical_steps": 3.0, "null_bound": 1.5,
+         "companion": "joint_bind must agree in sign (D-04)", "equal_ratio": "ER30 must agree in sign (D-02)", "p_value": "two-sided bootstrap",
+         "ordering_report": ["presence", "size_given_pres", "count", "spatial_given_pres", "bind_given_pres"],
+         "ordering_prediction": "presence ~ size < spatial < colour binding; the position of count is EXPLORATORY (declared before TEST)",
+         "dev_gate_halfwidth_steps": 4.0, "full_resample_control_max_C": 0.15},
+  "HD": {"estimands": ["Delta t50_CFG(presence) = t50(w=15) - t50(w=2)", "Delta t50_CFG(bind_given_pres)"], "predicted_sign": -1,
+         "practical_steps": 3.0, "null_bound": 1.5, "holm_slot": "minimum-p rule: p_HD = min(1, 2 * min(p_presence, p_binding))",
+         "secondary": "layout (presence, size, spatial) shift larger than colour shift: EXPLORATORY",
+         "chance_level": "A0 computed separately at each w from independent seeds at that w", "dev_gate": ">= 40 DEV scenes with >= 1 both-present base image at each w"},
+  "HE": {"F": "per image: mean over the constraint families present of presence (objects_present), count_ok, bind_given_pres, spatial_given_pres, size_given_pres; conditional families only when defined",
+         "non_inferiority": {"contrast": "A2 - A1 on F", "ci": 0.90, "margin": -0.03},
+         "diversity": {"contrast": "A2 - A1 mean pairwise DINOv2 cosine distance over the 4 seeds", "ci": 0.95, "require": "> 0"},
+         "timing": {"contrast": "A2 - A4 on F", "ci": 0.95, "require": "> 0", "scenes": "prompts where A4 is defined (s* < 40)"},
+         "decision": "intersection-union: supported only if all three pass", "p_value": "max of the three one-sided bootstrap p-values",
+         "quality_guard_dev": {"metric": "HPS v2 (if available; else the owner must fix a replacement before the freeze)", "max_drop": 0.5, "action": "switch primary w_lo from 1 to 3 before TEST (amendment logged)"}},
+  "HF": {"signal_resolution_primary": 16, "secondary_resolution": 32, "t_stab": "half path length (attn_stability.t_stab_path)",
+         "area_mass_q": 0.9, "concordance_support": 0.8, "concordance_reject": 0.5,
+         "within_type": "Spearman(per-scene t_stab averaged over seeds, per-scene area under the commitment curve)",
+         "support": "concordance >= 0.8 AND Spearman CI > 0 for at least two types", "reject": "concordance <= 0.5 OR all within-type CIs include 0 with upper bound < 0.15",
+         "p_value": "one-sided bootstrap p for concordance <= 0.5"},
+  "exclusions": "a job with a missing/corrupt output after one retry is excluded and listed in exclusions.csv with its reason; no outcome-dependent exclusion",
+  "missing_data": "conditional outcomes undefined when objects are absent are not imputed; eligibility counts are reported for every estimate",
+  "duplicates": {
+    "decision": "OWNER_DECISIONS Q2 = A (2026-10-18), docs/R3_DECISION_LOG.md DL-33; implemented in src/dedup.py, applied by src/r3_analyze.py before every estimate",
+    "R1_generation_dedup": "core rows of one split with the same (normalised prompt text, CFG, steps, seed) are one generation and count once (124 such rows in the full manifests); kept: CAN before other variants, main benchmark before PS family, then smaller prompt id; branch/switch rows on a dropped base are dropped with it",
+    "R2_duplicate_canonical_scenes": "scenes of one split with the same normalised canonical prompt count once (PS family scene dropped: psD05_P duplicates sg_0091)",
+    "R3_dev_test_overlap": "TEST rows whose prompt text also occurs in DEV are excluded from TEST variant-level (S2) estimates (11 TEST CF-O items; 32 groups of identical DEV/TEST generations)",
+    "benchmark_and_manifests": "unchanged; duplicates are still generated (156 redundant generations, 0.6% of compute)"
+  },
+  "pre_test_status": {
+    "_note": "fixed before TEST from DEV evidence (Addendum C C5 status note, DL-38/40/45); applied by r3_analyze.finalise",
+    "exploratory": {
+      "HA": "DEV precision gate failed (half-width 7.94 > 4); binding judge below the audit criterion"
+    },
+    "supportable_estimands": {
+      "HD": [
+        "presence"
+      ]
+    },
+    "disclosure": {
+      "HE": "F includes judge types below the audit criterion (count, binding, spatial, size); presence-only F reported as EXPLORATORY sensitivity",
+      "HF": "type orderings include judge types below the audit criterion",
+      "HD": "binding estimand EXPLORATORY (judge criterion not met)"
+    }
+  }
+}

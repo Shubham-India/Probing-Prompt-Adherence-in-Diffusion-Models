@@ -1,0 +1,19 @@
+{
+ "n": 504,
+ "n_groups": 28,
+ "base_rate": 0.2361111111111111,
+ "auc": {
+  "B1(prompt+cfg)": 0.7698461202662884,
+  "B_noise(+x_T features)": 0.7627632871330351
+ },
+ "delta_auc": {
+  "noise_minus_B1": -0.007082833133253308
+ },
+ "delta_auc_ci95": {
+  "noise_minus_B1": [
+   -0.03565880426568364,
+   0.017839354114450222
+  ]
+ },
+ "status": "EXPLORATORY (pilot); only 6 distinct noise vectors exist, so noise features equal seed identity"
+}

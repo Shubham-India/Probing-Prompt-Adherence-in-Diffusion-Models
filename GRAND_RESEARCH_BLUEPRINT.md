@@ -1,8 +1,58 @@
 # GRAND RESEARCH BLUEPRINT
 ## Where Does the Prompt Go? — a research programme for text-to-image prompt adherence
+**Revision 3 (2026-10-18) — uniqueness upgrade. READ §0 FIRST.** A novelty-and-competitiveness review found that Revision 2 is very rigorous but (i) keeps CFG out of its primary hypotheses, although the problem statement asks for a hypothesis about CFG *and* a second mechanism; (ii) has no intervention that is likely to *work*, so Expected Outcome 4 rests on a crowded attention-edit probe; (iii) leaves out *size*, which is in the problem statement's own flagship prompt; (iv) misses six close papers (§24.2); and (v) is too large to pitch. Revision 3 merges everything into one causal story: **"Guide before commitment"** — CFG changes *when* each constraint is decided, attention shows *when* it is decided without labels, and a guidance schedule read off those measurements is the simple training-free intervention. All Revision 1–2 text is kept below for traceability only; where it conflicts with §0 and §24, **§0 and §24 prevail**, and all fallback plans in it are withdrawn (§0.6).
+
+---
+
+## 0. Revision 3 summary: the merged, unique core (one page for judges and for the paper)
+
+### 0.1 Verdict on Revision 2 (honest assessment)
+| Criterion | Revision 2 | Why it matters for winning | Revision 3 fix |
+|---|---|---|---|
+| Scientific rigour | **Excellent**: preregistration, sealed TEST split, conditional outcomes, matched controls, power gates | This is rarer than novelty in student work; keep all of it | Kept unchanged |
+| Novel headline | **Good**: per-constraint commitment curves measured causally (ND01) | Some timing evidence already exists (Prompt-Mixing, ProSpect, Dynamic CFG, Step Selection; §24.2), so "timing differs" alone is weaker than it looked | Make the *link to CFG* and the *attention commitment signature* the new parts (HD, HF) |
+| Fit to the PS's first requirement ("hypothesis about how **CFG and** at least one other mechanism affect adherence") | **Weak**: HA–HC are all at a fixed CFG of 7.5; CFG appears only in supporting E11 | A judge reading against the PS checklist can mark this down | **HD: CFG speeds up commitment**, a primary hypothesis (§24.4) |
+| Expected Outcome 4 ("a simple intervention that improves adherence") | **Weak**: a targeted attention edit already found in about 12 published methods; the pilot's global edit gave +0.02 | Judges remember a result that *works* | **HE: Commitment-Aligned Guidance (CAG)**, a zero-cost CFG schedule whose switch step is *measured*, not tuned (§24.5) |
+| PS flagship prompt ("a **small** red cube and a **large** blue sphere") | Size is not a constraint type anywhere | Easy marks lost; also a missed scientific contrast | **Size binding** as the fifth constraint type, plus a factorial "PS family" of scenes (§24.6) |
+| Mechanistic attention analysis (a PS requirement) | Covered (HB), but forecasting with attention overlaps Diffusion Probe and InitNO | Needs a *different* question about attention | **HF: attention stabilisation time tracks causal commitment** — a label-free, one-pass commitment detector (§24.7) |
+| Pitchability | 2,700 lines, 3 revisions, 34 experiments | Judges need one sentence and one figure | §0.2–0.5 |
+
+**Bottom line.** Revision 2 is not yet the *best* version for a research hackathon. Its rigour is better than most entries, but its headline is a measurement without a payoff, and it under-serves CFG, the intervention requirement and the PS's own example. Revision 3 keeps the rigour and adds the payoff.
+
+### 0.2 One-sentence thesis
+> **Every compositional constraint has a "commitment step" after which the model will not change its mind; CFG matters mainly by moving that step earlier, cross-attention reveals it without labels, and guidance spent after it buys no adherence and costs diversity.**
+
+### 0.3 The causal chain the PS asks for, with one measurement per arrow
+```
+inference-time parameter        internal model behaviour                   observable outcome
+CFG scale w, CFG schedule  -->  commitment step t50_k per constraint k  -->  adherence per constraint,
+(HD, HE)                        (HA, causal re-noising + prompt switch)      seed diversity, quality
+                                attention stabilisation t_stab (HF)
+```
+
+### 0.4 Revision 3 confirmatory family (Holm over four; everything else is supporting)
+| ID | Hypothesis (two-sided unless stated) | New in R3? | Experiment |
+|---|---|---|---|
+| **HA** | Commitment step differs between constraint types; **R3 adds size**: predicted order presence ≈ size < spatial < colour binding | Extended | E23 (+E32) |
+| **HD** | Raising CFG moves commitment **earlier** (t50 falls as w rises), more for layout-type constraints (presence, size, spatial) than for colour | **New** | E29 |
+| **HE** | **Commitment-Aligned Guidance** (high CFG until the prompt's commitment step, low after) is non-inferior to constant CFG 7.5 on adherence (margin 0.03) **and** raises seed diversity; a reversed schedule with the same average guidance is worse | **New** | E30 |
+| **HF** | The step at which a token's cross-attention map stops changing (t_stab) tracks the causal commitment step: same ordering across constraint types, and positive within-type association | **New** | E33 |
+| HB, HC | Retained from Revision 2 as **supporting** analyses (HC's attention edit becomes P2; CAG is now the intervention) | Demoted | E05, E12 |
+
+### 0.5 What is unique, stated safely (use this paragraph in the paper's introduction)
+> Prior work shows qualitatively that denoising stages control different visual properties (Prompt-Mixing, ProSpect, eDiff-I), tunes guidance per step for image quality or with learned evaluators (interval guidance, Dynamic CFG, CADS), and selects a single step for attention-based correction (Step Selection). **To our knowledge** (search of 2026-10-18; not exhaustive), no study (1) measures *causal*, chance-corrected commitment steps separately for presence, count, size, colour binding and spatial relations with two independent probes, (2) tests whether CFG acts by *moving* those steps, (3) validates a label-free attention signature of commitment against the causal measurement, and (4) derives a guidance schedule from the measured steps without tuning it on adherence.
+
+### 0.6 No-fallback policy (Revision 3 commits to one paper and one plan)
+There is **one** paper (§0.2–0.5, §24) and **one** compute plan (FULL, §24.9). The following earlier material is **withdrawn** and must not be used: the fallback paper C3 + C5 + C6 (§5.5, §21.3), the Revision 2 fallback matrix (§21.6), fallback titles (§20.1 ranks 3–6, §20.1b rank 4 and the note under it), the LIMITED plan and minimum experiment sets (§16.5 LIMITED columns, §16.7, §16.7b), and roadmap rules that switch headline (§22 "switch to the fallback paper").
+What stays, because it is statistics rather than a fallback: every hypothesis is still reported as **supported, bounded null or inconclusive** with confidence intervals; validity checks (evaluator audit, size-judge accuracy, unit tests) still decide whether a measurement can be trusted. A null result is reported as a result inside the same paper, never by switching papers.
+
+### 0.7 Recommended title
+**"Guide Before Commitment: When Does a Diffusion Model Decide What It Draws, and What Does CFG Change?"** (alternatives in §24.10).
+
 **Revision 2 (2026-10-14).** An independent research-discovery phase (§6A) re-examined the headline of Revision 1. The recommended central paper changed from *early attention diagnostics* to *commitment timing of compositional constraints* (hypotheses HA, HB, HC; §1, §7, §8). Revision 1 analyses that still apply are kept and marked; superseded text is labelled.
 
 **Contents**
+0. **Revision 3 summary: the merged, unique core (read first)**
 1. Executive research decision (Revision 2)
 2. Repository audit and verified baseline
 3. Official problem-statement compliance checklist
@@ -27,6 +77,7 @@
 21. Risks, limitations, alternative outcomes and stop conditions
 22. Prioritised execution roadmap (phases and gates; no calendar times are asserted)
 23. Verified references and official code repositories
+24. **Revision 3: the merged "Guide Before Commitment" programme (HD, HE, HF, size, prompt-switch probe, new prior art, compute)**
 
 
 *Planning document. Written 2026-10-14 (Revision 2 the same day). No new experiment was run to write it, no source file was modified, and **no future experimental result appears in it as fact**. Every number below is either (a) read from a saved file in this repository, (b) computed from those saved files by a read-only script (stated where it happens), or (c) a design parameter I propose.*
@@ -2104,22 +2155,22 @@ Run a hardware/quota probe that prints `nvidia-smi`, `torch.cuda.get_device_name
 ### 16.5 Experiment matrices (formulas, then totals)
 **Definitions.** `S` scene graphs; `V` average variants per scene; `k` seeds; `S_cfg` scenes in the CFG study; `S_b` binding-bearing TEST scenes; arms/ablation counts as in §9.
 
-| Quantity | FULL | LIMITED |
-|---|---|---|
-| Independent scene graphs | 300 (DEV 100, TEST 200) | 160 (DEV 60, TEST 100) |
-| Prompt variants (`S × V`) | 300 × 5 = **1,500** | 160 × 4 = **640** |
-| Seeds `k` (DEV tuning k = 2) | 4 | 4 |
-| Core images `S·V·k` (E04) | **6,000** | **2,560** |
-| CFG × steps study `S_cfg·(C·T − 1)·k` | `150·(5·2 − 1)·4 =` **5,400** | `100·(3·2 − 1)·4 =` **2,000** |
-| Intervention arms, TEST `S_b · 3 · k` | `140·3·4 =` **1,680** | `70·3·4 =` **840** |
-| Intervention tuning, DEV `S_b,dev · configs · 2` | `70·8·2 =` **1,120** | `41·6·2 =` **492** |
-| Ablations (P3) | `6·60·4 =` **1,440** | 0 |
-| SDXL replication (P2) | `100·4 =` **400** | `60·4 =` **240** |
-| **Total generated images** | **16,040** | **6,132** |
-| Attention extractions | E04 6,000 + E11 40-step new cells `150·4·4 = 2,400` + SDXL 400 = **8,800** | `2,560 + 100·2·4 + 240 =` **3,600** |
-| Evaluator calls, J1 | = images: 16,040 | 6,132 |
-| Evaluator calls, J2 (`images × atoms`; atoms ≈ 6 is an **assumption**, measure in E03) | ≈ 96,240 | ≈ 36,792 |
-| Human judgements (audit) | ≈ 900 + 300 duplicates | ≈ 600 + 200 duplicates |
+| Quantity | FULL (LIMITED column withdrawn, §0.6) |
+|---|---|
+| Independent scene graphs | 300 (DEV 100, TEST 200) |
+| Prompt variants (`S × V`) | 300 × 5 = **1,500** |
+| Seeds `k` (DEV tuning k = 2) | 4 |
+| Core images `S·V·k` (E04) | **6,000** |
+| CFG × steps study `S_cfg·(C·T − 1)·k` | `150·(5·2 − 1)·4 =` **5,400** |
+| Intervention arms, TEST `S_b · 3 · k` | `140·3·4 =` **1,680** |
+| Intervention tuning, DEV `S_b,dev · configs · 2` | `70·8·2 =` **1,120** |
+| Ablations (P3) | `6·60·4 =` **1,440** |
+| SDXL replication (P2) | `100·4 =` **400** |
+| **Total generated images** | **16,040** |
+| Attention extractions | E04 6,000 + E11 40-step new cells `150·4·4 = 2,400` + SDXL 400 = **8,800** |
+| Evaluator calls, J1 | = images: 16,040 |
+| Evaluator calls, J2 (`images × atoms`; atoms ≈ 6 is an **assumption**, measure in E03) | ≈ 96,240 |
+| Human judgements (audit) | ≈ 900 + 300 duplicates |
 
 *No double counting:* the control arm **reuses** the core images (hook-on is image-neutral and the control path is pixel-identical); the CFG study shares the core cell; attention maps are produced in the **same pass** as the images; paraphrase/order/counterfactual images are part of the core count.
 
@@ -2163,7 +2214,7 @@ E00, E01, E02, E03, E21 (gate), E04 (DEV + TEST, CAN + PAR + one CF), E05, E18-l
 | Attention extractions | Core 6,000 + CFG 2,400 + SDXL 400 as before; **E23 and E24 need none** | as before |
 | Evaluator calls J1 | = generated images (branch images included) | same |
 
-**Reference only (not a Kaggle estimate).** At the RTX 3050's measured 9.1 s per 40-step image: FULL P0–P2-lite 19,520 × 9.1 s ≈ **49.3 GPU-hours**; LIMITED 8,182 × 9.1 s ≈ **20.7 GPU-hours**. As in §16.6 these figures size the question only; the choice between FULL and LIMITED is made after E03 measures Kaggle throughput, including the measured `t_branch`. **Priority under a quota shortfall:** keep E23 and E12; shrink E11 (3 CFG levels) and E24 first; E26–E28 are dropped before the primary programme is touched.
+**Reference only (not a Kaggle estimate).** At the RTX 3050's measured 9.1 s per 40-step image: FULL P0–P2-lite 19,520 × 9.1 s ≈ **49.3 GPU-hours**; LIMITED 8,182 × 9.1 s ≈ **20.7 GPU-hours**. As in §16.6 these figures size the question only; the choice between FULL and LIMITED is made after E03 measures Kaggle throughput, including the measured `t_branch`. *(The Revision 2 shortfall/priority rule that stood here is withdrawn, §0.6.)*
 
 *No double counting:* branch bases come from E04 core images (no regeneration); the control arm of E12 and the baseline `A0` come from the core data; E25 needs no new image; E27 generates no image.
 
@@ -2702,3 +2753,239 @@ In every row Benchmark V2, the evaluator audit and the controlled CFG × steps �
 - Costs in §16.5b are formulas and a reference time at the pilot hardware speed, not Kaggle measurements.
 - The discovery phase used a limited number of web searches; "no prior interventional constraint-level commitment study found" means **not found in that search**, not that none exists.
 - No experiment was run, no image generated, no existing result overwritten in this revision.
+
+
+---
+
+## 24. Revision 3 (2026-10-18): the merged "Guide Before Commitment" programme
+
+*Same rules as the rest of this document: no experiment was run to write this section; every result-shaped statement is a **PROPOSED HYPOTHESIS** or **POSSIBLE FUTURE OUTCOME**; costs are formulas plus the pilot's measured 9.1 s per 40-step image used only as a reference. Definitions from §8.0 (grid `{6, 12, 18, 24, 30, 36}`, Δ = 8, `M = 2`, chance-corrected commitment `C_κ(t)`, `t50_κ`) are reused unchanged.*
+
+### 24.1 Why a third revision
+Revision 2's commitment programme is the right backbone, but a competitiveness review against the problem statement (PS) found five gaps (table in §0.1). Each new element below closes one gap **and** connects to the commitment backbone, so the paper tells one story instead of adding side projects.
+
+| Gap | New element | Section |
+|---|---|---|
+| CFG absent from the primary hypotheses | HD: CFG moves commitment earlier | §24.4 |
+| No intervention likely to work | HE: Commitment-Aligned Guidance (CAG) | §24.5 |
+| Size missing (PS flagship prompt) | Size binding + factorial PS family + commitment congestion | §24.6 |
+| Attention analysis overlaps forecasting work | HF: attention stabilisation as a label-free commitment detector | §24.7 |
+| Commitment measured by a single probe | Prompt-switch probe for convergent validity | §24.8 |
+
+### 24.2 Prior art missing from Revisions 1–2 (search of 2026-10-18)
+| Paper | Verification level | What it shows | Consequence for this programme |
+|---|---|---|---|
+| **Prompt-Mixing / Localizing Object-level Shape Variations** (Patashnik et al., ICCV 2023; arXiv 2303.11306; code `orpatashnik/local-prompt-mixing`) | ABS (existence and venue confirmed; content from prior reading — **re-read full text**) | Switching prompts over different denoising intervals: layout fixed early, object shape in middle steps, fine detail late | The **prompt-switch operation** of E31 is theirs; our use is a *measurement* per constraint type, chance-corrected, cross-checked against re-noising. Must be cited in §8 and the paper |
+| **ProSpect** (Zhang et al., SIGGRAPH Asia 2023; arXiv 2305.16225) | ABS (existence confirmed; content from prior reading — **re-read**) | Different denoising stages respond to different attributes (layout/content early, material/style later) in a personalisation setting | Qualitative stage–attribute evidence exists; our claim must be **causal, constraint-level, quantitative**, not "stages differ" |
+| **eDiff-I** (Balaji et al., 2022; arXiv 2211.01324) | Already cited 4× in this file; content claim **UNVERIFIED this session** | Text conditioning dominates early steps; motivates timestep-specialised denoisers | Supports HD's mechanism (guidance acts where text matters) |
+| **Dynamic CFG via Online Feedback** (arXiv 2509.16131, Google DeepMind et al.; venue not stated) | ABS+ (HTML page summarised 2026-10-18) | Picks the CFG scale **per step** with latent evaluators (CLIP, reward, counting, text rendering). Median schedule is arc-shaped. **Counting benefits from *lower* guidance early**; alignment favours *high* guidance early; "optimal schedule is dynamic and prompt-dependent" | **Closest competitor for HE.** Differences: CAG's switch is read off a *causal commitment measurement*, uses no evaluator at sampling time, and is tested per constraint type incl. binding/spatial/size (they test counting and text only). Their counting finding is a **competing prediction**: E30's reversed arm adjudicates it |
+| **Text-to-Image Alignment through Step Selection** (Grimal et al., arXiv 2504.17525; OpenReview preprint) | ABS+ (HTML page summarised 2026-10-18) | One attention-based refinement step; best step chosen by validation sweep (SD 1.4: step 8 of 50); **colour changes work better earlier, entity separation later**; too-early optimisation less effective | Independent evidence that *timing per constraint* matters for edits. Overlaps Revision 2's HC (time-gated edit) → another reason HC is demoted. Our HA/HD measure timing without any edit |
+| **CADS: Condition-Annealed Diffusion Sampler** (Sadat et al., ICLR 2024 spotlight; arXiv 2310.17347) | ABS (existence and venue confirmed) | Adds annealed noise to the *conditioning* early in sampling to raise diversity at high CFG | Opposite schedule to CAG (weak condition early). Use as a **baseline arm** in E30 (P2) or at least as the stated alternative |
+| **Self-Guidance** (Epstein et al., NeurIPS 2023; arXiv 2306.00986) | **UNVERIFIED this session** (prior knowledge) | Reads object position, **size**, shape and appearance from attention and guides them | Prior art for "size is readable from attention"; HF/E32 must cite it; our size use is measurement, not control |
+| **CoBind** (already §4.2) | ABS (HTML listed in search 2026-10-18) | Stage-aware binding schedule | Unchanged; still the closest stage-aware binding method |
+
+**Novelty consequence.** "Constraint types are decided at different steps" is **no longer safe as a stand-alone novelty claim** (Prompt-Mixing, ProSpect, Step Selection give qualitative or edit-based evidence). The safe novel claims are the four in §0.5: causal + chance-corrected + two-probe measurement per constraint type; CFG acting through commitment; a validated label-free attention signature; and a measurement-derived guidance schedule. Full-text reading of the first five rows joins Phase 0 (§22).
+
+### 24.3 The unified programme (replaces §6A.6 as the paper's backbone)
+```
+                     E23 re-noising probe  ─┐
+Link 1  WHEN?        E31 prompt-switch probe ├─► t50_κ for presence, count, size, spatial|pres, binding|pres   (HA)
+                     E32 size + PS family   ─┘        │
+                                                      ▼
+Link 2  WHAT DOES    E29: t50_κ at CFG 2 / 7.5 / 15  ──► CFG moves commitment earlier?                       (HD)
+        CFG DO?              chance level A0(w) rises as diversity falls → ratio estimator is essential
+                                                      │
+Link 3  CAN WE SEE   E33: attention stabilisation t_stab per token  ──► t_stab tracks t50_κ?                 (HF)
+        IT INSIDE?          (reuses E04/E11 attention; no new images)
+                                                      │
+Link 4  CAN WE USE   E30: Commitment-Aligned Guidance (switch at measured t50)  ──► same adherence,          (HE)
+        IT?                 more diversity, fewer UNet calls; reversed schedule is worse
+```
+Each link is evaluated separately; a failure of one does not invalidate the others (§24.11).
+
+### 24.4 HD — CFG moves commitment earlier (**PLANNED CONFIRMATORY TEST**)
+| Field | Specification |
+|---|---|
+| Statement | For each constraint type κ, the commitment step falls as the CFG scale rises: `Δt50_κ^CFG = t50_κ(w = 15) − t50_κ(w = 2) < 0`. Secondary: the shift is larger for layout-type constraints (presence, size, spatial\|pres) than for colour binding\|pres |
+| Mechanism | CFG scales the conditional direction `ε_cond − ε_uncond` of the deterministic DDIM ODE. A larger drift towards text-consistent regions should make the trajectory select its "basin" (which objects, where, how big) at higher noise levels. Pilot evidence consistent with this (EXPLORATORY, §2.7 F1): per-(prompt, seed) outcomes correlate 0.79 between CFG 7.5 and 15 but only 0.53 between 2 and 7.5 — as if commitment saturates by 7.5. Seed diversity also falls 0.21 → 0.14 → 0.12 (VERIFIED), which an earlier commitment would explain |
+| Why it is new | Interval guidance, CFG schedulers, Dynamic CFG and CADS change *how much* guidance is used *when*; none (as far as found) measures how guidance shifts the causal commitment step per constraint type (**UNVERIFIED gap**) |
+| Operational definition | E23 protocol repeated with base trajectories **and** branches at w ∈ {2, 7.5, 15} (branches re-denoise at the same w as their base). Chance level `A0_κs(w)` from independent seeds **at that w**. Same scenes and seeds at all w (common random numbers, F8) |
+| Critical subtlety | Without chance correction, higher CFG would look "more committed" simply because diversity falls (`A0` rises). The ratio estimator `C_κ(t)` subtracts `A0(w)`; raw agreement is reported alongside so readers can see the difference |
+| Primary outcome | `Δt50^CFG` for presence and for binding\|pres (two estimands; one Holm slot via the minimum-p rule, or pool layout types if presence alone is too sparse at w = 2) |
+| Unit / interval | Scene graph; joint scene bootstrap across w (scenes resampled once for all w) |
+| Minimum meaningful effect | 3 steps (same as HA) |
+| Support / reject / inconclusive | Support: CI excludes 0 **and** `abs(Δt50) ≥ 3` in the predicted direction. Reject (bounded null): CI ⊂ (−1.5, +1.5). Opposite sign with CI excluding 0 = **contradicted** (reported as a finding: CFG delays commitment) |
+| Threats | At w = 2 presence is low, so conditional outcomes shrink the sample (gate: ≥ 40 scenes with ≥ 1 both-present base image per w on DEV); `t50` is Δ-relative; judge reliability may differ with CFG (audit stratified by w) |
+
+### 24.5 HE — Commitment-Aligned Guidance (CAG): the simple intervention (**PLANNED CONFIRMATORY TEST**)
+**Idea.** If guidance only changes outcomes before commitment, guidance spent after commitment is wasted: it reduces diversity (pilot: CFG 7.5 → 15 lowers diversity, leaves adherence unchanged, VERIFIED) and costs a second UNet pass per step. CAG uses high guidance until the prompt's latest commitment step, then little or none.
+
+**Schedule (fully determined by DEV measurements; nothing tuned on adherence).**
+```
+s*(prompt) = ceil( max_{κ ∈ constraint types in the prompt} t50_DEV,κ(w_hi) ) + m        # m = 2 steps margin
+w(step)    = w_hi  if step < s*      (w_hi = 7.5, the core condition)
+           = w_lo  otherwise         (w_lo = 1.0 primary → unconditional pass skipped; w_lo = 3.0 secondary)
+If t50 is "> 36" for any present type, s* = 40 and CAG equals constant CFG for that prompt (reported, not hidden).
+```
+With `w_lo = 1` the model evaluates only the conditional branch after `s*`, so UNet calls fall from 80 to `2·s* + (40 − s*)`; this saving is reported as an outcome, not assumed.
+
+| Arm (TEST canonical scenes, 40 steps, k = 4) | Purpose |
+|---|---|
+| A1 constant w = 7.5 | Control (free: E04 core images) |
+| **A2 CAG-type** (s* from the prompt's own constraint types) | The intervention |
+| A3 CAG-global (one s* = median of all t50_DEV) | Tests whether *constraint-awareness* matters |
+| A4 **reversed** (w_lo before s*, w_hi′ after, with w_hi′ set so the mean guidance equals A2's) | **Falsification arm**: if timing matters, adherence must drop. Also adjudicates Dynamic CFG's "low guidance early helps counting" finding (§24.2) |
+| A6 constant at A2's mean guidance w̄ | Controls for total guidance |
+| A5 interval guidance / CADS (P2, only if budget allows) | Published-schedule baselines on the same scenes and seeds |
+
+| Field | Specification |
+|---|---|
+| Primary outcomes | (i) **Non-inferiority** on overall constraint satisfaction `F` (mean of conditional constraint scores, §8.0): A2 − A1 lower 90% CI bound > −0.03. (ii) **Diversity superiority**: A2 − A1 in mean pairwise seed distance (DINOv2 ViT-S/14 cosine distance; LPIPS secondary) with 95% CI > 0. (iii) **Timing test**: A2 − A4 on `F` with 95% CI > 0 |
+| Decision rule | HE is supported only if (i), (ii) and (iii) all pass (intersection–union test, so it uses one Holm slot without extra correction) |
+| Secondary | A2 vs A3 per constraint type (does awareness of type help?); UNet calls; CLIPScore; HPS v2 / ImageReward (guard: drop ≤ 0.5 HPS points); per-type adherence |
+| Unit | Scene graph; pairing by (scene, seed); paired scene bootstrap |
+| Interpretation | (i)+(ii)+(iii) = guidance after commitment is wasted, and CAG gives diversity and compute for free. (i)+(ii) without (iii) = a useful schedule whose benefit is **not** explained by timing (report honestly). (i) fails = commitment does not fully lock outcomes; late guidance still matters |
+| Threats | `w_lo = 1` may harm image quality (secondary `w_lo = 3` pre-registered); DEV t50 estimates may be noisy (s* uses +2 margin; sensitivity m ∈ {0, 4} reported as EXPLORATORY) |
+
+### 24.6 Size binding, the PS flagship family and commitment congestion
+**Why.** The PS's own example is "a **small** red cube and a **large** blue sphere … the cube is to the left". Size is a *relational* attribute (judged by comparing two objects) that should behave like **layout**, while colour behaves like **texture**. That gives a sharp, testable contrast inside HA: **size should commit about as early as presence; colour later.**
+
+**Benchmark V2 additions (§11).**
+```json
+"objects": [{"oid": "o1", "noun": "cube", "attributes": {"colour": "red", "size": "small"}},
+            {"oid": "o2", "noun": "sphere", "attributes": {"colour": "blue", "size": "large"}}],
+"relations": [{"rel": "left_of", "subject": "o1", "object": "o2"},
+              {"rel": "larger_than", "subject": "o2", "object": "o1"}]
+```
+New counterfactual **CF-S** (swap the two size words); new constraint `size:o2 larger_than o1`.
+
+**Size judge (J-size).** Both objects detected; the intended larger object's box area ≥ 1.5 × the other's. Restrict to side-by-side "on a table" scenes to limit perspective confounds; human audit ≥ 140 size judgements (§12.4 formula). **Gate:** if audited accuracy < 0.85, size is reported as EXPLORATORY. Report `Y_size|pres` (conditional, like binding).
+
+**PS flagship family (factorial).** For each of 24 object pairs (DEV 8 / TEST 16), all 8 subsets of {colour, size, spatial} on top of presence (for example: "a cube and a sphere"; "a red cube and a blue sphere"; "a small cube and a large sphere"; … ; the full PS sentence). Generation: 24 × 8 × k = 4 images.
+
+**Commitment congestion (HA secondary, EXPLORATORY unless promoted at the freeze).** Measure `t50_colour` and `C_colour(36)` in the subsets {colour}, {colour + size}, {colour + spatial}, {colour + size + spatial}. Prediction: each added constraint **delays** colour commitment and lowers its final commitment level (constraints compete for the same early decision window). This answers the PS's "compositional complexity: how does adherence change as the number and interaction of constraints increase" **mechanistically**, not just as a falling success rate.
+
+### 24.7 HF — Attention stabilisation is a label-free commitment detector (**PLANNED CONFIRMATORY TEST**)
+**Idea.** If an outcome is committed at step t50, the internal representation that carries it should stop moving around then. Cross-attention maps are the PS-required internal signal. HF asks whether *when attention settles* matches *when the outcome is causally fixed* — which would give a one-pass, label-free commitment estimate (no branches, no judge).
+
+| Field | Specification |
+|---|---|
+| Signal per constraint type | presence → noun token map; colour → colour-word map; size → ratio of the two noun maps' areas (top-10% mass); spatial → sign and angle of the vector between the two noun-map centroids; count → number of connected components in the noun map (thresholded at its 90th percentile) |
+| Attention velocity | `v(t) = 1 − cos(a(t), a(t−1))` for map signals; absolute change for scalar signals; 16×16 maps aggregated over layers (16×16 and 32×32 reported separately) |
+| `t_stab` (primary, threshold-free) | the step at which **half of the total path length** `Σ_t v(t)` has been travelled. Secondary: first step after which `v(t)` stays below 10% of its early (steps 0–5) median |
+| Test 1 (type level) | concordance between the ordering of `t_stab` and of `t50` across the five constraint types (all 10 pairwise orderings), with bootstrap CI |
+| Test 2 (scene level) | within each type, Spearman correlation between per-scene `t_stab` (averaged over seeds) and per-scene **area under the commitment curve** (continuous; less noisy than per-scene t50) |
+| Support | concordance ≥ 0.8 **and** Spearman > 0 with CI excluding 0 for at least two types |
+| Reject | concordance ≤ 0.5 or all within-type CIs include 0 with upper bound < 0.15 |
+| Cross-check with HD | does `t_stab` also move earlier with CFG (E11 attention at w = 2 / 7.5 / 15)? EXPLORATORY |
+| Compute | **None new**: E04 and E11 already save per-step attention for 40-step images; E23/E29 supply t50 |
+| Prior art distinction | Diffusion Probe predicts final quality from early attention statistics; Self-Guidance reads size/position from attention to *control* them. Neither validates an attention-derived *timing* against a *causal* commitment measurement (**UNVERIFIED gap**) |
+
+### 24.8 E31 — Prompt-switch probe (convergent validity for HA)
+Start from the **counterfactual** trajectory (CF-C colour swap, CF-R relation reversal, CF-S size swap) whose latents were saved at the grid steps, and from step t continue with the **canonical** prompt to the end. `W_κ(t)` = fraction of images whose final outcome follows the counterfactual (early) prompt; chance-correct against independent-seed agreement as in §8.0. `t50^switch_κ` = first grid step where the early prompt wins at least half the chance-corrected margin.
+- **Agreement test (EXPLORATORY → becomes part of HA's support statement):** same ordering of `t50^switch` and `t50^renoise` across colour, spatial, size; scene-level correlation reported.
+- **Why it matters:** if two probes that perturb different things (noise vs text) agree, commitment is a property of the model, not of the probe. If they disagree, that is reported as a limitation of "commitment" as a single number.
+- **Operation credit:** prompt switching across intervals is Prompt-Mixing's operation (§24.2); this is a measurement use.
+
+### 24.9 New experiment cards (summary), compute and priorities
+| ID | Title | Priority | New images? | Hypothesis |
+|---|---|---|---|---|
+| E29 | Commitment curves at CFG 2 / 7.5 / 15 | **P1** | branches at 2 extra CFG levels | **HD** |
+| E30 | Commitment-Aligned Guidance arms A1–A6 | **P1** | 4 new arms | **HE** |
+| E31 | Prompt-switch commitment probe | P1-lite | switch runs from saved CF latents | HA (validity) |
+| E32 | Size binding + PS flagship factorial family + congestion | **P1** | 768 core + branches | HA (size), congestion |
+| E33 | Attention stabilisation vs commitment | **P1** | none | **HF** |
+| E34 | Error-mode clocks: commitment of omission / fusion / colour leakage / swap separately (multinomial agreement; uses §2.7 F3 taxonomy) | P2 | none | EXPLORATORY |
+
+**Matrices (formulas, then totals; image-equivalents as defined in §16.5b).**
+| Quantity | Image-equivalents |
+|---|---|
+| E29 TEST branches, 2 extra CFG levels: `2 × (S·k·grid·M) × remaining` | `2 × 100·2·6·2 × 0.667 ≈` **3,200** |
+| E29 DEV rehearsal, 2 extra levels: `2 × 20·2·6·2 × 0.667` | **640** |
+| E29 base images at w = 2 and 15 with latents (only if E11 does not already save latents for these scenes) | `2·100·2 =` 400 |
+| E30 arms A2, A3, A4, A6: `4 · S · k` | `4·140·4 =` **2,240** |
+| E31 switch runs: `3 types · S · k · 6 · mean remaining (19/40 = 0.475)` | `3·40·2·6 × 0.475 ≈` **684** |
+| E32 core: `pairs · 8 · 4` | `24·8·4 =` **768** |
+| E32 branches on 4 key subsets: `pairs · 4 · 2 · grid · 2 × remaining` (16 TEST pairs) | `16·4·2·6·2 × 0.667 ≈` **1,024** |
+| E33, E34 | 0 |
+| **New total (without the optional E29 bases)** | **8,556** |
+| **Removed** (HC demoted to P2; fragility deferred): E12 TEST + DEV, E24 | `3,360 + 1,120 + 1,400 = 5,880` |
+| **Revision 3 P0–P1 total** (Rev. 2 P0–P2-lite total − removed + new) | `19,520 − 5,880 + 8,556 =` **22,196** |
+| Reference at the pilot's 9.1 s per image (not a Kaggle estimate) | ≈ 56.1 GPU-hours |
+
+**All of the above runs.** There is no reduced plan; if measured Kaggle throughput is slower than the reference, the schedule is extended, not the design.
+
+### 24.10 Files, figures, titles
+**New / changed files (§17).**
+| File | Change |
+|---|---|
+| `src/benchmark_v2.py` | size attribute, `larger_than` relation, CF-S variant, PS flagship factorial generator |
+| `src/evaluate.py` | `size_ok` (area ratio ≥ 1.5, both detected), `Y_size|pres`; multinomial error mode for E34 |
+| `src/commit.py` (E23) | `--cfg` argument; chance level per CFG; latents saved at grid steps for all w |
+| `src/cag.py` | custom DDIM loop with per-step `w(t)`; skips the unconditional pass when `w = 1`; logs UNet calls. **Unit test:** with `s* = 40` output is bit-identical to the constant-CFG pipeline |
+| `src/switch.py` | resume from saved CF latents with the canonical prompt |
+| `src/attn_stability.py` | velocity, path-length `t_stab`, per-type signals |
+| `src/diversity.py` | DINOv2 ViT-S/14 and LPIPS pairwise seed distance |
+| `report/protocol.md` | **Addendum C**: HD, HE, HF verbatim; s* values from DEV; J-size gate; frozen before TEST |
+
+**Figures.**
+| ID | Figure | Message |
+|---|---|---|
+| **F-R3-1 (hero)** | The PS sentence itself: rows = restart step, columns = branches; beside it `C_κ(t)` for presence, size, spatial, colour | "Each part of the sentence is decided at a different moment" |
+| F-R3-2 | `t50_κ` against CFG (2 / 7.5 / 15), one line per type, with CIs; raw agreement as dashed lines | HD and why chance correction matters |
+| F-R3-3 | CAG Pareto plot: adherence vs diversity, marker size = UNet calls; arms A1–A6 | HE in one picture |
+| F-R3-4 | `t_stab` vs commitment (type means + scene scatter) | HF |
+| F-R3-5 | Congestion: `C_colour(t)` in the 4 PS-family subsets | complexity, mechanistically |
+
+**Titles (Revision 3, ranked).**
+1. *Guide Before Commitment: When Does a Diffusion Model Decide What It Draws, and What Does CFG Change?*
+2. *Where Does the Prompt Go — and When? Commitment Steps, Guidance and Attention in Text-to-Image Diffusion*
+3. *Guidance After Commitment Is Wasted: Measuring and Exploiting Constraint Commitment in Diffusion Sampling* (only if HE is supported)
+
+**Contribution statement (Version A, safe before results).**
+> "We measure, with two independent causal probes, the denoising step at which presence, count, size, colour-binding and spatial constraints become fixed; test whether classifier-free guidance acts by moving these steps; test whether cross-attention stabilisation reveals them without labels; and evaluate a guidance schedule derived from the measured steps against constant, reversed and matched-average schedules. We report support, bounded null or inconclusive for each hypothesis, with confidence intervals and the smallest effect our design could resolve."
+
+### 24.11 Interpretation handbook for the new hypotheses (every row is a POSSIBLE FUTURE OUTCOME)
+| Outcome pattern | What it would mean | What to write |
+|---|---|---|
+| HA ✓, HD ✓, HE ✓, HF ✓ | Full story holds | Title 3 allowed; CAG presented as a measurement-derived schedule, not a new state of the art |
+| HA ✓, HD ✓, HE ✗(i) | Late guidance still matters: commitment is not total | "Commitment is partial; guidance keeps acting after t50" — still a mechanistic finding |
+| HD contradicted (CFG delays commitment) | Guidance keeps trajectories undecided longer | Report as a surprising finding; reconcile with diversity loss (diversity may fall for another reason) |
+| HE (i)+(ii) ✓, (iii) ✗ | A useful schedule, but not *because of* timing | Report CAG as practical, do not claim the mechanism |
+| HF ✓ only at type level | Attention settles in the right order but is too noisy per scene | Usable as a diagnostic of *types*, not of individual images |
+| Size commits with colour, not with presence | Size is treated like an attribute, not layout | Contradicts our layout/texture split; report as such |
+| Re-noising and prompt-switch probes disagree | "Commitment" depends on the probe | State it as a limitation; report both curves |
+
+### 24.12 Revision 3 risks and stop conditions
+| Risk | Signal on DEV | Action |
+|---|---|---|
+| Size judge invalid (perspective, occlusion) | audit accuracy < 0.85 | size → EXPLORATORY; HA keeps four types |
+| Presence too rare at w = 2 | < 40 DEV scenes with a both-present base image | HD uses presence and pooled layout types only; binding at w = 2 EXPLORATORY |
+| Colour never commits (`t50 > 36`) | DEV curve below 0.5 at step 36 | CAG s* = 40 for colour prompts; HE tested on the other prompts; finding reported |
+| `w_lo = 1` damages quality | HPS drop > 0.5 on DEV | switch primary to the pre-registered `w_lo = 3` **before** TEST (amendment logged) |
+| HF signals degenerate (flat velocity) | path length ≈ 0 for a type | drop that type from HF; document |
+
+### 24.13 Change log Revision 2 → 3
+| Item | Revision 2 | Revision 3 |
+|---|---|---|
+| Confirmatory family | HA, HB, HC | **HA (+size), HD, HE, HF** |
+| HB (attention forecast vs readout) | primary | supporting (E05) |
+| HC (time-gated attention edit) | primary | supporting P2 (overlap with Step Selection and the attention-edit literature) |
+| Intervention for PS Outcome 4 | attention-logit edit (probe) | **Commitment-Aligned Guidance** (+ attention edit as P2 probe) |
+| Constraint types | presence, count, colour, spatial | **+ size** (PS flagship) |
+| Commitment probes | re-noising | re-noising **+ prompt switch** |
+| CFG role | supporting factor (E11) | **primary mechanism (HD) and intervention (HE)** |
+| Prior art | — | +6 papers (§24.2) |
+| P0–P1 compute | 19,520 (FULL) | **22,196** image-equivalents (single plan; no LIMITED variant) |
+| Fallback paper / minimum sets | present | **withdrawn** (§0.6) |
+
+### 24.14 Pitch outline for the hackathon (5 slides)
+1. **The PS sentence fails** — show the four failure types on the PS prompt (pilot images).
+2. **When is each part decided?** — hero figure F-R3-1 (two probes agree or not).
+3. **What CFG really does** — F-R3-2: guidance moves the decision earlier (or not), with chance correction explained in one line.
+4. **Seeing it inside** — F-R3-4: attention settles when the outcome locks.
+5. **Using it** — F-R3-3: CAG keeps adherence, raises diversity, saves UNet calls; the reversed schedule fails. Close with what was supported, rejected and inconclusive.
+
+### 24.15 Revision 3 provenance
+- Written 2026-10-18 from: this blueprint (Revisions 1–2), the PS PDF, the 17 paper summaries supplied by the owner, and web searches of 2026-10-18 (Prompt-Mixing, ProSpect, CADS: existence and venue confirmed from search results; Dynamic CFG 2509.16131 and Step Selection 2504.17525: HTML pages summarised). Self-Guidance and the eDiff-I content claim are **UNVERIFIED this session**.
+- No experiment was run, no image generated, no existing result changed. Revision 1–2 text is unchanged except: the header, the new §0, the LIMITED column removed from the §16.5 table, and the §16.5b shortfall rule marked withdrawn (§0.6).

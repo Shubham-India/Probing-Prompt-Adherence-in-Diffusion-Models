@@ -1,0 +1,24 @@
+\appendix
+\section{Additional results}\label{app:results}
+\begin{figure}[h]\centering\includegraphics[width=\linewidth]{figures/diag_full_control.pdf}
+\caption{\textbf{DEV, post hoc.} (a)~Full-resample control: $C(t)$ when the branch is an independent fresh draw (expected $0$); grey band: the registered tolerance $\pm0.15$. (b)~The registered gate statistic (maximum $|C|$ over types and steps) in 1{,}000 simulations with exchangeable outcomes and the same design; the observed value (red) is typical of the null, and the criterion (dashed) is essentially never met.}\label{fig:full-control}\end{figure}
+\begin{figure}[h]\centering\includegraphics[width=\linewidth]{figures/partial_steps_complexity.pdf}
+\caption{\textbf{Partial test split, post hoc.} (a)~Scene-paired difference between 40 and 20 DDIM steps in presence rate and whole-prompt satisfaction at each guidance scale (\rbCommon{} scenes; 95\% intervals). (b)~Adherence at $w=7.5$ and 40 steps by the number of constraints in the prompt; grey numbers: scenes per group.}\label{fig:steps-complexity}\end{figure}
+\begin{figure}[h]\centering\includegraphics[width=0.78\linewidth]{figures/attn_examples.pdf}
+\caption{\textbf{Illustration, not evidence.} Attention of an object noun at step 10 in a seed where the judge found the object and in a seed where it did not, with the final images ($w=7.5$). Selection rule (stated in the generating script, independent of appearance): the three lowest main-benchmark scene identifiers with a two-object prompt in which the object is found in some seeds and missed in others; for each, the lowest-index seed of each outcome.}\label{fig:attn-examples}\end{figure}
+\input{sections/appendix_partial}
+\input{sections/results_existing}
+
+\section{Reproduction details}\label{app:repro}
+Every generation, judging and analysis run records its run identifier, source commit, pinned model and judge revisions, resolved configuration, software and GPU environment, and SHA-256 checksums of every output; archives are verified file by file before analysis. The signed protocol binds the hashes of \frozenFiles{} code, configuration, benchmark and documentation files, the judge definition, the development-set constants and the three test-stage manifests, and test generation and the confirmatory analysis refuse to run unless it verifies. The partial-test numbers in this paper come from one verified analysis archive built from source commit \texttt{40ade4d}. A second judging of the same images on different hardware reproduced every judged outcome.
+
+Generators, all reading saved evidence only:
+\begin{itemize}
+\item \texttt{paper/make\_paper\_assets.py}: DEV figures, DEV tables and number macros.
+\item \texttt{partial/partial\_report.py}: registered analysis on the partial test split.
+\item \texttt{partial/robustness.py}: Section~\ref{sec:resROBUST}.
+\item \texttt{diagnostics/attention.py}: Section~\ref{sec:resATTN}.
+\item \texttt{diagnostics/full\_control.py}: the full-resample diagnosis.
+\item \texttt{scripts/final\_report.py}: the registered confirmatory analysis, once all shards exist.
+\end{itemize}
+\texttt{PAPER\_STATUS.md} maps each number in the text to its evidence file and field. Images, latents and human labels are not distributed.

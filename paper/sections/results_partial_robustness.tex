@@ -1,0 +1,43 @@
+\section{Post-hoc analyses of the partial test split}\label{sec:resROBUST}
+The analyses below were chosen after the registered outcomes of Section~\ref{sec:resPARTIAL} were known. They are exploratory, uncorrected for multiplicity, and computed from the saved judgements with the frozen estimator code; no image was generated or re-judged. Table~\ref{tab:partial-units} defines every sample size used. Where a number duplicates a registered output, the registered value is reported.
+\input{tables/partial_units}
+
+\paragraph{Integrity of the partial evidence.} Every image of the six present shards was judged exactly once and has one DINOv2 embedding. After the registered de-duplication, re-judging all \rbRepMatched{} images on different hardware and software reproduced every judged outcome; all four rule outcomes were unchanged and bootstrap $p$-values differed by at most $0.002$.
+
+\paragraph{What guidance changes about timing (HD).} Presence persistence comes earlier as guidance increases: $t_{50}=\rbTwoPres$, \rbSevenPres{} and \rbFifteenPres{} steps at $w=2$, $7.5$ and $15$ (Table~\ref{tab:partial-t50-w}, Figure~\ref{fig:partial-hd-dose}a). The ordering is not manufactured by the chance correction. Chance agreement is not higher at $w=15$ ($\bar A_0=\rbAzeroFifteen$ against \rbAzeroTwo{} at $w=2$), and uncorrected branch--base agreement at $t=18$ is already higher at $w=15$ (\rbRawFifteen{} against \rbRawTwo). Table~\ref{tab:partial-robust-hd} reports four further checks:
+\begin{itemize}
+\item Bootstrapping only the \rbHdScenes{} scenes that carry both guidance levels gives practically the same interval.
+\item Subtracting the full-resample offset found on DEV (Section~\ref{sec:resDEV}) from $C(t)$ at every $w$ leaves the contrast at $\rbHdOff$ steps, CI $[\rbHdOffLo,\rbHdOffHi]$.
+\item The sign holds in both TEST\_CORE shards and in four of five scene categories, but reverses in the \rbHdCountN{} counting scenes (\rbHdCount{} steps).
+\item Under the independent-error stress test of Eq.~\eqref{eq:err-corr}, the interval reaches zero at $e=0.05$ and $e=0.10$. At the audited presence error rate ($e=\rbErrPres$), every corrected curve exceeds $0.5$ at the first grid step, so the contrast is no longer identifiable (Figure~\ref{fig:partial-hd-dose}b).
+\end{itemize}
+The HD result therefore survives the estimator-level threats we can test, but it rests on the presence judge's errors being largely content-dependent rather than independent across seeds. The audit did not measure that.
+\input{tables/partial_t50_by_w}
+\input{tables/partial_robust_hd}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{figures/partial_hd_dose.pdf}
+\caption{\textbf{Partial test split, post hoc.} (a)~Presence persistence $C(t)$ at three guidance scales (restart D8, canonical prompts, \rbHdScenes{} scenes). (b)~The HD contrast $t_{50}(w{=}15)-t_{50}(w{=}2)$ with 95\% scene-bootstrap intervals: registered estimate ($e=0$) and the independent-error stress test of Eq.~\eqref{eq:err-corr}. At the audited error rate all curves are left-censored and the contrast is $0$ by construction.}\label{fig:partial-hd-dose}\end{figure}
+
+\paragraph{What guidance changes about the images.} On the \rbCommon{} scenes generated at every guidance scale and step count (Figure~\ref{fig:partial-cfg-rates}), raising $w$ from 2 to 15 increases the presence rate (\rbRatePresTwo{} to \rbRatePresFifteen) and whole-prompt satisfaction (\rbRateAllTwo{} to \rbRateAllFifteen), with little change beyond $w\approx10$. Over the same range the CLIP score rises from \rbClipTwo{} to \rbClipFifteen{}, and seed diversity falls from \rbDivTwo{} to \rbDivFifteen{}. Doubling the number of DDIM steps from 20 to 40 changes neither presence nor whole-prompt satisfaction at any $w$ (at $w=7.5$: \rbStepAll{}, CI $[\rbStepAllLo,\rbStepAllHi]$; Figure~\ref{fig:steps-complexity}a in the appendix). Adherence falls steeply with prompt complexity: whole-prompt satisfaction is \rbCompLo{} for prompts with \rbCompLoN{} constraints and at most \rbCompFourPlusMax{} for prompts with four or more (Figure~\ref{fig:steps-complexity}b). These are associations across the guidance grid on canonical prompts, not a mechanism.
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{figures/partial_cfg_rates.pdf}
+\caption{\textbf{Partial test split, post hoc.} Canonical prompts on \rbCommon{} scenes common to every cell: presence rate, whole-prompt satisfaction, CLIP score and seed diversity (mean pairwise DINOv2 cosine distance over the four seeds) against the guidance scale, at 40 and 20 DDIM steps (scene means, 95\% scene-bootstrap bands).}\label{fig:partial-cfg-rates}\end{figure}
+
+\paragraph{Commitment times do not transfer from DEV to TEST.} DEV placed colour binding at or before the first grid step, presence at \rbDevPres{} and count last (\rbDevCount). The partial test split places count (\rbTestCount) and presence (\rbTestPres) before binding (\rbTestBind), and joint binding moves from \rbDevJoint{} to \rbTestJoint{} (Table~\ref{tab:dev-vs-test}). Both restart probes show the shift, and the DEV presence value lies outside the TEST interval. Several causes are possible and cannot be separated here:
+\begin{itemize}
+\item the TEST estimate covers two of three shards;
+\item DEV failed its own precision gate;
+\item the binding judge is not validated;
+\item the DEV binding curve is censored at the first grid step.
+\end{itemize}
+The shift matters for CAG. Its switch step for presence, binding and spatial prompts is $s^\star=\lceil\max(9.3,6.0)\rceil+2=12$, where the binding value of $6.0$ is DEV's left-censored $t_{50}$ entering the frozen rule as a number. On the test scenes binding is not yet persistent at step~12.
+\input{tables/partial_dev_vs_test}
+
+\paragraph{CAG: dose, not timing (HE).} The registered HE contrast compares CAG with constant $w=7.5$, but every CAG arm applies less guidance on average ($\bar w=\rbMeanWAtwo$ for A2, A4 and A6). The matched-mean controls separate the two factors (Table~\ref{tab:partial-he-arms}, Figure~\ref{fig:partial-he-arms}):
+\begin{itemize}
+\item The registered diversity gain of A2 over A1 (+\rbDivAtwo) is matched by constant guidance at the same mean (A6, +\rbDivAsix) and exceeded by the reversed schedule (A4, +\rbDivAfour).
+\item At equal mean guidance, A2 is less diverse than A6 (\rbDivTwoSix, CI $[\rbDivTwoSixLo,\rbDivTwoSixHi]$) and than A4 (\rbDivAtwoFour), and its adherence does not differ from A6 ($\Delta F=\rbFTwoSix$, CI $[\rbFTwoSixLo,\rbFTwoSixHi]$).
+\item The single global switch step (A3) lowers adherence (registered secondary contrast \rbFAthree, CI $[\rbFAthreeLo,\rbFAthreeHi]$).
+\end{itemize}
+On these data, concentrating guidance before the DEV commitment step buys nothing that the same amount of constant guidance does not. It also costs diversity relative to spending the guidance late. This agrees with reports that guidance at high noise levels reduces diversity \citep{kynkaanniemi2024interval} and that late conditioning improves alignment \citep{grimal2025step}.
+\input{tables/partial_he_arms}
+\begin{figure}[t]\centering\includegraphics[width=\linewidth]{figures/partial_he_arms.pdf}
+\caption{\textbf{Partial test split, post hoc.} Paired scene-level contrasts of the guidance schedules (95\% intervals). Rows ``A$k$ $-$ A1'' compare against constant $w=7.5$ (67 scenes); ``A2 $-$ A6'' and ``A2 $-$ A4'' compare schedules with equal mean guidance (134 scenes). Dotted line: the registered non-inferiority margin $-0.03$ on $F$.}\label{fig:partial-he-arms}\end{figure}

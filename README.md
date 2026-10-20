@@ -1,171 +1,153 @@
-<<<<<<< HEAD
-1008 images 5 categories se bani hain: 28 prompts × 3 CFG × 2 steps × 6 seeds. Har prompt ki 36 images bani hain (3 × 2 × 6), isliye category ka total = prompts × 36
-# Where Does the Prompt Go? Probing Prompt Adherence in Diffusion Models
+# Guide Before Commitment
 
-This project looks at a simple question: **when a text prompt contains several requirements, how reliably does Stable Diffusion 1.5 follow them?** I tested how classifier-free guidance (CFG) scale and the number of denoising steps affect prompt adherence, including object presence, attribute binding, counting, spatial relationships, and prompts with multiple constraints. I also examined cross-attention maps and tested whether re-weighting attention for object and colour tokens could improve the results.
+**When does a diffusion model decide what it draws, and what does classifier-free guidance change?**
 
-The experiment plan, hypotheses, proposed mechanism, and analysis choices are documented in [`report/protocol.md`](report/protocol.md). The findings and interpretation are in [`report/report.md`](report/report.md), and the evaluator checks are in [`report/validation.md`](report/validation.md). Presentation files and defence notes are in [`report/presentation.pptx`](report/presentation.pptx), [`report/speaker_notes.md`](report/speaker_notes.md), and [`report/defense.md`](report/defense.md).
+A pre-registered study of *when* compositional prompt constraints (object presence, count, colour binding, spatial relation, relative size) become fixed along the denoising trajectory of Stable Diffusion 1.5, how classifier-free guidance (CFG) changes that timing, what cross-attention reveals about it, and whether a guidance schedule timed by the measurement helps.
 
-> **Main finding:** Increasing CFG from 2 to 7.5 raised image–text similarity by 1.88 and reduced diversity from 0.21 to 0.14. Measured adherence increased by 0.07, but its 95% confidence interval (−0.01 to +0.15) includes zero, so the result is inconclusive. More denoising steps and CFG 15 did not provide a clear benefit. Attribute-binding and multi-constraint prompts remained difficult across settings. The attention re-weighting intervention changed overall success by only +0.02 (95% CI: −0.04 to +0.09), so **the pre-registered H4 hypothesis was not supported**. An improvement in object presence appeared in exploratory analysis, but it needs a separate confirmation test.
+> **Status.** The development split is complete. **6 of 9 test shards exist, so every test-split result in this repository is partial and exploratory.** The registered confirmatory analysis has **not** been run; it needs the missing shards (TEST_CORE shard 2, TEST_COMMIT shard 2, TEST_CAG_SIZE shard 0).
 
-## Project structure
+- Paper: [`paper/main.pdf`](paper/main.pdf), with LaTeX source in [`paper/main.tex`](paper/main.tex).
+- Every number and its evidence file: [`PAPER_STATUS.md`](PAPER_STATUS.md).
+
+---
+
+## Research question and approach
+
+Prompt adherence is usually reported as one score per image. Compositional failures are constraint-specific, though. If different constraints are settled at different moments of sampling, then guidance strength, early diagnostics and pooled scores can all mislead. We ask four questions:
+
+1. **When** does each constraint type stop depending on the remaining randomness of the trajectory?
+2. **What does CFG change** about that timing, once the higher seed-to-seed agreement it causes is accounted for?
+3. **Can attention tell?** Does the step at which cross-attention stops changing track the interventional measurement?
+4. **Is the timing usable?** Does a guidance schedule whose switch step is read off development-set measurements keep adherence while raising diversity?
+
+**Measurement: restart persistence.** Each image is generated with 40 DDIM steps. The latent is saved at steps t ∈ {6, 12, …, 36}, re-noised to an earlier step with fresh noise, and denoised again. Agreement between branch and base outcomes is corrected for the agreement of independent seeds:
+
+C(t) = Σ_s (A_s(t) − A0_s) / Σ_s (1 − A0_s)
+
+The step at which C first crosses 0.5 is t50. Two re-noising probes are used:
+- a fixed eight-step jump (D8);
+- an equal-noise-ratio probe (ER30).
+
+A full resample from pure noise serves as a validity control.
+
+**Benchmark.** Machine-generated scene graphs, split by scene into 100 DEV and 200 TEST scenes, plus a factorial colour × size × spatial family on 24 object pairs. Each scene has a canonical prompt, meaning-preserving paraphrases and single-field counterfactuals. Design: [`data/benchmark_v2/`](data/benchmark_v2), [`docs/ADDENDUM_C.md`](docs/ADDENDUM_C.md).
+
+**Judge and audit.** The automatic judge combines OWL-ViT detection with CLIP colour classification at pinned revisions. A blinded, pre-declared human audit decided which constraint types may carry claims. **Only presence met the 0.85 accuracy criterion** (0.856); count, binding, spatial relation and size did not. There was a single annotator.
+
+**Intervention: Commitment-Aligned Guidance (CAG).** Use w = 7.5 until a prompt-specific switch step s\* = ⌈max over the prompt's types of DEV t50⌉ + 2, then w_lo = 3; w_lo was chosen by a pre-declared HPS v2 quality guard. CAG is tested against:
+- constant CFG 7.5 (A1);
+- the reversed schedule with equal mean guidance (A4);
+- constant guidance at CAG's mean (A6);
+- a single global switch step (A3).
+
+**Pre-registration.** Four hypotheses form one Holm family:
+
+| Hypothesis | Claim |
+|---|---|
+| HA | Types differ in t50 |
+| HD | Higher CFG moves t50 earlier |
+| HE | CAG is non-inferior, more diverse and beats its reverse |
+| HF | Attention stabilisation tracks t50 |
+
+The decision rules, development-set constants and test manifests were frozen in a signed protocol ([`protocol/protocol_freeze.json`](protocol/protocol_freeze.json), [`configs/analysis_plan_r3.json`](configs/analysis_plan_r3.json)) before any test image was generated. Test workers refuse to run unless the protocol verifies.
+
+## Findings (partial test split; exploratory unless stated)
+
+| | Result | Caveat |
+|---|---|---|
+| **HD: CFG and timing** | Presence becomes persistent earlier with stronger guidance: t50 = 22.5 / 16.2 / 13.8 steps at w = 2 / 7.5 / 15; registered contrast −8.67 [95% CI −16.34, −4.72], Holm p = 0.046. The only registered rule that passed. | Not a chance-correction artefact, and survives subtracting the full-resample offset. But under an independent-judge-error stress test at the audited error rate it is not identifiable, and it reverses in the 10 counting scenes. Informed by 67 scenes. |
+| **Attention (post hoc)** | On identical initial noise, higher CFG separates object-noun attention and moves attention stabilisation about 9.6 steps earlier for presence. Within a scene, objects the judge later misses already have less localised, more overlapping attention from step 1 (226 pairs, 159 scenes). | Associations, not interventions; maps exist only for canonical 40-step images. |
+| **HF: attention vs persistence** | Rejected by the registered rule (type-order concordance 0.30). The binding signal (colour-word map) follows object layout and stabilises early, while binding persistence comes late. | Only presence has a validated judge. |
+| **HA: type differences** | Inconclusive; exploratory because its DEV precision gate failed. DEV commitment times did **not** transfer to the test scenes (binding ≤ 6 on DEV vs 19.8 on TEST). | |
+| **HE: CAG** | **Not supported**: not non-inferior to constant CFG (lower 90% bound −0.035 vs margin −0.03), and not better than its reverse. Matched-mean controls attribute its diversity gain to lower average guidance, not timing. | CAG used DEV switch steps that are mis-timed for binding on TEST. |
+| **Full-resample control (DEV)** | Gate failed, but the registered gate statistic is unpassable at this sample size; null simulation median max\|C\| = 1.0. A real presence offset of +0.16 (p = 0.008) remains **unexplained**: fixed seed panel or base/branch generation difference. | Absolute t50 values are probe- and panel-relative. |
+
+Other observations:
+- From w = 2 to 15, whole-prompt satisfaction rises from 0.09 to 0.17, CLIP score rises, and DINOv2 seed diversity falls from 0.67 to 0.48.
+- 20 and 40 steps do not differ in adherence.
+- Satisfaction falls from 0.33 for 2-constraint prompts to at most 0.07 for 4 or more.
+
+## Repository structure
 
 ```text
-configs/
-  experiment.json             CFG scales, step counts, seeds and other settings
-
-data/
-  prompts.json                28 prompts with structured constraints
-  validation_*.json           Manual validation labels and second-pass overrides
-
-src/
-  build_benchmark.py          Builds the prompt benchmark
-  generate.py                 Generates images for each prompt/configuration/seed
-  evaluate.py                 Runs OWL-ViT and CLIP scoring
-  validate_metrics.py         Compares automated scores with manual labels
-  attention.py                Extracts cross-attention maps
-  intervene.py                Runs the attention re-weighting experiment
-  analyze.py                  Calculates the main statistics and tables
-  analyze_attention.py        Summarises attention patterns and AUCs
-  analyze_intervention.py     Compares intervention results with the baseline
-  report_numbers.py           Collects reported numbers from result files
-  figures.py                  Generates figures from saved outputs
-
-tests/                        Unit tests and a GPU attention test
-report/
-  protocol.md                 Hypotheses and analysis plan
-  validation.md               Evaluator validation
-  report.md                   Generated results and discussion
-  defense.md                  Generated defence notes
-  make_slides.py              Builds presentation slides
-outputs/                      Generated images, metadata, evaluations and results
+paper/                 LaTeX manuscript (main.tex, sections/, tables/, figures/, references.bib), compiled main.pdf,
+                       make_paper_assets.py (DEV figures/tables/macros), make_overleaf_zip.py, check_paper.py
+protocol/              signed protocol freeze (hashes of 103 bound files, frozen constants, TEST manifest hashes)
+configs/               experiment and analysis-plan configuration (analysis_plan_r3.json = registered rules)
+data/benchmark_v2/     scene-graph benchmark (prompts, lexicon, splits); data/validation_* = pilot labels
+src/                   generation, restart/switch probes, judge, attention recording, CAG, frozen analysis (r3_analyze.py)
+kaggle/                Kaggle notebook scripts (nb00 preflight ... nb05 HPS guard) and environment bootstrap
+scripts/               manifests, merging, verification, protocol finalisation, confirmatory report (final_report.py)
+partial/               analysis of the partial TEST split: notebook 06, partial_report.py, robustness.py (post hoc)
+diagnostics/           post-hoc diagnostics: full_control.py (DEV full-resample control), attention.py
+reports/               compact verified results: partial/ (partial_results.json, robustness.json), diagnostics/
+docs/                  protocol addenda, decision log (R3_DECISION_LOG.md), runbooks, audits, evidence/ (DEV constants,
+                       audit verdicts, HPS guard, baseline hashes)
+tests/                 unit and integration tests (CPU), GPU identity script
+GRAND_RESEARCH_BLUEPRINT.md   full research design and its revision history
+report/, outputs/      Revision 1 pilot (28 prompts) report and outputs; see report/PILOT_README.md
 ```
 
-`outputs/` contains generated artifacts and is not versioned. The benchmark is built by `src/build_benchmark.py` from templates; it can be regenerated when needed.
+Files under `src/`, `kaggle/`, `scripts/`, `configs/`, `data/` and `docs/ADDENDUM_C.md` are bound by the signed protocol. Do not edit them unless you are starting a new protocol revision; `python src/protocol_r3.py --verify` checks them.
 
-## Requirements
+## Setup
 
-The project was tested on **Windows 11**, **Python 3.13**, and an **NVIDIA GPU with at least 6 GB of VRAM**. The test machine was an RTX 3050 Laptop GPU with 6 GB. Allow roughly 10 GB of disk space for model files and outputs, and around 3.5 GB of free GPU memory for the tested setup.
+Python 3.13. PyTorch is pinned to the CUDA 12.4 build.
 
-The models are downloaded from Hugging Face on first use and stored locally under `models/`:
-
-- `stable-diffusion-v1-5/stable-diffusion-v1-5` — fp16 model, approximately 2.1 GB. The model is distributed under the CreativeML OpenRAIL-M licence and is a mirror of the deprecated `runwayml` repository.
-- `google/owlvit-base-patch32` — object detection.
-- `openai/clip-vit-base-patch32` — image–text scoring.
-
-Python 3.14 was not used because compatible PyTorch wheels were unavailable in this setup. The exact dependency versions used for the experiment are recorded in `requirements.txt`.
-
-## Installation
-
-Run these commands in PowerShell from the project folder. The `py` launcher must have Python 3.13 installed; otherwise, replace `py -3.13` with the path to your Python 3.13 executable.
-
-```powershell
-py -3.13 -m venv .venv
-.\.venv\Scripts\python -m pip install --upgrade pip
-.\.venv\Scripts\python -m pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
-.\.venv\Scripts\python -m pip install -r requirements.txt
+```bash
+python -m venv .venv
+.venv/Scripts/python -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu124
 ```
 
-If you need to reproduce the original package-by-package setup instead of using `requirements.txt`, the main libraries are `diffusers`, `transformers`, `accelerate`, `safetensors`, `scipy`, `pandas`, `matplotlib`, `statsmodels`, `scikit-learn`, `pytest`, and `python-pptx`.
+On Linux or macOS use `.venv/bin/python`. Image generation and judging require a GPU and were run on Kaggle (2 × T4); see [`docs/KAGGLE_MASTER_RUNBOOK.md`](docs/KAGGLE_MASTER_RUNBOOK.md). Credentials are read from Kaggle Secrets or the environment and never stored in the repository.
 
-## Running the experiment
+## Reproducing results
 
-Run commands from the project root. The generation and attention scripts can resume work from files already on disk. **Run only one generation process per output directory** to avoid conflicts.
+**From the repository alone (no GPU):**
 
-### 1. Run the tests and build the benchmark
-
-```powershell
-.\.venv\Scripts\python -m pytest -q tests
-.\.venv\Scripts\python src\build_benchmark.py
+```bash
+python src/protocol_r3.py --verify          # checks the signed protocol against the bound files
+python -m pytest -q tests                   # unit/integration tests (about 5 minutes on CPU)
+python paper/make_paper_assets.py           # DEV figures, tables and macros from docs/evidence/
+python paper/check_paper.py                 # static checks: citations, labels, macros, inputs
+python paper/make_overleaf_zip.py           # regenerates assets, checks, writes paper/paper_overleaf.zip
 ```
 
-The recorded test run reported 7 passed tests and 1 warning in 28.78 seconds. The benchmark builder regenerates `data/prompts.json`.
+Upload `paper/paper_overleaf.zip` to Overleaf (pdfLaTeX + BibTeX, main file `main.tex`), or compile locally with `latexmk -pdf main.tex` or `tectonic main.tex` inside `paper/`.
 
-### 2. Generate images
+The test suite currently reports 5 failures, in `test_fail_closed.py` (2), `test_stage_guard.py` (2) and `test_variant_review.py` (1). These tests encode the pre-freeze state, in which owner gates were false and the protocol unsigned. They fail because the protocol has since been signed and the variant-review gate set. The tests and the files they read are unchanged since the freeze commit `40ade4d`.
 
-```powershell
-# Small smoke test: 6 images
-.\.venv\Scripts\python src\generate.py --out outputs\smoke --limit-prompts binding_cube_sphere_v1 --seeds 1
+`tests/test_build_draft.py` also runs the protocol-bound draft-table builders, which rewrite several files in `paper/tables/` and `paper/figures/` with their pre-audit captions. After running the full suite, restore them with `git checkout -- paper/` (or rerun `python paper/make_paper_assets.py`).
 
-# Pilot run: 336 images, about 40 minutes on the tested setup
-.\.venv\Scripts\python src\generate.py --out outputs\main --seeds 2
+**From the run archives (not in the repository):** the generation and analysis archives are verified, checksummed Kaggle outputs kept as private datasets. With them:
 
-# Main run: resumes existing work and completes the 1,008-image grid
-.\.venv\Scripts\python src\generate.py --out outputs\main
+```bash
+python partial/partial_report.py --final <partial-analysis archive dir>          # registered analysis on present shards
+python partial/robustness.py --final <meta dir> --records <merged/all_records.jsonl> --compare <second eval_rows.jsonl>
+python diagnostics/attention.py --attention <attention dirs> --rows <eval_rows.jsonl> --partial <partial_results.json> --images-zip <TEST_CORE image zips>
+python diagnostics/full_control.py --rows <DEV eval_rows.jsonl> --sims 1000
 ```
 
-The full grid uses 28 prompts, 3 CFG settings, 2 step settings, and 6 seeds: `28 × 3 × 2 × 6 = 1,008` generated samples.
+The compact outputs of these runs are committed under [`reports/`](reports). Once all nine test shards exist, the registered confirmatory analysis runs through `kaggle/nb04_merge_analyze_export.py` (PHASE = TEST) and `python scripts/final_report.py --final <archive>`, which replaces the confirmatory section of the paper without changing estimators, rules or constants.
 
-### 3. Evaluate and validate the generated images
+## Documentation
 
-```powershell
-.\.venv\Scripts\python src\evaluate.py --run outputs\main
-.\.venv\Scripts\python src\validate_metrics.py --run outputs\main
-```
+| Topic | Document |
+|---|---|
+| Research design and revisions | [`GRAND_RESEARCH_BLUEPRINT.md`](GRAND_RESEARCH_BLUEPRINT.md) |
+| Registered protocol addendum | [`docs/ADDENDUM_C.md`](docs/ADDENDUM_C.md) |
+| Decisions and deviations, dated | [`docs/R3_DECISION_LOG.md`](docs/R3_DECISION_LOG.md), [`docs/DECISION_REGISTER.md`](docs/DECISION_REGISTER.md) |
+| Judge audit protocol | [`docs/AUDIT_PROTOCOL_DEV.md`](docs/AUDIT_PROTOCOL_DEV.md) |
+| Running on Kaggle | [`docs/KAGGLE_MASTER_RUNBOOK.md`](docs/KAGGLE_MASTER_RUNBOOK.md), [`docs/EXPERIMENT_RUNBOOK.md`](docs/EXPERIMENT_RUNBOOK.md) |
+| Claim-to-evidence map and paper status | [`PAPER_STATUS.md`](PAPER_STATUS.md) |
+| Earlier pilot (Revision 1) | [`report/PILOT_README.md`](report/PILOT_README.md), [`report/report.md`](report/report.md) |
 
-The evaluator writes detection and scoring files. Use `--rescore` with `src/evaluate.py` when only rescoring is needed.
+## Limitations
 
-### 4. Extract and analyse cross-attention
-
-```powershell
-.\.venv\Scripts\python src\attention.py --run outputs\main --steps 40 --check 5
-.\.venv\Scripts\python src\analyze.py --run outputs\main
-.\.venv\Scripts\python src\analyze_attention.py --run outputs\main
-```
-
-The attention run covers 504 samples at step 40. The `--check` option runs the bit-identity check used to confirm that enabling extraction does not change the generated image.
-
-### 5. Run the attention intervention
-
-```powershell
-.\.venv\Scripts\python src\intervene.py --out outputs\intervention --scales 1 2 4
-.\.venv\Scripts\python src\evaluate.py --run outputs\intervention
-.\.venv\Scripts\python src\analyze_intervention.py --run outputs\intervention --baseline outputs\main
-```
-
-This compares attention re-weighting scales 1, 2, and 4 with the matched baseline. The recorded intervention run covered 504 images and took about 80 minutes on the tested setup.
-
-### 6. Regenerate the report and slides
-
-```powershell
-.\.venv\Scripts\python src\figures.py --run outputs\main --intervention outputs\intervention
-.\.venv\Scripts\python report\build_report.py
-.\.venv\Scripts\python report\make_slides.py
-```
-
-The report builder creates `report/report.md`, `report/defense.md`, and `README.md`. The slide builder creates `report/presentation.pptx` and `report/speaker_notes.md`. Reported numerical values are collected from saved result files by `src/report_numbers.py`.
-
-## What has been checked
-
-The table below summarises the checks recorded in the project files. “Verified” means the stated artifact or check is present; it does not mean that the overall scientific hypothesis has been proven.
-
-| Area | Status | Evidence / note |
-|---|---|---|
-| Hypothesis and analysis plan written before the main run; intervention plan recorded before its run | Verified | `report/protocol.md`, including the revision log and Addendum A |
-| Benchmark covers five prompt categories with controlled variants | Verified | `data/prompts.json` contains 28 prompts; `tests/test_logic.py::test_benchmark_is_consistent` |
-| Generation parameters and seeds are recorded; generation can resume | Verified | `outputs/main/samples.jsonl` contains 1,008 records; same-seed regeneration was reported as bit-identical |
-| CFG and denoising steps tested with multiple seeds | Verified | `results/adherence_by_cell.csv` records the 3 × 2 × 6 × 28 design |
-| Automated metrics compared with manual labels | Partly complete | `report/validation.md`; one annotator, 40 images, only two positive spatial-relation examples, and size attributes not evaluated |
-| Cross-attention extraction checks token alignment and image identity | Verified in the recorded checks | `tests/test_attention_gpu.py`, `outputs/attention.log`, and 504 saved attention files |
-| Attention patterns compared with adherence | Exploratory | `results/attention_*.csv` and `figures/attention_*.png` |
-| Statistics reproduced from saved results | Verified | `src/analyze.py` creates CSV tables and `tables.md`; report generation checks the wording against the data |
-| Figures generated from experiment outputs | Verified | `outputs/main/figures/` |
-| Main hypothesis conclusively tested | Inconclusive | Only 4–6 prompts per category; confidence intervals include zero |
-| Matched intervention and baseline comparison run | Completed; H4 not supported | `src/intervene.py`, `outputs/intervention/results/`, report section 13 |
-| Overall adherence improved by attention re-weighting | Not demonstrated | Primary contrast: +0.02, 95% CI −0.04 to +0.09; object-presence result is exploratory |
-| References checked | Checked | Report section 17 records a citation check dated 2026-10-10 |
-| Report, slides, speaker notes, and defence material prepared | Verified in project files | `report/report.md`, `report/presentation.pptx`, `report/defense.md` |
-| Final end-to-end run after the last changes | Not completed | `outputs/e2e.log` records an incomplete run |
-| Independent review of manual validation labels | Not started | A second reviewer still needs to check the labels |
-
-## Limitations and next steps
-
-The benchmark is useful for a controlled pilot, but it is still small. Each category has only 4–6 prompts, so the outcome can depend heavily on the chosen objects and wording. Some conditions have low success rates, which creates a floor effect and makes improvements hard to measure. Metric validation is also limited: the manual review used one annotator and 40 images, spatial relations had only two positive examples, and size attributes were not evaluated.
-
-The experiments cover one diffusion model, scheduler, and resolution, with a relatively coarse CFG grid. The attention analysis is correlational, so it cannot show that an attention pattern caused a prompt to succeed or fail. The intervention was tested at one CFG setting, one step count, and one token-selection rule. The object-presence improvement was exploratory and has not been checked on a separate confirmation set.
-
-The next useful steps are to complete the end-to-end run, obtain an independent review of the validation labels, expand the prompt set, and test the exploratory object-presence finding on new prompts and seeds. For now, the main conclusion should remain **inconclusive** rather than a claim that higher CFG or attention re-weighting solves compositional prompt adherence.
-=======
-# Probing-Prompt-Adherence-in-Diffusion-Models
-Researchathon Project conducted by CSAI ~ IIT ISM DHANBAD
->>>>>>> fe78d3f25b6a08208b6109a63a0e64fbe147fae3
+- **Incomplete test split.** No confirmatory claim is made. The HE contrasts against constant guidance rest on 67 scenes from one CAG shard.
+- **Judge.** Only presence is validated. HD depends on judge errors not being independent across seeds, which the audit did not measure.
+- **Estimator.** The full-resample presence offset is unexplained. Commitment times did not replicate from DEV to TEST.
+- **Scope.** One model (SD 1.5), one sampler, synthetic prompts. Size-family scenes share 11 object pairs.
+- **Post-hoc analyses.** These are labelled as such throughout and not corrected for multiplicity.
+- **Data not distributed.** Generated images, latents, attention maps and raw human labels are not in the repository.
+- **AI assistance.** Code, analyses and manuscript drafts were produced with AI assistance under the author's direction. The DEV audit labels were produced without AI assistance.

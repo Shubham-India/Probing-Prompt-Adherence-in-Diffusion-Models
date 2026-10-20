@@ -1,0 +1,244 @@
+{
+ "status": "DEV-derived constants (EXPLORATORY until frozen)",
+ "constants": {
+  "t50_dev_w7.5": {
+   "presence": 10.011817587446878,
+   "count": 18.49473684210526,
+   "bind_given_pres": 6.0,
+   "spatial_given_pres": 7.540686303316061,
+   "joint_bind": 9.621739130434776
+  },
+  "w_lo": 1.0,
+  "s_star_global": 12
+ },
+ "gates": {
+  "HA_dev_halfwidth_le_4": {
+   "value": 10.245025215500899,
+   "passed": false
+  },
+  "full_resample_control_max_abs_C_le_0.15": {
+   "value": 0.4492659058143058,
+   "passed": false
+  },
+  "HD_presence_gate_w2": {
+   "value": 45,
+   "passed": true
+  },
+  "HD_presence_gate_w15": {
+   "value": 59,
+   "passed": true
+  },
+  "CAG_quality_guard": {
+   "value": null,
+   "passed": null,
+   "note": "PENDING: needs a preference scorer (HPS v2) on DEV A2 w_lo 1 vs 3 vs A1; owner decides before the freeze"
+  }
+ },
+ "ha_dev": {
+  "variants": {
+   "D8": {
+    "t50": {
+     "presence": [
+      10.011817587446878,
+      "ok"
+     ],
+     "count": [
+      18.49473684210526,
+      "ok"
+     ],
+     "bind_given_pres": [
+      6.0,
+      "left_censored"
+     ],
+     "spatial_given_pres": [
+      7.540686303316061,
+      "ok"
+     ],
+     "joint_bind": [
+      9.621739130434776,
+      "ok"
+     ]
+    },
+    "curves": {
+     "presence": [
+      0.43080253307448496,
+      0.5342929816063969,
+      0.7117051790896741,
+      0.7782347531459032,
+      0.8817252016778148,
+      0.9112939012583612
+     ],
+     "count": [
+      0.09128177097567643,
+      0.1951352828641706,
+      0.48073244055752945,
+      0.7144028423066412,
+      0.6884394643345176,
+      0.7663295982508882
+     ],
+     "bind_given_pres": [
+      0.5152098446974167,
+      0.33638626990798126,
+      0.6218945026219894,
+      0.7957407216770241,
+      0.7453575221739929,
+      0.6990588898419916
+     ],
+     "spatial_given_pres": [
+      0.327250737657035,
+      1.0,
+      1.0,
+      0.7985477305593491,
+      0.8169823872748906,
+      0.9084911936374453
+     ],
+     "joint_bind": [
+      0.43433706448052983,
+      0.5431183982342741,
+      0.7171685322402651,
+      0.8477061327447581,
+      0.8259498659940093,
+      0.8041935992432604
+     ]
+    },
+    "n_scenes": 163,
+    "delta_t50": {
+     "estimate": -4.0118175874468776,
+     "ci95": [
+      -7.626535519834068,
+      12.863514911167732
+     ],
+     "p": 1.0,
+     "censored": 2,
+     "halfwidth": 10.245025215500899
+    },
+    "delta_joint": -0.39007845701210186
+   },
+   "ER30": {
+    "t50": {
+     "presence": [
+      10.00570504221574,
+      "ok"
+     ],
+     "count": [
+      15.57327935222672,
+      "ok"
+     ],
+     "bind_given_pres": [
+      16.043137748677914,
+      "ok"
+     ],
+     "spatial_given_pres": [
+      6.0,
+      "left_censored"
+     ],
+     "joint_bind": [
+      9.013586956521737,
+      "ok"
+     ]
+    },
+    "curves": {
+     "presence": [
+      0.3568807841231193,
+      0.5712538560820795,
+      0.7486660535653569,
+      0.7117051790896741,
+      0.8373721523069955,
+      0.7782347531459033
+     ],
+     "count": [
+      0.35091555069691177,
+      0.2989887947526647,
+      0.6365127083902705,
+      0.5845859524460235,
+      0.7663295982508882,
+      0.6884394643345176
+     ],
+     "bind_given_pres": [
+      0.43434636145836525,
+      0.3953925361639912,
+      0.550629587689453,
+      0.5751407010882101,
+      0.7548888660124291,
+      0.6889838661086776
+     ],
+     "spatial_given_pres": [
+      0.6214321459943465,
+      1.0,
+      0.9496369326398372,
+      0.9496369326398372,
+      0.8627367904561679,
+      0.9496369326398372
+     ],
+     "joint_bind": [
+      0.41258079772978085,
+      0.5866309317357719,
+      0.6083871984865208,
+      0.6954122654895162,
+      0.8041935992432604,
+      0.738924798991014
+     ]
+    },
+    "n_scenes": 163,
+    "delta_t50": {
+     "estimate": 6.037432706462175,
+     "ci95": [
+      -6.303795874822191,
+      18.436181608275188
+     ],
+     "p": 0.8961364776718515,
+     "censored": 7,
+     "halfwidth": 12.369988741548688
+    },
+    "delta_joint": -0.9921180856940026
+   }
+  },
+  "decision": "inconclusive",
+  "p": 1.0
+ },
+ "dedup": {
+  "dropped_scenes": {
+   "psD05_P": "sg_0091"
+  },
+  "n_dropped_generations": 36,
+  "n_dropped_dependents": 0,
+  "dropped_generations": [
+   "sg_0062_CFA__cfg7.5__st40__seed0",
+   "sg_0062_CFA__cfg7.5__st40__seed1",
+   "sg_0062_CFA__cfg7.5__st40__seed2",
+   "sg_0062_CFA__cfg7.5__st40__seed3",
+   "sg_0068_CFA__cfg7.5__st40__seed0",
+   "sg_0068_CFA__cfg7.5__st40__seed1",
+   "sg_0068_CFA__cfg7.5__st40__seed2",
+   "sg_0068_CFA__cfg7.5__st40__seed3",
+   "sg_0070_CFA__cfg7.5__st40__seed0",
+   "sg_0070_CFA__cfg7.5__st40__seed1",
+   "sg_0070_CFA__cfg7.5__st40__seed2",
+   "sg_0070_CFA__cfg7.5__st40__seed3",
+   "sg_0082_CFO__cfg7.5__st40__seed0",
+   "sg_0082_CFO__cfg7.5__st40__seed1",
+   "sg_0082_CFO__cfg7.5__st40__seed2",
+   "sg_0082_CFO__cfg7.5__st40__seed3",
+   "sg_0083_CFO__cfg7.5__st40__seed0",
+   "sg_0083_CFO__cfg7.5__st40__seed1",
+   "sg_0083_CFO__cfg7.5__st40__seed2",
+   "sg_0083_CFO__cfg7.5__st40__seed3",
+   "sg_0091_CFO__cfg7.5__st40__seed0",
+   "sg_0091_CFO__cfg7.5__st40__seed1",
+   "sg_0091_CFO__cfg7.5__st40__seed2",
+   "sg_0091_CFO__cfg7.5__st40__seed3",
+   "sg_0094_CFO__cfg7.5__st40__seed0",
+   "sg_0094_CFO__cfg7.5__st40__seed1",
+   "sg_0094_CFO__cfg7.5__st40__seed2",
+   "sg_0094_CFO__cfg7.5__st40__seed3",
+   "sg_0099_CFO__cfg7.5__st40__seed0",
+   "sg_0099_CFO__cfg7.5__st40__seed1",
+   "sg_0099_CFO__cfg7.5__st40__seed2",
+   "sg_0099_CFO__cfg7.5__st40__seed3",
+   "sg_0100_CFO__cfg7.5__st40__seed0",
+   "sg_0100_CFO__cfg7.5__st40__seed1",
+   "sg_0100_CFO__cfg7.5__st40__seed2",
+   "sg_0100_CFO__cfg7.5__st40__seed3"
+  ]
+ }
+}

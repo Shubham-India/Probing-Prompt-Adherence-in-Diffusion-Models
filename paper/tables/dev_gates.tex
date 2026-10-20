@@ -1,0 +1,15 @@
+\begin{table}[t]\centering\small
+\caption{DEV gates (corrected estimator). Failed gates are reported as failed; HA is therefore exploratory.}\label{tab:dev-gates}
+\begin{tabular}{llrl}
+\toprule
+Gate & Criterion & DEV value & Result \\
+\midrule
+HA precision & CI half-width $\le 4$ steps & 7.94 & failed \\
+Full-resample control & $\max|C| \le 0.15$ & 0.57 & failed \\
+HD presence, $w=2$ & $\ge 40$ scenes & 45 & passed \\
+HD presence, $w=15$ & $\ge 40$ scenes & 59 & passed \\
+CAG quality (HPS v2), $w_{lo}=1$ & mean drop $\le 0.5$ & -0.52 & failed \\
+CAG quality (HPS v2), $w_{lo}=3$ & mean drop $\le 0.5$ & -0.26 & passed \\
+\bottomrule
+\end{tabular}
+\end{table}

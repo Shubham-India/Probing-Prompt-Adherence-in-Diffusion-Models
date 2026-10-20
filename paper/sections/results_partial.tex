@@ -1,0 +1,20 @@
+\section{Registered analysis on the partial test split}\label{sec:resPARTIAL}
+This section applies the registered estimators and decision rules, unchanged, to the six test shards that exist. Because three shards are missing, every result is \textbf{partial and exploratory}: it covers a subset of the test scenes, and the Holm-adjusted $p$-values are reported over the full registered family for completeness, not as a confirmatory test (Table~\ref{tab:partial-hyp}). Only presence has a validated judge (Section~\ref{sec:evaluation}). HF's outcome uses the registered rejection rule (concordance $\le 0.5$, Section~\ref{sec:rq}).
+\input{tables/partial_coverage}
+\input{tables/partial_hypotheses}
+\input{tables/partial_ha}
+\input{tables/partial_hd}
+\input{tables/partial_he}
+\input{tables/partial_hf}
+\begin{figure}[t]\centering
+\includegraphics[width=0.7\linewidth]{figures/partial_curves_D8.pdf}
+\caption{Chance-corrected persistence $C(t)$ by constraint type under the D8 restart probe ($w=7.5$); dashed line marks $C=0.5$, whose crossing defines $t_{50}$. Partial test split, exploratory.}\label{fig:partial-curves-D8}
+\end{figure}
+\paragraph{Limitations of this analysis.}
+\begin{itemize}
+\item Missing TEST shards (not imputed): TEST\_CORE shard 2; TEST\_COMMIT shard 2; TEST\_CAG\_SIZE shard 0; estimates cover only the scene groups of the present shards.
+\item This is not the registered confirmatory analysis, which requires all nine shards; Holm-adjusted p-values are shown for completeness only.
+\item HA is exploratory by its failed DEV precision gate; the full-resample control failed on DEV.
+\item Only the presence judge met the audit criterion (single annotator, no valid double annotation); count, binding, spatial and size outcomes are exploratory.
+\item HE contrasts with constant guidance use only the 67 scenes with both A1 and CAG images (one CAG shard); the comparison with the reversed schedule uses all scenes with CAG arms.
+\end{itemize}

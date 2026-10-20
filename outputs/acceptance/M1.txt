@@ -1,0 +1,23 @@
+# M1 acceptance (CPU, 2026-10-13, torch/diffusers installed in cloud container, no GPU)
+============================= test session starts ==============================
+platform linux -- Python 3.13.16, pytest-9.1.1, pluggy-1.6.0 -- /usr/bin/python
+cachedir: .pytest_cache
+rootdir: /home/user/Probing-Prompt-Adherence-in-Diffusion-Models
+plugins: anyio-4.15.1
+collecting ... collected 13 items
+
+tests/test_config.py::test_pilot_and_v2_accepted PASSED                  [  7%]
+tests/test_config.py::test_unknown_and_missing_keys_rejected PASSED      [ 15%]
+tests/test_config.py::test_bad_values_rejected PASSED                    [ 23%]
+tests/test_config.py::test_draft_cannot_be_frozen PASSED                 [ 30%]
+tests/test_branch_math.py::test_timesteps_match_ddim_leading PASSED      [ 38%]
+tests/test_branch_math.py::test_ratios_equal_audit_evidence PASSED       [ 46%]
+tests/test_branch_math.py::test_boundary_clipping_flagged_and_effective_jump PASSED [ 53%]
+tests/test_branch_math.py::test_t_equals_n_endpoint PASSED               [ 61%]
+tests/test_branch_math.py::test_D0_identity PASSED                       [ 69%]
+tests/test_branch_math.py::test_ratio_decreasing_in_jump PASSED          [ 76%]
+tests/test_branch_math.py::test_equal_ratio_plan PASSED                  [ 84%]
+tests/test_branch_math.py::test_moment_test_synthetic_gaussian PASSED    [ 92%]
+tests/test_branch_math.py::test_matches_diffusers_scheduler_if_available PASSED [100%]
+
+============================== 13 passed in 3.94s ==============================

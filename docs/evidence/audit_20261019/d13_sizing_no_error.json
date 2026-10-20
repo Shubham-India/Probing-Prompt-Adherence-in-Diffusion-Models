@@ -1,0 +1,54 @@
+{
+ "info": {
+  "scenes": 70,
+  "presence_rate": 0.4035714285714286,
+  "bind_eligible_rate": 0.4035714285714286,
+  "scenes_with_ge2_eligible_seeds": 31,
+  "mean_one_minus_A0": {
+   "presence": 0.3071428571428572,
+   "bind": 0.27956989247311825
+  },
+  "scenes_with_A0_lt_1": {
+   "presence": 39,
+   "bind": 11
+  }
+ },
+ "reps": 30,
+ "n_boot": 400,
+ "rows": [
+  {
+   "base_seeds": 2,
+   "M": 2,
+   "flip": 0.0,
+   "kmax": 1.0,
+   "err_presence": null,
+   "err_bind": null,
+   "model": "latent-truth",
+   "true_delta_steps": 0.0,
+   "mean_halfwidth": 1.7037780383355032,
+   "median_halfwidth": 1.8154223151130764,
+   "share_with_ci": 1.0,
+   "share_reliable": 1.0,
+   "share_ci_excludes_0": 0.0,
+   "share_gate_met": 1.0,
+   "images_per_run": 5040
+  },
+  {
+   "base_seeds": 2,
+   "M": 2,
+   "flip": 0.0,
+   "kmax": 1.0,
+   "err_presence": null,
+   "err_bind": null,
+   "model": "latent-truth",
+   "true_delta_steps": 6.0,
+   "mean_halfwidth": 3.2565360414150537,
+   "median_halfwidth": 3.024719571137933,
+   "share_with_ci": 1.0,
+   "share_reliable": 1.0,
+   "share_ci_excludes_0": 0.5,
+   "share_gate_met": 0.5333333333333333,
+   "images_per_run": 5040
+  }
+ ]
+}

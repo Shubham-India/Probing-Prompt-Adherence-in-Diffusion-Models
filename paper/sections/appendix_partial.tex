@@ -1,0 +1,12 @@
+\subsection{Additional registered outputs on the partial test split}\label{app:partial}
+Supporting variant-level outcome rates (S2), the per-arm network evaluations of the CAG arms, and the equal-ratio restart curves. Every CAG arm evaluates the network 80 times per image, because $w_{lo}=3$ keeps the unconditional branch.
+\input{tables/partial_he_cost}
+\input{tables/partial_s2}
+\begin{figure}[t]\centering
+\includegraphics[width=0.7\linewidth]{figures/partial_curves_ER30.pdf}
+\caption{Chance-corrected persistence $C(t)$ by constraint type under the ER30 restart probe ($w=7.5$); dashed line marks $C=0.5$. Partial test split, exploratory.}\label{fig:partial-curves-ER30}
+\end{figure}
+\begin{figure}[t]\centering
+\includegraphics[width=0.7\linewidth]{figures/partial_s2_presence.pdf}
+\caption{Supporting analysis S2: object-presence rate by prompt variant. Partial test split, exploratory.}\label{fig:partial-s2-presence}
+\end{figure}

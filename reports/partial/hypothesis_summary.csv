@@ -1,0 +1,5 @@
+hypothesis,estimand,estimate,ci,p,p_holm,rule_outcome,label
+HA,$\Delta t_{50}$ binding$-$presence (steps),3.592531120331948,"[-10.428571428571427, 13.062152253149385]",0.5652173913043478,1.0,EXPLORATORY (DEV precision gate failed (half-width 7.94 > 4); binding judge below the audit criterion); rule outcome: inconclusive,"PARTIAL TEST, EXPLORATORY"
+HD,"$\Delta t_{50}$ presence, $w$15$-$2 (steps)",-8.670476190476194,"[-16.343030303030297, -4.717623085270146]",0.011605802901450725,0.0464232116058029,supported,"PARTIAL TEST, EXPLORATORY"
+HE,A2$-$A1 on $F$ (90\% CI; margin $-0.03$),-0.01554726368159204,"[-0.03544776119402985, 0.0031094527363184086]",0.4825,1.0,"not supported (non_inferior, beats_reversed failed)","PARTIAL TEST, EXPLORATORY"
+HF,type-order concordance,0.3,"[0.2, 0.75]",0.8042,1.0,rejected (ordering concordance <= 0.5),"PARTIAL TEST, EXPLORATORY"

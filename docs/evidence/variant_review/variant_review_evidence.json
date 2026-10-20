@@ -1,0 +1,111 @@
+{
+ "checked_utc": "2026-10-19T23:36:56Z",
+ "complete": true,
+ "criteria_met": true,
+ "criterion": "H3: FAIL / prompt rows < 20%; no AMBIGUOUS left; no lexicon FAIL",
+ "prompt_rows": 1674,
+ "decisions": {
+  "PASS": 1674
+ },
+ "rejection_rate": 0.0,
+ "lexicon_decisions": {
+  "PASS": 73
+ },
+ "by_split": {
+  "DEV": {
+   "PASS": 558,
+   "n": 558,
+   "fail_rate": 0.0
+  },
+  "TEST": {
+   "PASS": 1116,
+   "n": 1116,
+   "fail_rate": 0.0
+  }
+ },
+ "by_source": {
+  "main": {
+   "PASS": 1410,
+   "n": 1410,
+   "fail_rate": 0.0
+  },
+  "ps_family": {
+   "PASS": 264,
+   "n": 264,
+   "fail_rate": 0.0
+  }
+ },
+ "by_variant": {
+  "CAN": {
+   "PASS": 492,
+   "n": 492,
+   "fail_rate": 0.0
+  },
+  "CF-A": {
+   "PASS": 180,
+   "n": 180,
+   "fail_rate": 0.0
+  },
+  "CF-C": {
+   "PASS": 189,
+   "n": 189,
+   "fail_rate": 0.0
+  },
+  "CF-N": {
+   "PASS": 83,
+   "n": 83,
+   "fail_rate": 0.0
+  },
+  "CF-O": {
+   "PASS": 90,
+   "n": 90,
+   "fail_rate": 0.0
+  },
+  "CF-R": {
+   "PASS": 106,
+   "n": 106,
+   "fail_rate": 0.0
+  },
+  "CF-S": {
+   "PASS": 24,
+   "n": 24,
+   "fail_rate": 0.0
+  },
+  "ORD": {
+   "PASS": 255,
+   "n": 255,
+   "fail_rate": 0.0
+  },
+  "PAR": {
+   "PASS": 255,
+   "n": 255,
+   "fail_rate": 0.0
+  }
+ },
+ "reviewers": [
+  "Shubham"
+ ],
+ "requires_owner_action": {
+  "fail_items": [],
+  "ambiguous_items": [],
+  "lexicon_fail": [],
+  "lexicon_ambiguous": [],
+  "note": "FAIL items must be fixed or removed by a dated benchmark amendment (decision log), then the sheets rebuilt with --carry-over and the changed items re-reviewed"
+ },
+ "benchmark_inputs": {
+  "prompts_v2.json": "000bc41ae5f07300c69f92bb2d1067a1a2de503e472eb0b10a0d846a997766f3",
+  "prompts_ps.json": "431fe1cc2b0ea46c1b35cccb23da36aae074f0728727ccabeaaa80b19a2b8d52",
+  "lexicon.json": "dddb7f9f55e45d197ce1334726e2eda0900c5498333f45236be77963496bc924",
+  "scene_graphs.json": "0c8011925857e4e9a82987f6bb35bd8ed8de68ddfea426493f3050bb83e08e7e",
+  "ps_family.json": "d7ce48843451c1845e3966bc8a801424ac1d894eb240bbb4fb45731ea1f9590c",
+  "splits.json": "daae2e9d7d81b1033084616cbf87e5ee661d4d8be26c0a2724fb96f8becd9354",
+  "splits_ps.json": "c1f84f251d64c4962eba0a1c852e04277da0c9057fedced4e2303ea121f00426"
+ },
+ "sheets_sha256": {
+  "variant_review.csv": "57d1fe222c5429684225d7a66cbb2292dde733c2e854c8b88eae2c54c95e9775",
+  "lexicon_review.csv": "bd25e2fc445e75db5e2ec7826ee45ffe871dbba1445ba4aeaffa38d34ee28c8e"
+ },
+ "problems": [],
+ "n_problems": 0,
+ "gate_note": "This script never sets configs/stage_gates.json. The owner sets variant_review_complete = true only if criteria_met is true and no FAIL item remains unaddressed."
+}

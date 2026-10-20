@@ -1,0 +1,6 @@
+# M9-prep / M10-prep acceptance (2026-10-13), CPU
+17 passed in 7.23s
+NOT VERIFIED:
+  no freeze manifest
+exit=1 (non-zero is the CORRECT state today: nothing is frozen)
+NOT DONE: kaggle/*.py are syntax-checked only (env_probe ran on this CPU container: no GPU). No Kaggle run exists.

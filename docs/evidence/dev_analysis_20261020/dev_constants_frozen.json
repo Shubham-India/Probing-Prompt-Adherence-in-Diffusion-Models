@@ -1,0 +1,15 @@
+{
+ "t50_dev_w7.5": {
+  "presence": 9.285714285714294,
+  "count": 18.88888888888889,
+  "bind_given_pres": 6.0,
+  "spatial_given_pres": 6.000000000000001,
+  "joint_bind": 12.999999999999998
+ },
+ "w_lo": 3.0,
+ "s_star_global": 12,
+ "_provenance": {
+  "t50_source": "dev_constants_A0fix.json (r3_analyze dev on eval_rows.jsonl sha256 9b5b9992..., DEV analysis run 89e309e; DL-40)",
+  "w_lo_source": "hps_guard.json of r3-dev-hps-guard-20261019T225352Z-73cd966 (verified, vocabulary sha256 = pin; scores identical to 93dbad8; DL-44/46)"
+ }
+}

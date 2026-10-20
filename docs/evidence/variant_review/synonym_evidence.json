@@ -1,0 +1,354 @@
+{
+ "method": "Text-side evidence for the PAR colour synonyms (variant review H3). CPU only; no image is generated.\nFor every PAR prompt and every colour synonym in it, the synonym is replaced by each of the judge's 10 basic colours (src/evaluate.py COLORS) and the\nnearest substituted prompt is found in two text spaces: SD 1.5's own text encoder (the generator's conditioning; mean of the non-padding hidden\nstates) and the judge's CLIP ViT-B/32 (pooled text embedding). A synonym \"maps\" to a basic colour when that colour's substitution is nearest.\nAlso a word-level probe (\"a photo of a {w} object\", the judge's colour template) and a noun/material-reading probe.\nThis is a PROXY: it shows how the models read the word, not what the generator draws. Output: docs/evidence/variant_review/synonym_evidence.json",
+ "judge_colours": [
+  "red",
+  "blue",
+  "yellow",
+  "green",
+  "orange",
+  "purple",
+  "white",
+  "black",
+  "brown",
+  "pink"
+ ],
+ "sd_model": "stable-diffusion-v1-5/stable-diffusion-v1-5@f03de327dd89b501a01da37fc5240cf4fdba85a1",
+ "judge_clip": "openai/clip-vit-base-patch32@3d74acf9a28c67741b2f4f2ea7635f0aaf6f0268",
+ "n_par_prompts": 255,
+ "synonyms": {
+  "azure": {
+   "canonical": "blue",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "blue": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0773,
+   "sd_margin_median": 0.1526,
+   "judge_nearest_colour": {
+    "blue": 46,
+    "green": 1
+   },
+   "judge_share_canonical": 0.979,
+   "judge_margin_min": -0.011,
+   "judge_margin_median": 0.0395,
+   "word_level_top3": {
+    "sd": {
+     "blue": 0.9405,
+     "green": 0.8592,
+     "purple": 0.8407
+    },
+    "judge": {
+     "blue": 0.9374,
+     "white": 0.8382,
+     "green": 0.83
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "bowl",
+     "colour_reading": 0.8683,
+     "azure sky": 0.8645
+    },
+    "judge": {
+     "probe_noun": "bowl",
+     "colour_reading": 0.9025,
+     "azure sky": 0.9071
+    }
+   }
+  },
+  "crimson": {
+   "canonical": "red",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "red": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0066,
+   "sd_margin_median": 0.0255,
+   "judge_nearest_colour": {
+    "red": 47
+   },
+   "judge_share_canonical": 1.0,
+   "judge_margin_min": 0.0015,
+   "judge_margin_median": 0.0298,
+   "word_level_top3": {
+    "sd": {
+     "red": 0.9355,
+     "pink": 0.8522,
+     "brown": 0.8486
+    },
+    "judge": {
+     "red": 0.9211,
+     "black": 0.8449,
+     "orange": 0.8447
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "umbrella",
+     "colour_reading": 0.9144,
+     "crimson velvet": 0.8979
+    },
+    "judge": {
+     "probe_noun": "umbrella",
+     "colour_reading": 0.9524,
+     "crimson velvet": 0.9339
+    }
+   }
+  },
+  "ebony": {
+   "canonical": "black",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "black": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0552,
+   "sd_margin_median": 0.1725,
+   "judge_nearest_colour": {
+    "black": 42,
+    "brown": 5
+   },
+   "judge_share_canonical": 0.894,
+   "judge_margin_min": -0.0753,
+   "judge_margin_median": 0.0322,
+   "word_level_top3": {
+    "sd": {
+     "black": 0.9336,
+     "brown": 0.8558,
+     "green": 0.823
+    },
+    "judge": {
+     "black": 0.921,
+     "brown": 0.824,
+     "blue": 0.7767
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "backpack",
+     "colour_reading": 0.8881,
+     "made of ebony wood": 0.8244,
+     "ebony wood": 0.9181
+    },
+    "judge": {
+     "probe_noun": "backpack",
+     "colour_reading": 0.9405,
+     "made of ebony wood": 0.8931,
+     "ebony wood": 0.9003
+    }
+   }
+  },
+  "emerald": {
+   "canonical": "green",
+   "occurrences": 46,
+   "sd_nearest_colour": {
+    "green": 46
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0105,
+   "sd_margin_median": 0.162,
+   "judge_nearest_colour": {
+    "green": 46
+   },
+   "judge_share_canonical": 1.0,
+   "judge_margin_min": 0.0164,
+   "judge_margin_median": 0.059,
+   "word_level_top3": {
+    "sd": {
+     "green": 0.9273,
+     "blue": 0.8369,
+     "black": 0.8279
+    },
+    "judge": {
+     "green": 0.8762,
+     "blue": 0.7714,
+     "black": 0.771
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "car",
+     "colour_reading": 0.8528,
+     "made of emerald gemstone": 0.8355,
+     "emerald gemstone": 0.9134
+    },
+    "judge": {
+     "probe_noun": "car",
+     "colour_reading": 0.9221,
+     "made of emerald gemstone": 0.9239,
+     "emerald gemstone": 0.951
+    }
+   }
+  },
+  "ivory": {
+   "canonical": "white",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "white": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0048,
+   "sd_margin_median": 0.0439,
+   "judge_nearest_colour": {
+    "white": 44,
+    "blue": 2,
+    "brown": 1
+   },
+   "judge_share_canonical": 0.936,
+   "judge_margin_min": -0.0791,
+   "judge_margin_median": 0.0267,
+   "word_level_top3": {
+    "sd": {
+     "white": 0.9039,
+     "yellow": 0.8103,
+     "green": 0.8038
+    },
+    "judge": {
+     "white": 0.8598,
+     "black": 0.7934,
+     "blue": 0.7768
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "book",
+     "colour_reading": 0.7949,
+     "made of ivory": 0.8046,
+     "carved ivory": 0.8543
+    },
+    "judge": {
+     "probe_noun": "book",
+     "colour_reading": 0.8592,
+     "made of ivory": 0.9636,
+     "carved ivory": 0.9056
+    }
+   }
+  },
+  "lemon": {
+   "canonical": "yellow",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "yellow": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0089,
+   "sd_margin_median": 0.0296,
+   "judge_nearest_colour": {
+    "yellow": 45,
+    "white": 1,
+    "black": 1
+   },
+   "judge_share_canonical": 0.957,
+   "judge_margin_min": -0.0017,
+   "judge_margin_median": 0.0382,
+   "word_level_top3": {
+    "sd": {
+     "yellow": 0.9186,
+     "orange": 0.8758,
+     "green": 0.8493
+    },
+    "judge": {
+     "yellow": 0.8939,
+     "orange": 0.8679,
+     "white": 0.8343
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "cat",
+     "colour_reading": 0.87
+    },
+    "judge": {
+     "probe_noun": "cat",
+     "colour_reading": 0.8772
+    }
+   }
+  },
+  "tangerine": {
+   "canonical": "orange",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "orange": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.021,
+   "sd_margin_median": 0.0737,
+   "judge_nearest_colour": {
+    "orange": 47
+   },
+   "judge_share_canonical": 1.0,
+   "judge_margin_min": 0.0298,
+   "judge_margin_median": 0.0687,
+   "word_level_top3": {
+    "sd": {
+     "orange": 0.9668,
+     "yellow": 0.8716,
+     "red": 0.8573
+    },
+    "judge": {
+     "orange": 0.941,
+     "yellow": 0.8077,
+     "red": 0.8021
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "pillow",
+     "colour_reading": 0.9456,
+     "next to a tangerine fruit": 0.7923,
+     "tangerine fruit": 0.9325
+    },
+    "judge": {
+     "probe_noun": "pillow",
+     "colour_reading": 0.9449,
+     "next to a tangerine fruit": 0.8756,
+     "tangerine fruit": 0.8903
+    }
+   }
+  },
+  "violet": {
+   "canonical": "purple",
+   "occurrences": 47,
+   "sd_nearest_colour": {
+    "purple": 47
+   },
+   "sd_share_canonical": 1.0,
+   "sd_margin_min": 0.0184,
+   "sd_margin_median": 0.1772,
+   "judge_nearest_colour": {
+    "purple": 47
+   },
+   "judge_share_canonical": 1.0,
+   "judge_margin_min": 0.0282,
+   "judge_margin_median": 0.0692,
+   "word_level_top3": {
+    "sd": {
+     "purple": 0.946,
+     "pink": 0.8648,
+     "blue": 0.8597
+    },
+    "judge": {
+     "purple": 0.9231,
+     "blue": 0.8601,
+     "black": 0.8402
+    }
+   },
+   "reading_probe": {
+    "sd": {
+     "probe_noun": "candle",
+     "colour_reading": 0.9142,
+     "next to a violet flower": 0.7687,
+     "violet flower": 0.9252
+    },
+    "judge": {
+     "probe_noun": "candle",
+     "colour_reading": 0.9518,
+     "next to a violet flower": 0.8912,
+     "violet flower": 0.9365
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,9 @@
+\section{Conclusion}
+We asked when compositional constraints become persistent during diffusion sampling and what classifier-free guidance changes about that timing. On the available two-thirds of a pre-registered test split, stronger guidance makes object presence persistent earlier, and cross-attention shows the same shift: object nouns separate earlier on identical noise, and missed objects are visible as diffuse, overlapping attention from the first steps. Both findings are exploratory. The timing result holds only if the presence judge's errors are not independent across seeds.
+
+The intervention built on the measurement did not work. Commitment times from the development split did not transfer, and Commitment-Aligned Guidance neither kept adherence nor beat its reversed schedule; matched-mean controls showed that its extra diversity came from lower average guidance. The broader lesson is about precision. Guiding by commitment time requires timing estimates far tighter than about 100 scenes provide, and judges that are validated, including for their error structure, for more than object presence. Three steps remain:
+\begin{itemize}
+\item the registered confirmatory analysis, once the three missing shards exist;
+\item a seed-paired judge audit;
+\item a 400-image experiment that resolves the full-resample offset.
+\end{itemize}

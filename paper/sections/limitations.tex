@@ -1,0 +1,16 @@
+\section{Limitations and threats to validity}\label{sec:limits}
+\begin{enumerate}
+\item \textbf{Incomplete test split.} Three of nine test shards are missing. All test results are partial and exploratory, and the registered confirmatory analysis has not been run (Section~\ref{sec:resCONF}).
+\item \textbf{Judge validity and error structure.} Only presence met the pre-declared accuracy criterion; results for binding, count, spatial relation and relative size are exploratory. One annotator labelled the audit, and no valid double annotation exists. The HD conclusion depends on how presence errors are distributed across seeds, which the audit did not measure.
+\item \textbf{Estimator validity.} The full-resample control shows an unexplained positive presence offset. Absolute $t_{50}$ values are therefore probe- and seed-panel-relative. Contrasts between guidance scales are less affected (Section~\ref{sec:resROBUST}). The registered gate for this control could not have been passed at the DEV sample size.
+\item \textbf{Transfer of DEV constants.} Commitment times did not replicate from DEV to the test scenes, so CAG was tested with switch steps that are mis-timed for binding.
+\item \textbf{Dose confound in the registered HE contrast.} CAG is registered against constant $w=7.5$ at a lower mean guidance. Only the post-hoc matched-mean contrasts separate timing from dose.
+\item \textbf{Post-hoc analyses.} Sections~\ref{sec:resROBUST} and~\ref{sec:resATTN} were chosen after the registered outcomes were known and are not corrected for multiplicity. Subgroups rest on 10--34 scenes.
+\item \textbf{Units and dependence.} Scenes are resampled as independent units. The 88 size-family scenes come from 11 object pairs, so their independence is overstated. The registered HD bootstrap resamples 111 scenes, of which 67 inform the contrast.
+\item \textbf{Attention coverage.} Maps were saved only for canonical 40-step images: none for restart branches, prompt switches, 20-step images or CAG arms. Attention results are associations, not interventions.
+\item \textbf{Probe dependence and censoring.} Restart persistence is defined relative to a re-noising magnitude, and several $t_{50}$ values are censored at the first grid step.
+\item \textbf{Selection.} Conditional outcomes (binding, spatial relation and size given presence) condition on a generated variable.
+\item \textbf{Scope.} One model (Stable Diffusion~1.5), one sampler and resolution, and synthetic prompts; some colour--object pairs are unnatural by design.
+\item \textbf{Literature check.} Most related works were checked at abstract level; novelty is claimed only for the specific combination stated in Section~\ref{sec:related}.
+\item \textbf{AI assistance.} Code, analysis scripts and manuscript drafts were produced with AI assistance under the author's direction. The DEV audit labels were produced by the author without AI assistance; the pilot validation labels were drafted with AI assistance and corrected by the author (Appendix~\ref{sec:existing}).
+\end{enumerate}

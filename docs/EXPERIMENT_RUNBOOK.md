@@ -1,6 +1,8 @@
 # Experiment runbook (Kaggle and local)
 
-Status: **procedure design.** None of the scripts named here with status PLANNED exist yet; no Kaggle run has been made. Each procedure is validated at its milestone (see MASTER_IMPLEMENTATION_BLUEPRINT section 16) before it is used for an expensive run.
+> **Superseded for execution by `docs/KAGGLE_MASTER_RUNBOOK.md` (2026-10-17).** This file keeps the original run cards and measured numbers. Known error here: the R2b card below says 1,880 images; the correct non-canonical DEV count is 1,480.
+
+Status (2026-10-13): scripts for R0-R3 now exist (`kaggle/`, `src/generate.py`, `src/run_branches.py`, `tests/gpu_identity.py`) and are CPU-tested with fakes or tiny random models; **no Kaggle run has been made and no real SD 1.5 GPU test has been executed since the pilot.** Each procedure is validated at its milestone (see MASTER_IMPLEMENTATION_BLUEPRINT section 16) before it is used for an expensive run.
 Verified facts about the environment are in `docs/REPOSITORY_AUDIT.md` section 2. Kaggle limits (GPU type, VRAM, quota, session length, internet and secrets behaviour) are **UNVERIFIED** until the hardware probe (E03) has run; every number below that depends on them is a placeholder.
 
 ## 1. Roles
@@ -29,8 +31,8 @@ Preconditions to evaluate before building it: `kaggle` CLI installed and authent
 | Local git read/commit | VERIFIED |
 | GitHub read with owner's cached credentials | VERIFIED (`ls-remote`) |
 | Anonymous GitHub read | VERIFIED **not possible** (private) |
-| GitHub push from this environment | UNVERIFIED (not attempted) |
-| `gh` CLI, `kaggle` CLI, Kaggle credentials here | VERIFIED **absent** |
+| GitHub push from the Claude cloud session | VERIFIED to branch `claude/admiring-cori-pbn9wk` only (push succeeded 2026-10-13); never to `main` |
+| `gh` CLI, `kaggle` CLI, Kaggle credentials in the cloud session | VERIFIED **absent**; the cloud session also cannot reach huggingface.co or the PyTorch wheel index (proxy 403) |
 | Kaggle GPU type/VRAM/quota/session length/internet/secrets behaviour | UNVERIFIED (planned R0 measures them) |
 | Kaggle notebook can clone the repo and install pins | UNVERIFIED |
 | Automatic return of outputs to GitHub | UNVERIFIED and not planned |
@@ -94,17 +96,46 @@ Git LFS is not planned; revisit only if compact artefacts exceed GitHub limits.
 | Quota exhausted | Stop; switch to the LIMITED design only through a recorded decision (DECISION_REGISTER D-05) |
 | Result looks wrong | Do not retune on TEST; compare with the DEV rehearsal; log a deviation in `SESSION_STATE.md` |
 
+## 3b. Code transfer without making the repository public (Path A, recommended)
+1. On your machine: `git fetch origin claude/admiring-cori-pbn9wk && git checkout claude/admiring-cori-pbn9wk` and note `SHA=$(git rev-parse HEAD)`.
+2. `python kaggle/make_bundle.py --commit $SHA --out kaggle_bundle` creates `kaggle_bundle/{repo/, COMMIT}`.
+3. Kaggle -> Datasets -> New Dataset -> upload the folder `kaggle_bundle`, visibility **Private**; name it e.g. `probing-bundle`.
+4. In the notebook: Add Input -> that dataset; Settings: Accelerator GPU, **Internet On** (needed to download the SD 1.5 weights; if the weights are not downloadable, add them as a second private dataset and set `HF_HUB_OFFLINE=1`).
+Alternative (Path A2): store a read-only fine-grained GitHub token as Kaggle Secret `GITHUB_READ_TOKEN` and use `--source github`; the token is never printed and is removed from `.git/config` by `kaggle/setup.py`. Whether Secrets work as assumed is UNVERIFIED.
+
+## 8a. R0 smoke test on Kaggle and the permanent fix (2026-10-14)
+**Reported by the owner (not re-measured here):** on 2x Tesla T4, bundle commit `89ab854`: model load 16.7 s, one 512x512 40-step image 5.39 s, peak VRAM 2.81 GB. The GPU identity test then passed for three cases with zero max differences on every required identity - but only with a **temporary diagnostic patch in the Kaggle working copy**, not with the committed code.
+**Original failure:** `tests/gpu_identity.py` called `pipe.unet.set_default_attn_processor()` after `edit_probe.install_edit`, raising `ValueError: Cannot call set_default_attn_processor when attention processors are of type AttnProcessor2_0` (diffusers 0.41.0). Cause (read from the diffusers source and reproduced on a tiny real UNet in `tests/test_intervene_modes.py`): that method only proceeds if *every* processor is in diffusers' accepted list; after `install_edit` the UNet holds a mix that includes our `EditProcessor`, so the check fails, and the message prints the first processor (a self-attention `AttnProcessor2_0`), which hides the real cause. Even when it does not raise it would install the non-SDPA `AttnProcessor`, a different baseline from the pipeline default.
+**Permanent fix (committed):** `install_edit` now stores the exact baseline processors on the state and `edit_probe.restore_processors(unet, state)` puts them back; `tests/gpu_identity.py` uses it and gained one extra required check, `restored_baseline_maxdiff` (an image generated after restoring must equal the baseline). The temporary diagnostic patch (explicit `AttnProcessor2_0` assignment) is **not** the committed implementation.
+**Model revision pinned** in `configs/experiment.json` and `configs/experiment_v2.json`: `stable-diffusion-v1-5/stable-diffusion-v1-5` @ `f03de327dd89b501a01da37fc5240cf4fdba85a1`. The pilot images in `outputs/main` were generated with `revision: null` (the hub default at the time); the pin is not proof that the pilot used this revision.
+**Status:** CPU checks of the fix pass (see SESSION_STATE). **R0 is NOT validated against the new commit** until `gpu_identity.py` is rerun on Kaggle from the new bundle and returns `all_required_identities_hold: true` including `restored_baseline_maxdiff`.
+
+## 8b. Status of runs (updated 2026-10-14, local audit)
+| Run | Status | Evidence |
+|---|---|---|
+| R0 `r0-20261014T145606Z-daef6c4` | done and **verified** (infrastructure only) | `env.json`, `gpu_identity.json` (all six required identities 0, 3 cases, T4), `setup_report.json` (commit `daef6c4740884276fc068109bbb48207f7034edd`, requirements hash matches the LF-normalised `requirements-kaggle.txt`); see `docs/R0_R1_AUDIT.md`. An earlier R0 `r0-20261014T100526Z` is only reported |
+| R1 `r1-20261014T101024Z-daef6c4` and a second probe in the R0 session | done | two `throughput.json` files without run ids: 10:10 session plain 6.16 s / latents 6.25 s; R0-session (15:02 UTC) plain 7.76 s / latents 7.59 s; real R2a: 6.21 / 6.26 s median. Use 6.2-7.8 s as the range |
+| R2a `r2a-20261014T130457Z-daef6c4` | done and **valid** | `docs/R2A_AUDIT_REPORT.md`; `src/audit_run.py` exit 0; `verify_outputs.py` exit 0 |
+| R2b, R3, R4 | not issued | R3 waits for D-13 and the R0 files; R2b waits for human review of PAR/ORD/CF variants (M3 gate); R4 waits for the freeze |
+Restoring artifacts through git on Windows converts text files to CRLF; compare text-file hashes only after CRLF to LF (`audit_run.py` does).
+
 ## 8. RUN CARDS
 
-Each card is completed when the milestone is implemented; fields marked `TBD` must be filled before the card is issued to the owner.
+`<RUN>` = `<exp>-<UTC yyyymmddThhmmss>-<sha7>`. All paths are inside the checked-out repo (`/kaggle/working/repo`) unless absolute. Two GPUs: run each command twice with `CUDA_VISIBLE_DEVICES=0` / `1` and `--shard 0/2` / `--shard 1/2`. A card is **not** issued for expensive stages until the earlier card passed and its outputs were returned and validated.
 
-| Run | Milestone | Where | Purpose | Command | Success criteria | Output |
-|---|---|---|---|---|---|---|
-| R0 hardware probe (E03a) | M9 | Kaggle | Hardware, VRAM, quota, load time, 1 image timing, hook identity | `python kaggle/env_probe.py` + `python src/generate.py ... --limit 20` | `env.json` complete; peak VRAM recorded; hook-on image equals hook-off image for the 10 sample items | `env.json`, `manifest.json` |
-| R1 throughput (E03b) | M9 | Kaggle, 1 and 2 workers | `t_gen`, `t_branch`, latent-save overhead, scaling `s2`, J2 fit | TBD | Timings with variance; crash rate | `throughput.json` |
-| R2 DEV core (E04-DEV) | M10 | Kaggle | DEV images with latents and attention | TBD | `verify_outputs` clean | `outputs/e04/<run_id>` |
-| R3 DEV commitment rehearsal (E23-DEV) | M10 | Kaggle | `t50_DEV`, controls | TBD | `D=0` identity; full-resample control `C` below the threshold in the blueprint (0.15) | `curves.csv` |
-| R4 TEST core, branches, onset arms | M11 | Kaggle | Frozen protocol | TBD | zero duplicates; manifests match | per experiment |
+| Run | Where | Commands (in order) | Success criteria (all must hold) | Returned files |
+|---|---|---|---|---|
+| **R0** hardware probe + identity | Kaggle, 1 GPU | `python /kaggle/input/probing-bundle/repo/kaggle/setup.py --source dataset --dataset-dir /kaggle/input/probing-bundle --commit <SHA> --run-id <RUN>` then `python repo/kaggle/env_probe.py --out /kaggle/working/outputs/<RUN>/env.json --time-one` then `python repo/tests/gpu_identity.py --out /kaggle/working/outputs/<RUN>/gpu_identity.json --n 3` | `env.json` has GPU name/VRAM/lib versions/`t_gen_one_s`/`peak_vram_gb`; `gpu_identity.json` has `all_required_identities_hold: true` (determinism, loop-from-step-0, reload-resume, D=0 branch, hook-off control all maxdiff 0). **A nonzero maxdiff is a finding to record and decide (D-07), not a pass.** | `env.json`, `gpu_identity.json`, `setup_report.json` |
+| **R1** throughput | Kaggle, 1-2 GPUs | `python repo/kaggle/run_throughput.py --out /kaggle/working/outputs/<RUN>/throughput.json --n 6` | `throughput.json` parses; plain vs latent-saving per-image seconds; two-worker wall time if 2 GPUs. Decides FULL vs LIMITED (recorded decision) | `throughput.json` |
+| **R2a** DEV core (CAN, with latents) | Kaggle | `python repo/src/generate.py --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --split DEV --variants CAN --out /kaggle/working/outputs/<RUN>/dev_core --save-latents-at 6,12,18,24,30,36 --run-id <RUN> --shard i/2` (per GPU) | 100 scenes x 4 seeds = **400 images + 400 latent files**;  : first `python repo/src/merge_samples.py --run <dir>`, then `python repo/src/verify_outputs.py --run <dir> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --split DEV --variants CAN --latents` must exit 0 | `dev_core/` (images, latents, samples*.jsonl) |
+| **R2b** DEV variants (no latents) | Kaggle | same as R2a without `--variants`/`--save-latents-at` | 470 prompts x 4 seeds = 1,880 images | `dev_all/` |
+| **R3** DEV restart branches (E23/E23b rehearsal) | Kaggle | `python repo/src/run_branches.py --core-run <dev_core> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --out /kaggle/working/outputs/<RUN>/dev_branches --variants D8 ER30 FULL --M 2 --split DEV --run-id <RUN> [--shard i/2]` | images = scenes x 2 base seeds x 6 grid x 3 variants x 2 = **7,200 for 100 scenes**; `D0` identity passed in R0 (REPORTED; artifact not verified locally); then `python repo/src/merge_samples.py --run <dev_branches>` and `python repo/src/verify_branches.py --branches <dev_branches> --core-run <dev_core> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --variants D8 ER30 FULL --M 2 --split DEV --check-core-latents` must exit 0 (tool added 2026-10-14; before it existed no repo tool could verify a branch run); FULL control `C <= 0.15` after evaluation | `dev_branches/` |
+| Evaluate (any run) | Kaggle or local GPU/CPU | `python repo/src/evaluate.py --run <dir> --prompts repo/data/benchmark_v2/prompts_v2.json --conditional` | `eval.jsonl` with D-04 fields | `detections.jsonl`, `eval.jsonl` |
+| Analyse (CPU, Claude) | local | `python src/analyze_commitment.py --core <dev_core eval> --branches <dev_branches eval> --out outputs/dev_ha` | no TEST rows; `ha.json` | - |
+| **R4** TEST | Kaggle | **not issued** until `python src/freeze.py --verify` exits 0 and the owner approves Addendum B | zero duplicates, manifests match | - |
+
+Image-count formulas (use `throughput.json` for time): R2a = DEV scenes x 4; R3 = scenes x 2 x 6 x variants x M; a branch at grid step t costs about (40 - target_idx)/40 of a full generation. No time or quota estimate is made here because none has been measured.
+`verify_outputs.py` accepts the same `--split/--variants` filters as `generate.py`; use identical filters for both.
 
 ## 9. Local (RTX 3050 6 GB) checks that precede Kaggle
 

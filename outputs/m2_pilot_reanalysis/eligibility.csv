@@ -1,0 +1,11 @@
+category,cfg,n_binding_images,n_eligible,eligible_fraction,prompts_with_zero_eligible,n_prompts
+binding,2.0,72,29,0.4027777777777778,0,6
+binding,7.5,72,35,0.4861111111111111,0,6
+binding,15.0,72,34,0.4722222222222222,0,6
+counting,2.0,72,72,1.0,0,6
+counting,7.5,72,72,1.0,0,6
+counting,15.0,72,72,1.0,0,6
+multi,2.0,72,27,0.375,2,6
+multi,7.5,72,30,0.4166666666666667,1,6
+multi,15.0,72,24,0.3333333333333333,0,6
+ALL binding-bearing,all,648,395,0.6095679012345679,0,18
