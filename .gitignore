@@ -4,3 +4,4 @@ outputs/*/images/
 __pycache__/
 *.pyc
 r2a-20261014T130457Z-daef6c4_backup.zip
+local_audit/R2a_checkpoint.zip
