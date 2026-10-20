@@ -96,7 +96,7 @@ def main():
     e2e = (ROOT / "outputs" / "e2e.log").read_text(errors="ignore") if (ROOT / "outputs" / "e2e.log").exists() else ""
     V["e2e_status"] = "completed: E2E-DONE" if "E2E-DONE" in e2e else "NOT completed"
     for template, target in (("report/report_template.md", "report/report.md"), ("report/defense_template.md", "report/defense.md"),
-                             ("README_template.md", "README.md"), ("report/validation_template.md", "report/validation.md")):
+                             ("report/PILOT_README_template.md", "report/PILOT_README.md"), ("report/validation_template.md", "report/validation.md")):
         out = (ROOT / template).read_text(encoding="utf-8").format_map(V)
         (ROOT / target).write_text(out, encoding="utf-8")
         print(target, "written;", len(out.split()), "words")

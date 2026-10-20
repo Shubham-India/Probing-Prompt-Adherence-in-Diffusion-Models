@@ -1,14 +1,71 @@
+# --- Python and local environments ---------------------------------------------------------------
 .venv/
-models/
-outputs/*/images/
 __pycache__/
 *.pyc
-kaggle_returns/
-runbook_secrets/
-*.token
+.pytest_cache/
+.env
+# local model cache (Stable Diffusion, OWL-ViT, CLIP, DINOv2 weights; downloaded at pinned revisions)
+models/
+
+# --- Credentials and secrets (use Kaggle Secrets / environment variables, never files in the repo) ---
 kaggle.json
+*.token
+runbook_secrets/
+
+# --- Private human annotations (audit labels are summarised in docs/evidence/, raw labels stay local) ---
+/labels_*.csv
+
+# --- Raw Kaggle archives, extracted data and run by-products ------------------------------------
+# Generation/analysis archives are kept as private Kaggle datasets; their verified summaries live in
+# docs/evidence/ and reports/. Root-level files below are working copies downloaded from Kaggle runs.
+/kaggle_outputs/
+kaggle_returns/
 kaggle_bundle/
 kaggle_bundle.zip
 kaggle_core_dataset/
-release/**/*.zip
+/*.part*of*.zip
+/two_worker_probe.zip
+/gbc-r2a-core-upload.zip
+/preflight_output.zip
+/ARCHIVE_MANIFEST.json
+/env.json
+/env_bootstrap.json
+/preflight.json
+/preflight_process.log
+/m.jsonl
+/owner_stage_gates_*.json
+# working copy of docs/evidence/dev_analysis_20261020/dev_constants_final.json
+/dev_constants.json
+
+# --- Local audits and scratch work -------------------------------------------------------------
+/local_audit/
+
+# --- Regenerable outputs ------------------------------------------------------------------------
+outputs/*/images/
+/outputs/results_draft/
+# source release package built by scripts/build_release.py
+/release/
 protocol/*.tmp
+# Overleaf package: python paper/make_overleaf_zip.py
+paper/paper_overleaf.zip
+# LaTeX build by-products (paper/main.pdf is the committed build)
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+# PNG previews and run logs written next to the committed PDF figures and JSON results
+reports/**/*.png
+reports/**/*.log
+
+# --- Local renders and editor by-products -------------------------------------------------------
+/main_latex.pdf
+/Guide_Before_Commitment_*.pdf
+*\[Autosaved\]*
+
+# --- Third-party material kept locally, not redistributed ---------------------------------------
+# Papers and upstream code archives used during the literature review (see research_Papers.txt and
+# paper/references.bib for citations), and the competition problem statement.
+/Researcha-thon Project/
+/Research-a-thon2.0 PS.pdf
