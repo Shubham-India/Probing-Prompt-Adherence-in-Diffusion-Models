@@ -117,6 +117,8 @@ Upload `paper/paper_overleaf.zip` to Overleaf (pdfLaTeX + BibTeX, main file `mai
 
 The test suite currently reports 5 failures, in `test_fail_closed.py` (2), `test_stage_guard.py` (2) and `test_variant_review.py` (1). These tests encode the pre-freeze state, in which owner gates were false and the protocol unsigned. They fail because the protocol has since been signed and the variant-review gate set. The tests and the files they read are unchanged since the freeze commit `40ade4d`.
 
+`tests/test_build_draft.py` also runs the protocol-bound draft-table builders, which rewrite several files in `paper/tables/` and `paper/figures/` with their pre-audit captions. After running the full suite, restore them with `git checkout -- paper/` (or rerun `python paper/make_paper_assets.py`).
+
 **From the run archives (not in the repository):** the generation and analysis archives are verified, checksummed Kaggle outputs kept as private datasets. With them:
 
 ```bash
