@@ -5,3 +5,11 @@ __pycache__/
 *.pyc
 r2a-20261014T130457Z-daef6c4_backup.zip
 local_audit/R2a_checkpoint.zip
+
+# Large archives and generated files
+*.zip
+kaggle_core_dataset/
+kaggle_outputs/
+env.json
+env_bootstrap.json
+*.log
