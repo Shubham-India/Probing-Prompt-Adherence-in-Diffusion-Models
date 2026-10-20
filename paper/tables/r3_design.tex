@@ -1,0 +1,15 @@
+\begin{table}[t]\centering\small
+\caption{Frozen stage manifests (job counts and full-generation equivalents from \texttt{src/manifests.py} with the frozen constants).}\label{tab:design}
+\begin{tabular}{llp{6.3cm}rr}
+\toprule
+Split & Stage & Content & Jobs & Equiv. \\
+\midrule
+DEV & DEV\_CORE & variants, CF bases, DEV size family & 1,784 & 1,784 \\
+DEV & DEV\_COMMIT & restarts D8/ER30/FULL, CFG 2/15 bases and restarts, switches & 8,896 & 6,930 \\
+DEV & DEV\_CAG\_GUARD & CAG $w_{lo}\in\{1,3\}$ quality guard & 400 & 336 \\
+TEST & TEST\_CORE & all variants; CFG $\times$ steps & 9,160 & 7,660 \\
+TEST & TEST\_COMMIT & restarts at CFG 2/7.5/15; prompt switches & 10,560 & 6,986 \\
+TEST & TEST\_CAG\_SIZE & CAG arms A2/A3/A4/A6; size family with restarts and switches & 5,536 & 4,923 \\
+\bottomrule
+\end{tabular}
+\end{table}

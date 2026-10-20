@@ -1,0 +1,19 @@
+\begin{table*}[t]\centering\small
+\caption{Closest prior work and this study. Entries describe each method at the level verified for this draft: full text for P2P and Attend-and-Excite; abstract or project page for the others (marked in \texttt{references.bib}). ``--'' means the aspect is not the method's aim.}\label{tab:related}
+\begin{tabular}{p{3.0cm}p{3.6cm}p{3.6cm}p{3.6cm}}
+\toprule
+Method & What it measures & What it intervenes on & How it is evaluated \\
+\midrule
+Prompt-to-Prompt \citep{hertz2023p2p} & -- & cross-attention maps during generation (injection, re-weighting) & image edits, qualitative and quantitative comparisons \\
+Attend-and-Excite \citep{chefer2023attend} & subject-token attention as a neglect signal & latents at inference, to raise neglected tokens' attention & object presence/binding via CLIP-based metrics and a user study \\
+Prompt Mixing \citep{patashnik2023mixing} & -- & prompt used in different denoising intervals & localisation of shape variations \\
+Critical windows \citep{li2024critical} & theoretical time windows of feature emergence & -- & theory and experiments \\
+Interval guidance \citep{kynkaanniemi2024interval} & -- & CFG applied only in a limited noise interval & distribution and sample quality \\
+CADS \citep{sadat2024cads} & -- & annealed (noised) conditioning during sampling & diversity and quality \\
+Dynamic CFG \citep{dynamiccfg2025} & per-step feedback from latent evaluators & per-step guidance scale, chosen online & prompt adherence and quality \\
+Step selection \citep{grimal2025step} & -- & conditioning signal strengthened at selected denoising steps (later steps favoured) & text--image alignment \\
+\midrule
+This study & chance-corrected restart persistence $C(t)$, $t_{50}$ per constraint type; attention stabilisation $t_{\mathrm{stab}}$ & two-level CFG schedule switched at $s^\star$ derived from DEV $t_{50}$ (CAG) & pre-registered tests with a human-audited detector judge; constant, reversed, matched-mean and global-switch controls \\
+\bottomrule
+\end{tabular}
+\end{table*}

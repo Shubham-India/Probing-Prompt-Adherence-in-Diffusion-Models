@@ -4,6 +4,8 @@ Status: draft text for `report/protocol.md`. It becomes binding only when the fr
 
 Source of truth for hypotheses and definitions: `GRAND_RESEARCH_BLUEPRINT.md` (Revision 2) sections 8.0-8.4 (HA, HB, HC verbatim by reference). Constants: `configs/analysis_plan.json` (tests assert equality with code defaults).
 
+> Owner decision 2026-10-14: the working defaults D-02, D-03, D-04, D-05 (literal primary, competitive sensitivity), D-06 and D-12 below are approved **as working defaults only**. Addendum B remains a DRAFT: unsigned, DEV-derived values unset, nothing frozen, TEST not accessed. D-13: R3 deferred until the evaluator audit (`docs/AUDIT_PROTOCOL_DEV.md`) is complete; four base seeds not approved to meet the gate; the 4-step gate is not to be changed to make a result pass.
+
 ## Working decisions applied (owner instruction, 2026-10-13)
 - **D-02** Restart: fixed jump D = 8 steps retained as the starting design; every branch logs requested/effective jump, scheduler timesteps and noise ratio; the clipped boundary `t = 6` (effective jump 6, ratio 0.21) is analysed separately; an equal-ratio sensitivity (ER30) and D in {4, 12} are mandatory; a persistence curve is not interpreted as semantic evidence when the trend can arise from changing perturbation severity. Support for HA additionally requires the same sign of Delta-t50 under the equal-ratio restart.
 - **D-03** Wording: "restart persistence" / "restart-persistence curve"; no claim that the model "decided" a constraint.

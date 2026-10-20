@@ -1,5 +1,7 @@
 # Experiment runbook (Kaggle and local)
 
+> **Superseded for execution by `docs/KAGGLE_MASTER_RUNBOOK.md` (2026-10-17).** This file keeps the original run cards and measured numbers. Known error here: the R2b card below says 1,880 images; the correct non-canonical DEV count is 1,480.
+
 Status (2026-10-13): scripts for R0-R3 now exist (`kaggle/`, `src/generate.py`, `src/run_branches.py`, `tests/gpu_identity.py`) and are CPU-tested with fakes or tiny random models; **no Kaggle run has been made and no real SD 1.5 GPU test has been executed since the pilot.** Each procedure is validated at its milestone (see MASTER_IMPLEMENTATION_BLUEPRINT section 16) before it is used for an expensive run.
 Verified facts about the environment are in `docs/REPOSITORY_AUDIT.md` section 2. Kaggle limits (GPU type, VRAM, quota, session length, internet and secrets behaviour) are **UNVERIFIED** until the hardware probe (E03) has run; every number below that depends on them is a placeholder.
 
@@ -108,6 +110,15 @@ Alternative (Path A2): store a read-only fine-grained GitHub token as Kaggle Sec
 **Model revision pinned** in `configs/experiment.json` and `configs/experiment_v2.json`: `stable-diffusion-v1-5/stable-diffusion-v1-5` @ `f03de327dd89b501a01da37fc5240cf4fdba85a1`. The pilot images in `outputs/main` were generated with `revision: null` (the hub default at the time); the pin is not proof that the pilot used this revision.
 **Status:** CPU checks of the fix pass (see SESSION_STATE). **R0 is NOT validated against the new commit** until `gpu_identity.py` is rerun on Kaggle from the new bundle and returns `all_required_identities_hold: true` including `restored_baseline_maxdiff`.
 
+## 8b. Status of runs (updated 2026-10-14, local audit)
+| Run | Status | Evidence |
+|---|---|---|
+| R0 `r0-20261014T145606Z-daef6c4` | done and **verified** (infrastructure only) | `env.json`, `gpu_identity.json` (all six required identities 0, 3 cases, T4), `setup_report.json` (commit `daef6c4740884276fc068109bbb48207f7034edd`, requirements hash matches the LF-normalised `requirements-kaggle.txt`); see `docs/R0_R1_AUDIT.md`. An earlier R0 `r0-20261014T100526Z` is only reported |
+| R1 `r1-20261014T101024Z-daef6c4` and a second probe in the R0 session | done | two `throughput.json` files without run ids: 10:10 session plain 6.16 s / latents 6.25 s; R0-session (15:02 UTC) plain 7.76 s / latents 7.59 s; real R2a: 6.21 / 6.26 s median. Use 6.2-7.8 s as the range |
+| R2a `r2a-20261014T130457Z-daef6c4` | done and **valid** | `docs/R2A_AUDIT_REPORT.md`; `src/audit_run.py` exit 0; `verify_outputs.py` exit 0 |
+| R2b, R3, R4 | not issued | R3 waits for D-13 and the R0 files; R2b waits for human review of PAR/ORD/CF variants (M3 gate); R4 waits for the freeze |
+Restoring artifacts through git on Windows converts text files to CRLF; compare text-file hashes only after CRLF to LF (`audit_run.py` does).
+
 ## 8. RUN CARDS
 
 `<RUN>` = `<exp>-<UTC yyyymmddThhmmss>-<sha7>`. All paths are inside the checked-out repo (`/kaggle/working/repo`) unless absolute. Two GPUs: run each command twice with `CUDA_VISIBLE_DEVICES=0` / `1` and `--shard 0/2` / `--shard 1/2`. A card is **not** issued for expensive stages until the earlier card passed and its outputs were returned and validated.
@@ -118,7 +129,7 @@ Alternative (Path A2): store a read-only fine-grained GitHub token as Kaggle Sec
 | **R1** throughput | Kaggle, 1-2 GPUs | `python repo/kaggle/run_throughput.py --out /kaggle/working/outputs/<RUN>/throughput.json --n 6` | `throughput.json` parses; plain vs latent-saving per-image seconds; two-worker wall time if 2 GPUs. Decides FULL vs LIMITED (recorded decision) | `throughput.json` |
 | **R2a** DEV core (CAN, with latents) | Kaggle | `python repo/src/generate.py --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --split DEV --variants CAN --out /kaggle/working/outputs/<RUN>/dev_core --save-latents-at 6,12,18,24,30,36 --run-id <RUN> --shard i/2` (per GPU) | 100 scenes x 4 seeds = **400 images + 400 latent files**;  : first `python repo/src/merge_samples.py --run <dir>`, then `python repo/src/verify_outputs.py --run <dir> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --split DEV --variants CAN --latents` must exit 0 | `dev_core/` (images, latents, samples*.jsonl) |
 | **R2b** DEV variants (no latents) | Kaggle | same as R2a without `--variants`/`--save-latents-at` | 470 prompts x 4 seeds = 1,880 images | `dev_all/` |
-| **R3** DEV restart branches (E23/E23b rehearsal) | Kaggle | `python repo/src/run_branches.py --core-run <dev_core> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --out /kaggle/working/outputs/<RUN>/dev_branches --variants D8 ER30 FULL --M 2 --split DEV --run-id <RUN> [--shard i/2]` | images = scenes x 2 base seeds x 6 grid x 3 variants x 2 = **7,200 for 100 scenes**; `D0` identity (R0) already passed; FULL control `C <= 0.15` after evaluation | `dev_branches/` |
+| **R3** DEV restart branches (E23/E23b rehearsal) | Kaggle | `python repo/src/run_branches.py --core-run <dev_core> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --out /kaggle/working/outputs/<RUN>/dev_branches --variants D8 ER30 FULL --M 2 --split DEV --run-id <RUN> [--shard i/2]` | images = scenes x 2 base seeds x 6 grid x 3 variants x 2 = **7,200 for 100 scenes**; `D0` identity passed in R0 (REPORTED; artifact not verified locally); then `python repo/src/merge_samples.py --run <dev_branches>` and `python repo/src/verify_branches.py --branches <dev_branches> --core-run <dev_core> --config repo/configs/experiment_v2.json --prompts repo/data/benchmark_v2/prompts_v2.json --variants D8 ER30 FULL --M 2 --split DEV --check-core-latents` must exit 0 (tool added 2026-10-14; before it existed no repo tool could verify a branch run); FULL control `C <= 0.15` after evaluation | `dev_branches/` |
 | Evaluate (any run) | Kaggle or local GPU/CPU | `python repo/src/evaluate.py --run <dir> --prompts repo/data/benchmark_v2/prompts_v2.json --conditional` | `eval.jsonl` with D-04 fields | `detections.jsonl`, `eval.jsonl` |
 | Analyse (CPU, Claude) | local | `python src/analyze_commitment.py --core <dev_core eval> --branches <dev_branches eval> --out outputs/dev_ha` | no TEST rows; `ha.json` | - |
 | **R4** TEST | Kaggle | **not issued** until `python src/freeze.py --verify` exits 0 and the owner approves Addendum B | zero duplicates, manifests match | - |

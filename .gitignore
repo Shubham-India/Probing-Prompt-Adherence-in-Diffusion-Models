@@ -9,3 +9,6 @@ runbook_secrets/
 kaggle.json
 kaggle_bundle/
 kaggle_bundle.zip
+kaggle_core_dataset/
+release/**/*.zip
+protocol/*.tmp

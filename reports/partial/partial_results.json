@@ -1,0 +1,588 @@
+{
+ "status": "PARTIAL TEST (EXPLORATORY): verified shards only; missing shards listed in coverage; Holm shown over the registered family for completeness",
+ "protocol": {
+  "verified": true,
+  "freeze_sha256": "c9706a7ebd592589b42e082652852fe0acc4235832a5b6ca9141caae6c7e1a56",
+  "source_commit": "40ade4d37f2fc9ac1d52fc726788944e87595c30"
+ },
+ "coverage": {
+  "TEST_CORE": {
+   "present": [
+    0,
+    1
+   ],
+   "missing": [
+    2
+   ],
+   "merged": 6172,
+   "manifest_jobs": 6172,
+   "scenes": 133
+  },
+  "TEST_COMMIT": {
+   "present": [
+    0,
+    1
+   ],
+   "missing": [
+    2
+   ],
+   "merged": 7080,
+   "manifest_jobs": 7080,
+   "scenes": 85
+  },
+  "TEST_CAG_SIZE": {
+   "present": [
+    1,
+    2
+   ],
+   "missing": [
+    0
+   ],
+   "merged": 3750,
+   "manifest_jobs": 3750,
+   "scenes": 222
+  },
+  "hypotheses": {
+   "HA_HD_HF_scenes": 111,
+   "HE_scenes_with_A1_and_CAG": 67,
+   "attention_maps": 2516
+  }
+ },
+ "skipped_archives": [
+  {
+   "archive": "/kaggle/input/datasets/shubhamindia/gbc-test-cagsize-s1",
+   "run_id": "test-cagsize-s1of3-20261020T001141Z-40ade4d",
+   "reason": "duplicate of an attached archive"
+  }
+ ],
+ "results": {
+  "HA": {
+   "variants": {
+    "D8": {
+     "t50": {
+      "presence": [
+       16.199999999999996,
+       "ok"
+      ],
+      "count": [
+       15.333333333333336,
+       "ok"
+      ],
+      "bind_given_pres": [
+       19.792531120331944,
+       "ok"
+      ],
+      "spatial_given_pres": [
+       6.0,
+       "left_censored"
+      ],
+      "size_given_pres": [
+       13.636363636363637,
+       "ok"
+      ],
+      "joint_bind": [
+       21.166666666666664,
+       "ok"
+      ]
+     },
+     "curves": {
+      "presence": [
+       0.16666666666666677,
+       0.3653846153846153,
+       0.5576923076923079,
+       0.7948717948717953,
+       0.8653846153846158,
+       0.8333333333333338
+      ],
+      "count": [
+       0.09210526315789475,
+       0.3684210526315789,
+       0.6052631578947367,
+       0.5657894736842104,
+       0.6842105263157895,
+       0.8421052631578948
+      ],
+      "bind_given_pres": [
+       0.16964285714285715,
+       0.29487179487179505,
+       0.4230769230769233,
+       0.6805555555555558,
+       0.7692307692307694,
+       0.7500000000000001
+      ],
+      "spatial_given_pres": [
+       0.745762711864407,
+       0.8301886792452831,
+       0.9761904761904762,
+       1.0,
+       0.9761904761904762,
+       1.0
+      ],
+      "size_given_pres": [
+       0.02500000000000009,
+       0.35000000000000003,
+       0.8999999999999998,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "joint_bind": [
+       0.23026315789473684,
+       0.26973684210526316,
+       0.25,
+       0.7236842105263159,
+       0.8026315789473684,
+       0.7631578947368421
+      ]
+     },
+     "n_scenes": 111,
+     "delta_t50": {
+      "estimate": 3.592531120331948,
+      "ci95": [
+       -10.428571428571427,
+       13.062152253149385
+      ],
+      "p": 0.5652173913043478,
+      "censored": 156,
+      "halfwidth": 11.745361840860406
+     },
+     "delta_joint": 4.966666666666669
+    },
+    "ER30": {
+     "t50": {
+      "presence": [
+       13.333333333333343,
+       "ok"
+      ],
+      "count": [
+       13.99999999999999,
+       "ok"
+      ],
+      "bind_given_pres": [
+       21.0,
+       "ok"
+      ],
+      "spatial_given_pres": [
+       6.0,
+       "left_censored"
+      ],
+      "joint_bind": [
+       21.333333333333332,
+       "ok"
+      ]
+     },
+     "curves": {
+      "presence": [
+       0.4726562499999999,
+       0.4843749999999999,
+       0.5546874999999999,
+       0.7539062499999999,
+       0.7890624999999999,
+       0.8007812499999999
+      ],
+      "count": [
+       0.3289473684210527,
+       0.48684210526315796,
+       0.5263157894736843,
+       0.7236842105263158,
+       0.5657894736842106,
+       0.7236842105263158
+      ],
+      "bind_given_pres": [
+       0.18750000000000006,
+       -0.08333333333333326,
+       0.37500000000000006,
+       0.625,
+       0.6041666666666667,
+       0.75
+      ],
+      "spatial_given_pres": [
+       0.6538461538461537,
+       1.0,
+       1.0,
+       1.0,
+       1.0,
+       1.0
+      ],
+      "joint_bind": [
+       0.30357142857142855,
+       0.30357142857142855,
+       0.14285714285714288,
+       0.7857142857142857,
+       0.7321428571428571,
+       0.7857142857142857
+      ]
+     },
+     "n_scenes": 67,
+     "delta_t50": {
+      "estimate": 7.666666666666657,
+      "ci95": [
+       -12.636363636363638,
+       24.879642857142844
+      ],
+      "p": 0.5974477958236659,
+      "censored": 1380,
+      "halfwidth": 18.75800324675324
+     },
+     "delta_joint": 7.999999999999989
+    }
+   },
+   "decision": "inconclusive",
+   "p": 0.5652173913043478,
+   "p_holm": 1.0,
+   "final": "PARTIAL TEST, EXPLORATORY (not the registered confirmatory test): EXPLORATORY (DEV precision gate failed (half-width 7.94 > 4); binding judge below the audit criterion); rule outcome: inconclusive",
+   "pre_test_status": "DEV precision gate failed (half-width 7.94 > 4); binding judge below the audit criterion"
+  },
+  "HD": {
+   "estimands": {
+    "presence": {
+     "t50_by_w": {
+      "2": 22.48,
+      "7.5": 16.199999999999996,
+      "15": 13.809523809523807
+     },
+     "delta": -8.670476190476194,
+     "ci95": [
+      -16.343030303030297,
+      -4.717623085270146
+     ],
+     "p": 0.0058029014507253625,
+     "decision": "supported"
+    },
+    "bind_given_pres": {
+     "t50_by_w": {
+      "2": ">36",
+      "7.5": 19.792531120331944,
+      "15": 12.499999999999998
+     },
+     "delta": "-inf",
+     "ci95": [
+      -24.0,
+      1.4987903225806358
+     ],
+     "p": 0.07417974322396577,
+     "decision": "inconclusive"
+    }
+   },
+   "p": 0.011605802901450725,
+   "decision": "supported",
+   "note": "A0 is computed separately at each w; raw agreement is reported by the curves module",
+   "p_holm": 0.0464232116058029,
+   "final": "PARTIAL TEST, EXPLORATORY (not the registered confirmatory test): supported",
+   "pre_test_status": "binding estimand EXPLORATORY (judge criterion not met)"
+  },
+  "HE": {
+   "non_inferiority": {
+    "estimate": -0.01554726368159204,
+    "ci90": [
+     -0.03544776119402985,
+     0.0031094527363184086
+    ],
+    "margin": -0.03,
+    "p": 0.1114
+   },
+   "diversity": {
+    "estimate": 0.021853276261743916,
+    "ci95": [
+     0.01508126785837549,
+     0.028604820067354708
+    ],
+    "p": 0.0
+   },
+   "timing": {
+    "estimate": 0.0006218905472636819,
+    "ci95": [
+     -0.025497512437810947,
+     0.027052238805970148
+    ],
+    "p": 0.4825
+   },
+   "conditions": {
+    "non_inferior": false,
+    "more_diverse": true,
+    "beats_reversed": false
+   },
+   "p": 0.4825,
+   "decision": "not supported (non_inferior, beats_reversed failed)",
+   "secondary": {
+    "A3_minus_A1": [
+     -0.03109452736318408,
+     [
+      -0.055970149253731345,
+      -0.006218905472636816
+     ]
+    ],
+    "A6_minus_A1": [
+     -0.004975124378109452,
+     [
+      -0.04104477611940298,
+      0.028606965174129355
+     ]
+    ],
+    "mean_unet_calls": {
+     "A1": 80.0,
+     "A2": 80.0,
+     "A3": 80.0,
+     "A4": 80.0,
+     "A6": 80.0
+    }
+   },
+   "n_scenes": 288,
+   "p_holm": 1.0,
+   "final": "PARTIAL TEST, EXPLORATORY (not the registered confirmatory test): not supported (non_inferior, beats_reversed failed)",
+   "pre_test_status": "F includes judge types below the audit criterion (count, binding, spatial, size); presence-only F reported as EXPLORATORY sensitivity"
+  },
+  "HF": {
+   "concordance": 0.3,
+   "pairs": 10,
+   "ci95": [
+    0.2,
+    0.75
+   ],
+   "p": 0.8042,
+   "spearman": {
+    "bind_given_pres": [
+     0.20135252812966226,
+     -0.3715152619982414,
+     0.6851458727687044
+    ],
+    "count": [
+     -0.3027650354097492,
+     -0.8257331472706322,
+     0.43012726911717664
+    ],
+    "presence": [
+     -0.19030778686365024,
+     -0.4192436915400113,
+     0.07239782095305977
+    ],
+    "size_given_pres": [
+     0.11595420713048969,
+     -1.0,
+     1.0
+    ],
+    "spatial_given_pres": [
+     0.36658725673197795,
+     -0.42742110355056134,
+     0.8935897175444159
+    ]
+   },
+   "decision": "rejected (ordering concordance <= 0.5)",
+   "n_scenes": 221,
+   "p_holm": 1.0,
+   "final": "PARTIAL TEST, EXPLORATORY (not the registered confirmatory test): rejected (ordering concordance <= 0.5)",
+   "pre_test_status": "type orderings include judge types below the audit criterion"
+  }
+ },
+ "supporting": {
+  "S2": {
+   "status": "SUPPORTING (S2, exploratory)",
+   "excluded_dev_overlap": 28,
+   "excluded_job_ids": [
+    "sg_0256_CFO__cfg7.5__st40__seed0",
+    "sg_0256_CFO__cfg7.5__st40__seed2",
+    "sg_0260_CFO__cfg7.5__st40__seed0",
+    "sg_0260_CFO__cfg7.5__st40__seed2",
+    "sg_0262_CFO__cfg7.5__st40__seed0",
+    "sg_0262_CFO__cfg7.5__st40__seed2",
+    "sg_0269_CFO__cfg7.5__st40__seed0",
+    "sg_0269_CFO__cfg7.5__st40__seed2",
+    "sg_0280_CFO__cfg7.5__st40__seed0",
+    "sg_0280_CFO__cfg7.5__st40__seed2",
+    "sg_0283_CFO__cfg7.5__st40__seed0",
+    "sg_0283_CFO__cfg7.5__st40__seed2",
+    "sg_0289_CFO__cfg7.5__st40__seed0",
+    "sg_0289_CFO__cfg7.5__st40__seed2",
+    "sg_0256_CFO__cfg7.5__st40__seed1",
+    "sg_0256_CFO__cfg7.5__st40__seed3",
+    "sg_0260_CFO__cfg7.5__st40__seed1",
+    "sg_0260_CFO__cfg7.5__st40__seed3",
+    "sg_0262_CFO__cfg7.5__st40__seed1",
+    "sg_0262_CFO__cfg7.5__st40__seed3",
+    "sg_0269_CFO__cfg7.5__st40__seed1",
+    "sg_0269_CFO__cfg7.5__st40__seed3",
+    "sg_0280_CFO__cfg7.5__st40__seed1",
+    "sg_0280_CFO__cfg7.5__st40__seed3",
+    "sg_0283_CFO__cfg7.5__st40__seed1",
+    "sg_0283_CFO__cfg7.5__st40__seed3",
+    "sg_0289_CFO__cfg7.5__st40__seed1",
+    "sg_0289_CFO__cfg7.5__st40__seed3"
+   ],
+   "rates": {
+    "CAN": {
+     "n_rows": 884,
+     "n_scenes": 221,
+     "objects_present": {
+      "mean": 0.3914,
+      "n": 884
+     },
+     "bind_given_pres": {
+      "mean": 0.4336,
+      "n": 226
+     },
+     "count_ok": {
+      "mean": 0.2568,
+      "n": 148
+     },
+     "spatial_given_pres": {
+      "mean": 0.5514,
+      "n": 107
+     },
+     "size_given_pres": {
+      "mean": 0.4937,
+      "n": 79
+     }
+    },
+    "CF-A": {
+     "n_rows": 320,
+     "n_scenes": 80,
+     "objects_present": {
+      "mean": 0.4281,
+      "n": 320
+     },
+     "bind_given_pres": {
+      "mean": 0.7258,
+      "n": 62
+     },
+     "count_ok": {
+      "mean": 0.3625,
+      "n": 80
+     }
+    },
+    "CF-C": {
+     "n_rows": 314,
+     "n_scenes": 84,
+     "objects_present": {
+      "mean": 0.2548,
+      "n": 314
+     },
+     "bind_given_pres": {
+      "mean": 0.2375,
+      "n": 80
+     },
+     "count_ok": {
+      "mean": 0.2353,
+      "n": 68
+     },
+     "spatial_given_pres": {
+      "mean": 0.6522,
+      "n": 23
+     },
+     "size_given_pres": {
+      "mean": 0.5,
+      "n": 8
+     }
+    },
+    "CF-N": {
+     "n_rows": 148,
+     "n_scenes": 37,
+     "objects_present": {
+      "mean": 0.6622,
+      "n": 148
+     },
+     "count_ok": {
+      "mean": 0.2973,
+      "n": 148
+     },
+     "bind_given_pres": {
+      "mean": 0.6224,
+      "n": 98
+     }
+    },
+    "CF-O": {
+     "n_rows": 104,
+     "n_scenes": 26,
+     "objects_present": {
+      "mean": 0.9808,
+      "n": 104
+     }
+    },
+    "CF-R": {
+     "n_rows": 166,
+     "n_scenes": 47,
+     "objects_present": {
+      "mean": 0.3554,
+      "n": 166
+     },
+     "bind_given_pres": {
+      "mean": 0.2692,
+      "n": 26
+     },
+     "spatial_given_pres": {
+      "mean": 0.3898,
+      "n": 59
+     },
+     "size_given_pres": {
+      "mean": 0.2222,
+      "n": 9
+     }
+    },
+    "CF-S": {
+     "n_rows": 22,
+     "n_scenes": 11,
+     "objects_present": {
+      "mean": 0.5,
+      "n": 22
+     },
+     "bind_given_pres": {
+      "mean": 0.2727,
+      "n": 11
+     },
+     "spatial_given_pres": {
+      "mean": 0.8182,
+      "n": 11
+     },
+     "size_given_pres": {
+      "mean": 0.3636,
+      "n": 11
+     }
+    },
+    "ORD": {
+     "n_rows": 452,
+     "n_scenes": 113,
+     "objects_present": {
+      "mean": 0.3274,
+      "n": 452
+     },
+     "bind_given_pres": {
+      "mean": 0.2706,
+      "n": 85
+     },
+     "count_ok": {
+      "mean": 0.1324,
+      "n": 68
+     },
+     "spatial_given_pres": {
+      "mean": 0.4792,
+      "n": 48
+     }
+    },
+    "PAR": {
+     "n_rows": 452,
+     "n_scenes": 113,
+     "objects_present": {
+      "mean": 0.3429,
+      "n": 452
+     },
+     "bind_given_pres": {
+      "mean": 0.4504,
+      "n": 131
+     },
+     "count_ok": {
+      "mean": 0.277,
+      "n": 148
+     },
+     "spatial_given_pres": {
+      "mean": 0.6053,
+      "n": 38
+     }
+    }
+   }
+  }
+ },
+ "dedup": {
+  "dropped_scenes": {},
+  "n_dropped_generations": 28,
+  "n_dropped_dependents": 0
+ }
+}

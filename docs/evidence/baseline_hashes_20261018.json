@@ -1,0 +1,30 @@
+{
+ "created": "2026-10-18",
+ "git_head": "daef6c4740884276fc068109bbb48207f7034edd",
+ "snapshot": "local_audit/snapshots/source_snapshot_20261018_pre_r3.zip",
+ "files_in_snapshot": 307,
+ "sha256": {
+  "configs/experiment.json": "ea66132daaf28468e806647a60d31b01a035855242b5f681b6e8255d39c385da",
+  "configs/experiment_v2.json": "18f1089e1711a44df6fdd2c06567d93ab9e7997a99255495c7127e94df9d9d84",
+  "configs/benchmark_v2.json": "bfc7a622fb76ada17921a3a6726255c538e43e6adb59c3480cc9655b44003b0f",
+  "configs/analysis_plan.json": "9027adba67fbd8a2921126cf2321d94feeeb5806d474b6c24e146be9b19e1952",
+  "data/prompts.json": "fd35758c45691d36345575d329782106706e7e6120df93fcc242eb77a3854aeb",
+  "data/benchmark_v2/prompts_v2.json": "d518902c987ab26b8e7c14e85175e5b42afd1e4bfb1608999188d1c40fe76a5a",
+  "data/benchmark_v2/scene_graphs.json": "cde7d52ea80b605a57baa39262e2b65b1085fcf57636ac606d32f34e9cf4c527",
+  "data/benchmark_v2/splits.json": "dcb1891faf020d84a2b71c268b67d47d78d8ec771f89657d206ba47e0984e43d",
+  "data/validation_labels.json": "59548eb186ed0e600f747182c319db86b9dcbbc1d2bbf899ef7851149761eb2d",
+  "outputs/main/samples.jsonl": "053c995441bd91af87260e4ceef14fb68b81f0245c1e4774e3d3791bfc1268ea",
+  "outputs/main/eval.jsonl": "734f2238c1f58a9b01880a586ff3613e1acae8db49720b707a4f0e7fee5d4663",
+  "outputs/main/results/per_image.csv": "2eddba66ecb4e7fbdd6d298bbae8f0091168b8bb0061f2489bd88b5b29a235bb",
+  "outputs/main/results/cfg_contrasts.csv": "add4262fcd98fb8e437e576b8d83cdd41651d3372e5c577a5a7f558d8e104340",
+  "outputs/intervention/samples.jsonl": "ac54496f34c9fecee4fd079b44b661022969ebcdc184ee582a43297bb98f8d4c",
+  "outputs/intervention/results/intervention_numbers.json": "c83d45ec3819723fe28514e7d7ab9346177e4ff95225582cf6ceb3948c9e20e2",
+  "GRAND_RESEARCH_BLUEPRINT.md": "ea90f0e8caa747083b3ec5a3853b324780520edb8862ab9fc33a096a69ce112b",
+  "main_latex.pdf": "8cc50977dd017eb2f6a96e9a86b0a0c5eec462ac47a02b5d3d9c1eb4fbfd3fad"
+ },
+ "counts": {
+  "outputs/main/images": 1008,
+  "outputs/main/attention": 504,
+  "outputs/intervention/images": 504
+ }
+}

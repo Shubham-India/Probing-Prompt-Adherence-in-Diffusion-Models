@@ -1,0 +1,13 @@
+\begin{table}[t]\centering\small
+\caption{Status of each hypothesis fixed before the test split (Addendum~C, \texttt{configs/analysis\_plan\_r3.json} \texttt{pre\_test\_status}); applied automatically by the analysis code.}\label{tab:status}
+\begin{tabular}{lp{4.2cm}p{6.0cm}}
+\toprule
+Hyp. & Registered rule & Status for the test split \\
+\midrule
+HA & $\Delta t_{50}$ rule + Holm & EXPLORATORY: DEV precision gate failed (half-width \haHalfwidth{} $>4$); binding judge below criterion \\
+HD & $\Delta t_{50}^{\mathrm{CFG}}$ rule + Holm & confirmatory through presence only; binding estimand exploratory \\
+HE & intersection--union + Holm & registered rule unchanged; $F$ includes judge types below the criterion (disclosed); presence-only $F$ as exploratory sensitivity \\
+HF & concordance/Spearman rule + Holm & registered rule unchanged; type orderings include judge types below the criterion (disclosed) \\
+\bottomrule
+\end{tabular}
+\end{table}

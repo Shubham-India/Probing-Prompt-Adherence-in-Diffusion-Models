@@ -7,9 +7,11 @@
 \newcommand{\pending}[1]{\textcolor{red}{\textbf{PENDING}}\ (#1)}
 \newcommand{\tfifty}{t_{50}}
 \input{tables/numbers.tex}
-\title{Guide Before Commitment: When Does a Diffusion Model Decide What It Draws, and What Does Classifier-Free Guidance Change?\\[2pt]\large Review draft: protocol, existing evidence and pending experiments}
+\input{tables/r3_numbers.tex}
+\input{tables/partial_robust_numbers.tex}
+\title{Guide Before Commitment: When Does a Diffusion Model Decide What It Draws, and What Does Classifier-Free Guidance Change?}
 \author{Author names and affiliations: \textit{placeholder}}
-\date{Draft generated from verified artifacts; see \texttt{docs/RESULTS\_PROVENANCE.md}}
+\date{Pre-registered study; development split complete, test split partial}
 \begin{document}
 \maketitle
 \input{sections/abstract}
@@ -20,14 +22,13 @@
 \input{sections/benchmark}
 \input{sections/evaluation}
 \input{sections/experimental_design}
-\input{sections/results_existing}
 \input{sections/results_dev}
-\input{sections/results_HA}
-\input{sections/results_HB}
-\input{sections/results_HC}
+\input{sections/results_partial}
+\input{sections/results_partial_robustness}
+\input{sections/results_confirmatory}
+\input{sections/results_existing}
 \input{sections/discussion}
 \input{sections/limitations}
-\input{sections/roadmap}
 \input{sections/reproducibility}
 \input{sections/conclusion}
 \bibliographystyle{plainnat}
