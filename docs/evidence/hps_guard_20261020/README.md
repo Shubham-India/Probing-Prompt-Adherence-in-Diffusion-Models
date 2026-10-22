@@ -1,1 +1,0 @@
-Evidence for the DEV CAG quality guard. Current: r3-dev-hps-guard-20261019T225352Z-73cd966 (source 73cd966, verified; vocabulary sha256 equals the pin; 600 scores bit-identical to run 93dbad8). `run_93dbad8/`: the earlier run whose vocabulary hash was not recorded (DL-46).
