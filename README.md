@@ -17,7 +17,7 @@ A pre-registered study of *when* compositional prompt constraints (object presen
 
 | I want to see… | Go to |
 |---|---|
-| The paper | [`paper/main.pdf`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/paper/main.pdf) (LaTeX: [`paper/main.tex`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/paper/main.tex)) |
+| The paper | [`paper/main.pdf`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/paper/ICASSP2026_Guide_Before_Commitment_anonymous_v3_updated.pdf) (LaTeX: [`paper/main.tex`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/paper/main.tex)) |
 | Where every number in the paper comes from | [`PAPER_STATUS.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/PAPER_STATUS.md) |
 | The four hypotheses and their frozen decision rules | [`configs/analysis_plan_r3.json`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/configs/analysis_plan_r3.json), [`protocol/protocol_freeze.json`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/protocol/protocol_freeze.json) |
 | The headline results table | [`reports/partial/hypothesis_summary.csv`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/reports/partial/hypothesis_summary.csv), [`reports/partial/partial_report.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/reports/partial/partial_report.md) |
@@ -104,7 +104,7 @@ This gives s\* = 12 for presence, binding and spatial prompts and s\* = 21 for c
 
 ### 3.7 Benchmark
 Machine-generated scene graphs, split by scene into DEV and TEST, plus a factorial colour × size × spatial family on 24 object pairs. Each scene has a canonical prompt, meaning-preserving paraphrases and single-field counterfactuals, so a failure can be attributed to one field.
-Data: [`data/benchmark_v2/`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/tree/main/data/benchmark_v2). Design: [`docs/ADDENDUM_C.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/ADDENDUM_C.md).
+Design: [`docs/ADDENDUM_C.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/ADDENDUM_C.md).
 
 ### 3.8 Pre-registration (internal, hash-signed)
 Decision rules, DEV constants and TEST manifests were frozen in a signed protocol before any test image was generated. It binds 103 files by hash, and every TEST worker refuses to run unless the protocol verifies. This is an internal freeze, **not** an external registry such as OSF.
@@ -228,13 +228,9 @@ PAPER_STATUS.md               number-to-evidence map for the paper
 | Document | What it contains |
 |---|---|
 | [`docs/R3_DECISION_LOG.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/R3_DECISION_LOG.md) | Numbered decisions (DL-01…DL-48), including the A0 estimator bug fix made before the test split |
-| [`docs/DECISION_REGISTER.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/DECISION_REGISTER.md) | Decision register |
-| [`docs/HYPOTHESIS_LEDGER.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/HYPOTHESIS_LEDGER.md) | Hypotheses and their status |
 | [`docs/ADDENDUM_C.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/ADDENDUM_C.md) | Benchmark v2 design (bound by the protocol) |
-| [`docs/AUDIT_PROTOCOL_DEV.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/AUDIT_PROTOCOL_DEV.md) | Human audit protocol |
-| [`docs/EXPERIMENT_RUNBOOK.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/EXPERIMENT_RUNBOOK.md), [`docs/KAGGLE_MASTER_RUNBOOK.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/KAGGLE_MASTER_RUNBOOK.md) | How the runs were executed |
-| [`docs/evidence/`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/tree/main/docs/evidence) | DEV constants, audit verdicts, HPS guard, baseline hashes |
-| [`docs/R0_R1_AUDIT.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/R0_R1_AUDIT.md), [`docs/R2A_AUDIT_REPORT.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/R2A_AUDIT_REPORT.md) | Earlier revision audits |
+| [`docs/KAGGLE_MASTER_RUNBOOK.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/KAGGLE_MASTER_RUNBOOK.md) | How the runs were executed |
+| [`docs/R2A_AUDIT_REPORT.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/docs/R2A_AUDIT_REPORT.md) | Earlier revision audits |
 | [`report/PILOT_README.md`](https://github.com/Shubham-India/Probing-Prompt-Adherence-in-Diffusion-Models/blob/main/report/PILOT_README.md) | The Revision 1 pilot (28 prompts), kept for history |
 
 Files under `src/`, `kaggle/`, `scripts/`, `configs/`, `data/` and `docs/ADDENDUM_C.md` are bound by the signed protocol. Do not edit them unless you are starting a new protocol revision; `python src/protocol_r3.py --verify` checks them.
